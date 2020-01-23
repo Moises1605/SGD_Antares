@@ -4,6 +4,7 @@ import './style.css';
 //import { Link } from 'react-router-dom'
 //import api from "../../services/api"
 import image4 from './image4.png'
+import VisitNight from './visitNight/visitNight';
 
 
 export default class Login extends React.Component {
@@ -14,13 +15,15 @@ export default class Login extends React.Component {
             Email: '',
             Senha: '',
             id: 0,
-            controle: false,
+            controlEx: false,
+            calendar: ['08:30-09:30', '09:30-10:30', '10:30-11:30', '14:30-15:30', '15:30-16:30', '16:30-17:30', '18:30-19:30', '19:30-20:30', '20:30-21:30']
         };
 
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangeSenha = this.handleChangeSenha.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.setControle = this.setControle.bind(this);
+        this.setControlEx = this.setControlEx.bind(this);
+
     }
     handleChangeEmail(event) {
         this.setState({ Email: event.target.value });
@@ -36,26 +39,67 @@ export default class Login extends React.Component {
     /*componentDidMount(){
       this.loadTasks();
   } */
-    setControle(event) {
-        this.setState({ controle: true })
+    setControlEx(event) {
+        this.setState({ controlEx: true })
     }
 
     render() {
         return (<div id='initial'>
+
             <Modal
                 size="lg"
-                show={this.state.controle}
-                onHide={() => this.setState({controle: false})}
+                show={this.state.controlEx}
+                onHide={() => this.setState({ controlEx: false })}
                 aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        Large Modal
+                        Exposições
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {verificar()}
+                    {
+                        <Carousel>
+                            <Carousel.Item>
+                                <Card>
+                                    <Card.Header>Exposição 1</Card.Header>
+                                    <Card.Body>
+                                        <blockquote className="blockquote mb-0">
+                                            <p>
+                                                {' '}
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                                                erat a ante.{' '}
+                                            </p>
+                                            <footer className="blockquote-footer">
+                                                Someone famous in <cite title="Source Title">Source Title</cite>
+                                            </footer>
+                                        </blockquote>
+                                    </Card.Body>
+                                </Card>
+                            </Carousel.Item>
+
+                            <Carousel.Item>
+                                <Card>
+                                    <Card.Header>Exposição 2</Card.Header>
+                                    <Card.Body>
+                                        <blockquote className="blockquote mb-0">
+                                            <p>
+                                                {' '}
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                                                erat a ante.{' '}
+                                            </p>
+                                            <footer className="blockquote-footer">
+                                                Someone famous in <cite title="Source Title">Source Title</cite>
+                                            </footer>
+                                        </blockquote>
+                                    </Card.Body>
+                                </Card>
+                            </Carousel.Item>
+                        </Carousel>
+                    }
                 </Modal.Body>
-            </Modal>
+
+            </Modal> 
+
             <div id='form' onSubmit={this.handleSubmit} >
                 <h1 id='title'>Login</h1>
                 {/*<div id='icon'>*/}
@@ -109,11 +153,12 @@ export default class Login extends React.Component {
 
             <div id='leftside'>
                 <div id='buttons'>
-                    {/* <Link to ''>*/}
+                    {/* <Link to ''>
                     <Button id='visit' variant="primary">Agendamento Noturno</Button>
-                    {/*</Link> */}
+                    </Link> */}
+                    <VisitNight id = 'visit'/>
                     {/* <Link to ''>*/}
-                    <Button id='exhibition' variant="primary" onClick={this.setControle}>Exposições</Button>
+                    <Button id='exhibition' variant="primary" onClick={this.setControlEx}>Exposições</Button>
                     {/*</Link> */}
                 </div>
 
@@ -131,87 +176,17 @@ export default class Login extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className='linha1'>08:30-09:30</td>
-                                <td>Disponível</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>          </td>
-                                <td>Disponível</td>
+                            {this.state.calendar.map(item => (
+                                <tr>
+                                    <td className='linha1' key={item.toString()}>{item}</td>
+                                    <td>Disponível</td>
+                                    <td>          </td>
+                                    <td>Disponível</td>
+                                    <td>          </td>
+                                    <td>Disponível</td>
 
-                            </tr>
-                            <tr>
-                                <td className='linha1'>09:30-10:30</td>
-                                <td>Disponível</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-
-                            </tr>
-                            <tr>
-                                <td className='linha1'>10:30-11:30</td>
-                                <td>Disponível</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-
-                            </tr>
-                            <tr >
-                                <td className='linha1'>14:30-15:30</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td></td>
-                                <td>Disponível</td>
-
-                            </tr>
-                            <tr>
-                                <td className='linha1'>15:30-16:30</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td></td>
-                                <td>Disponível</td>
-
-                            </tr>
-                            <tr>
-                                <td className='linha1'>16:30-17:30</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td></td>
-                                <td>Disponível</td>
-
-                            </tr>
-                            <tr>
-                                <td className='linha1'>18:30-19:30</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-
-                            </tr>
-                            <tr>
-                                <td className='linha1'>19:30-20:30</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-
-                            </tr>
-                            <tr>
-                                <td className='linha1'>20:30-21:30</td>
-                                <td>          </td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-                                <td>Disponível</td>
-
-                            </tr>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                 </div>
@@ -220,28 +195,3 @@ export default class Login extends React.Component {
     }
 }
 
-/*function modalView(controle) {
-    return (
-        <Modal
-            size="lg"
-            show={controle}
-            onHide={() => }
-            aria-labelledby="example-modal-sizes-title-lg">
-            <Modal.Header closeButton>
-                <Modal.Title id="example-modal-sizes-title-lg">
-                    Large Modal
-          </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>...</Modal.Body>
-        </Modal>
-    )
-}*/
-
-function verificar(controle) {
-    {var date = new Date();
-        var dia     = date.getDate();           
-        var mes     = date.getMonth();          
-        var ano4    = date.getFullYear();  
-        return `${dia}/${mes}/${ano4}`
-    }
-}

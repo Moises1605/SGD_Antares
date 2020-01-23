@@ -1,0 +1,18 @@
+#leftSide{
+    float: left;
+    background-color: white;
+}
+
+#rightSide{
+    float: right;
+    background-color: #c2d5ff;
+    background-size: 100%;
+}
+
+#email{
+    width: 60px;
+}
+
+#header{
+    background-color: #c2d5ff;
+}

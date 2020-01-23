@@ -91,6 +91,7 @@
 }
 
 #visit{
+    float: left;
     margin: 0 0 0 10px;
     font-family: 'Segoe UI';
 }
