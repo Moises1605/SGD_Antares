@@ -1,0 +1,49 @@
+#leftSide{
+    background-color: white;
+}
+
+#rightSide{
+    float: right;
+    background-color: #c2d5ff;
+    background-size: 100%;
+}
+
+#email{
+    width: 200px;
+}
+
+#header{
+    background-color: #c2d5ff;
+}
+
+#formHorizontalStudent{
+    width: 100px;
+}
+
+#textArea{
+    width: 550px;
+}
+
+#formHorizontalDate{
+    width: 85px;
+}
+
+#title{
+    margin: 0 0 0 10px;
+}
+
+#hy{
+    margin: 0 0 0 10px;
+} 
+
+#modal{
+    height: 500px;
+}
+
+#formHorizontalSerie{
+    width: 50px;
+}
+
+#agenda{
+    margin: 0 0 0 620px;
+}

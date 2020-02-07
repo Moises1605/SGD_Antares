@@ -1,0 +1,42 @@
+#conteudo{
+    clear: both;
+    width: 100vw;
+    background: white;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(228, 15, 15);
+} 
+
+#hhh{
+    background: #6710d8;
+    border-color: #6710d8;
+}
+
+#yyyy{    
+    height: 90vh;
+    background-color: #c2d5ff;
+    width: 210px; 
+    float: left;
+}  
+
+#test{
+    width: 100vw;
+}
+
+#interval{
+    margin: 0 0 0 500px;
+}
+
+#col{
+    margin: 10px;
+    padding: 20px;
+    border-bottom: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: gray;
+    color: #575d80;
+    font-size: 24px;
+}
+
+#htgr{
+    
+}

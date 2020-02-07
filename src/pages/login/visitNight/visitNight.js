@@ -11,12 +11,37 @@ export default class VisitNight extends React.Component {
         super(props);
         this.state = {
             control: false,
+            students: '',
+            date: '',
+            email:''
         };
         this.setControl = this.setControl.bind(this);
+        this.handleChangeDate = this.handleChangeDate.bind(this);
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
+        this.handleChangeStudents = this.handleChangeStudents.bind(this);
+        this.send = this.send.bind(this);
+
     }
     setControl(event) {
         this.setState({ control: true })
     }
+
+    handleChangeEmail(event) {
+        this.setState({ email: event.target.value });
+    }
+
+    handleChangeStudents(event) {
+        this.setState({ students: event.target.value });
+    }
+
+    handleChangeDate(event) {
+        this.setState({ date: event.target.value });
+    }
+
+    send(event){
+        //envia os dados para o banco
+    }
+
     render() {
         return (<div>
 
@@ -39,7 +64,7 @@ export default class VisitNight extends React.Component {
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Informe o número de visitantes</Form.Label>
-                                <Form.Control type="text" placeholder="" id = 'email'/>
+                                <Form.Control type="text" placeholder="" id = 'email' value = {this.state.students}  onChange = {this.handleChangeStudents}/>
                                 <Form.Text className="text-muted">
                                     *informe quantas pessoas irão acompanhar você nessa visita(Ex: 1,2...)
                                 </Form.Text>
@@ -47,7 +72,7 @@ export default class VisitNight extends React.Component {
 
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>dia da visita</Form.Label>
-                                <Form.Control type="text" placeholder="DD/MM/AAAA"/>
+                                <Form.Control type="text" placeholder="DD/MM/AAAA" value = {this.state.date}  onChange = {this.handleChangeDate}/>
                                 <Form.Text className="text-muted">
                                     *Coloque a data no formato indicado
                                 </Form.Text>
@@ -55,9 +80,9 @@ export default class VisitNight extends React.Component {
 
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Informe o seu email, para atualizar as informações da sua visita</Form.Label>
-                                <Form.Control type="email" placeholder="Email" />
+                                <Form.Control type="email" placeholder="Email" value = {this.state.email}  onChange = {this.handleChangeEmail} />
                             </Form.Group>
-                            <Button variant="primary" >
+                            <Button variant="primary"  onClick = {this.send}>
                                 Agendar visita
                             </Button>
                             <Climate/>

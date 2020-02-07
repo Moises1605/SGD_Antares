@@ -1,0 +1,35 @@
+#emailForget{
+    width: 300px;
+    margin: 0px 0 0px 20px;
+    
+}
+
+#forget{
+    font-size: 12px;
+    font-weight: bold;
+    color: #575d80;
+    font-family: 'Segoe UI';
+} 
+
+#header{
+    color: #575d80;
+}
+
+#labelForget{
+    font-size: 16px;
+    color: #575d80;
+    margin: 0px 0 0px 20px; 
+} 
+
+#formBasicEmail{
+   
+}
+    
+#modalForget{
+    width: 600px;
+    height: 500px;
+}
+
+#enviar{
+    margin: 0px 0 0px 30px;
+}

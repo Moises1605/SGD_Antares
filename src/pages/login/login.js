@@ -3,8 +3,9 @@ import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs,
 import './style.css';
 //import { Link } from 'react-router-dom'
 //import api from "../../services/api"
-import image4 from './image4.png'
+import image4 from './logo.png'
 import VisitNight from './visitNight/visitNight';
+import ForgetPassword from './forgetPassword/forgetPassword'
 
 
 export default class Login extends React.Component {
@@ -12,24 +13,23 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Email: '',
-            Senha: '',
-            id: 0,
+            email: '',
+            password: '',
             controlEx: false,
             calendar: ['08:30-09:30', '09:30-10:30', '10:30-11:30', '14:30-15:30', '15:30-16:30', '16:30-17:30', '18:30-19:30', '19:30-20:30', '20:30-21:30']
         };
 
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        this.handleChangeSenha = this.handleChangeSenha.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.setControlEx = this.setControlEx.bind(this);
 
     }
     handleChangeEmail(event) {
-        this.setState({ Email: event.target.value });
+        this.setState({ email: event.target.value });
     }
-    handleChangeSenha(event) {
-        this.setState({ Senha: event.target.value });
+    handleChangePassword(event) {
+        this.setState({ password: event.target.value });
     }
 
     async handleSubmit(event) {
@@ -46,7 +46,7 @@ export default class Login extends React.Component {
     render() {
         return (<div id='initial'>
 
-            <Modal
+            {/*<Modal
                 size="lg"
                 show={this.state.controlEx}
                 onHide={() => this.setState({ controlEx: false })}
@@ -57,7 +57,7 @@ export default class Login extends React.Component {
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {
+                    {/*
                         <Carousel>
                             <Carousel.Item>
                                 <Card>
@@ -98,12 +98,13 @@ export default class Login extends React.Component {
                     }
                 </Modal.Body>
 
-            </Modal> 
+                </Modal> */}
 
             <div id='form' onSubmit={this.handleSubmit} >
+                <img id='image' src={image4} roundedCircle />
                 <h1 id='title'>Login</h1>
                 {/*<div id='icon'>*/}
-                <img id='image' src={image4} roundedCircle />
+                
 
                 {/*</div>*/}
                 <Form id='info'>
@@ -114,9 +115,10 @@ export default class Login extends React.Component {
                         </InputGroup.Prepend>
 
                         <FormControl
-                            placeholder="Usuário"
+                            placeholder="Email"
                             aria-label="Usuário"
                             aria-describedby="basic-addon1"
+                            value = {this.state.email}  onChange = {this.handleChangeEmail}
                         />
                     </InputGroup>
                     <Form.Label>Senha</Form.Label>
@@ -130,6 +132,8 @@ export default class Login extends React.Component {
                             placeholder="Senha"
                             aria-label="Senha"
                             aria-describedby="basic-addon1"
+                            type = 'password'
+                            value = {this.state.password}  onChange = {this.handleChangePassword}
                         />
                     </InputGroup>
 
@@ -137,7 +141,7 @@ export default class Login extends React.Component {
                 <div >
 
                     {/*<Link to = {`/user/:${this.state.id}`}>*/}
-                    <Button id="entrar" variant="outline-success" type="submit" >
+                    <Button id="entrar" variant="outline-success" type="submit" onClick = {this.handleSubmit}>
                         Entrar
                         </Button>
                     { /*</Link>*/}
@@ -148,18 +152,14 @@ export default class Login extends React.Component {
                         </Button>
                     {/*</Link>*/}
                 </div>
-                <a id='forget' href='#'>Esqueceu a senha?</a>
+                {/* <a id='forget' href='#'>Esqueceu a senha?</a> */}
+                <ForgetPassword/>
             </div>
 
-            <div id='leftside'>
+            {/*<div id='leftside'>
                 <div id='buttons'>
-                    {/* <Link to ''>
-                    <Button id='visit' variant="primary">Agendamento Noturno</Button>
-                    </Link> */}
                     <VisitNight id = 'visit'/>
-                    {/* <Link to ''>*/}
                     <Button id='exhibition' variant="primary" onClick={this.setControlEx}>Exposições</Button>
-                    {/*</Link> */}
                 </div>
 
                 <div id='calendar'>
@@ -190,7 +190,7 @@ export default class Login extends React.Component {
                         </tbody>
                     </Table>
                 </div>
-            </div>
+            </div>*/}
         </div >);
     }
 }
