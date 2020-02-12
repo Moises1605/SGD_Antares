@@ -3,7 +3,7 @@ const Pessoa = require("./Pessoa.js");
 
 
 exports.add = function add(Login, Senha, idPessoa){
-    var sql = "INSERT INTO tbl_usuario (Login, Senha, idPessoa) VALUES ?";
+    var sql = "INSERT INTO usuarios (Login, Senha, idPessoa) VALUES ?";
     var values = [[Login, Senha, idPessoa]];
     conection.query(sql, values, function(err, result){
         if (err) throw err;
@@ -12,7 +12,7 @@ exports.add = function add(Login, Senha, idPessoa){
 }
 
 exports.getById = function getById(idPessoa, callback){
-    var sql = "SELECT * FROM tbl_usuario WHERE idPessoa = ?"
+    var sql = "SELECT * FROM usuarios WHERE idPessoa = ?"
     conection.query(sql, idPessoa, function(err, result){
         if (err) throw err;
         callback(result)
@@ -20,7 +20,7 @@ exports.getById = function getById(idPessoa, callback){
 }
 
 exports.getByLogin = function getByLogin(Login, callback){
-    var sql = "SELECT * FROM tbl_usuario WHERE Login = ?"
+    var sql = "SELECT * FROM usuarios WHERE Login = ?"
     conection.query(sql, Login, function(err, result){
         if(err) throw err;
         callback(result);
@@ -28,7 +28,7 @@ exports.getByLogin = function getByLogin(Login, callback){
 }
 
 exports.setLogin = function setLogin(idPessoa, Login, callback){
-    var sql =  "UPDATE tbl_usuario SET Login = ? WHERE idPessoa = ?"
+    var sql =  "UPDATE usuarios SET Login = ? WHERE idPessoa = ?"
     var values = [Login, idPessoa];
     conection.query(sql, values, function(err, result){
         if (err) throw err;
@@ -37,7 +37,7 @@ exports.setLogin = function setLogin(idPessoa, Login, callback){
 }
 
 exports.setSenha = function setSenha(idPessoa, Senha, callback){
-    var sql = "UPDATE tbl_usuario SET Senha = ? WHERE idPessoa = ?"
+    var sql = "UPDATE usuarios SET Senha = ? WHERE idPessoa = ?"
     var values = [Senha, idPessoa];
     conection.query(sql, values, function(err, result){
         if (err) throw err;
@@ -46,7 +46,7 @@ exports.setSenha = function setSenha(idPessoa, Senha, callback){
 }
 
 exports.remove = function remove(idPessoa, callback){
-    var sql = "DELETE from tbl_usuario WHERE idPessoa = ?"
+    var sql = "DELETE from usuarios WHERE idPessoa = ?"
     conection.query(sql, idPessoa, function(err, result){
         if (err) throw err;
         callback(result);

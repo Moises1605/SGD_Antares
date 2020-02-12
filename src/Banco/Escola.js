@@ -2,7 +2,7 @@ const conection = require("./conection.js")
 
 
 exports.add = function add(idVisitante, nomeResponsavel, telefoneResponsavel, Login, idPessoa, callback){
-    var sql = "INSERT INTO tbl_escola (idVisitante, nomeResponsavel, telefoneResponsavel, Login, idPessoa) VALUES ?"
+    var sql = "INSERT INTO escolas (idVisitante, nomeResponsavel, telefoneResponsavel, Login, idPessoa) VALUES ?"
     var values = [[idVisitante, nomeResponsavel, telefoneResponsavel, Login, idPessoa]]
     conection.query(sql, values, function(err, result){
         if (err) throw err;
@@ -11,7 +11,7 @@ exports.add = function add(idVisitante, nomeResponsavel, telefoneResponsavel, Lo
 }
 
 exports.getByIdVisitante = function getByIdVisitante(idVisitante, callback){
-    var sql = "SELECT * FROM tbl_escola WHERE idVisitante = ?"
+    var sql = "SELECT * FROM escolas WHERE idVisitante = ?"
     conection.query(sql, idVisitante, function(err, result){
         if (err) throw err;
         callback(result);
@@ -19,7 +19,7 @@ exports.getByIdVisitante = function getByIdVisitante(idVisitante, callback){
 }
 
 exports.getByNome = function getByNome(nomeResponsavel, callback){
-    var sql = "SELECT * FROM tbl_escola WHERE nomeResponsavel = ?"
+    var sql = "SELECT * FROM escolas WHERE nomeResponsavel = ?"
     conection.query(sql, nomeResponsavel, function(err, result){
         if (err) throw err;
         callback(result);
@@ -27,7 +27,7 @@ exports.getByNome = function getByNome(nomeResponsavel, callback){
 }
 
 exports.getByTelefone = function getByTelefone(telefoneResponsavel, callback){
-    var sql = "SELECT * FROM tbl_escola WHERE telefoneResponsavel = ?"
+    var sql = "SELECT * FROM escolas WHERE telefoneResponsavel = ?"
     conection.query(sql, telefoneResponsavel, function(err, result){
         if (err) throw err;
         callback(result);
@@ -35,7 +35,7 @@ exports.getByTelefone = function getByTelefone(telefoneResponsavel, callback){
 }
 
 exports.getByLogin = function getByLogin(Login, callback){
-    var sql = "SELECT * FROM tbl_escola WHERE Login = ?"
+    var sql = "SELECT * FROM escolas WHERE Login = ?"
     conection.query(sql, Login, function(err, result){
         if (err) throw err;
         callback(result);
@@ -43,7 +43,7 @@ exports.getByLogin = function getByLogin(Login, callback){
 }
 
 exports.getByIdPessoa = function getByIdPessoa(idPessoa, callback){
-    var sql = "SELECT * FROM tbl_escola WHERE idPessoa = ?"
+    var sql = "SELECT * FROM escolas WHERE idPessoa = ?"
     conection.query(sql, idPessoa, function(err, result){
         if (err) throw err;
         callback(result);
@@ -51,7 +51,7 @@ exports.getByIdPessoa = function getByIdPessoa(idPessoa, callback){
 }
 
 exports.getByIdEscola = function getByidEscola(idEscola, callback){
-    var sql = "SELECT * FROM tbl_escola WHERE idEscola = ?"
+    var sql = "SELECT * FROM escolas WHERE idEscola = ?"
     conection.query(sql, idEscola, function(err, result){
         if(err) throw err;
         callback(result);
@@ -59,7 +59,7 @@ exports.getByIdEscola = function getByidEscola(idEscola, callback){
 }
 
 exports.setLogin = function setLogin(idEscola, Login, callback){
-    var sql = "UPDATE tbl_escola Login = ? WHERE idEscola = ?"
+    var sql = "UPDATE escolas Login = ? WHERE idEscola = ?"
     var values = [Login, idEscola];
     conection.query(sql, values, function(err, result){
         if (err) throw err;
@@ -68,7 +68,7 @@ exports.setLogin = function setLogin(idEscola, Login, callback){
 }
 
 exports.setNome = function setNome(idEscola, nomeResponsavel, callback){
-    var sql = "UPDATE tbl_escola nomeResponsavel = ? WHERE idEscola = ?"
+    var sql = "UPDATE escolas nomeResponsavel = ? WHERE idEscola = ?"
     var values = [nomeResponsavel, idEscola];
     conection.query(sql, values, function(err, result){
         if (err) throw err;
@@ -77,7 +77,7 @@ exports.setNome = function setNome(idEscola, nomeResponsavel, callback){
 }
 
 exports.setTelefone = function setTelefone(idEscola, telefoneResponsavel, callback){
-    var sql = "UPDATE tbl_escola telefoneResponsavel ? WHERE idEscola = ?"
+    var sql = "UPDATE escolas telefoneResponsavel ? WHERE idEscola = ?"
     var values = [telefoneResponsavel, idEscola];
     conection.query(sql, values, function(err, result){
         if (err) throw err;
@@ -86,7 +86,7 @@ exports.setTelefone = function setTelefone(idEscola, telefoneResponsavel, callba
 }
 
 exports.remove = function remove(idEscola, callback){
-    var sql = "DELET FROM tbl_escola WHERE idEscola = ?"
+    var sql = "DELET FROM escolas WHERE idEscola = ?"
     conection.query(sql, idEscola, function(err, result){
         if (err) throw err;
         callback(result);
