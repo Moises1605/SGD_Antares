@@ -75,12 +75,13 @@ class LateralBar extends Component{
 			    </Nav.Item>
 			    <Nav.Item>
 				<Button 
+					href = '/login'
 				    variant="outline-dark"
 				    block
 				    style={{
 					marginTop: "20vh"
 				    }}
-				 >Encerrar Seção</Button>
+				 >Encerrar Sessão</Button>
 			    </Nav.Item>
 			</Nav>
 		    </Navbar>

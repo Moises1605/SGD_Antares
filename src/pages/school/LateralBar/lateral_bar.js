@@ -43,7 +43,7 @@ export default class LateralBar extends Component {
 				</div>
 				<div >
 					{/* <ConfirmBack/> */}
-					<Button href = '/login' id = 'endSession' variant="dark" block >Encerrar Seção</Button>
+					<Button href = '/login' id = 'endSession' variant="dark" block >Encerrar Sessão</Button>
 				</div>
 			</div>
 		);

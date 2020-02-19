@@ -52,7 +52,7 @@ class LateralBar extends Component{
 				    eventKey="5"
 				>Backup
 				</Nav.Link>   
-				<Button id='encerrar'variant="outline-dark">Encerrar Sessão</Button>   
+				<Button href = '/login' id='encerrar'variant="outline-dark">Encerrar Sessão</Button>   
 			    </Nav.Item>
 			</Nav>
 		    </Navbar>
