@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import ptBr from '@fullcalendar/core/locales/pt-br'
 import interactionPlugin from '@fullcalendar/interaction';
-import '../Home/Calendar.css';
+import './Calendar.css';
 export default class DemoApp extends React.Component {
 
   render() {
@@ -22,38 +22,42 @@ export default class DemoApp extends React.Component {
         height={450}
         maxTime='20:30:00'
         minTime='08:00:00'
-        
-
+        slotDuration='00:30'
         events = {[
           {
             daysOfWeek: [3,5],
             startTime: '08:00',
             endTime: '12:00',
-            rendering: 'background'
+            rendering: 'background',
+            color: '#39FF14'
           },
           {
             daysOfWeek: [3,5],
             startTime: '15:00',
             endTime: '17:00',
-            rendering: 'background'
+            rendering: 'background',
+            color: '#39FF14'
           },
           {
             daysOfWeek: [2,4],
             startTime: '10:00',
             endTime: '12:00',
-            rendering: 'background'
+            rendering: 'background',
+            color: '#39FF14'
           },
           {
             daysOfWeek: [2,4],
             startTime: '14:00',
             endTime: '17:00',
-            rendering: 'background'
+            rendering: 'background',
+            color: '#39FF14'
           },
           {
             daysOfWeek: [1],
             startTime: '14:00',
             endTime: '17:00',
-            rendering: 'background'
+            rendering: 'background',
+            color: '#39FF14'
           }
         ]}
       />
