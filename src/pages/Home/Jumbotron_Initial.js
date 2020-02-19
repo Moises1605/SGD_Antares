@@ -10,7 +10,7 @@ export default class JumbotronAtracoes extends React.Component{
                 <Jumbotron fluid >
                     <Container >
                         <Row class="efeito">
-                            <Col  md={5}>
+                            <Col  xl={5}>
                                     <h1>Seja bem-vindo!</h1>
                                     <h5>
                                     No Observatório Astronômico Antares, são realizadas visitas a exposições, observações com telescópios automatizados, cursos,

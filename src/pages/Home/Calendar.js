@@ -29,7 +29,7 @@ export default class DemoApp extends React.Component {
             startTime: '08:00',
             endTime: '12:00',
             rendering: 'background',
-            color: '#000000'
+            color: '#39FF14'
           },
           {
             daysOfWeek: [3,5],
