@@ -7,11 +7,10 @@ export default class JumbotronAtracoes extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <Jumbotron fluid>
-                    <Container>
+                <Jumbotron fluid >
+                    <Container >
                         <Row class="efeito">
-                            <Col id="a" md={5}>
-                                <div class="efeito">
+                            <Col  md={5}>
                                     <h1>Seja bem-vindo!</h1>
                                     <h5>
                                     No Observatório Astronômico Antares, são realizadas visitas a exposições, observações com telescópios automatizados, cursos,
@@ -22,7 +21,6 @@ export default class JumbotronAtracoes extends React.Component{
                                         <Button  variant="outline-success" className="mr-2">Agendamento Escolar</Button>
                                         <Button  variant="outline-success" className="mr-2">Agendamento Noturno</Button>
                                     </ButtonToolbar>
-                                </div>
                             </Col> 
                            
                             <Col md={{offset: 2 }}>
