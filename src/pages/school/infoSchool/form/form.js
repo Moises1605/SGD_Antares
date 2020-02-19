@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
 import './style.css';
-import { Link,Redirect } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import api from "../../../services/api"
 
 
@@ -14,15 +14,14 @@ export default class FormRegister extends React.Component {
             password: '',
             password2: '',
             schoolName: '',
-            address: '',
+            address:'',
             city: '',
             state: '',
             CNPJ: '',
-            phone: '',
-            directorName: '',
-            schoolType: '',
-            scholarity: '',
-            redirect: false
+            phone:'',
+            directorName:'',
+            schoolType:'',
+            scholarity:''
         };
 
         //Funções responsáveis por atualizar os estados das informções.
@@ -52,13 +51,13 @@ export default class FormRegister extends React.Component {
     handleChangePassword2(event) {
         this.setState({ password2: event.target.value });
     }
-
+    
     handleChangeSchoolName(event) {
         this.setState({ schoolName: event.target.value });
     }
     handleChangeAddress(event) {
         this.setState({ address: event.target.value });
-    }
+    } 
 
     handleChangeCity(event) {
         this.setState({ city: event.target.value });
@@ -66,7 +65,7 @@ export default class FormRegister extends React.Component {
 
     handleChangeState(event) {
         this.setState({ state: event.target.value });
-    }
+    } 
 
     handleChangeCNPJ(event) {
         this.setState({ CNPJ: event.target.value });
@@ -80,8 +79,8 @@ export default class FormRegister extends React.Component {
         this.setState({ directorName: event.target.value });
     }
 
-    handleChangeTypeSchool(event) {
-        this.setState({ schoolType: event.target.value });
+    handleChangeTypeSchool(event){
+        this.setState({schoolType: event.target.value});
     }
 
     handleChangescholarity(event) {
@@ -89,47 +88,35 @@ export default class FormRegister extends React.Component {
     }
 
     async handleSubmit(event) {
-        api.post('/adicionarEscola',this.state)
-            .then(function (response) {
-                // handle success
-                this.setState({redirect: true});
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            });
+        const response = await api.post(`/AdicionarEscola/:${this.state}`)
     }
 
     render() {
-        if(this.state.redirect){
-            return <Redirect to="/home/"/>
-        }
         return (
-            <div id='temp'>
-                <h1 id='titleForm'>Cadastro de Escola</h1>
+            <div id = 'temp'> 
+                <h1 id = 'titleForm'>Cadastro de Escola</h1>  
                 <Form>
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridNameSchool">
                             <Form.Label>Nome da Escola</Form.Label>
-                            <Form.Control type="text" placeholder="Nome da Escola" value={this.state.schoolName} onChange={this.handleChangeSchoolName} />
+                            <Form.Control type="text" placeholder="Nome da Escola" value = {this.state.schoolName}  onChange = {this.handleChangeSchoolName} />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridAddress">
                             <Form.Label>Endereço</Form.Label>
-                            <Form.Control type="text" placeholder="Endereço" value={this.state.address} onChange={this.handleChangeAddress} />
+                            <Form.Control type="text" placeholder="Endereço" value = {this.state.address}  onChange = {this.handleChangeAddress}/>
                         </Form.Group>
                     </Form.Row>
 
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridCity">
                             <Form.Label>Cidade</Form.Label>
-                            <Form.Control type="text" placeholder="Cidade" value={this.state.city} onChange={this.handleChangeCity} />
+                            <Form.Control type="text" placeholder="Cidade" value = {this.state.city}  onChange = {this.handleChangeCity}/>
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridState">
                             <Form.Label>Estado</Form.Label>
-                            <Form.Control type="text" placeholder="Estado" value={this.state.state} onChange={this.handleChangeState} />
+                            <Form.Control type="text" placeholder="Estado" value = {this.state.state}  onChange = {this.handleChangeState}/>
                         </Form.Group>
 
                     </Form.Row>
@@ -137,36 +124,36 @@ export default class FormRegister extends React.Component {
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridCNPJ">
                             <Form.Label>CNPJ</Form.Label>
-                            <Form.Control type="text" placeholder="CNPJ" value={this.state.CNPJ} onChange={this.handleChangeCNPJ} />
+                            <Form.Control type="text" placeholder="CNPJ" value = {this.state.CNPJ}  onChange = {this.handleChangeCNPJ}/>
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridPhone">
                             <Form.Label>Telefone</Form.Label>
-                            <Form.Control type="text" placeholder="(DDD)XXXX-XXXX" value={this.state.phone} onChange={this.handleChangePhone} />
+                            <Form.Control type="text" placeholder="(DDD)XXXX-XXXX" value = {this.state.phone}  onChange = {this.handleChangePhone}/>
                         </Form.Group>
 
                     </Form.Row>
 
                     <Form.Group controlId="formGridDirectorName">
                         <Form.Label>Nome do diretor</Form.Label>
-                        <Form.Control type='text' placeholder="Nome do diretor" value={this.state.directorName} onChange={this.handleChangeDirectorName} />
+                        <Form.Control type='text' placeholder="Nome do diretor" value = {this.state.directorName}  onChange = {this.handleChangeDirectorName}/>
                     </Form.Group>
-
+                    
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridSchoolType">
                             <Form.Label>Escola</Form.Label>
-                            <Form.Control as="select" value={this.state.schoolType} onChange={this.handleChangeTypeSchool}>
+                            <Form.Control as="select" value = {this.state.schoolType}  onChange = {this.handleChangeTypeSchool}>
                                 <option></option>
                                 <option>Tipo de escola</option>
                                 <option>Particular</option>
                                 <option>Pública Estadual</option>
                                 <option>Pública Municipal</option>
                             </Form.Control>
-                        </Form.Group>
+                        </Form.Group> 
 
                         <Form.Group as={Col} controlId="formGridScholarity">
                             <Form.Label>Grau de escolaridade</Form.Label>
-                            <Form.Control as="select" value={this.state.scholarity} onChange={this.handleChangescholarity}>
+                            <Form.Control as="select" value = {this.state.scholarity}  onChange = {this.handleChangescholarity}>
                                 <option></option>
                                 <option>Escolaridade</option>
                                 <option>Ensino infantil</option>
@@ -178,24 +165,24 @@ export default class FormRegister extends React.Component {
 
                     <Form.Group controlId="formGridEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type='email' placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} />
+                        <Form.Control type='email' placeholder="Email" value = {this.state.email}  onChange = {this.handleChangeEmail}/>
                     </Form.Group>
-
+                    
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridPassword">
                             <Form.Label>Senha</Form.Label>
-                            <Form.Control type="password" placeholder="Senha" value={this.state.password} onChange={this.handleChangePassword} />
+                            <Form.Control type="password" placeholder="Senha" value = {this.state.password}  onChange = {this.handleChangePassword}/>
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridPassword2">
                             <Form.Label>Confirme a senha</Form.Label>
-                            <Form.Control type="password" placeholder="Confirme a Senha" value={this.state.password2} onChange={this.handleChangePassword2}
+                            <Form.Control type="password" placeholder="Confirme a Senha" value = {this.state.password2}  onChange = {this.handleChangePassword2}
                             />
                         </Form.Group>
                     </Form.Row>
 
-                    <Button id='sendForm' variant="outline-primary" onClick={this.handleSubmit}>
-                        Cadastrar
+                    <Button id = 'sendForm'variant="outline-primary" onClick = {this.handleSubmit}>
+                        Salvar alterações
                     </Button>
                 </Form>
             </div >
@@ -203,4 +190,3 @@ export default class FormRegister extends React.Component {
     }
 
 }
-//10

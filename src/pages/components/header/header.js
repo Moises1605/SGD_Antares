@@ -25,9 +25,10 @@ export default class Header extends React.Component {
                     <div id = 'frase'>
                         
                     </div>
-                    {/* <ConfirmBack/> 
+                    <ConfirmBack/> 
                     
                 </div>  */}
+                {/* <ConfirmBack/>  */}
         </div>
         )
     }

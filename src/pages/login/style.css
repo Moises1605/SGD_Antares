@@ -2,11 +2,15 @@
     width: 100vw;
     height: 100vh;
     color: rgb(15, 94, 214);
-    background-color: #e9edf7;
+    background-color: #eceef5;
     /*flex-direction: row;*/    
     /*padding: 10px 0 0 0;*/
     /*justify-content: center;
     align-items: center*/ 
+}
+
+#hh{
+    height: 200px;
 }
 
 #form{
@@ -23,7 +27,7 @@
    /* border-left-style: solid;
     border-left-color: black;
     border-left-width: 2px;*/
-    box-shadow: 5px 5px 7px rgba(0,0,0,0.5);
+    /* box-shadow: 5px 5px 7px rgba(0,0,0,0.5); */
     float: right;
   
 } 
@@ -57,9 +61,10 @@
 #image{
     width: 18vh;
     height: 15vh;
-    background-color: red;
+    background-color: #c2d5ff;
     margin: 10px 0 20px 0px;
-    background-size: 100%;
+    /* background-size: 100%; */
+    border-color: #c2d5ff;
     
 }
 

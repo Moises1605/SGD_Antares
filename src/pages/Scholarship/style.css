@@ -1,14 +1,14 @@
-#school{
+#scholarship{
     height: 100%;
     width: 100%;
 }
 
-#contentSchool{
+#contentScholarship{
     height: 90vh;
     width: 100%;
 }
 
-#rightSchool{
+#rightScholarship{
     height: 90vh;
     width: 75%;
     float: right;
@@ -19,7 +19,7 @@
     
 } 
 
-#leftSchool{
+#leftScholarship{
     height: 100vh;
     width: 18%;
     float: left;

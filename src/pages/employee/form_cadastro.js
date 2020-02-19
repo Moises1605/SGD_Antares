@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import Formik from 'formik';
-import * as yup from 'yup';
+//import Formik from 'formik';
+//import * as yup from 'yup';
 import {
     Form,
     Container,

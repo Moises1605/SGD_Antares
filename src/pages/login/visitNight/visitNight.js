@@ -46,7 +46,7 @@ export default class VisitNight extends React.Component {
         return (<div>
 
             <Button id='visit' variant="primary" onClick={this.setControl} > Agendamento Noturno</Button>
-
+            
             <Modal
                 size="lg"
                 show={this.state.control}
@@ -62,16 +62,16 @@ export default class VisitNight extends React.Component {
 
                     <div id='leftSide'>
                         <Form>
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group controlId="formBasicNumber">
                                 <Form.Label>Informe o número de visitantes</Form.Label>
-                                <Form.Control type="text" placeholder="" id = 'email' value = {this.state.students}  onChange = {this.handleChangeStudents}/>
+                                <Form.Control type="text" placeholder="" id = 'ccf' value = {this.state.students}  onChange = {this.handleChangeStudents}/>
                                 <Form.Text className="text-muted">
                                     *informe quantas pessoas irão acompanhar você nessa visita(Ex: 1,2...)
                                 </Form.Text>
                             </Form.Group>
 
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>dia da visita</Form.Label>
+                            <Form.Group controlId="formBasicDay">
+                                <Form.Label>Dia da visita</Form.Label>
                                 <Form.Control type="text" placeholder="DD/MM/AAAA" value = {this.state.date}  onChange = {this.handleChangeDate}/>
                                 <Form.Text className="text-muted">
                                     *Coloque a data no formato indicado

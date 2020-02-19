@@ -9,9 +9,17 @@
     background-size: 100%;
 }
 
-#email{
+#ccf{
     width: 60px;
 }
+
+#formBasicDay{
+    width: 160px;
+}
+
+/* #formBasicNumber{
+    width: 60px; 
+} */
 
 #header{
     background-color: #c2d5ff;

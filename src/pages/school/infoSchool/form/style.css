@@ -1,0 +1,65 @@
+ #temp{
+    width: 100%;
+    height: 120vh;
+}
+
+
+#titleForm{
+    color: #575d80;
+}
+
+#formGridNameSchool{
+    width: 450px;
+}
+
+#formGridAddress{
+    width: 570px;
+}
+
+#formGridCity{
+    width: 290px;
+}
+
+#formGridState{
+    width: 200px;
+    margin: 0 370px 0 0;
+    
+}
+
+#formGridCNPJ{
+    width: 250px;
+}
+
+#formGridPhone{
+    width: 210px;
+    margin: 0 360px 0 0;
+}
+
+#formGridDirectorName{
+    width: 450px;
+}
+
+#formGridSchoolType{
+    width: 310px;
+}
+
+#formGridScholarity{
+    width: 310px;
+}
+
+#formGridEmail{
+    width: 450px;
+}
+
+#formGridPassword{
+    width: 310px;
+}
+
+#formGridPassword2{
+    width: 310px;
+    
+} 
+
+#sendForm{
+    margin: 10px 0 0 10px;
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
-//import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 //import api from "../../services/api"
 import './style.css';
 
@@ -24,7 +24,7 @@ export default class ConfirmBack extends React.Component {
     render(){
         return ( <div id = 'back'>
         
-        <Button id='buttonBack' variant="primary" onClick={this.setControl} > Sair</Button>
+        <Button id = 'endSession' variant="dark" block onClick = {this.setControl} >Encerrar Seção</Button>
 
         <Modal
             size="lg"
@@ -34,13 +34,15 @@ export default class ConfirmBack extends React.Component {
         >
             <Modal.Header closeButton id = 'header'>
                 <Modal.Title id="example-modal-sizes-title-lg">
-                    Sair
-            </Modal.Title>
+                    Tem certeza que deseja sair?
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Button variant="primary"  onClick={this.returnBegin}>
+            <Link to = '/login'>
+                <Button  id = 'buttonBack' variant="primary">
                     Sair
                 </Button>
+            </Link>
             </Modal.Body>
         </Modal>
 

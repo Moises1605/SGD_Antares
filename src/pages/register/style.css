@@ -1,7 +1,8 @@
 #leftSideT{
     height: 135vh;
     width: 100%;
-    background-color: rgb(192, 192, 250); 
+    /* background-color: rgb(192, 192, 250);  */
+    background-color: white;
     padding: 20px 0 0 0;
 }
 
@@ -9,7 +10,8 @@
     height: 117vh;
     width: 85%;
     background-color: white;
-    color: #363d66;
+    color: black;
+    /* color: #363d66; */
     padding: 10px 15px 15px 15px;
     margin: 0 auto;
     border-radius: 10px;

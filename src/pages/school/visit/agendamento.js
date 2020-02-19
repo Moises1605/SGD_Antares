@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
 //import { Link } from 'react-router-dom'
 //import api from "../../services/api"
+import Schedule from '../../components/schedule/Schedule'
 import './style.css';
 
 
@@ -10,13 +11,13 @@ export default class Agendamento extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            control: false,
+            date1: this.props.date2.toString(),
             responsible: '',
             students: '',
             date:'',
             number:'',
             obs:'',
-            atrações: ['a', 'b']
+            atrações: ['1', '2','3','4','5','6','7','8','9','10','11','12']
         };
         this.setControl = this.setControl.bind(this);
         this.handleChangeResponsible = this.handleChangeResponsible.bind(this);
@@ -24,7 +25,7 @@ export default class Agendamento extends React.Component {
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeNumber = this.handleChangeNumber.bind(this);
         this.handleChangeObs = this.handleChangeObs.bind(this);
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     setControl(event) {
         this.setState({ control: true })
@@ -52,28 +53,11 @@ export default class Agendamento extends React.Component {
 
     handleSubmit(event){
         //envia os dados para o back
+        alert(this.state.date1);
     }
 
     render() {
         return (<div>
-
-            <Button id='agendar' variant="primary" onClick={this.setControl} >Agendar</Button>
-
-            <Modal
-                size="lg"
-                show={this.state.control}
-                onHide={() => this.setState({ control: false })}
-                aria-labelledby="example-modal-sizes-title-lg"
-                id='modal'
-            >
-                <Modal.Header closeButton id='header'>
-                    <Modal.Title id="example-modal-sizes-title-lg">
-                        Agendamento de visita
-                </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-
-                    { /*<div id='leftSide'>*/}
                     <Form>
                         <Form.Group as={Row} controlId="formHorizontalEmail">
                             <Form.Label column sm={3}>
@@ -95,11 +79,28 @@ export default class Agendamento extends React.Component {
 
                         <Form.Group as={Row} controlId="formHorizontalDate">
                             <Form.Label column sm={3}>
-                                Dia da visita
+                                Horário
                                 </Form.Label>
                             <Col sm={3}>
-                                <Form.Control type="text" placeholder="DD/MM" value = {this.state.date}  onChange = {this.handleChangeDate} />
+                                <Form.Control as="select" value = {this.state.date}  onChange = {this.handleChangeDate}>
+                                <option></option>
+                                                <option>08:30</option>
+                                                <option>09:30</option>
+                                                <option>10:30</option>
+                                                <option>11:30</option>
+                                                <option>14:30</option>
+                                                <option>15:30</option>
+                                                <option>16:30</option>
+                                                <option>17:30</option>
+                                                <option>18:30</option>
+                                                <option>19:30</option>
+                                                <option>20:30</option>
+                                                <option>21:30</option>
+                                </Form.Control> 
                             </Col>
+                            <Button id='visit' variant="outline-primary" target="_blank"  href ='www.google.com' > 
+                                Consultar horarios disponíveis
+                            </Button>
                         </Form.Group>
 
                         <Form.Group as={Row} controlId="formHorizontalSerie">
@@ -126,20 +127,16 @@ export default class Agendamento extends React.Component {
                                 <div id='hy' key={type} className="mb-3">
                                     <Form.Check type='radio' id={`check-api-radio`}>
                                         <Form.Check.Input type='radio' isValid />
-                                        <Form.Check.Label>{`Custom api`}</Form.Check.Label>
-                                        <Form.Control.Feedback type="valid">You did it!</Form.Control.Feedback>
+                                        <Form.Check.Label>{`Exposição 1`}</Form.Check.Label>
+                                        <Form.Control.Feedback type="valid">Astronomia</Form.Control.Feedback>
                                     </Form.Check>
                                 </div>
                             ))}
                         </div>
                         <Button variant="outline-primary" id = 'agenda' onClick={this.handleSubmit}>
                             Agendar visita
-                            </Button>
+                        </Button>
                     </Form>
-                    {/*</div>*/}
-                </Modal.Body>
-            </Modal>
-
         </div>)
     }
 }

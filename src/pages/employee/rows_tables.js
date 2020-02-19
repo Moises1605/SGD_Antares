@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ModalGen from './modal_relatorio.js';
+//import ModalGen from './modal_relatorio.js';
 
 
 function RowsTable(props){

@@ -1,4 +1,4 @@
-#back{
-    float: right;
-    font-size: 17px;
-} 
+
+#buttonBack{
+    border-radius: 10px;
+}

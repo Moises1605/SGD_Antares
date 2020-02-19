@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import GenModal from './modal_relatorio.js';
+//import GenModal from './modal_relatorio.js';
 import RowsTable from './rows_tables.js';
 import {
     Container,

@@ -1,11 +1,13 @@
 import React from 'react'
 import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
 import './style.css';
-//import { Link } from 'react-router-dom'
-//import api from "../../services/api"
+import { Link, Redirect } from 'react-router-dom'
+import api from "../../services/api"
 import image4 from './logo.png'
 import VisitNight from './visitNight/visitNight';
 import ForgetPassword from './forgetPassword/forgetPassword'
+import Paper from '@material-ui/core/Paper';
+
 
 
 export default class Login extends React.Component {
@@ -13,10 +15,12 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            email: ' ',
             password: '',
             controlEx: false,
-            calendar: ['08:30-09:30', '09:30-10:30', '10:30-11:30', '14:30-15:30', '15:30-16:30', '16:30-17:30', '18:30-19:30', '19:30-20:30', '20:30-21:30']
+            type: '-1',
+            idUser: '0',
+            redirect: false
         };
 
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -32,10 +36,15 @@ export default class Login extends React.Component {
         this.setState({ password: event.target.value });
     }
 
-    async handleSubmit(event) {
-
+     handleSubmit(event) {
+        //const response = await api.get();
+        //this.setState({type: response.type})
+        //Se for um usuário do tipo escola
+        if(this.setState.email != " "){
+            this.setState({redirect: true})
+    
+        }
     }
-
     /*componentDidMount(){
       this.loadTasks();
   } */
@@ -44,118 +53,80 @@ export default class Login extends React.Component {
     }
 
     render() {
+        if(this.state.redirect) {
+            if(this.state.email == 'moisesalmeida'){
+                return <Redirect to="/escola/:0" />
+            }
+            //Se for um usuário do tipo Bolsista
+            else if(this.state.email == 'robertomaia'){
+                return <Redirect to="/bolsista/:0" />
+            }
+            //Se for um usuário do tipo Funcionário
+            else if(this.state.email == 'raulpeixoto'){
+                return <Redirect to="/funcionario/:0" />
+            }
+            //Se for um usuário do tipo administrador 
+            else if(this.state.email == 'ricardoporto'){
+                return <Redirect to="/administrador/:0"/>
+            }
+          }
+        else{  
         return (<div id='initial'>
-
-            {/*<Modal
-                size="lg"
-                show={this.state.controlEx}
-                onHide={() => this.setState({ controlEx: false })}
-                aria-labelledby="example-modal-sizes-title-lg">
-                <Modal.Header closeButton>
-                    <Modal.Title id="example-modal-sizes-title-lg">
-                        Exposições
-                </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {/*
-                        <Carousel>
-                            <Carousel.Item>
-                                <Card>
-                                    <Card.Header>Exposição 1</Card.Header>
-                                    <Card.Body>
-                                        <blockquote className="blockquote mb-0">
-                                            <p>
-                                                {' '}
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                                                erat a ante.{' '}
-                                            </p>
-                                            <footer className="blockquote-footer">
-                                                Someone famous in <cite title="Source Title">Source Title</cite>
-                                            </footer>
-                                        </blockquote>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-
-                            <Carousel.Item>
-                                <Card>
-                                    <Card.Header>Exposição 2</Card.Header>
-                                    <Card.Body>
-                                        <blockquote className="blockquote mb-0">
-                                            <p>
-                                                {' '}
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                                                erat a ante.{' '}
-                                            </p>
-                                            <footer className="blockquote-footer">
-                                                Someone famous in <cite title="Source Title">Source Title</cite>
-                                            </footer>
-                                        </blockquote>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                        </Carousel>
-                    }
-                </Modal.Body>
-
-                </Modal> */}
-
-            <div id='form' onSubmit={this.handleSubmit} >
-                <img id='image' src={image4} roundedCircle />
+            <div >
+                <Paper  id = 'form' elevation={4}>
+                <img id='image' roundedCircle />
                 <h1 id='title'>Login</h1>
                 {/*<div id='icon'>*/}
                 
 
                 {/*</div>*/}
-                <Form id='info'>
-                    <Form.Label>Usuário</Form.Label>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                        </InputGroup.Prepend>
+                    <Form id='info'>
+                        <Form.Label>Usuário</Form.Label>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                            </InputGroup.Prepend>
 
-                        <FormControl
-                            placeholder="Email"
-                            aria-label="Usuário"
-                            aria-describedby="basic-addon1"
-                            value = {this.state.email}  onChange = {this.handleChangeEmail}
-                        />
-                    </InputGroup>
-                    <Form.Label>Senha</Form.Label>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">#</InputGroup.Text>
-                        </InputGroup.Prepend>
+                            <FormControl
+                                placeholder="Email"
+                                aria-label="Usuário"
+                                aria-describedby="basic-addon1"
+                                value = {this.state.email}  onChange = {this.handleChangeEmail}
+                            />
+                        </InputGroup>
+                        <Form.Label>Senha</Form.Label>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text id="basic-addon1">#</InputGroup.Text>
+                            </InputGroup.Prepend>
 
-                        <FormControl
-                            label='Senha'
-                            placeholder="Senha"
-                            aria-label="Senha"
-                            aria-describedby="basic-addon1"
-                            type = 'password'
-                            value = {this.state.password}  onChange = {this.handleChangePassword}
-                        />
-                    </InputGroup>
+                            <FormControl
+                                label='Senha'
+                                placeholder="Senha"
+                                aria-label="Senha"
+                                aria-describedby="basic-addon1"
+                                type = 'password'
+                                value = {this.state.password}  onChange = {this.handleChangePassword}
+                            />
+                        </InputGroup>
 
-                </Form>
-                <div >
+                    </Form>
+                    <div >
+                        <Button id="entrar" variant="outline-success" onClick = {this.handleSubmit}>
+                            Entrar
+                            </Button>
 
-                    {/*<Link to = {`/user/:${this.state.id}`}>*/}
-                    <Button id="entrar" variant="outline-success" type="submit" onClick = {this.handleSubmit}>
-                        Entrar
-                        </Button>
-                    { /*</Link>*/}
-
-                    {/*<Link to = {teste()}>*/}
-                    <Button id="cadastrar" variant="outline-primary" type="submit">
-                        Cadastre-se
-                        </Button>
-                    {/*</Link>*/}
-                </div>
-                {/* <a id='forget' href='#'>Esqueceu a senha?</a> */}
-                <ForgetPassword/>
+                        <Link to = '/cadastro'>
+                        <Button id="cadastrar" variant="outline-primary" type="submit">
+                            Cadastre-se
+                            </Button>
+                        </Link>
+                    </div>
+                    <ForgetPassword/>
+                </Paper>
+                
             </div>
-
+            
             {/*<div id='leftside'>
                 <div id='buttons'>
                     <VisitNight id = 'visit'/>
@@ -192,6 +163,7 @@ export default class Login extends React.Component {
                 </div>
             </div>*/}
         </div >);
+        }
     }
 }
 
