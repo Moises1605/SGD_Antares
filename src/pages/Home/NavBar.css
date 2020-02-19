@@ -1,0 +1,11 @@
+.navbar{
+    height: 10vh;
+    width: 100%;
+}
+
+.navbar-brand, .navbar-nav .nav-link{
+    color: #CCC;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}

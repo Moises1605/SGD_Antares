@@ -1,0 +1,15 @@
+#bar{
+		height:100vh;
+        position:relative;     
+        border-style: solid;
+        border-color: #cecece;
+        border-width: 0 1px 0 0;
+        
+}
+#null1{
+    height:40vh;
+}
+
+#encerrar{
+    margin-top: 20vh;
+}
