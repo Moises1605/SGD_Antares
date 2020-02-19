@@ -3,7 +3,7 @@ import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs,
 import './style.css';
 import { Link, Redirect } from 'react-router-dom'
 import api from "../../services/api"
-import image4 from './logo.png'
+import logo from '../../assets/logo2.png';
 import VisitNight from './visitNight/visitNight';
 import ForgetPassword from './forgetPassword/forgetPassword'
 import Paper from '@material-ui/core/Paper';
@@ -72,9 +72,10 @@ export default class Login extends React.Component {
           }
         else{  
         return (<div id='initial'>
+            <Container>
             <div >
                 <Paper  id = 'form' elevation={4}>
-                <img id='image' roundedCircle />
+                <img id='image' roundedCircle src={logo} />
                 <h1 id='title'>Login</h1>
                 {/*<div id='icon'>*/}
                 
@@ -162,6 +163,7 @@ export default class Login extends React.Component {
                     </Table>
                 </div>
             </div>*/}
+            </Container>
         </div >);
         }
     }

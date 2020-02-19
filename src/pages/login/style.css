@@ -14,7 +14,7 @@
 }
 
 #form{
-    width: 24%;
+    width: 33%;
     height: 90vh;
     background: #ffffff;
     background-color: #c2d5ff;
@@ -22,7 +22,7 @@
     font-weight: bold;
     color: black;
     padding: 15px 15px 15px 15px ; 
-    margin: 30px 530px 0 0;
+    margin: 30px 385px 0 0;
     border-radius: 18px;
    /* border-left-style: solid;
     border-left-color: black;
@@ -60,9 +60,9 @@
 
 #image{
     width: 18vh;
-    height: 15vh;
+    height: 18vh;
     background-color: #c2d5ff;
-    margin: 10px 0 20px 0px;
+    margin: 10px 0 20px 20px;
     /* background-size: 100%; */
     border-color: #c2d5ff;
     
