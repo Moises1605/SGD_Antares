@@ -198,7 +198,7 @@ export default class Bolsistas extends React.Component{
 				</Modal.Header>
 				<Modal.Body>
 					<CadastroBolsista/>
-					<br/><br/><br/><br/>
+					    <br/><br/><br/><br/><br /><br />
 				</Modal.Body>
       		</Modal>
 		  </div>

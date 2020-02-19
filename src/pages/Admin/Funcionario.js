@@ -180,7 +180,7 @@ class Funcionario extends Component{
 				</Modal.Header>
 				<Modal.Body>
 					<CadastroFuncionario/>
-					<br/><br/><br/><br/>
+					    <br/><br/><br/><br/><br /><br />
 				</Modal.Body>
       		</Modal>
 	    </Container>		

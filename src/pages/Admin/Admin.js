@@ -54,7 +54,8 @@ export default class Admin extends React.Component{
                         borderWidth: " 0px 1px 0px 0px",
                         borderColor: "#ececec",
                         backgroundColor: "#f8f9fa",
-                        position: "fixed"
+			position: "fixed",
+			paddingTop: "40vh"
                     }}>
                             <LateralBar onClick={this.handleClickLink} />
                         </div>

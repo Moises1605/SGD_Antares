@@ -87,7 +87,8 @@ class App extends Component{
 			    borderStyle: "solid",
 			    borderWidth: " 0px 1px 0px 0px",
 			    borderColor: "#ececec",
-			    backgroundColor: "#f8f9fa"
+			    backgroundColor: "#f8f9fa",
+			    paddingTop: "30vh"
 			}}>
 			    <LateralBar onClick={this.handleClickLink} />
 			</div>
