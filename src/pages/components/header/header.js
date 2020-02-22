@@ -1,14 +1,10 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
-import './style.css';
-import image4 from './image4.png'
-import ConfirmBack from './confirmBack/confirmBack'
+// import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
+// import './style.css';
+// import ConfirmBack from './confirmBack/confirmBack'
 
 export default class Header extends React.Component {
 
-    back(event){
-
-    }
 
     render(){
         return(

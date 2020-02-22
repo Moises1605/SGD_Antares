@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col,ButtonToolbar, Dropdown} from 'react-bootstrap';
+import { Row, Col,Dropdown} from 'react-bootstrap';
 import './style.css';
 //import { Link } from 'react-router-dom'
 import Header from '../../components/header/header'
@@ -10,17 +10,17 @@ export default class FollowVisit extends React.Component {
 
     render() {
         return (
-            <div id='conteudo'>
+            <div id='contentFollow'>
                 <div>
                     <Header />
                 </div>
                 <div>
-                    <Row id='test'>
-                        <Col id="yyyy">
+                    <Row id='followBody'>
+                        <Col id="followSideBar">
                             {/*menu lateral*/}
                         </Col>
                         <Col xs lg='10' id='htgr'>
-                            <Row id='col' >
+                            <Row id='colFollow' >
                                 <Col>
                                     Visitas Agendadas
                                 </Col>
@@ -38,7 +38,7 @@ export default class FollowVisit extends React.Component {
                                     </Dropdown>
                                 </Col>
                             </Row>
-                            <Row id='jjjj'>
+                            <Row id='visitsFollow'>
                                 <Visits />
                             </Row>
                         </Col>

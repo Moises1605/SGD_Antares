@@ -1,9 +1,8 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
-//import { Link } from 'react-router-dom'
+import { Button, Form, Modal } from 'react-bootstrap';
 //import api from "../../services/api"
 import './style.css';
-import Climate from '../climate/climate'
+import Climate from './climate/climate'
 
 export default class VisitNight extends React.Component {
 
@@ -44,8 +43,8 @@ export default class VisitNight extends React.Component {
 
     render() {
         return (<div>
-
-            <Button id='visit' variant="primary" onClick={this.setControl} > Agendamento Noturno</Button>
+            {/*Botão que aciona o modal para o agendamento norturno */}
+            <Button size="md" variant="outline-success" className="mr-2" onClick={this.setControl} > Agendamento Noturno</Button>
             
             <Modal
                 size="lg"
@@ -85,9 +84,11 @@ export default class VisitNight extends React.Component {
                             <Button variant="primary"  onClick = {this.send}>
                                 Agendar visita
                             </Button>
+                            {/*Componente responsável por avisar ao usuário sobre as condições climaticas */}
                             <Climate/>
                         </Form>
                     </div>
+                    {/*Só para manter a formatação */}
                     <div id='rightSide'>
 
                     </div>
@@ -97,22 +98,4 @@ export default class VisitNight extends React.Component {
 
         </div>)
     }
-}
-
-function numVisitors(control) {
-
-    var test = []
-    for (let i = 0; i < control; i++) {
-        test.push(
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Visitante {`${i}`}</Form.Label>
-                    <Form.Control type="text" placeholder=" Nome" />
-                    <Form.Control type="text" placeholder=" RG" />
-                </Form.Group>
-            </Form>
-        )
-    }
-
-    return test;
 }

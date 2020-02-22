@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal, ListGroup } from 'react-bootstrap';
+import { Button, Card} from 'react-bootstrap';
 import './style.css';
 
+//Tela onde as escolas poderão olhar os seus agendamentos e acompanhar a situação das mesmas.
 export default class Scheduling extends React.Component {
 
     constructor(props){

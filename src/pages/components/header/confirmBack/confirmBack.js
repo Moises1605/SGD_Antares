@@ -1,7 +1,6 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import { Button,  Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-//import api from "../../services/api"
 import './style.css';
 
 export default class ConfirmBack extends React.Component {
@@ -13,19 +12,16 @@ export default class ConfirmBack extends React.Component {
         };
         this.setControl = this.setControl.bind(this);
     }
+    //controle para a visualização do modal
     setControl(event) {
         this.setState({ control: true })
-    }
-
-    returnBegin(event){
-        //retornar para tela inicial
     }
 
     render(){
         return ( <div id = 'back'>
         
         <Button id = 'endSession' variant="dark" block onClick = {this.setControl} >Encerrar Seção</Button>
-
+        {/*Modal de confirmação de saida*/}
         <Modal
             size="lg"
             show={this.state.control}

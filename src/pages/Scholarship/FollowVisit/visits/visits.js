@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import './style.css';
 //import { Link } from 'react-router-dom'
 
 
-
+//Tela responsável por mostrar ao bolsista as visitas que ele tem em um determinado intervalo de tempo
 export default class Visits extends React.Component {
 
     constructor(props) {
@@ -15,12 +15,12 @@ export default class Visits extends React.Component {
     }
 
     componentDidMount() {
-        this.loadVisits();
+        //this.loadVisits();
     }
 
-    loadVisits = async () => {
-        {/*Carregar visitas no banco*/ }
-    }
+    // loadVisits = async () => {
+    //     /*Carregar visitas no banco*/ 
+    // }
 
     render() {
         return (

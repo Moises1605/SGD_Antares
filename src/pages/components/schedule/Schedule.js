@@ -1,12 +1,10 @@
 import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin, { TimeGrid } from '@fullcalendar/timegrid';
 import './style.css';
 import ptBr from '@fullcalendar/core/locales/pt-br'
-import { formatDate } from '@fullcalendar/core'
-//import { Modal}  from 'react-bootstrap';
+//import { formatDate } from '@fullcalendar/core'
 
 
 export default class Schedule extends React.Component {
@@ -14,7 +12,7 @@ export default class Schedule extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      control: false,
+      //horários dos bolsistas 
       schedules: []
     }
   }
