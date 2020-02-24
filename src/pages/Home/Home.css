@@ -1,1 +1,8 @@
-a {outline : none;}
+a {
+  outline: none;
+}
+
+* {
+  margin: 0 0;
+  padding: 0 0;
+}
