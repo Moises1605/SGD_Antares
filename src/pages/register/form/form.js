@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import { Button, Col, Form } from 'react-bootstrap';
 import './style.css';
-import { Link,Redirect } from 'react-router-dom'
+import {Redirect } from 'react-router-dom'
 import api from "../../../services/api"
 
 
@@ -11,15 +11,16 @@ export default class FormRegister extends React.Component {
         super(props);
         this.state = {
             email: '',
+            login: '',
             password: '',
             password2: '',
-            schoolName: '',
+            name: '',
             address: '',
             city: '',
             state: '',
             CNPJ: '',
             phone: '',
-            directorName: '',
+            respName: '',
             schoolType: '',
             scholarity: '',
             redirect: false
@@ -36,8 +37,9 @@ export default class FormRegister extends React.Component {
         this.handleChangeCNPJ = this.handleChangeCNPJ.bind(this);
         this.handleChangePhone = this.handleChangePhone.bind(this);
         this.handleChangeDirectorName = this.handleChangeDirectorName.bind(this);
-        this.handleChangescholarity = this.handleChangePhone.bind(this);
-        this.handleChangeTypeSchool = this.handleChangeDirectorName.bind(this);
+        this.handleChangescholarity = this.handleChangescholarity.bind(this);
+        this.handleChangeTypeSchool = this.handleChangeTypeSchool.bind(this);
+        this.handleChangeLogin = this.handleChangeLogin.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
@@ -53,8 +55,12 @@ export default class FormRegister extends React.Component {
         this.setState({ password2: event.target.value });
     }
 
+    handleChangeLogin(event) {
+        this.setState({ login: event.target.value });
+    }
+
     handleChangeSchoolName(event) {
-        this.setState({ schoolName: event.target.value });
+        this.setState({ name: event.target.value });
     }
     handleChangeAddress(event) {
         this.setState({ address: event.target.value });
@@ -77,7 +83,7 @@ export default class FormRegister extends React.Component {
     }
 
     handleChangeDirectorName(event) {
-        this.setState({ directorName: event.target.value });
+        this.setState({ respName: event.target.value });
     }
 
     handleChangeTypeSchool(event) {
@@ -102,6 +108,7 @@ export default class FormRegister extends React.Component {
     }
 
     render() {
+        //Se o cadatro foi realizado com o sucesso, retorna para a tela de login
         if(this.state.redirect){
             return <Redirect to="/home/"/>
         }
@@ -112,7 +119,7 @@ export default class FormRegister extends React.Component {
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridNameSchool">
                             <Form.Label>Nome da Escola</Form.Label>
-                            <Form.Control type="text" placeholder="Nome da Escola" value={this.state.schoolName} onChange={this.handleChangeSchoolName} />
+                            <Form.Control type="text" placeholder="Nome da Escola" value={this.state.name} onChange={this.handleChangeSchoolName} />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridAddress">
@@ -149,7 +156,7 @@ export default class FormRegister extends React.Component {
 
                     <Form.Group controlId="formGridDirectorName">
                         <Form.Label>Nome do diretor</Form.Label>
-                        <Form.Control type='text' placeholder="Nome do diretor" value={this.state.directorName} onChange={this.handleChangeDirectorName} />
+                        <Form.Control type='text' placeholder="Nome do diretor" value={this.state.respName} onChange={this.handleChangeDirectorName} />
                     </Form.Group>
 
                     <Form.Row>
@@ -180,6 +187,12 @@ export default class FormRegister extends React.Component {
                         <Form.Label>Email</Form.Label>
                         <Form.Control type='email' placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} />
                     </Form.Group>
+
+                    <Form.Group controlId="formGridEmail">
+                        <Form.Label>Nome de usuário</Form.Label>
+                        <Form.Control type='text' placeholder="" value={this.state.login} onChange={this.handleChangeLogin} />
+                    </Form.Group>
+
 
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridPassword">

@@ -1,11 +1,9 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
-//import { Link } from 'react-router-dom'
+import { Button,Row, Col, Form } from 'react-bootstrap';
 //import api from "../../services/api"
-import Schedule from '../../components/schedule/Schedule'
 import './style.css';
 
-
+//Modal responsável por agendar uma visita.
 export default class Agendamento extends React.Component {
 
     constructor(props) {
@@ -53,7 +51,7 @@ export default class Agendamento extends React.Component {
 
     handleSubmit(event){
         //envia os dados para o back
-        alert(this.state.date1);
+        console.log(this.state);
     }
 
     render() {

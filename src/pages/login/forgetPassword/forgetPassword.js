@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
-//import { Link } from 'react-router-dom'
+import { Button,Form, Modal } from 'react-bootstrap';
 //import api from "../../services/api"
 import './style.css';
 
@@ -27,7 +26,7 @@ export default class ForgetPassword extends React.Component {
     render() {
         return (<div>
 
-            <a id='forget' onClick = {this.setControl} href = '#'>Esqueceu a senha?</a>
+            <a id='forget' onClick = {this.setControl}>Esqueceu a senha?</a>
 
             <Modal
                 size="lg"
@@ -62,22 +61,4 @@ export default class ForgetPassword extends React.Component {
 
         </div>)
     }
-}
-
-function numVisitors(control) {
-
-    var test = []
-    for (let i = 0; i < control; i++) {
-        test.push(
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Visitante {`${i}`}</Form.Label>
-                    <Form.Control type="text" placeholder=" Nome" />
-                    <Form.Control type="text" placeholder=" RG" />
-                </Form.Group>
-            </Form>
-        )
-    }
-
-    return test;
 }

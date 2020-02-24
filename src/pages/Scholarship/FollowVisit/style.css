@@ -1,4 +1,4 @@
-#conteudo{
+#contentFollow{
     clear: both;
     width: 100vw;
     background: white;
@@ -7,19 +7,19 @@
     color: rgb(228, 15, 15);
 } 
 
-#hhh{
+#visitsFollow{
     background: #6710d8;
     border-color: #6710d8;
 }
 
-#yyyy{    
+#followSideBar{    
     height: 90vh;
     background-color: #c2d5ff;
     width: 210px; 
     float: left;
 }  
 
-#test{
+#followBody{
     width: 100vw;
 }
 
@@ -27,7 +27,7 @@
     margin: 0 0 0 500px;
 }
 
-#col{
+#colFollow{
     margin: 10px;
     padding: 20px;
     border-bottom: 2px;
@@ -36,7 +36,4 @@
     color: #575d80;
     font-size: 24px;
 }
-
-#htgr{
-    
-}
+ 

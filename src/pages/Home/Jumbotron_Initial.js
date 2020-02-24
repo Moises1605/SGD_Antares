@@ -2,6 +2,7 @@ import React from 'react';
 import {Jumbotron, Container, Row, Col, Button, ButtonToolbar} from 'react-bootstrap';
 import CarouselAtracoes from './Carousel_Atracoes';
 import './Jumbotron2.css';
+import VisitNight from './visitNight/visitNight'
 
 export default class JumbotronAtracoes extends React.Component{
     render(){
@@ -19,7 +20,8 @@ export default class JumbotronAtracoes extends React.Component{
                                     <br/>
                                     <ButtonToolbar aria-label="Toolbar with button groups">
                                         <Button  variant="outline-success" className="mr-2">Agendamento Escolar</Button>
-                                        <Button  variant="outline-success" className="mr-2">Agendamento Noturno</Button>
+                                        {/* <Button  variant="outline-success" className="mr-2">Agendamento Noturno</Button> */}
+                                        <VisitNight/>
                                     </ButtonToolbar>
                             </Col> 
                            

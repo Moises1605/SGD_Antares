@@ -1,10 +1,9 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col, Form, Carousel, ButtonToolbar, Tabs, Tab, Sonnet, Table, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import { Button, Container,Form,FormControl, InputGroup} from 'react-bootstrap';
 import './style.css';
 import { Link, Redirect } from 'react-router-dom'
-import api from "../../services/api"
+//import api from "../../services/api"
 import logo from '../../assets/logo2.png';
-import VisitNight from './visitNight/visitNight';
 import ForgetPassword from './forgetPassword/forgetPassword'
 import Paper from '@material-ui/core/Paper';
 
@@ -17,7 +16,6 @@ export default class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            controlEx: false,
             type: '-1',
             idUser: '0',
             redirect: false
@@ -26,7 +24,6 @@ export default class Login extends React.Component {
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.setControlEx = this.setControlEx.bind(this);
 
     }
     handleChangeEmail(event) {
@@ -44,12 +41,6 @@ export default class Login extends React.Component {
             this.setState({redirect: true})
     
         }
-    }
-    /*componentDidMount(){
-      this.loadTasks();
-  } */
-    setControlEx(event) {
-        this.setState({ controlEx: true })
     }
 
     render() {
@@ -73,96 +64,59 @@ export default class Login extends React.Component {
         else{  
         return (<div id='initial'>
             <Container>
-            <div >
-                <Paper  id = 'form' elevation={4}>
-                <img id='image' roundedCircle src={logo} />
-                <h1 id='title'>Login</h1>
-                {/*<div id='icon'>*/}
-                
+                <div >
+                    <Paper  id = 'form' elevation={4}>
+                    <img id='image' roundedCircle src={logo} />
+                    <h1 id='title'>Login</h1>
+                        <Form id='info'>
+                            {/*Campo responsável por pegar o login do usuário */}
+                            <Form.Label>Usuário</Form.Label>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                </InputGroup.Prepend>
 
-                {/*</div>*/}
-                    <Form id='info'>
-                        <Form.Label>Usuário</Form.Label>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                            </InputGroup.Prepend>
+                                <FormControl
+                                    placeholder="Email"
+                                    aria-label="Usuário"
+                                    aria-describedby="basic-addon1"
+                                    value = {this.state.email}  onChange = {this.handleChangeEmail}
+                                />
+                            </InputGroup>
 
-                            <FormControl
-                                placeholder="Email"
-                                aria-label="Usuário"
-                                aria-describedby="basic-addon1"
-                                value = {this.state.email}  onChange = {this.handleChangeEmail}
-                            />
-                        </InputGroup>
-                        <Form.Label>Senha</Form.Label>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon1">#</InputGroup.Text>
-                            </InputGroup.Prepend>
+                            {/*Campo responsável por pegar a senha do usuário */}
+                            <Form.Label>Senha</Form.Label>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text id="basic-addon1">#</InputGroup.Text>
+                                </InputGroup.Prepend>
 
-                            <FormControl
-                                label='Senha'
-                                placeholder="Senha"
-                                aria-label="Senha"
-                                aria-describedby="basic-addon1"
-                                type = 'password'
-                                value = {this.state.password}  onChange = {this.handleChangePassword}
-                            />
-                        </InputGroup>
+                                <FormControl
+                                    label='Senha'
+                                    placeholder="Senha"
+                                    aria-label="Senha"
+                                    aria-describedby="basic-addon1"
+                                    type = 'password'
+                                    value = {this.state.password}  onChange = {this.handleChangePassword}
+                                />
+                            </InputGroup>
 
-                    </Form>
-                    <div >
-                        <Button id="entrar" variant="outline-success" onClick = {this.handleSubmit}>
-                            Entrar
-                            </Button>
+                        </Form>
+                        <div >
+                            <Button id="entrar" variant="outline-success" onClick = {this.handleSubmit}>
+                                Entrar
+                                </Button>
 
-                        <Link to = '/cadastro'>
-                        <Button id="cadastrar" variant="outline-primary" type="submit">
-                            Cadastre-se
-                            </Button>
-                        </Link>
-                    </div>
-                    <ForgetPassword/>
-                </Paper>
-                
-            </div>
-            
-            {/*<div id='leftside'>
-                <div id='buttons'>
-                    <VisitNight id = 'visit'/>
-                    <Button id='exhibition' variant="primary" onClick={this.setControlEx}>Exposições</Button>
+                            <Link to = '/cadastro'>
+                            <Button id="cadastrar" variant="outline-primary" type="submit">
+                                Cadastre-se
+                                </Button>
+                            </Link>
+                        </div>
+                        {/*Componente responsável pela recuperação de senha */}
+                        <ForgetPassword/>
+                    </Paper>    
                 </div>
-
-                <div id='calendar'>
-                    <p id='titleCalendar'>Horários disponíveis para visita</p>
-                    <Table id='table' responsive striped>
-                        <thead>
-                            <tr className='linha1'>
-                                <th></th>
-                                <th>Segunda</th>
-                                <th>Terça</th>
-                                <th>Quarta</th>
-                                <th>Quinta</th>
-                                <th>Sexta</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.calendar.map(item => (
-                                <tr>
-                                    <td className='linha1' key={item.toString()}>{item}</td>
-                                    <td>Disponível</td>
-                                    <td>          </td>
-                                    <td>Disponível</td>
-                                    <td>          </td>
-                                    <td>Disponível</td>
-
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                </div>
-            </div>*/}
             </Container>
         </div >);
         }

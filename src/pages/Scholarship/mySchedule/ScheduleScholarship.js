@@ -1,14 +1,13 @@
 import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin, { TimeGrid } from '@fullcalendar/timegrid';
 import './style.css';
 import ptBr from '@fullcalendar/core/locales/pt-br'
 import { formatDate } from '@fullcalendar/core'
 //import { Modal}  from 'react-bootstrap';
 
-
+//tela onde o bolsista poderá vê o seu horario de trabalho.
 export default class ScheduleScholarship extends React.Component {
 
   constructor(props){
