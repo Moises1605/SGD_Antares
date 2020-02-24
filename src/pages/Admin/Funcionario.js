@@ -172,7 +172,6 @@ class Funcionario extends Component {
           </Col>
         </Row>
         <Modal
-          size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={this.state.show}
@@ -183,12 +182,6 @@ class Funcionario extends Component {
           </Modal.Header>
           <Modal.Body>
             <CadastroFuncionario />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
           </Modal.Body>
         </Modal>
       </Container>

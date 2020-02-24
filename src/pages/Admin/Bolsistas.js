@@ -209,7 +209,6 @@ export default class Bolsistas extends React.Component {
           </Row>
         </Container>
         <Modal
-          size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={this.state.show}
@@ -220,12 +219,6 @@ export default class Bolsistas extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <CadastroBolsista />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
           </Modal.Body>
         </Modal>
       </div>
