@@ -6,6 +6,7 @@ import Relatorio from './Relatorio';
 import Escolas from './Escolas';
 import LateralBar from './lateral_bar';
 import Navbar from './NavBar'
+import Sidebar from './Sidebar';
 
 export default class Admin extends React.Component{
     constructor(){
@@ -55,7 +56,7 @@ export default class Admin extends React.Component{
                         borderColor: "#ececec",
                         backgroundColor: "#f8f9fa",
 			position: "fixed",
-			paddingTop: "40vh"
+			paddingTop: "20vh"
                     }}>
                             <LateralBar onClick={this.handleClickLink} />
                         </div>
