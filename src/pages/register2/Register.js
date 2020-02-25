@@ -1,10 +1,10 @@
 import React from 'react'
 import './style.css';
-import FormRegister from './form/form'
+import FormRegister from './FormRegister/formRegister'
 import NavBar from '../components/NavBar/NavBar'
 
 
-export default class Register extends React.Component {
+export default class Register2 extends React.Component {
 
     render(){
         return(

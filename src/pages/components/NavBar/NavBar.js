@@ -1,7 +1,7 @@
 import React from 'react';
 import {Nav, Navbar} from 'react-bootstrap';
 import './NavBar.css';
-import logo from '../../assets/logo2.png';
+import logo from '../../../assets/logo2.png'
 
 
 export default class NavBar extends React.Component {

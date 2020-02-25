@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom' 
 import Login from './pages/login/login'
 import Register from './pages/register/register'
+import Register2 from './pages/register2/Register'
 //import FollowVisit from './pages/Scholarship/FollowVisit/followVisit'
 //import MyScheduling from './pages/school/MySchedulings/MyScheduling';
 import School from './pages/school/school'
@@ -17,7 +18,7 @@ import Admin from './pages/Admin/Admin'
         <Switch>
             <Route exact path = '/' component = {Home} />
             <Route exact path = '/login' component = {Login} />
-            <Route exact path = '/cadastro' component = {Register}/>
+            <Route exact path = '/cadastro' component = {Register2}/>
             <Route exact path = '/escola/:id' component = {School}/>
             {/* <Route exact path = '/editarEscola' component = {VisitNight}/> */}
             <Route exact path = "/Bolsista/:id" component = {Scholarship}/>

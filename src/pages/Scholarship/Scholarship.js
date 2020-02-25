@@ -2,7 +2,7 @@ import React from 'react'
 import './style.css';
 import LateralBar from './lateralBar/LateralBar'
 import ScheduleScholarship from "./mySchedule/ScheduleScholarship"
-import NavBar from '../register/NavBar'
+import NavBar from '../components/NavBar/NavBar'
 
 export default class Scholarship extends React.Component {
 
