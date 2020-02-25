@@ -8,7 +8,12 @@ export default class JumbotronLogin extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Jumbotron fluid>
+        <Jumbotron
+          fluid
+          style={{
+            backgroundColor: "red"
+          }}
+        >
           <Container>
             <div style={{ marginTop: "0px" }}>
               <Contact />
