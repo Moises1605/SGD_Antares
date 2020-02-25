@@ -6,3 +6,18 @@ a {
   margin: 0 0;
   padding: 0 0;
 }
+
+#div_atracoes {
+  background-color: #eee;
+  padding: 50px 0;
+  text-align: justify;
+}
+
+#div_contato {
+  background-color: #eee;
+  padding: 15px 0;
+}
+
+#div_calendar {
+  padding: 0 0 20px 0;
+}

@@ -1,10 +1,10 @@
 import React from "react";
 
 import NavBar from "./NavBar";
-import JumbotronAtracoes from "./Jumbotron_Initial";
-import JumbotronLogin from "./Jumbotron_Login";
+import Contact from "./Contato";
 import { Container } from "react-bootstrap";
-import DemoApp from "./Calendar";
+import Calendario from "./Calendar";
+import Atracoes from "./Atracoes";
 import "./Home.css";
 
 export default class home extends React.Component {
@@ -26,14 +26,20 @@ export default class home extends React.Component {
     return (
       <React.Fragment>
         <NavBar />
-        <JumbotronAtracoes />
+        <div id="div_atracoes">
+          <Atracoes />
+        </div>
+
         <br></br>
-        <Container>
-          <h2>Horário Disponível para Visitas</h2>
-          <DemoApp />
-        </Container>
-        <br></br>
-        <JumbotronLogin />
+        <div id="div_calendar">
+          <Container>
+            <h2>Horário Disponível para Visitas</h2>
+            <Calendario />
+          </Container>
+        </div>
+        <div id="div_contato">
+          <Contact />
+        </div>
       </React.Fragment>
     );
   }
