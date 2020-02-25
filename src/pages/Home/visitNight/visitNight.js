@@ -44,13 +44,14 @@ export default class VisitNight extends React.Component {
       <div>
         {/*Botão que aciona o modal para o agendamento norturno */}
         <Button
+          id="teste2"
           size="md"
           variant="success"
           className="mr-2"
           onClick={this.setControl}
         >
           {" "}
-          Agendamento Noturno
+          <b>Agendamento Noturno</b>
         </Button>
 
         <Modal

@@ -1,11 +1,18 @@
-.navbar{
-    height: 10vh;
-    width: 100%;
+#navbar_home {
+  height: 10vh;
+  width: 100%;
+  background-color: #10083bc7 !important;
 }
 
-.navbar-brand, .navbar-nav .nav-link{
-    color: #CCC;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
+.navbar-brand,
+#navbar_home .navbar-nav .nav-link {
+  color: white !important;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.navbar-brand:hover,
+#navbar_home .navbar-nav:hover .nav-link:hover {
+  color: #d86c00 !important;
 }

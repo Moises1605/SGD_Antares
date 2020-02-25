@@ -1,26 +1,39 @@
-#leftSide{
-    float: left;
-    background-color: white;
+#leftSide {
+  float: left;
+  background-color: white;
 }
 
-#rightSide{
-    float: right;
-    background-color: #c2d5ff;
-    background-size: 100%;
+#rightSide {
+  float: right;
+  background-color: #c2d5ff;
+  background-size: 100%;
 }
 
-#ccf{
-    width: 60px;
+#ccf {
+  width: 60px;
 }
 
-#formBasicDay{
-    width: 160px;
+#formBasicDay {
+  width: 160px;
 }
 
 /* #formBasicNumber{
     width: 60px; 
 } */
 
-#header{
-    background-color: #c2d5ff;
+#header {
+  background-color: #c2d5ff;
+}
+
+#teste2 {
+  width: 500px;
+  margin-top: 20px;
+  background-color: #d86c00a7 !important;
+  border-width: 0;
+}
+
+#teste2:focus,
+#teste2:active:focus,
+#teste2.active:focus {
+  box-shadow: none;
 }
