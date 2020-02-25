@@ -2,7 +2,7 @@ import React from 'react'
 import './style.css';
 import Calendar from './calendar/calendar'
 import LateralBar from './LateralBar/lateral_bar';
-import NavBar from '../register/NavBar'
+import NavBar from '../components/NavBar/NavBar'
 
 
 export default class School extends React.Component {

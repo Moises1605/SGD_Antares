@@ -1,0 +1,44 @@
+#backButton{
+    margin-right: 60px;
+}
+
+#titleForm{
+    color: #575d80;
+} 
+
+#root{
+    width: 100%;
+    height: 80vh;
+}
+
+#formGridAddress{
+    width: 400px;
+}
+
+#formGridDirectorName{
+    width: 300px;
+    margin: 0 150px 0 0;
+}
+
+#formGridDirectorSurname{
+    width: 300px;
+
+}
+
+#formGridScholarity{
+    margin: 0 340px 0 0;
+}
+
+#formGridEmail{
+    width: 350px;
+    margin: 0 100px 0 0;
+}
+
+#formGridLogin{
+    width: 300px;
+}
+
+#formGridPassword2{
+    width: 310px;
+    margin: 0 340px 0 0;  
+} 
