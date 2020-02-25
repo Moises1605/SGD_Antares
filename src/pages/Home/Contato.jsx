@@ -10,48 +10,80 @@ class Contact extends Component {
     return (
       <React.Fragment>
         <Container>
-          <h2>Contato</h2>
-          <Row>
-            <Col xs={6}></Col>
-            <Col xs={6}>
-              <Form>
+          <Form>
+            <h2
+              style={{
+                textAlign: "center"
+              }}
+            >
+              Contato
+              <h6
+                style={{
+                  marginTop: "10px"
+                }}
+              >
+                <i>(75) 3624-1921</i>
+              </h6>
+            </h2>
+            <hr
+              style={{
+                width: "25%",
+                margin: "auto",
+                backgroundColor: "#d3d3d3"
+              }}
+            ></hr>
+            <hr
+              style={{
+                width: "12.5%",
+                margin: "7px auto 0 auto",
+                backgroundColor: "#dcdcdc"
+              }}
+            ></hr>
+            <Form.Row
+              style={{
+                marginTop: "30px"
+              }}
+            >
+              <Col md={6}>
                 <Form.Group controlId="Name">
-                  <Form.Label>Nome Completo</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Digite seu nome completo"
                   />
                 </Form.Group>
                 <Form.Group controlId="Email">
-                  <Form.Label>Email</Form.Label>
                   <Form.Control type="email" placeholder="Digite Seu Email" />
                 </Form.Group>
                 <Form.Group controlId="Assunto">
-                  <Form.Label>Assunto</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Assunto a ser tratado"
                   />
                 </Form.Group>
+              </Col>
+              <Col
+                style={{
+                  paddingLeft: "20px"
+                }}
+              >
                 <Form.Group controlId="msg">
-                  <Form.Label>Mensagem</Form.Label>
                   <Form.Control
                     as="textarea"
-                    rows="4"
+                    rows="5"
                     placeholder="Insira sua mensagem"
                   />
                 </Form.Group>
-                <Form.Row>
-                  <Col xs={12}>
-                    <br />
-                    <Button block variant="primary" type="submit">
-                      ENVIAR MENSAGEM
-                    </Button>
-                  </Col>
-                </Form.Row>
-              </Form>
-            </Col>
-          </Row>
+              </Col>
+            </Form.Row>
+
+            <Form.Row>
+              <Col xs={6}>
+                <Button block variant="primary" type="submit">
+                  ENVIAR MENSAGEM
+                </Button>
+              </Col>
+            </Form.Row>
+          </Form>
         </Container>
       </React.Fragment>
     );

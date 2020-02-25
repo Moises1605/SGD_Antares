@@ -114,6 +114,7 @@ export default class home extends React.Component {
             <Calendario />
           </Container>
         </div>
+
         <div id="div_contato">
           <Contact />
         </div>
