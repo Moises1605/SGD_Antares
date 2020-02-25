@@ -4,14 +4,15 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ptBr from "@fullcalendar/core/locales/pt-br";
-import interactionPlugin from "@fullcalendar/interaction";
+
 import "./Calendar.css";
-export default class DemoApp extends React.Component {
+export default class Calendario extends React.Component {
   render() {
     return (
       <div>
         <FullCalendar
           defaultView="timeGridWeek"
+          displayEventEnd={true}
           locale={ptBr}
           plugins={[dayGridPlugin, timeGridPlugin]}
           weekends={false}
@@ -29,7 +30,8 @@ export default class DemoApp extends React.Component {
               startTime: "09:00",
               endTime: "12:00",
               rendering: "background",
-              color: "#39FF14"
+              color: "#39FF14",
+              displayEventEnd: true
             },
             {
               daysOfWeek: [1, 2, 3, 4, 5],
@@ -53,7 +55,7 @@ export default class DemoApp extends React.Component {
             marginTop: "25px"
           }}
         >
-          <h3>
+          <h4>
             <Badge m-2 variant="success">
               DISPONÍVEL
             </Badge>{" "}
@@ -61,7 +63,7 @@ export default class DemoApp extends React.Component {
               {" "}
               INDISPONÍVEL
             </Badge>
-          </h3>
+          </h4>
         </div>
       </div>
     );
