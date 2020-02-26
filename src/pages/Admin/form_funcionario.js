@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import api from "../../services/api";
 
 export default class CadastroFuncionario extends Component {
   constructor() {
@@ -23,7 +24,10 @@ export default class CadastroFuncionario extends Component {
     this.setState({ [className.split(" ")[0]]: value });
   }
 
-  handleSubmit() {}
+  async handleSubmit(event) {
+    var teste = api.post("/adicionarFuncionario", this.state);
+    console.log((await teste).data);
+  }
 
   render() {
     return (
@@ -145,7 +149,12 @@ export default class CadastroFuncionario extends Component {
           <Form.Row>
             <Col xs={12}>
               <br />
-              <Button block variant="success" type="submit">
+              <Button
+                block
+                variant="success"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
                 Cadastrar
               </Button>
             </Col>

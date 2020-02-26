@@ -22,21 +22,24 @@ class Contact extends Component {
                   marginTop: "10px"
                 }}
               >
-                <i>(75) 3624-1921</i>
+                <i>museuantares@gmail.com</i>
+
+                <br />
+                <i>(75) 3624-1921 </i>
               </h6>
             </h2>
             <hr
               style={{
                 width: "25%",
                 margin: "auto",
-                backgroundColor: "#d3d3d3"
+                backgroundColor: "#000"
               }}
             ></hr>
             <hr
               style={{
                 width: "12.5%",
                 margin: "7px auto 0 auto",
-                backgroundColor: "#dcdcdc"
+                backgroundColor: "#222"
               }}
             ></hr>
             <Form.Row
@@ -46,19 +49,13 @@ class Contact extends Component {
             >
               <Col md={6}>
                 <Form.Group controlId="Name">
-                  <Form.Control
-                    type="text"
-                    placeholder="Digite seu nome completo"
-                  />
+                  <Form.Control type="text" placeholder="Nome completo" />
                 </Form.Group>
                 <Form.Group controlId="Email">
-                  <Form.Control type="email" placeholder="Digite Seu Email" />
+                  <Form.Control type="email" placeholder="Email" />
                 </Form.Group>
                 <Form.Group controlId="Assunto">
-                  <Form.Control
-                    type="text"
-                    placeholder="Assunto a ser tratado"
-                  />
+                  <Form.Control type="text" placeholder="Assunto" />
                 </Form.Group>
               </Col>
               <Col
