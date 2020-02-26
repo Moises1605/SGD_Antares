@@ -44,8 +44,9 @@ class MapContainer extends Component {
             <Col md={2}></Col>
             <Col>
               <Map
+                mapTypeControl={false}
                 google={this.props.google}
-                zoom={8}
+                zoom={16}
                 style={{
                   width: "100%",
                   height: "350px",
@@ -54,7 +55,6 @@ class MapContainer extends Component {
                 }}
                 initialCenter={{ lat: -12.239816, lng: -38.979001 }}
               />
-              <Marker position={{ lat: -12.239816, lng: -38.979001 }} />
             </Col>
             <Col md={2}></Col>
           </Row>
