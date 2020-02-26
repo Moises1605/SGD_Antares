@@ -1,5 +1,29 @@
-*{
-    margin: 0 0;
-    padding: 0 0;
+* {
+  margin: 0 0;
+  padding: 0 0;
 }
-a {outline : none;}
+a {
+  outline: none;
+}
+
+#div_admin {
+  width: 100vw;
+  height: 100vh;
+}
+
+#div_sidebar {
+  height: 100vh;
+  width: 20vw;
+  float: left;
+  border-style: solid;
+  border-width: 0px 1px 0px 0px;
+  border-color: #ececec;
+  background-color: #eee !important;
+  padding-top: 20vh;
+  position: fixed;
+}
+
+#div_admincontent {
+  float: right;
+  width: auto;
+}
