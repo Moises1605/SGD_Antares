@@ -47,7 +47,7 @@ class Contact extends Component {
                 marginTop: "30px"
               }}
             >
-              <Col md={6}>
+              <Col md={6} sm={12}>
                 <Form.Group controlId="Name">
                   <Form.Control type="text" placeholder="Nome completo" />
                 </Form.Group>
@@ -59,9 +59,13 @@ class Contact extends Component {
                 </Form.Group>
               </Col>
               <Col
-                style={{
-                  paddingLeft: "20px"
-                }}
+                md={6}
+                sm={12}
+                style={
+                  {
+                    //paddingLeft: "20px"
+                  }
+                }
               >
                 <Form.Group controlId="msg">
                   <Form.Control
@@ -74,7 +78,7 @@ class Contact extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Col xs={6}>
+              <Col xl={6} sm={12}>
                 <Button block variant="primary" type="submit">
                   ENVIAR MENSAGEM
                 </Button>

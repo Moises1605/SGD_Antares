@@ -7,7 +7,7 @@ export default class NavBar extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar fixed="top" expand="lg" id="navbar_home">
+        <Navbar fixed="top" id="navbar_home">
           <Container>
             <Navbar.Brand>
               <img alt="" src={logo} className="d-inline-block align-top" />{" "}
