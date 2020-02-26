@@ -111,13 +111,13 @@ export default class Bolsistas extends React.Component {
                   overflowY: "auto"
                 }}
               >
-                <Table striped bordered hover responsive>
+                <Table striped bordered hover responsive size="sm">
                   <thead>
                     <tr>
                       <th>#</th>
                       <th>Nome</th>
-                      <th>CPF</th>
                       <th>Telefone</th>
+                      <th>Email</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -151,36 +151,7 @@ export default class Bolsistas extends React.Component {
                       <td>a</td>
                       <td>a</td>
                     </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
+
                     {this.state.rows}
                   </tbody>
                 </Table>
@@ -190,7 +161,7 @@ export default class Bolsistas extends React.Component {
           </Row>
           <br />
           <Row>
-            <Col xs={9}></Col>
+            <Col xl={9} sm={10}></Col>
             <Col>
               <Button
                 variant="outline-secondary"

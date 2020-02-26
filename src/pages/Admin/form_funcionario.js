@@ -16,7 +16,7 @@ export default class CadastroFuncionario extends Component {
       password: "", //senha
       redirect: false
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.handleChange = this.handleChange.bind(this);
   }
 

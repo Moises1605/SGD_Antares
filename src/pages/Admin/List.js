@@ -1,17 +1,22 @@
 import React, { Component } from "react";
-import { makeStyles, withTheme } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  withTheme,
+  createMuiTheme,
+  responsiveFontSizes
+} from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import PeopleIcon from "@material-ui/icons/People";
 import SchoolIcon from "@material-ui/icons/School";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import BackupIcon from "@material-ui/icons/Backup";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-//import logo from '../../assets/logo.png';
+import { Row } from "react-bootstrap";
+import "./List.css";
 
 class SimpleList extends Component {
   handleClick = teste => {
@@ -22,12 +27,19 @@ class SimpleList extends Component {
     return (
       <div id="div_side">
         <div id="side_content">
+          <Row>
+            <div style={{ height: "150px" }}></div>
+          </Row>
           <List component="nav" aria-label="main mailbox folders">
-            <ListItem button onClick={() => this.props.onClick("0")}>
+            <ListItem
+              button
+              onClick={() => this.props.onClick("0")}
+              innerDivStyle={{ paddingLeft: 60 }}
+            >
               <ListItemIcon>
                 <AssessmentIcon />
               </ListItemIcon>
-              <ListItemText primary="Exibir Relatórios" />
+              <ListItemText primary="Relatórios" />
             </ListItem>
 
             <ListItem button onClick={() => this.props.onClick("1")}>
@@ -54,15 +66,11 @@ class SimpleList extends Component {
               </ListItemIcon>
               <ListItemText primary="Realizar Backup" />
             </ListItem>
-          </List>
-        </div>
-        <div id="side_encerrar">
-          <List>
             <ListItem button>
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary="Sair" />
+              <ListItemText primary="Encerrar Sessão" />
             </ListItem>
           </List>
         </div>

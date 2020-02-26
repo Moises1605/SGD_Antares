@@ -97,58 +97,44 @@ class Funcionario extends Component {
                 overflowY: "auto"
               }}
             >
-              <Table striped bordered hover responsive>
+              <Table striped bordered hover responsive size="sm">
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>Nome</th>
-                    <th>CPF</th>
                     <th>Telefone</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                  </tr>
-                  <tr>
-                    <td>a</td>
-                    <td>a</td>
+                    <td>
+                      <b>a</b>
+                    </td>
                     <td>a</td>
                     <td>a</td>
                   </tr>
                   <tr>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                  </tr>
-                  <tr>
-                    <td>a</td>
-                    <td>a</td>
+                    <td>
+                      <b>a</b>
+                    </td>
                     <td>a</td>
                     <td>a</td>
                   </tr>
                   <tr>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                  </tr>
-                  <tr>
-                    <td>a</td>
-                    <td>a</td>
+                    <td>
+                      <b>a</b>
+                    </td>
                     <td>a</td>
                     <td>a</td>
                   </tr>
                   <tr>
-                    <td>a</td>
-                    <td>a</td>
+                    <td>
+                      <b>a</b>
+                    </td>
                     <td>a</td>
                     <td>a</td>
                   </tr>
+
                   {this.state.rows}
                 </tbody>
               </Table>

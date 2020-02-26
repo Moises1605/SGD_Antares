@@ -28,40 +28,21 @@ export default class Admin extends React.Component {
 
   render() {
     return (
-      <div id="div_admin">
-        <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <Row>
-            <Col>
-              <Container fluid>
-                <Navbar />
-              </Container>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <div id="div_sidebar">
-                <SimpleList
-                  screens={this.state.screen}
-                  onClick={this.componentDidMount}
-                />
-              </div>
-            </Col>
-            <Col>
-              <div id="div_adminContent">
-                <Container fluid>
-                  <Row>
-                    <Col>
-                      <div style={{ height: "5vh" }}></div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>{this.state.active}</Col>
-                  </Row>
-                </Container>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+      <div>
+        <Row>
+          <Col md={12}>
+            <Navbar />
+          </Col>
+        </Row>
+        <div id="div_sidearea">
+          <div id="div_sidebar">
+            <SimpleList
+              screens={this.state.screen}
+              onClick={this.componentDidMount}
+            />
+          </div>
+          <div id="div_screen">{this.state.active}</div>
+        </div>
       </div>
     );
   }
