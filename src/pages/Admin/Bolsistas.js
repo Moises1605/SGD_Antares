@@ -111,7 +111,7 @@ export default class Bolsistas extends React.Component {
                   overflowY: "auto"
                 }}
               >
-                <Table striped bordered hover responsive size="sm">
+                <Table bordered hover responsive size="sm">
                   <thead>
                     <tr>
                       <th>#</th>

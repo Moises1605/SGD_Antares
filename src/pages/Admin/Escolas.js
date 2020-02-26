@@ -96,7 +96,7 @@ export default class Escolas extends React.Component {
                   overflowY: "auto"
                 }}
               >
-                <Table striped bordered hover responsive size="sm">
+                <Table hover responsive size="sm">
                   <thead>
                     <tr>
                       <th>#</th>
