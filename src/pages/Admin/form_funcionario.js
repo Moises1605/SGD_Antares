@@ -13,7 +13,8 @@ export default class CadastroFuncionario extends Component {
       email: "", //email
       cpf: "", //cpf
       phone: "", //telefone
-      password: "" //senha
+      password: "", //senha
+      redirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -24,8 +25,8 @@ export default class CadastroFuncionario extends Component {
     this.setState({ [className.split(" ")[0]]: value });
   }
 
-  async handleSubmit() {
-    api
+  /*async handleSubmit() {
+    var teste = api
       .post("/adicionarFuncionario", this.state)
       .then(function(response) {
         // handle success
@@ -36,7 +37,8 @@ export default class CadastroFuncionario extends Component {
         // handle error
         console.log(error);
       });
-  }
+    console.log((await teste).name);
+  }*/
 
   render() {
     return (
@@ -123,7 +125,7 @@ export default class CadastroFuncionario extends Component {
                   required
                   placeholder="Rua, Bairro, Número."
                   value={this.state.adress}
-                  className="adress"
+                  className="address"
                   onChange={this.handleChange}
                 />
               </Col>
@@ -158,12 +160,7 @@ export default class CadastroFuncionario extends Component {
           <Form.Row>
             <Col xs={12}>
               <br />
-              <Button
-                block
-                variant="success"
-                type="submit"
-                onClick={this.handleSubmit}
-              >
+              <Button block variant="success" type="submit">
                 Cadastrar
               </Button>
             </Col>

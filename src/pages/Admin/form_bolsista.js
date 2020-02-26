@@ -14,7 +14,8 @@ class CadastroBolsista extends Component {
       enrollment: "", //matrícula
       cpf: "", //cpf
       phone: "", //telefone
-      password: "" //senha
+      password: "", //senha
+      redirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +26,7 @@ class CadastroBolsista extends Component {
     this.setState({ [className.split(" ")[0]]: value });
   }
 
-  async handleSubmit() {
+  /*async handleSubmit() {
     api
       .post("/adicionarBolsista", this.state)
       .then(function(response) {
@@ -37,7 +38,7 @@ class CadastroBolsista extends Component {
         // handle error
         console.log(error);
       });
-  }
+  }*/
 
   render() {
     return (
@@ -134,7 +135,7 @@ class CadastroBolsista extends Component {
                   required
                   placeholder="Rua, Bairro, Número."
                   value={this.state.adress}
-                  className="adress"
+                  className="address"
                   onChange={this.handleChange}
                 />
               </Col>
@@ -168,12 +169,7 @@ class CadastroBolsista extends Component {
           </Form.Group>
           <Form.Row>
             <Col xs={12}>
-              <Button
-                block
-                variant="success"
-                type="submit"
-                onClick={this.handleSubmit}
-              >
+              <Button block variant="success" type="submit">
                 Cadastrar
               </Button>
             </Col>
