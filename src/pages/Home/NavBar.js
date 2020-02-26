@@ -12,7 +12,9 @@ export default class NavBar extends React.Component {
             <Navbar.Brand>
               <img alt="" src={logo} className="d-inline-block align-top" />{" "}
             </Navbar.Brand>
-            <Navbar.Brand href="/">Observatório Antares</Navbar.Brand>
+            <Navbar.Brand href="/">
+              Observatório Astronômico Antares
+            </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 

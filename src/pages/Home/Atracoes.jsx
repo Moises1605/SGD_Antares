@@ -37,18 +37,16 @@ export default class Atracoes extends React.Component {
                   backgroundColor: "#dcdcdc"
                 }}
               ></hr>
-              <p
+              <h5
                 style={{
-                  textAlign: "justify"
+                  paddingTop: "10px"
                 }}
               >
-                Quando vocês acham que as pessoas morrem? Quando elas levam um
-                tiro de pistola bem no coração? Não. Quando são vencidas por uma
-                doença incurável? Não! Quando bebem uma sopa de cogumelo
-                venenoso? Não! Elas morrem... quando são esquecidas. Mesmo
-                depois que eu for, meu sonho tornará realidade. Os corações
-                doentes serão curados. (Hiluluk)
-              </p>
+                No Observatório Astronômico Antares, são realizadas visitas a
+                exposições, observações com telescópios automatizados, cursos,
+                palestras, laboratórios, projeções de vídeo, sessões no
+                planetário, etc.
+              </h5>
             </Col>
             <Col md={{ offset: 2 }}>
               <CarouselAtracoes />

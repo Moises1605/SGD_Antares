@@ -31,41 +31,54 @@ export default class home extends React.Component {
         <div id="div_home">
           <div id="div_inicio">
             <Container>
-              <h1
+              <h2
                 style={{
-                  padding: "100px 100px 0 100px"
+                  padding: "115px 100px 0 100px"
                 }}
               >
-                <b>BEM-VINDO AO</b>
+                BEM-VINDO AO
                 <span
                   style={{
-                    color: "#d86c00a7"
+                    color: "#d86c00"
                   }}
                 >
                   {" "}
-                  <b> SISTEMA DE AGENDAMENTO</b>
+                  SISTEMA DE AGENDAMENTO
                 </span>
-              </h1>
+              </h2>
               <div id="div_content">
-                <h3
+                <h4
                   style={{
                     padding: "0 100px  0 100px"
                   }}
                 >
-                  <u>DO OBSERVATÓRIO ASTRONÔMICO ANTARES</u>
-                </h3>
-                <br />
-                <h5>Universidade Estadual de Feira de Santana - UEFS</h5>
+                  DO OBSERVATÓRIO ASTRONÔMICO ANTARES
+                </h4>
                 <br />
                 <h4
                   style={{
                     padding: "0 100px  0 100px"
                   }}
                 >
-                  No Observatório Astronômico Antares, são realizadas visitas a
-                  exposições, observações com telescópios automatizados, cursos,
-                  palestras, laboratórios, projeções de vídeo, sessões no
-                  planetário, etc.
+                  O Observatório Astronômico Antares foi inaugurado em{" "}
+                  <i
+                    style={{
+                      color: "#d86c00"
+                    }}
+                  >
+                    25 de Setembro de 1971 e incorporado à UEFS em 27 de Março
+                    de 1992
+                  </i>{" "}
+                  como uma Unidade de Desenvolvimento Organizacional, passando a
+                  realizar e a colaborarar com os cursos de graduação e de
+                  pós-graduação da UEFS em{" "}
+                  <i
+                    style={{
+                      color: "#d86c00"
+                    }}
+                  >
+                    atividades de ensino, pesquisa e extensão universitária.
+                  </i>
                 </h4>
               </div>
               <br />

@@ -25,16 +25,25 @@ class CadastroBolsista extends Component {
     this.setState({ [className.split(" ")[0]]: value });
   }
 
-  async handleSubmit(event) {
-    var teste = api.post("/adicionarBolsista", this.state);
-    console.log((await teste).data);
+  async handleSubmit() {
+    api
+      .post("/adicionarBolsista", this.state)
+      .then(function(response) {
+        // handle success
+        this.setState({ redirect: true });
+        console.log(response);
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      });
   }
 
   render() {
     return (
       <Container>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlledId="Name-surname">
+          <Form.Group>
             <Form.Row>
               <Col xs={5}>
                 <Form.Label>Nome</Form.Label>
@@ -58,7 +67,7 @@ class CadastroBolsista extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group controlledId="Login-Email">
+          <Form.Group>
             <Form.Row>
               <Col xs={5}>
                 <Form.Label>Nome de usuário</Form.Label>
@@ -83,7 +92,7 @@ class CadastroBolsista extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group controlledId="Phone-CPF-Enrollment">
+          <Form.Group>
             <Form.Row>
               <Col xs={4}>
                 <Form.Label>CPF</Form.Label>
@@ -117,7 +126,7 @@ class CadastroBolsista extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group controlledId="Adress">
+          <Form.Group>
             <Form.Row>
               <Col xs={12}>
                 <Form.Label>Endereço</Form.Label>
@@ -131,7 +140,7 @@ class CadastroBolsista extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group controlledId="Password">
+          <Form.Group>
             <Form.Row>
               <Col>
                 <Form.Label>Senha</Form.Label>
