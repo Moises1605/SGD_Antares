@@ -125,7 +125,7 @@ export default class CadastroFuncionario extends Component {
                 <Form.Control
                   required
                   placeholder="Rua, Bairro, Número."
-                  value={this.state.adress}
+                  value={this.state.address}
                   className="address"
                   onChange={this.handleChange}
                 />
