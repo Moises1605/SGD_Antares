@@ -14,9 +14,9 @@ a {
 }
 
 #div_screen {
-  padding-top: 100px;
+  padding-top: 150px;
   margin-right: 70px;
-  height: 100vh;
+  height: auto;
   width: 70vw;
   float: right;
 }

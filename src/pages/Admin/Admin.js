@@ -29,20 +29,29 @@ export default class Admin extends React.Component {
   render() {
     return (
       <div>
-        <Row>
-          <Col md={12}>
-            <Navbar />
-          </Col>
-        </Row>
-        <div id="div_sidearea">
-          <div id="div_sidebar">
-            <SimpleList
-              screens={this.state.screen}
-              onClick={this.componentDidMount}
-            />
+        <Container
+          fluid
+          style={{
+            paddingLeft: 0
+          }}
+        >
+          <Row>
+            <Col md={12}>
+              <Navbar />
+            </Col>
+          </Row>
+          <div id="div_sidearea">
+            <div id="div_sidebar">
+              <SimpleList
+                screens={this.state.screen}
+                onClick={this.componentDidMount}
+              />
+            </div>
+            <Container fluid>
+              <div id="div_screen">{this.state.active}</div>
+            </Container>
           </div>
-          <div id="div_screen">{this.state.active}</div>
-        </div>
+        </Container>
       </div>
     );
   }

@@ -9,7 +9,7 @@ class Welcome extends Component {
         <Container>
           <h2
             style={{
-              padding: "115px 100px 0 100px"
+              padding: "130px 100px 0 100px"
             }}
           >
             BEM-VINDO AO
