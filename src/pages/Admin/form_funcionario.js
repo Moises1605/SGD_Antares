@@ -20,6 +20,7 @@ export default class CadastroFuncionario extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  /** NOTE Método para registrar dados do form quando alterado*/
   handleChange(event) {
     let { className, value } = event.target;
     this.setState({ [className.split(" ")[0]]: value });

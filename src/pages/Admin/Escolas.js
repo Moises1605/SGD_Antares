@@ -9,6 +9,7 @@ import {
   FormControl,
   Table
 } from "react-bootstrap";
+import api from "../../services/api";
 
 export default class Escolas extends React.Component {
   constructor() {
@@ -17,26 +18,32 @@ export default class Escolas extends React.Component {
       rows: [],
       search: ""
     };
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    alert("errad");
-  }
-
-  componentDidMount() {
-    /*fetch information from the back-end*/
-  }
-
-  handleSearch() {
-    /*Shows the result of the search*/
-  }
-
+  /** REVIEW Método para registrar dados da pesquisa */
   handleChange(event) {
     this.setState({ search: event.target.value });
   }
+  /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
+  listEscolas = () => {
+    api
+      .get("/listarEscolas")
+      .then(response => {
+        response.map(e => (
+          <tr>
+            <td>
+              <b>{e.id}</b>
+            </td>
+            <td>{e.name}</td>
+            <td>{e.phone}</td>
+            <td>{e.email}</td>
+          </tr>
+        ));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
@@ -106,25 +113,7 @@ export default class Escolas extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-
+                    {/*{this.listEscolas()}*/}
                     {this.state.rows}
                   </tbody>
                 </Table>

@@ -10,7 +10,7 @@ import {
   Table,
   Modal
 } from "react-bootstrap";
-
+import api from "../../services/api";
 import CadastroFuncionario from "./form_funcionario";
 class Funcionario extends Component {
   constructor() {
@@ -18,30 +18,44 @@ class Funcionario extends Component {
     this.state = {
       rows: [],
       search: "",
-      show: false
+      show: false,
+      funcionarios: [
+        { id: 1, name: "Roberto", phone: "75988498927" },
+        { id: 2, name: "Daniel", phone: "75941145215" },
+        { id: 3, name: "Moisas", phone: "75464646646" },
+        { id: 4, name: "Riquelme", phone: "75454545632" }
+      ]
     };
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.setControl = this.setControl.bind(this);
   }
 
-  componentDidMount() {
-    /*fetch information from the back-end*/
-  }
+  /** REVIEW Método para registrar dados da pesquisa */
+  handleChange = event => this.setState({ search: event.target.value });
 
-  handleSearch() {
-    /*Shows the result of the search*/
-  }
+  /** NOTE Método para abrir o modal */
+  setControl = event => this.setState({ show: true });
 
-  handleChange(event) {
-    this.setState({ search: event.target.value });
-  }
-
-  setControl(event) {
-    this.setState({ show: true });
-  }
-
+  /**NOTE Método para fechar o modal */
   handleClose = () => this.setState({ show: false });
+
+  /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
+  listFuncionarios = () => {
+    api
+      .get("/listarFuncionarios")
+      .then(response => {
+        response.map(f => (
+          <tr>
+            <td>
+              <b>{f.id}</b>
+            </td>
+            <td>{f.name}</td>
+            <td>{f.phone}</td>
+          </tr>
+        ));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
@@ -106,35 +120,14 @@ class Funcionario extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <b>a</b>
-                    </td>
-                    <td>a</td>
-                    <td>a</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <b>a</b>
-                    </td>
-                    <td>a</td>
-                    <td>a</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <b>a</b>
-                    </td>
-                    <td>a</td>
-                    <td>a</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <b>a</b>
-                    </td>
-                    <td>a</td>
-                    <td>a</td>
-                  </tr>
-
+                  {/*{this.listFuncionarios()}*/}
+                  {this.state.funcionarios.map(f => (
+                    <tr>
+                      <td>{f.id}</td>
+                      <td>{f.name}</td>
+                      <td>{f.phone}</td>
+                    </tr>
+                  ))}
                   {this.state.rows}
                 </tbody>
               </Table>

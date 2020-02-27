@@ -12,8 +12,8 @@ import {
   ModalBody,
   ModalTitle
 } from "react-bootstrap";
+import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
-import { render } from "@testing-library/react";
 
 export default class Bolsistas extends React.Component {
   constructor() {
@@ -23,35 +23,36 @@ export default class Bolsistas extends React.Component {
       search: "",
       show: false
     };
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.setControl = this.setControl.bind(this);
   }
+  /** REVIEW Método para registrar dados da pesquisa */
+  handleChange = event => this.setState({ search: event.target.value });
 
-  handleClick() {
-    this.setState({ show: true });
-  }
-  realizerCadastro() {
-    render(<CadastroBolsista />);
-  }
-  componentDidMount() {
-    /*fetch information from the back-end*/
-  }
+  /** NOTE Método para abrir o modal */
+  setControl = () => this.setState({ show: true });
 
-  handleSearch() {
-    /*Shows the result of the search*/
-  }
-
-  handleChange(event) {
-    this.setState({ search: event.target.value });
-  }
-
-  setControl(event) {
-    this.setState({ show: true });
-  }
-
+  /**NOTE Método para fechar o modal */
   handleClose = () => this.setState({ show: false });
+
+  /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
+  listBolsistas = () => {
+    api
+      .get("/listarBolsistas")
+      .then(response => {
+        response.map(b => (
+          <tr>
+            <td>
+              <b>{b.id}</b>
+            </td>
+            <td>{b.name}</td>
+            <td>{b.phone}</td>
+            <td>{b.email}</td>
+          </tr>
+        ));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
@@ -89,12 +90,7 @@ export default class Bolsistas extends React.Component {
                   onChange={this.handleChange}
                 />
                 <InputGroup.Prepend>
-                  <Button
-                    variant="outline-secondary"
-                    onClick={this.handleSearch}
-                  >
-                    &#128269;
-                  </Button>
+                  <Button variant="outline-secondary">&#128269;</Button>
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>
@@ -121,37 +117,7 @@ export default class Bolsistas extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-                    <tr>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                    </tr>
-
+                    {/*{this.listBolsistas()}*/}
                     {this.state.rows}
                   </tbody>
                 </Table>

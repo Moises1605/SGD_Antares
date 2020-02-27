@@ -21,10 +21,11 @@ class CadastroBolsista extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
+  /** NOTE Método para registrar dados do form quando alterado*/
+  handleChange = event => {
     let { className, value } = event.target;
     this.setState({ [className.split(" ")[0]]: value });
-  }
+  };
 
   /*async handleSubmit() {
     api
