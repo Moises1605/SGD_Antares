@@ -4,9 +4,22 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ptBr from "@fullcalendar/core/locales/pt-br";
-
 import "./Calendar.css";
+import api from "../../services/api";
 export default class Calendario extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      horarios: []
+    };
+  }
+
+  /**NOTE Método que faz requisição de horários dos bolsistas*/
+  async componentDidMount() {
+    const h = api.post("/listarHorarioBolsistas");
+    this.setState({ horarios: (await h).data.map(h => h)[0] });
+    console.log(this.state.horarios);
+  }
   render() {
     return (
       <div>
@@ -59,23 +72,13 @@ export default class Calendario extends React.Component {
                 minTime="09:00:00"
                 maxTime="18:00:00"
                 slotDuration="01:00"
-                events={[
-                  {
-                    daysOfWeek: [1, 2, 3, 4, 5],
-                    startTime: "09:00",
-                    endTime: "12:00",
-                    rendering: "background",
-                    color: "#39FF14"
-                  },
-
-                  {
-                    daysOfWeek: [1, 2, 3, 4, 5],
-                    startTime: "14:00",
-                    endTime: "18:00",
-                    rendering: "background",
-                    color: "#39FF14"
-                  }
-                ]}
+                events={this.state.horarios.map(h => ({
+                  daysOfWeek: [h.dia],
+                  startTime: h.inicioTurno,
+                  endTime: h.fimTurno,
+                  rendering: "background",
+                  color: "#39FF14"
+                }))}
               />
             </div>
             <div
