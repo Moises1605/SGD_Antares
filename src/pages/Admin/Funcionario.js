@@ -19,12 +19,7 @@ class Funcionario extends Component {
       rows: [],
       search: "",
       show: false,
-      funcionarios: [
-        { id: 1, name: "Roberto", phone: "75988498927" },
-        { id: 2, name: "Daniel", phone: "75941145215" },
-        { id: 3, name: "Moisas", phone: "75464646646" },
-        { id: 4, name: "Riquelme", phone: "75454545632" }
-      ]
+      funcionarios: []
     };
   }
 
@@ -37,25 +32,13 @@ class Funcionario extends Component {
   /**NOTE Método para fechar o modal */
   handleClose = () => this.setState({ show: false });
 
-  /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
-  listFuncionarios = () => {
-    api
-      .get("/listarFuncionarios")
-      .then(response => {
-        response.map(f => (
-          <tr>
-            <td>
-              <b>{f.id}</b>
-            </td>
-            <td>{f.name}</td>
-            <td>{f.phone}</td>
-          </tr>
-        ));
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem*/
+
+  async componentDidMount() {
+    const f = api.post("/listarFuncionarios");
+    this.setState({ funcionarios: (await f).data.map(f => f)[0] });
+    console.log(this.state.funcionarios);
+  }
 
   render() {
     return (
@@ -120,15 +103,15 @@ class Funcionario extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {/*{this.listFuncionarios()}*/}
                   {this.state.funcionarios.map(f => (
                     <tr>
-                      <td>{f.id}</td>
+                      <td>
+                        <b>{f.id}</b>
+                      </td>
                       <td>{f.name}</td>
                       <td>{f.phone}</td>
                     </tr>
                   ))}
-                  {this.state.rows}
                 </tbody>
               </Table>
             </div>

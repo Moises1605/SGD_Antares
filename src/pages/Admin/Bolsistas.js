@@ -21,7 +21,8 @@ export default class Bolsistas extends React.Component {
     this.state = {
       rows: [],
       search: "",
-      show: false
+      show: false,
+      bolsistas: []
     };
   }
   /** REVIEW Método para registrar dados da pesquisa */
@@ -34,25 +35,12 @@ export default class Bolsistas extends React.Component {
   handleClose = () => this.setState({ show: false });
 
   /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
-  listBolsistas = () => {
-    api
-      .get("/listarBolsistas")
-      .then(response => {
-        response.map(b => (
-          <tr>
-            <td>
-              <b>{b.id}</b>
-            </td>
-            <td>{b.name}</td>
-            <td>{b.phone}</td>
-            <td>{b.email}</td>
-          </tr>
-        ));
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+
+  async componentDidMount() {
+    const b = api.post("/listarBolsistas");
+    this.setState({ bolsistas: (await b).data.map(b => b)[0] });
+    console.log(this.state.bolsistas);
+  }
 
   render() {
     return (
@@ -117,8 +105,15 @@ export default class Bolsistas extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {/*{this.listBolsistas()}*/}
-                    {this.state.rows}
+                    {this.state.bolsistas.map(b => (
+                      <tr>
+                        <td>
+                          <b>{b.id}</b>
+                        </td>
+                        <td>{b.name}</td>
+                        <td>{b.phone}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </div>

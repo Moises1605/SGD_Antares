@@ -16,7 +16,8 @@ export default class Escolas extends React.Component {
     super();
     this.state = {
       rows: [],
-      search: ""
+      search: "",
+      escolas: []
     };
   }
 
@@ -24,26 +25,12 @@ export default class Escolas extends React.Component {
   handleChange(event) {
     this.setState({ search: event.target.value });
   }
-  /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
-  listEscolas = () => {
-    api
-      .get("/listarEscolas")
-      .then(response => {
-        response.map(e => (
-          <tr>
-            <td>
-              <b>{e.id}</b>
-            </td>
-            <td>{e.name}</td>
-            <td>{e.phone}</td>
-            <td>{e.email}</td>
-          </tr>
-        ));
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+
+  async componentDidMount() {
+    const e = api.post("/listarEscolas");
+    this.setState({ escolas: (await e).data.map(e => e)[0] });
+    console.log(this.state.escolas);
+  }
 
   render() {
     return (
@@ -113,8 +100,16 @@ export default class Escolas extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {/*{this.listEscolas()}*/}
-                    {this.state.rows}
+                    {this.state.escolas.map(e => (
+                      <tr>
+                        <td>
+                          <b>{e.id}</b>
+                        </td>
+                        <td>{e.name}</td>
+                        <td>{e.phone}</td>
+                        <td>{e.email}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </div>
