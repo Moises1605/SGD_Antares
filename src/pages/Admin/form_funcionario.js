@@ -13,39 +13,34 @@ export default class CadastroFuncionario extends Component {
       email: "", //email
       cpf: "", //cpf
       phone: "", //telefone
-      password: "", //senha
-      redirect: false
+      password: "" //senha
     };
-
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
   /** NOTE Método para registrar dados do form quando alterado*/
   handleChange(event) {
     let { className, value } = event.target;
     this.setState({ [className.split(" ")[0]]: value });
   }
 
-  /*async handleSubmit() {
-    var teste = api
-      .post("/adicionarFuncionario", this.state)
-      .then(function(response) {
-        // handle success
-        this.setState({ redirect: true });
-        console.log(response);
-      })
-      .catch(function(error) {
-        // handle error
-        console.log(error);
-      });
-    console.log((await teste).name);
-  }*/
+  async handleSubmit(event) {
+    api.post("/adicionarFuncionario", this.state);
+    console.log(this.state.name);
+    console.log(this.state.login);
+    console.log(this.state.surname);
+    console.log(this.state.address);
+    console.log(this.state.email);
+    console.log(this.state.cpf);
+    console.log(this.state.phone);
+    console.log(this.state.password);
+  }
 
   render() {
     return (
       <Container>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
+          <Form.Group controlledId="Name-surname">
             <Form.Row>
               <Col>
                 <Form.Label>Nome</Form.Label>
@@ -69,7 +64,7 @@ export default class CadastroFuncionario extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group>
+          <Form.Group controlledId="Login-Email">
             <Form.Row>
               <Col xs={5}>
                 <Form.Label>Nome de usuário</Form.Label>
@@ -94,7 +89,7 @@ export default class CadastroFuncionario extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group>
+          <Form.Group controlledId="Phone-CPF">
             <Form.Row>
               <Col xs={6}>
                 <Form.Label>CPF</Form.Label>
@@ -118,21 +113,21 @@ export default class CadastroFuncionario extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group>
+          <Form.Group controlledId="Adress">
             <Form.Row>
               <Col xs={12}>
                 <Form.Label>Endereço</Form.Label>
                 <Form.Control
                   required
                   placeholder="Rua, Bairro, Número."
-                  value={this.state.address}
+                  value={this.state.adress}
                   className="address"
                   onChange={this.handleChange}
                 />
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group>
+          <Form.Group controlledId="Password">
             <Form.Row>
               <Col>
                 <Form.Label>Senha</Form.Label>
@@ -161,7 +156,12 @@ export default class CadastroFuncionario extends Component {
           <Form.Row>
             <Col xs={12}>
               <br />
-              <Button block variant="success" type="submit">
+              <Button
+                block
+                variant="success"
+                type="submit"
+                //onClick={this.handleSubmit}
+              >
                 Cadastrar
               </Button>
             </Col>
