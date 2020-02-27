@@ -112,6 +112,7 @@ export default class Bolsistas extends React.Component {
                         </td>
                         <td>{b.name}</td>
                         <td>{b.phone}</td>
+                        <td>{b.email}</td>
                       </tr>
                     ))}
                   </tbody>
