@@ -38,7 +38,7 @@ export default class Bolsistas extends React.Component {
 
   async componentDidMount() {
     const b = api.post("/listarBolsistas");
-    this.setState({ bolsistas: (await b).data.map(b => b)[0] });
+    this.setState({ bolsistas: (await b).data.map(b => b) });
     console.log(this.state.bolsistas);
   }
 

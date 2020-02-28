@@ -30,7 +30,7 @@ export default class Escolas extends React.Component {
 
   async componentDidMount() {
     const e = api.post("/listarEscolas");
-    this.setState({ escolas: (await e).data.map(e => e)[0] });
+    this.setState({ escolas: (await e).data.map(e => e) });
     console.log(this.state.escolas);
   }
 
