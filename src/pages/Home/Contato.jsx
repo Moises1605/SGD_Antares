@@ -72,10 +72,9 @@ class Contact extends Component {
                   </form>
                 </Form.Group>
                 <Form.Group>
-                  <form noValidate autoComplete="off">
+                  <form Validate autoComplete="off">
                     <TextField
                       fullWidth="true"
-                      id="outlined-basic"
                       label="Email"
                       variant="outlined"
                       size="small"
@@ -86,7 +85,6 @@ class Contact extends Component {
                   <form noValidate autoComplete="off">
                     <TextField
                       fullWidth="true"
-                      id="outlined-basic"
                       label="Assunto"
                       variant="outlined"
                       size="small"
@@ -107,7 +105,6 @@ class Contact extends Component {
                   <form noValidate autoComplete="off">
                     <TextField
                       fullWidth="true"
-                      id="outlined-basic"
                       label="Insira sua Mensagem"
                       variant="outlined"
                       size="small"
