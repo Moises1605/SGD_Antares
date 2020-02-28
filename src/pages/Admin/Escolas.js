@@ -145,6 +145,9 @@ export default class Escolas extends React.Component {
                   condensed
                   noDataIndication="Ainda não há escolas cadastradas"
                   filter={filterFactory()}
+                  style={{
+                    outline: "none"
+                  }}
                 />
               </div>
             </Col>
