@@ -48,7 +48,9 @@ export default class Bolsistas extends React.Component {
         <Container fluid>
           <Row>
             <Col>
-              <h3 style={{ textAlign: "left" }}>Gerir Bolsista</h3>
+              <h3 style={{ textAlign: "left", marginTop: "15px" }}>
+                Gerir Bolsista
+              </h3>
             </Col>
             <Col></Col>
           </Row>
@@ -58,7 +60,7 @@ export default class Bolsistas extends React.Component {
           <Row>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="outline-secondary">
+                <Dropdown.Toggle variant="outline-primary">
                   Ordenar Por
                 </Dropdown.Toggle>
 
@@ -82,7 +84,6 @@ export default class Bolsistas extends React.Component {
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>
-            <Col xs={1}></Col>
           </Row>
           <Row>
             <div style={{ height: "3vh" }}></div>
@@ -95,7 +96,7 @@ export default class Bolsistas extends React.Component {
                   overflowY: "auto"
                 }}
               >
-                <Table bordered hover responsive size="sm">
+                <Table striped bordered hover responsive size="sm">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -119,25 +120,14 @@ export default class Bolsistas extends React.Component {
                 </Table>
               </div>
             </Col>
-            <Col xs={1}></Col>
           </Row>
           <br />
           <Row>
-            <Col xl={9} sm={10}></Col>
+            <Col xs={10}></Col>
             <Col>
-              <Button
-                variant="outline-secondary"
-                block
-                onClick={this.setControl}
-              >
+              <Button variant="primary" block onClick={this.setControl}>
                 Novo Cadastro
               </Button>
-            </Col>
-            <Col xs={1}></Col>
-          </Row>
-          <Row>
-            <Col>
-              <div style={{ height: "3vh" }}></div>
             </Col>
           </Row>
         </Container>

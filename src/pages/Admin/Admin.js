@@ -7,6 +7,8 @@ import Escolas from "./Escolas";
 import Navbar from "./NavBar";
 import SimpleList from "./List";
 import "./Admin.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 
 export default class Admin extends React.Component {
   constructor() {
@@ -23,7 +25,9 @@ export default class Admin extends React.Component {
     };
   }
   componentDidMount = screen => {
-    this.setState({ active: this.state.screens[screen] });
+    screen == null
+      ? this.setState({ active: this.state.screens[0] })
+      : this.setState({ active: this.state.screens[screen] });
   };
 
   render() {
@@ -47,8 +51,11 @@ export default class Admin extends React.Component {
                 onClick={this.componentDidMount}
               />
             </div>
+
             <Container fluid>
-              <div id="div_screen">{this.state.active}</div>
+              <div id="div_screen">
+                <Paper elevation={3}>{this.state.active}</Paper>
+              </div>
             </Container>
           </div>
         </Container>

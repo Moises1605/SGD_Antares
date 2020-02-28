@@ -10,6 +10,10 @@ import {
   Table
 } from "react-bootstrap";
 import api from "../../services/api";
+//import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import BootstrapTable from "react-bootstrap-table-next";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 export default class Escolas extends React.Component {
   constructor() {
@@ -22,9 +26,7 @@ export default class Escolas extends React.Component {
   }
 
   /** REVIEW Método para registrar dados da pesquisa */
-  handleChange(event) {
-    this.setState({ search: event.target.value });
-  }
+  handleChange = event => this.setState({ search: event.target.value });
 
   async componentDidMount() {
     const e = api.post("/listarEscolas");
@@ -33,12 +35,38 @@ export default class Escolas extends React.Component {
   }
 
   render() {
+    const columns = [
+      {
+        dataField: "id",
+        text: "#",
+        sort: true
+      },
+      {
+        dataField: "name",
+        text: "Nome",
+        sort: true
+      },
+      {
+        dataField: "phone",
+        text: "Telefone",
+        sort: true
+      },
+      {
+        dataField: "email",
+        text: "Email",
+        sort: true
+      }
+    ];
     return (
       <div>
         <Container fluid>
           <Row>
-            <Col>
-              <h3 style={{ textAlign: "left" }}>Gerir Escolas</h3>
+            <Col
+              style={{
+                paddingTop: "15px"
+              }}
+            >
+              <h3>Gerir Escolas</h3>
             </Col>
             <Col></Col>
           </Row>
@@ -48,7 +76,7 @@ export default class Escolas extends React.Component {
           <Row>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="outline-secondary">
+                <Dropdown.Toggle variant="outline-danger">
                   Ordenar Por
                 </Dropdown.Toggle>
 
@@ -68,16 +96,12 @@ export default class Escolas extends React.Component {
                   onChange={this.handleChange}
                 />
                 <InputGroup.Prepend>
-                  <Button
-                    variant="outline-secondary"
-                    onClick={this.handleSearch}
-                  >
+                  <Button variant="outline-primary" onClick={this.handleSearch}>
                     &#128269;
                   </Button>
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>
-            <Col xs={1}></Col>
           </Row>
           <Row>
             <div style={{ height: "3vh" }}></div>
@@ -90,7 +114,7 @@ export default class Escolas extends React.Component {
                   overflowY: "auto"
                 }}
               >
-                <Table hover responsive size="sm">
+                {/*<Table striped bordered hover responsive size="sm">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -111,10 +135,19 @@ export default class Escolas extends React.Component {
                       </tr>
                     ))}
                   </tbody>
-                </Table>
+                    </Table>*/}
+                <BootstrapTable
+                  keyField="id"
+                  data={this.state.escolas}
+                  columns={columns}
+                  striped
+                  hover
+                  condensed
+                  noDataIndication="Ainda não há escolas cadastradas"
+                  filter={filterFactory()}
+                />
               </div>
             </Col>
-            <Col xs={1}></Col>
           </Row>
           <Row>
             <Col>
