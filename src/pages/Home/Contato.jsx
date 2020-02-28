@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import "./contato.css";
 
 class Contact extends Component {
   constructor(props) {
@@ -10,45 +13,45 @@ class Contact extends Component {
     return (
       <React.Fragment>
         <Container>
-          <Form>
-            <h2
+          <h2
+            style={{
+              textAlign: "center"
+            }}
+          >
+            Contato
+            <h6
               style={{
-                textAlign: "center"
+                marginTop: "10px"
               }}
             >
-              Contato
-              <h6
-                style={{
-                  marginTop: "10px"
-                }}
-              >
-                <i>museuantares@gmail.com</i>
+              <i>museuantares@gmail.com</i>
 
-                <br />
-                <i>(75) 3624-1921 </i>
-              </h6>
-            </h2>
-            <hr
-              style={{
-                width: "25%",
-                margin: "auto",
-                backgroundColor: "#000"
-              }}
-            ></hr>
-            <hr
-              style={{
-                width: "12.5%",
-                margin: "7px auto 0 auto",
-                backgroundColor: "#222"
-              }}
-            ></hr>
+              <br />
+              <i>(75) 3624-1921 </i>
+            </h6>
+          </h2>
+          <hr
+            style={{
+              width: "25%",
+              margin: "auto",
+              backgroundColor: "#000"
+            }}
+          ></hr>
+          <hr
+            style={{
+              width: "12.5%",
+              margin: "7px auto 0 auto",
+              backgroundColor: "#222"
+            }}
+          ></hr>
+          <Form>
             <Form.Row
               style={{
                 marginTop: "30px"
               }}
             >
               <Col md={6} sm={12}>
-                <Form.Group controlId="Name">
+                {/*<Form.Group controlId="Name">
                   <Form.Control type="text" placeholder="Nome completo" />
                 </Form.Group>
                 <Form.Group controlId="Email">
@@ -56,6 +59,37 @@ class Contact extends Component {
                 </Form.Group>
                 <Form.Group controlId="Assunto">
                   <Form.Control type="text" placeholder="Assunto" />
+            </Form.Group>*/}
+                <Form.Group>
+                  <form noValidate autoComplete="off">
+                    <TextField
+                      fullWidth="true"
+                      id="outlined-basic"
+                      label="Nome Completo"
+                      variant="outlined"
+                      size="small"
+                    />
+                  </form>
+                </Form.Group>
+                <Form.Group>
+                  <form Validate autoComplete="off">
+                    <TextField
+                      fullWidth="true"
+                      label="Email"
+                      variant="outlined"
+                      size="small"
+                    />
+                  </form>
+                </Form.Group>
+                <Form.Group>
+                  <form noValidate autoComplete="off">
+                    <TextField
+                      fullWidth="true"
+                      label="Assunto"
+                      variant="outlined"
+                      size="small"
+                    />
+                  </form>
                 </Form.Group>
               </Col>
               <Col
@@ -68,11 +102,16 @@ class Contact extends Component {
                 }
               >
                 <Form.Group controlId="msg">
-                  <Form.Control
-                    as="textarea"
-                    rows="5"
-                    placeholder="Insira sua mensagem"
-                  />
+                  <form noValidate autoComplete="off">
+                    <TextField
+                      fullWidth="true"
+                      label="Insira sua Mensagem"
+                      variant="outlined"
+                      size="small"
+                      multiline="true"
+                      rows={6}
+                    />
+                  </form>
                 </Form.Group>
               </Col>
             </Form.Row>

@@ -47,7 +47,7 @@ class Relatorio extends Component {
       <Container fluid>
         <Row>
           <Col>
-            <h3 style={{ textAlign: "left" }}>Relatórios</h3>
+            <h3 style={{ textAlign: "left", marginTop: "15px" }}>Relatórios</h3>
           </Col>
           <Col></Col>
         </Row>
@@ -57,8 +57,8 @@ class Relatorio extends Component {
         <Row>
           <Col>
             <Dropdown>
-              <Dropdown.Toggle variant="outline-secondary">
-                Ordenar por
+              <Dropdown.Toggle variant="outline-primary">
+                Ordenar Por
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item>Nome</Dropdown.Item>
@@ -82,7 +82,6 @@ class Relatorio extends Component {
               </InputGroup.Prepend>
             </InputGroup>
           </Col>
-          <Col xs={1}></Col>
         </Row>
         <Row>
           <div style={{ height: "3vh" }}></div>
@@ -91,7 +90,7 @@ class Relatorio extends Component {
           <Col>
             <div
               style={{
-                height: "52vh",
+                height: "40vh",
                 overflowY: "auto"
               }}
             >
@@ -107,7 +106,6 @@ class Relatorio extends Component {
               </Table>
             </div>
           </Col>
-          <Col xs={1}></Col>
         </Row>
         <Row>
           <div style={{ height: "3vh" }}></div>

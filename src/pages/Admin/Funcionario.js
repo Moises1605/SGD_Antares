@@ -45,7 +45,9 @@ class Funcionario extends Component {
       <Container fluid>
         <Row>
           <Col>
-            <h3 style={{ textAlign: "left" }}>Gerir Funcionários</h3>
+            <h3 style={{ textAlign: "left", marginTop: "15px" }}>
+              Gerir Funcionários
+            </h3>
           </Col>
           <Col></Col>
         </Row>
@@ -55,7 +57,7 @@ class Funcionario extends Component {
         <Row>
           <Col>
             <Dropdown>
-              <Dropdown.Toggle variant="outline-secondary">
+              <Dropdown.Toggle variant="outline-primary">
                 Ordenar Por
               </Dropdown.Toggle>
 
@@ -81,7 +83,6 @@ class Funcionario extends Component {
               </InputGroup.Prepend>
             </InputGroup>
           </Col>
-          <Col xs={1}></Col>
         </Row>
         <Row>
           <div style={{ height: "3vh" }}></div>
@@ -116,17 +117,15 @@ class Funcionario extends Component {
               </Table>
             </div>
           </Col>
-          <Col xs={1}></Col>
         </Row>
         <br />
         <Row>
-          <Col xs={9}></Col>
+          <Col xs={10}></Col>
           <Col>
-            <Button variant="outline-secondary" block onClick={this.setControl}>
+            <Button variant="primary" block onClick={this.setControl}>
               Novo Cadastro
             </Button>
           </Col>
-          <Col xs={1}></Col>
         </Row>
         <Row>
           <Col>

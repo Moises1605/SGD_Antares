@@ -14,9 +14,14 @@ a {
 }
 
 #div_screen {
-  padding-top: 100px;
-  margin-right: 70px;
-  height: 100vh;
+  margin: 150px 75px;
+  height: 40vh;
   width: 70vw;
   float: right;
+}
+
+.MuiPaper-root {
+  flex-wrap: wrap;
+  width: 70vw;
+  height: 70vh;
 }
