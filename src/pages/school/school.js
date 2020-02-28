@@ -3,6 +3,7 @@ import './style.css';
 import Calendar from './calendar/calendar'
 import LateralBar from './LateralBar/lateral_bar';
 import NavBar from '../components/NavBar/NavBar'
+import api from "../../services/api"
 
 
 export default class School extends React.Component {
@@ -13,7 +14,10 @@ export default class School extends React.Component {
             idSchool: ''
         }
     }
-
+    async componentDidMount(){
+        var dadosEscola= api.post("/retornaDadosEscola",this.idSchool)
+        console.log((await dadosEscola).data)
+    }
     render() {
         return (
             <div id='school'>

@@ -5,6 +5,7 @@ import timeGridPlugin, { TimeGrid } from '@fullcalendar/timegrid';
 import './style.css';
 import ptBr from '@fullcalendar/core/locales/pt-br'
 import { formatDate } from '@fullcalendar/core'
+import api  from "../../../services/api"
 //import { Modal}  from 'react-bootstrap';
 
 //tela onde o bolsista poderá vê o seu horario de trabalho.
@@ -19,8 +20,9 @@ export default class ScheduleScholarship extends React.Component {
     }
   }
 
-  componentDidMount(){
-    //carrega os horarios desse bolsista.
+  async componentDidMount(){
+    var horarioBolsista= api.post("dadosBolsista",this.idScholarschip)
+    console.log((await horarioBolsista).data)
   }
 
   render() {
