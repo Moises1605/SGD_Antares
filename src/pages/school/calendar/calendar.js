@@ -53,6 +53,7 @@ export default class Calendar extends React.Component {
                   <Agendamento date2 = {`${this.state.date1}`}/>
                 </Modal.Body>
             </Modal>
+          <h4>Clique na data que vc quer fazer o agendamento.</h4>
           <FullCalendar
             weekends={false} 
           

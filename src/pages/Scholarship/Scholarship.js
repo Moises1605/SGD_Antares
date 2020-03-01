@@ -1,17 +1,32 @@
 import React from 'react'
 import './style.css';
-import LateralBar from './lateralBar/LateralBar'
+import LateralBar from './list/List'
 import ScheduleScholarship from "./mySchedule/ScheduleScholarship"
+import FollowVisit from "./FollowVisit/followVisit"
 import NavBar from '../components/NavBar/NavBar'
+import Info from "./infoScholarship/infoScholarship"
 
 export default class Scholarship extends React.Component {
 
     constructor(props){
         super(props)
         this.state = {
-            idScholarship: ''
-        }
+            idScholarship: '',
+            screens: [
+                <ScheduleScholarship idScholarship = "0"/>,
+                <FollowVisit />,
+                <Info />,
+                null
+              ],
+              active: null
+        };
     }
+
+    componentDidMount = screen => {
+        screen == null
+          ? this.setState({ active: this.state.screens[0] })
+          : this.setState({ active: this.state.screens[screen] });
+      };
 
     render() {
         return (
@@ -20,12 +35,15 @@ export default class Scholarship extends React.Component {
                 <div id='contentScholarship'>
                     <div id='leftScholarship'>
 
-                        <LateralBar/>
+                        <LateralBar
+                             screens={this.state.screen}
+                             onClick={this.componentDidMount}
+                        />
 
                     </div>
                     <div id='rightScholarship'>
 
-                        <ScheduleScholarship idScholarship = {this.state.idScholarship}/>
+                        {this.state.active}
                     
                     </div>
                 </div>

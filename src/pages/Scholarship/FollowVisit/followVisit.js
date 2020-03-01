@@ -10,16 +10,16 @@ export default class FollowVisit extends React.Component {
 
     render() {
         return (
-            <div id='contentFollow'>
-                <div>
-                    <Header />
-                </div>
-                <div>
-                    <Row id='followBody'>
-                        <Col id="followSideBar">
-                            {/*menu lateral*/}
-                        </Col>
-                        <Col xs lg='10' id='htgr'>
+            <div >
+            {/* //     <div>
+            //         <Header />
+            //     </div>
+            //     <div>
+            //         <Row id='followBody'>
+            //             <Col id="followSideBar">
+            //               
+            //             </Col>
+            //             <Col xs lg='10' id='htgr'> */}
                             <Row id='colFollow' >
                                 <Col>
                                     Visitas Agendadas
@@ -41,10 +41,10 @@ export default class FollowVisit extends React.Component {
                             <Row id='visitsFollow'>
                                 <Visits />
                             </Row>
-                        </Col>
-                    </Row>
-                </div>
-            </div>
+            {/* //             </Col>
+            //         </Row>
+            //     </div> */}
+             </div>
         )
     }
 }
