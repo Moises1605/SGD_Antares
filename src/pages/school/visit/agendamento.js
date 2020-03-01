@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button,Row, Col, Form } from 'react-bootstrap';
-//import api from "../../services/api"
+import api from "../../../services/api";
 import './style.css';
+
 
 //Modal responsável por agendar uma visita.
 export default class Agendamento extends React.Component {
@@ -49,9 +50,8 @@ export default class Agendamento extends React.Component {
          this.setState({ obs: event.target.value });
     }   
 
-    handleSubmit(event){
-        //envia os dados para o back
-        console.log(this.state);
+    async handleSubmit(event){
+        api.post("/adicionarAgendamento", this.state)
     }
 
     render() {

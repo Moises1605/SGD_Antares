@@ -7,7 +7,9 @@ import NavBar from '../components/NavBar/NavBar'
 //import Visit from './visit/agendamento';
 import MySchedulings from './MySchedulings/MyScheduling'
 import Paper from "@material-ui/core/Paper";
-//import EditSchool from './infoSchool'
+//import EditSchool from './infoSchool';
+import api from "../../services/api";
+
 
 
 export default class School extends React.Component {
@@ -25,11 +27,12 @@ export default class School extends React.Component {
             };
     }
     componentDidMount = screen => {
+      var dadosEscola= api.post("/retornaDadosEscola",this.idSchool)
+      console.log((await dadosEscola).data)
         screen == null
           ? this.setState({ active: this.state.screens[0] })
           : this.setState({ active: this.state.screens[screen] });
       };
-
     /*render() {
         return (
             <div id='school'>
