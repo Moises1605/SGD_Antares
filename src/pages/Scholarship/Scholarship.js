@@ -5,7 +5,8 @@ import ScheduleScholarship from "./mySchedule/ScheduleScholarship"
 import FollowVisit from "./FollowVisit/followVisit"
 import NavBar from '../components/NavBar/NavBar'
 import Info from "./infoScholarship/infoScholarship"
-
+import { Container, Row, Col, Nav } from "react-bootstrap";
+import Paper from "@material-ui/core/Paper";
 export default class Scholarship extends React.Component {
 
     constructor(props){
@@ -30,23 +31,31 @@ export default class Scholarship extends React.Component {
 
     render() {
         return (
-            <div id='scholarship'>
-                <NavBar/>
-                <div id='contentScholarship'>
+            <div>
+                <Container
+                fluid
+                style={{
+                    paddingLeft: 0
+                }}>
+                <Row>
+                    <Col  md={12}>
+                        <NavBar/>
+                    </Col>
+                </Row>
+                <div id="div_sidearea">
                     <div id='leftScholarship'>
-
                         <LateralBar
                              screens={this.state.screen}
                              onClick={this.componentDidMount}
                         />
-
                     </div>
-                    <div id='rightScholarship'>
-
-                        {this.state.active}
-                    
-                    </div>
+                    <Container fluid>
+                        <div id='rightScholarship'>
+                        {this.state.active}                
+                        </div>
+                    </Container>
                 </div>
+                </Container>
             </div>
         )
     }

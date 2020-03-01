@@ -10,6 +10,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 //import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
 import JumBrotonRegister from '../JumBrotonRegister/jumBrotonRegister'
+import TextField from "@material-ui/core/TextField";
 
 
 export default class FormRegister extends React.Component {
@@ -130,7 +131,8 @@ export default class FormRegister extends React.Component {
         this.setState({ scholarity: event.target.value });
     }
 
-    handleNext = (event) => {
+    handleNext = (event) => {   
+        console.log(this.state.name);
         var temp = this.state.activeStep + 1;
         this.setState({ activeStep: temp })
         event.preventDefault();
@@ -148,39 +150,105 @@ export default class FormRegister extends React.Component {
                     <Form onSubmit={this.handleNext}>
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridNameSchool">
-                                <Form.Label>Nome da Escola</Form.Label>
-                                <Form.Control required type="text" placeholder="Nome da Escola" value={this.state.name} onChange={this.handleChangeSchoolName} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Nome da Escola"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.name} 
+                                        onChange={this.handleChangeSchoolName}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGridAddress">
-                                <Form.Label>Endereço</Form.Label>
-                                <Form.Control required type="text" placeholder="Rua,Número,Bairro" value={this.state.address} onChange={this.handleChangeAddress} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Endereço"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.address}
+                                        onChange={this.handleChangeAddress}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridCity">
-                                <Form.Label>Cidade</Form.Label>
-                                <Form.Control required type="text" placeholder="Cidade" value={this.state.city} onChange={this.handleChangeCity} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Cidade"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.city}
+                                        onChange={this.handleChangeCity}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridState">
-                                <Form.Label>Estado</Form.Label>
-                                <Form.Control required type="text" placeholder="Estado" value={this.state.state} onChange={this.handleChangeState} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Estado"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.state}
+                                        onChange={this.handleChangeState}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridCNPJ">
-                                <Form.Label>CNPJ</Form.Label>
-                                <Form.Control required type="text" placeholder="CNPJ" value={this.state.CNPJ} onChange={this.handleChangeCNPJ} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="CNPJ"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.CNPJ}
+                                        onChange={this.handleChangeCNPJ}
+                                        required
+                                        type="number"
+                                    />
+                                </div>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridPhone">
-                                <Form.Label>Telefone</Form.Label>
-                                <Form.Control required type="text" placeholder="(DDD)XXXX-XXXX" value={this.state.phone} onChange={this.handleChangePhone} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Telefone"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.phone}
+                                        onChange={this.handleChangePhone}
+                                        required
+                                        type="number"
+                                    />
+                                </div>
                             </Form.Group>
 
                         </Form.Row>
-                        <Button variant="primary" type = 'submit'>
+                        <Button variant="primary" type='submit'>
                             {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
                         </Button>
                     </Form>
@@ -190,13 +258,35 @@ export default class FormRegister extends React.Component {
                     <Form onSubmit={this.handleNext}>
                         <Form.Row>
                             <Form.Group controlId="formGridDirectorName">
-                                <Form.Label>Nome do diretor</Form.Label>
-                                <Form.Control required type='text' placeholder="Nome do diretor" value={this.state.respName} onChange={this.handleChangeDirectorName} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Nome do diretor"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.respName}
+                                        onChange={this.handleChangeDirectorName}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
                             </Form.Group>
 
                             <Form.Group controlId="formGridDirectorSurname">
-                                <Form.Label>Sobrenome do diretor</Form.Label>
-                                <Form.Control required type='text' placeholder="Sobrenome do diretor" value={this.state.respSurname} onChange={this.handleChangeDirectorSurname} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Sobrenome do diretor"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.respSurname}
+                                        onChange={this.handleChangeDirectorSurname}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
                             </Form.Group>
                         </Form.Row>
 
@@ -221,20 +311,20 @@ export default class FormRegister extends React.Component {
                                 </Form.Control>
                             </Form.Group>
                         </Form.Row>
-                        
-                            <Button
-                                disabled={this.state.activeStep === 0}
-                                onClick={this.handleBack}
-                                variant="primary"
-                                id='backButton'
-                            >
-                                Voltar
+
+                        <Button
+                            disabled={this.state.activeStep === 0}
+                            onClick={this.handleBack}
+                            variant="primary"
+                            id='backButton'
+                        >
+                            Voltar
                             </Button>
 
-                            <Button variant="primary" type = 'submit'>
-                                {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
-                            </Button>
-                        
+                        <Button variant="primary" type='submit'>
+                            {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
+                        </Button>
+
                     </Form>
                 )
             case 2:
@@ -242,26 +332,69 @@ export default class FormRegister extends React.Component {
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Row>
                             <Form.Group controlId="formGridEmail">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control required type='email' placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Email"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.email}
+                                        onChange={this.handleChangeEmail}
+                                        required
+                                        type="email"
+                                    />
+                                </div>
                             </Form.Group>
 
                             <Form.Group controlId="formGridLogin">
-                                <Form.Label>Nome de usuário</Form.Label>
-                                <Form.Control required type='text' placeholder="login" value={this.state.login} onChange={this.handleChangeLogin} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Nome do Usuário"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.login}
+                                        onChange={this.handleChangeLogin}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Label>Senha</Form.Label>
-                                <Form.Control required type="password" placeholder="Senha" value={this.state.password} onChange={this.handleChangePassword} />
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Senha"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.password}
+                                        onChange={this.handleChangePassword}
+                                        required
+                                        type="password"
+                                    />
+                                </div>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridPassword2">
-                                <Form.Label>Confirme a senha</Form.Label>
-                                <Form.Control required type="password" placeholder="Confirme a Senha" value={this.state.password2} onChange={this.handleChangePassword2}
-                                />
+                            <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Confirme a senha"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.password2}
+                                        onChange={this.handleChangePassword2}
+                                        required
+                                        type="password"
+                                    />
+                                </div>
                             </Form.Group>
                         </Form.Row>
                         <div>
@@ -274,7 +407,7 @@ export default class FormRegister extends React.Component {
                                 Voltar
                             </Button>
 
-                            <Button variant="primary"type = 'submit'>
+                            <Button variant="primary" type='submit'>
                                 {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
                             </Button>
                         </div>
@@ -285,6 +418,7 @@ export default class FormRegister extends React.Component {
         }
     }
 
+    //envia ps dados do formulário para o back-end;
     async handleSubmit(event) {
         this.setState({ controlSucess: true })
         event.preventDefault();
@@ -318,7 +452,7 @@ export default class FormRegister extends React.Component {
                                         </Step>
                                     ))}
                                 </Stepper>
-                                <Typography id='instructions'>{this.getStepContent(this.state.activeStep)}</Typography>
+                                <div component={'div'} id='instructions'>{this.getStepContent(this.state.activeStep)}</div>
                                 {/* <div>
                                     <Button
                                         disabled={this.state.activeStep === 0}
@@ -355,38 +489,3 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-// function getStepContent(stepIndex) {
-//     switch (stepIndex) {
-//         case 0:
-//             return 'Select campaign settings...';
-//         case 1:
-//             return (
-//                 <Form.Row>
-//                         <Form.Group as={Col} controlId="formGridNameSchool">
-//                             <Form.Label>Nome da Escola</Form.Label>
-//                             <Form.Control type="text" placeholder="Nome da Escola" value={this.state.name} onChange={this.handleChangeSchoolName} />
-//                         </Form.Group>
-
-//                         <Form.Group as={Col} controlId="formGridAddress">
-//                             <Form.Label>Endereço</Form.Label>
-//                             <Form.Control type="text" placeholder="Endereço" value={this.state.address} onChange={this.handleChangeAddress} />
-//                         </Form.Group>
-//                     </Form.Row>
-
-//                     <Form.Row>
-//                         <Form.Group as={Col} controlId="formGridCity">
-//                             <Form.Label>Cidade</Form.Label>
-//                             <Form.Control type="text" placeholder="Cidade" value={this.state.city} onChange={this.handleChangeCity} />
-//                         </Form.Group>
-
-//                         <Form.Group as={Col} controlId="formGridState">
-//                             <Form.Label>Estado</Form.Label>
-//                             <Form.Control type="text" placeholder="Estado" value={this.state.state} onChange={this.handleChangeState} />
-//                         </Form.Group>
-//             )
-//         case 2:
-//             return 'This is the bit I really care about!';
-//         default:
-//             return 'Unknown stepIndex';
-//     }
-// }

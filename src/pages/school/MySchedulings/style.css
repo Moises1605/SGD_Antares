@@ -3,24 +3,22 @@
     height: 100vh;
 }
 
-#leftSideMy{
-    float: left;
-    height: 90vh;
-    width: 15%;
-    background-color: #93b3f8;
-}
-
-#rightSideMy{
-    float: right;
-    height: 90vh;
-    width: 85%;
-    background-color: white;
-    padding: 20px;
-}
-
 #titleScheduling{
     font-size: 24px;
     margin: 20px 0 40px 20px;
     font-family: Arial, Helvetica, sans-serif;
     color: #575d80;
+}
+
+#item{
+    margin: 10px 0 10px 20px;
+    width: 800px;
+}
+
+#cancel{
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    margin: 0 0 0 600px;
+    height:40px;
 }

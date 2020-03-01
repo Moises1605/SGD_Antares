@@ -33,4 +33,32 @@
 
 #menu{
     margin: 50px 0 0 0;
-}
+} 
+
+* {
+    margin: 0 0;
+    padding: 0 0;
+  }
+  a {
+    outline: none;
+  }
+  
+  #div_sidebar {
+    width: 15vw;
+    height: 100vh;
+    float: left;
+    background-color: #eee;
+  }
+  
+  #div_screen {
+    margin: 150px 75px;
+    height: 40vh;
+    width: 70vw;
+    float: right;
+  }
+  
+  .MuiPaper-root {
+    flex-wrap: wrap;
+    width: 70vw;
+    height: 70vh;
+  }

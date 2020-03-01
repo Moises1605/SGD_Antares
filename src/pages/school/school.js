@@ -20,71 +20,51 @@ export default class School extends React.Component {
             idSchool: '',
             screens: [
                 <Calendar />,
-                <MySchedulings />,
+                <MySchedulings idSchool = '0'/>,
                 null
               ],
               active: null
             };
     }
-    componentDidMount = screen => {
-      var dadosEscola= api.post("/retornaDadosEscola",this.idSchool)
-      console.log((await dadosEscola).data)
+    componentDidMount  = screen => {
+      //Colocar essa parte comentada na parte de editar dados da escola.
+      // var dadosEscola = api.post("/retornaDadosEscola",this.idSchool)
+      // console.log((await dadosEscola).data)
         screen == null
           ? this.setState({ active: this.state.screens[0] })
           : this.setState({ active: this.state.screens[screen] });
       };
-    /*render() {
-        return (
-            <div id='school'>
-                <NavBar/>
-                <div id='contentSchool'>
-                    <div id='leftSchool'>
+      render() {
+          return (
+            <div>
+              <Container
+                fluid
+                style={{
+                  paddingLeft: 0
+                }}
+              >
+                <Row>
+                  <Col  md={12}>
+                    <NavBar />
+                  </Col>
+                </Row>
+                <div id="div_sidearea">
+                  <div id="leftSchool">
                     <LateralBar
-                        screens={this.state.screen}
-                        onClick={this.componentDidMount}
+                      screens={this.state.screen}
+                      onClick={this.componentDidMount}
                     />
+                  </div>
+                  <Container fluid>
+                    <div id="rightSchool">
+                      {/* <Paper elevation={3}>{this.state.active}</Paper> */}
+                      {this.state.active}
                     </div>
-                    <div id='rightSchool'>
-                    
-                        <Calendar/>
-                    
-                    </div>
+                  </Container>
                 </div>
+              </Container>
             </div>
-        )
-    }
-}*/
-render() {
-    return (
-      <div>
-        <Container
-          fluid
-          style={{
-            paddingLeft: 0
-          }}
-        >
-          <Row id = 'asd'>
-            <Col  md={12}>
-              <NavBar />
-            </Col>
-          </Row>
-          <div id="div_sidearea">
-            <div id="leftSchool">
-              <LateralBar
-                screens={this.state.screen}
-                onClick={this.componentDidMount}
-              />
-            </div>
-            <Container fluid>
-              <div id="rightSchool">
-                {/* <Paper elevation={3}>{this.state.active}</Paper> */}
-                {this.state.active}
-              </div>
-            </Container>
-          </div>
-        </Container>
-      </div>
-    );
-  }
-}
+          );
+        }
+      }
 // Surfaces ->paper
