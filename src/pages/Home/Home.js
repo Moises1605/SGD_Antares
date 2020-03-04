@@ -1,11 +1,11 @@
 import React from "react";
-import NavBar from "./NavBar";
-import Contact from "./Contato";
+import NavBar from "../../components/Home/NavBar";
+import Contact from "../../components/Home/Contato";
 import { Container } from "react-bootstrap";
-import Calendario from "./Calendar";
-import Welcome from "./welcome";
-import Atracoes from "./Atracoes";
-import GoogleApiWrapper from "./maps";
+import Calendario from "../../components/Home/Calendar";
+import Welcome from "../../components/Home/welcome";
+import Atracoes from "../../components/Home/Atracoes";
+import GoogleApiWrapper from "../../components/Home/maps";
 import "./Home.css";
 
 export default class home extends React.Component {

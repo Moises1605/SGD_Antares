@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import LateralBar from "./lateral_bar.js";
-import Cadastro from "./form_cadastro.js";
-import GerirFun from "./gerir_funcionarios.js";
-import GenRelatorio from "./gerar_relatorio.js";
-import TelaAgendamentos from "./tela_agendamentos.js";
-import HoraBol from "./horario_bolsista.js";
-import GerirBol from "./gerir_bolsista.js";
-import Calendar from "./Calendar.js";
+import LateralBar from "../../components/Funcionario/lateral_bar";
+import Cadastro from "../../components/Funcionario/form_cadastro";
+import GerirFun from "../../components/Funcionario/gerir_funcionarios";
+import GenRelatorio from "../../components/Funcionario/gerar_relatorio";
+import TelaAgendamentos from "../../components/Funcionario/tela_agendamentos";
+import HoraBol from "../../components/Funcionario/horario_bolsista";
+import GerirBol from "../../components/Funcionario/gerir_bolsista";
+import Calendar from "../../components/Funcionario/Calendar";
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 
 class App extends Component {

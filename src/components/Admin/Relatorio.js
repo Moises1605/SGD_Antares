@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RowsTable from "./rows_tables.js";
+
 import {
   Container,
   Row,
@@ -30,16 +30,7 @@ class Relatorio extends Component {
   handleSearch() {}
 
   componentDidMount() {
-    this.setState({
-      rows: [
-        <RowsTable
-          handleClick={this.handleClick}
-          relatorio="@3423"
-          numVisitas="321"
-          data="23/23/32"
-        />
-      ]
-    });
+    this.setState({});
   }
 
   render() {

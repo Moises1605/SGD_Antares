@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Row, Col, Nav } from "react-bootstrap";
-import Bolsistas from "./Bolsistas";
-import Funcionario from "./Funcionario";
-import Relatorio from "./Relatorio";
-import Escolas from "./Escolas";
-import Navbar from "./NavBar";
-import SimpleList from "./List";
+import Bolsistas from "../../components/Admin/Bolsistas";
+import Funcionario from "../../components/Admin/Funcionario";
+import Relatorio from "../../components/Admin/Relatorio";
+import Escolas from "../../components/Admin/Escolas";
+import NavBar from "../../components/Admin/NavBar";
+import SimpleList from "../../components/Admin/List";
 import "./Admin.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -41,7 +41,7 @@ export default class Admin extends React.Component {
         >
           <Row>
             <Col md={12}>
-              <Navbar />
+              <NavBar />
             </Col>
           </Row>
           <div id="div_sidearea">
