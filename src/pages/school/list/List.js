@@ -15,6 +15,11 @@ import SchoolIcon from "@material-ui/icons/School";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import BackupIcon from "@material-ui/icons/Backup";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import HomeIcon from '@material-ui/icons/Home';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import {Link} from 'react-router-dom'
 import { Row } from "react-bootstrap";
 import "./List.css";
 
@@ -37,29 +42,35 @@ class SimpleList extends Component {
               innerDivStyle={{ paddingLeft: 60 }}
             >
               <ListItemIcon>
-                <AssessmentIcon />
+                <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Agendamento"/>
+              <ListItemText primary="Início"/>
             </ListItem>
 
             <ListItem button onClick={() => this.props.onClick("1")}>
               <ListItemIcon>
-                <PeopleIcon />
+                <DateRangeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Agendar visita" />
+            </ListItem>
+            <ListItem button onClick={() => this.props.onClick("2")}>
+              <ListItemIcon>
+                <EventAvailableIcon />
               </ListItemIcon>
               <ListItemText primary="Meus agendamentos" />
             </ListItem>
-            <ListItem button disabled onClick={() => this.props.onClick("2")}>
+            <ListItem button disabled onClick={() => this.props.onClick("3")}>
               <ListItemIcon>
-                <SchoolIcon />
+                <AssignmentIcon />
               </ListItemIcon>
               <ListItemText primary="Editar dados" />
             </ListItem>
-            <ListItem button>
+            <Link to = '/login'><ListItem button>
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
               <ListItemText primary="Encerrar Sessão" />
-            </ListItem>
+            </ListItem></Link>
           </List>
         </div>
       </div>

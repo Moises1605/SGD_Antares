@@ -1,50 +1,165 @@
-import React from 'react'
-import { Row, Col,Dropdown} from 'react-bootstrap';
-import './style.css';
-//import { Link } from 'react-router-dom'
-import Header from '../../components/header/header'
-import Visits from './visits/visits'
-
+import React from "react";
+import {
+  Row,
+  Col,
+  Container,
+  Button,
+  Dropdown,
+  InputGroup,
+  FormControl,
+  Table
+} from "react-bootstrap";
+import api from "../../../services/api";
+//import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import BootstrapTable from "react-bootstrap-table-next";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 export default class FollowVisit extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      rows: [],
+      search: "",
+      escolas: []
+    };
+  }
 
-    render() {
-        return (
-            <div >
-            {/* //     <div>
-            //         <Header />
-            //     </div>
-            //     <div>
-            //         <Row id='followBody'>
-            //             <Col id="followSideBar">
-            //               
-            //             </Col>
-            //             <Col xs lg='10' id='htgr'> */}
-                            <Row id='colFollow' >
-                                <Col>
-                                    Visitas Agendadas
-                                </Col>
-                                <Col id= 'interval'>
-                                    <Dropdown>
-                                        <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
-                                            Intervalo
-                                        </Dropdown.Toggle>
+  /** REVIEW Método para registrar dados da pesquisa */
+  handleChange = event => this.setState({ search: event.target.value });
 
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Hoje</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Semana</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Mês</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </Col>
-                            </Row>
-                            <Row id='visitsFollow'>
-                                <Visits />
-                            </Row>
-            {/* //             </Col>
-            //         </Row>
-            //     </div> */}
-             </div>
-        )
-    }
+  async componentDidMount() {
+    const e = api.post("/listarEscolas");
+    this.setState({ escolas: (await e).data.map(e => e) });
+    console.log(this.state.escolas);
+  }
+
+  render() {
+    const columns = [
+      {
+        dataField: "day",
+        text: "Data",
+        sort: true
+      },
+      {
+        dataField: "name",
+        text: "Nome",
+        sort: true
+      },
+      {
+        dataField: "Students",
+        text: "Quantidade de alunos",
+        sort: true
+      },
+      {
+        dataField: "response",
+        text: "Nome do responsável",
+        sort: true
+      }
+    ];
+    return (
+      <div>
+        <Container fluid>
+          <Row>
+            <Col
+              style={{
+                paddingTop: "15px"
+              }}
+            >
+              <h3>Visitas agendadas</h3>
+            </Col>
+            <Col></Col>
+          </Row>
+          <Row>
+            <div style={{ height: "3vh" }}></div>
+          </Row>
+          <Row>
+            <Col>
+              <Dropdown>
+                <Dropdown.Toggle variant="outline-danger">
+                  Ordenar Por
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item>Nome</Dropdown.Item>
+                  <Dropdown.Item>Telefone</Dropdown.Item>
+                  <Dropdown.Item>Email</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+            <Col>
+            </Col>
+            <Col>
+              <InputGroup>
+                <FormControl
+                  placeholder="Procurar..."
+                  value={this.state.search}
+                  onChange={this.handleChange}
+                />
+                <InputGroup.Prepend>
+                  <Button variant="outline-primary" onClick={this.handleSearch}>
+                    &#128269;
+                  </Button>
+                </InputGroup.Prepend>
+              </InputGroup>
+            </Col>
+          </Row>
+          <Row>
+            <div style={{ height: "3vh" }}></div>
+          </Row>
+          <Row>
+            <Col>
+              <div
+                style={{
+                  height: "40vh",
+                  overflowY: "auto"
+                }}
+              >
+                {/*<Table striped bordered hover responsive size="sm">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Nome</th>
+                      <th>Telefone</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.escolas.map(e => (
+                      <tr>
+                        <td>
+                          <b>{e.id}</b>
+                        </td>
+                        <td>{e.name}</td>
+                        <td>{e.phone}</td>
+                        <td>{e.email}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                    </Table>*/}
+                <BootstrapTable
+                  keyField="id"
+                  data={this.state.escolas}
+                  columns={columns}
+                  striped
+                  hover
+                  condensed
+                  noDataIndication="Não há escolas agendadas"
+                  filter={filterFactory()}
+                  style={{
+                    outline: "none"
+                  }}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <div style={{ height: "3vh" }}></div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
 }

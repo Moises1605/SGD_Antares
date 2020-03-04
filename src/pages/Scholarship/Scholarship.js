@@ -3,10 +3,12 @@ import './style.css';
 import LateralBar from './list/List'
 import ScheduleScholarship from "./mySchedule/ScheduleScholarship"
 import FollowVisit from "./FollowVisit/followVisit"
-import NavBar from '../components/NavBar/NavBar'
+//import NavBar from '../components/NavBar/NavBar'
+import NavBar from '../Admin/NavBar'
 import Info from "./infoScholarship/infoScholarship"
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
+import Inicio from './Inicio/inicio';
 export default class Scholarship extends React.Component {
 
     constructor(props){
@@ -14,6 +16,7 @@ export default class Scholarship extends React.Component {
         this.state = {
             idScholarship: '',
             screens: [
+                <Inicio/>,
                 <ScheduleScholarship idScholarship = "0"/>,
                 <FollowVisit />,
                 <Info />,
@@ -51,7 +54,7 @@ export default class Scholarship extends React.Component {
                     </div>
                     <Container fluid>
                         <div id='rightScholarship'>
-                        {this.state.active}                
+                            {this.state.active}                
                         </div>
                     </Container>
                 </div>

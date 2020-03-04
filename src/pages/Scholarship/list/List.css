@@ -7,3 +7,7 @@
 .MuiListItemIcon-root {
   min-width: 40px !important;
 }
+
+#side_content{
+  color: black;
+}

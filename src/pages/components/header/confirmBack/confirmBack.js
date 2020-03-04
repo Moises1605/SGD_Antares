@@ -20,7 +20,7 @@ export default class ConfirmBack extends React.Component {
     render(){
         return ( <div id = 'back'>
         
-        <Button id = 'endSession' variant="dark" block onClick = {this.setControl} >Encerrar Seção</Button>
+        <Button  onClick = {this.setControl} >Encerrar Seção</Button>
         {/*Modal de confirmação de saida*/}
         <Modal
             size="lg"

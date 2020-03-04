@@ -2,7 +2,9 @@
     width: 100vw;
     height: 100vh;
     color: rgb(15, 94, 214);
-    background-color: #eceef5;
+    background-image: url(../../assets/estrela2.jpg);
+    background-size: cover;
+    background-position: center;
     /*flex-direction: row;*/    
     /*padding: 10px 0 0 0;*/
     /*justify-content: center;
@@ -24,6 +26,7 @@
     padding: 15px 15px 15px 15px ; 
     margin: 30px 385px 0 0;
     border-radius: 18px;
+    opacity : 0.8;
    /* border-left-style: solid;
     border-left-color: black;
     border-left-width: 2px;*/

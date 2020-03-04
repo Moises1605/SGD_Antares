@@ -1,47 +1,27 @@
-#scholarship{
-    height: 100%;
-    width: 100%;
+* {
+  margin: 0 0;
+  padding: 0 0;
 }
-
-#contentScholarship{
-    height: 90vh;
-    width: 100%;
+a {
+  outline: none;
 }
 
 #rightScholarship{
-    height: 90vh;
-    width: 75%;
-    float: right;
-    padding: 20px 0 20px 0; 
-    margin: 0 60px 0 0;
-    background-color: white;
+  margin: 100px 75px;
+  height: 40vh;
+  width: 70vw;
+  float: right;
     
     
 } 
 
 #leftScholarship{
-    height: 100vh;
-    width: 18%;
-    float: left;
-    background-color: gray;
+  width: 15vw;
+  height: 120vh;
+  float: left;
+  background-color: #eee;
     
-}
-
-#endSection{
-    margin: 350px 0 0 0;
-}
-
-#menu{
-    margin: 50px 0 0 0;
 } 
-
-* {
-    margin: 0 0;
-    padding: 0 0;
-  }
-  a {
-    outline: none;
-  }
   
   #div_sidebar {
     width: 15vw;
@@ -61,4 +41,4 @@
     flex-wrap: wrap;
     width: 70vw;
     height: 70vh;
-  }
+  } 

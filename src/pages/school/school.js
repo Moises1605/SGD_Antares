@@ -3,10 +3,10 @@ import { Container, Row, Col, Nav } from "react-bootstrap";
 import './style.css';
 import Calendar from './calendar/calendar'
 import LateralBar from './list/List';
-import NavBar from '../components/NavBar/NavBar'
+import NavBar from '../Admin/NavBar'
 //import Visit from './visit/agendamento';
 import MySchedulings from './MySchedulings/MyScheduling'
-import Paper from "@material-ui/core/Paper";
+import Inicio from './Inicio/inicio'
 //import EditSchool from './infoSchool';
 import api from "../../services/api";
 
@@ -19,6 +19,7 @@ export default class School extends React.Component {
         this.state = {
             idSchool: '',
             screens: [
+                <Inicio/>,
                 <Calendar />,
                 <MySchedulings idSchool = '0'/>,
                 null

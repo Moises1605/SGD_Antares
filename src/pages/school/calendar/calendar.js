@@ -6,7 +6,7 @@ import './style.css';
 import ptBr from '@fullcalendar/core/locales/pt-br'
 import { formatDate } from '@fullcalendar/core'
 import Agendamento from '../visit/agendamento'
-import { Modal}  from 'react-bootstrap';
+import { Modal,Alert}  from 'react-bootstrap';
 
 
 export default class Calendar extends React.Component {
@@ -53,7 +53,9 @@ export default class Calendar extends React.Component {
                   <Agendamento date2 = {`${this.state.date1}`}/>
                 </Modal.Body>
             </Modal>
-          <h4>Clique na data que vc quer fazer o agendamento.</h4>
+          <Alert variant= 'primary'>
+              Escolha um dia para agendar a sua visita.
+          </Alert>
           <FullCalendar
             weekends={false} 
           

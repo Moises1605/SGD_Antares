@@ -15,7 +15,12 @@ import SchoolIcon from "@material-ui/icons/School";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import BackupIcon from "@material-ui/icons/Backup";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { Row } from "react-bootstrap";
+import HomeIcon from '@material-ui/icons/Home';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import AlarmIcon from '@material-ui/icons/Alarm';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import { Row,Modal,Button} from "react-bootstrap";
+import {Link} from 'react-router-dom'
 import "./List.css";
 
 class SimpleList extends Component {
@@ -37,34 +42,62 @@ class SimpleList extends Component {
               innerDivStyle={{ paddingLeft: 60 }}
             >
               <ListItemIcon>
-                <AssessmentIcon />
+                <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Meu horário"/>
+              <ListItemText primary="Início"/>
             </ListItem>
 
             <ListItem button onClick={() => this.props.onClick("1")}>
               <ListItemIcon>
-                <PeopleIcon />
+                <AlarmIcon />
+              </ListItemIcon>
+              <ListItemText primary="Meu horário" />
+            </ListItem>
+            <ListItem button  onClick={() => this.props.onClick("2")}>
+              <ListItemIcon>
+                <EventAvailableIcon />
               </ListItemIcon>
               <ListItemText primary="Visitas Agendadas" />
             </ListItem>
-            <ListItem button disabled onClick={() => this.props.onClick("2")}>
+            <ListItem button disabled onClick={() => this.props.onClick("3")}>
               <ListItemIcon>
-                <SchoolIcon />
+                <AssignmentIcon />
               </ListItemIcon>
               <ListItemText primary="Editar dados" />
             </ListItem>
-            <ListItem button>
+            <Link to = '/login'><ListItem button >
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
               <ListItemText primary="Encerrar Sessão" />
-            </ListItem>
+            </ListItem></Link>
           </List>
         </div>
       </div>
     );
   }
 }
-
+function ConfirmBack(event){
+  var control = true;
+    return (  <Modal
+                size="lg"
+                show={control}
+                onHide={() =>control = false}
+                aria-labelledby="example-modal-sizes-title-lg"
+            >
+                <Modal.Header closeButton id = 'header'>
+                    <Modal.Title id="example-modal-sizes-title-lg">
+                        Tem certeza que deseja sair?
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <Link to = '/login'>
+                    <Button  id = 'buttonBack' variant="primary">
+                        Sair
+                    </Button>
+                </Link>
+                </Modal.Body>
+            </Modal>
+              )
+}
 export default SimpleList;
