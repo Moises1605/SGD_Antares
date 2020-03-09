@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import "./style.css";
 import { Link, Redirect } from "react-router-dom";
-//import api from "../../services/api"
+import api from "../../services/api"
 import logo from "../../assets/logo2.png";
 import ForgetPassword from "./forgetPassword/forgetPassword";
 import Paper from "@material-ui/core/Paper";
@@ -19,7 +19,7 @@ export default class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
-      type: "-1",
+      type: '-1',
       idUser: "0",
       redirect: false
     };
@@ -35,11 +35,12 @@ export default class Login extends React.Component {
     this.setState({ password: event.target.value });
   }
 
-  handleSubmit(event) {
-    //const response = await api.get();
-    //this.setState({type: response.type})
+  async handleSubmit(event) {
+    //manda os dados do cadastro para o banco.
+    //const response = await api.get('/login',this.state);
+    //this.setState({type: response.data.type})
     //Se for um usuário do tipo escola
-    if (this.setState.email != " ") {
+    if (this.state.email != ' ') {
       this.setState({ redirect: true });
     }
   }
@@ -51,15 +52,18 @@ export default class Login extends React.Component {
       }
       //Se for um usuário do tipo Bolsista
       else if (this.state.email == "robertomaia") {
-        return <Redirect to="/bolsista/:0" />;
+        return <Redirect to="/usuario/:0" />;
       }
       //Se for um usuário do tipo Funcionário
       else if (this.state.email == "raulpeixoto") {
-        return <Redirect to="/funcionario/:0" />;
+        return <Redirect to="/usuario/:1" />;
       }
       //Se for um usuário do tipo administrador
       else if (this.state.email == "ricardoporto") {
-        return <Redirect to="/administrador/:0" />;
+        return <Redirect to="/usuario/:2" />;
+      }
+      else {
+        return <Redirect to="/login" />;
       }
     } else {
       return (

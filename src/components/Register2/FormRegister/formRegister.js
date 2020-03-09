@@ -32,7 +32,9 @@ export default class FormRegister extends React.Component {
             scholarity: '',
             //first step
             name: '',
-            address: '',
+            district: '',
+            number: '',
+            street: '',
             city: '',
             state: '',
             CNPJ: '',
@@ -49,7 +51,9 @@ export default class FormRegister extends React.Component {
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleChangePassword2 = this.handleChangePassword2.bind(this);
         this.handleChangeSchoolName = this.handleChangeSchoolName.bind(this);
-        this.handleChangeAddress = this.handleChangeAddress.bind(this);
+        this.handleChangeDistrict = this.handleChangeDistrict.bind(this);
+        this.handleChangeNumber = this.handleChangeNumber.bind(this);
+        this.handleChangeStreet = this.handleChangeStreet.bind(this);
         this.handleChangeCity = this.handleChangeCity.bind(this);
         this.handleChangeState = this.handleChangeState.bind(this);
         this.handleChangeCNPJ = this.handleChangeCNPJ.bind(this);
@@ -95,10 +99,15 @@ export default class FormRegister extends React.Component {
     handleChangeSchoolName(event) {
         this.setState({ name: event.target.value });
     }
-    handleChangeAddress(event) {
-        this.setState({ address: event.target.value });
+    handleChangeDistrict(event) {
+        this.setState({ district: event.target.value });
     }
-
+    handleChangeNumber(event) {
+        this.setState({ number: event.target.value });
+    }
+    handleChangeStreet(event) {
+        this.setState({ street: event.target.value });
+    }
     handleChangeCity(event) {
         this.setState({ city: event.target.value });
     }
@@ -149,40 +158,74 @@ export default class FormRegister extends React.Component {
                 return (
                     <Form onSubmit={this.handleNext}>
                         <Form.Row>
-                            <Form.Group as={Col} controlId="formGridNameSchool">
+                            <Form.Group as={Col}  md="5" controlId="formGridNameSchool">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
-                                        id="outlined-basic"
+                                        id="formGridNameSchool"
                                         label="Nome da Escola"
                                         variant="outlined"
                                         size="small"
                                         value={this.state.name} 
                                         onChange={this.handleChangeSchoolName}
                                         required
-                                        type="text"
+                                        type="number"
                                     />
                                 </div>
                             </Form.Group>
-                            <Form.Group as={Col} controlId="formGridAddress">
+                            <Form.Group as={Col} md="3" controlId="formGridStreet">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
                                         id="outlined-basic"
-                                        label="Endereço"
+                                        label="Rua ou Avenida"
                                         variant="outlined"
                                         size="small"
-                                        value={this.state.address}
-                                        onChange={this.handleChangeAddress}
+                                        value={this.state.street}
+                                        onChange={this.handleChangeStreet}
                                         required
                                         type="text"
                                     />
                                 </div>
                             </Form.Group>
+                            <Form.Group as={Col} md="2" controlId="formGridNumber">
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Número"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.number}
+                                        onChange={this.handleChangeNumber}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
+                            </Form.Group>
+                            
                         </Form.Row>
-
                         <Form.Row>
-                            <Form.Group as={Col} controlId="formGridCity">
+                            <Form.Group as={Col} md = '3'></Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                        <Form.Group as={Col} md="3" controlId="formGridDistrict">
+                                <div noValidate autoComplete="off">
+                                    <TextField
+                                        fullWidth = {true}
+                                        id="outlined-basic"
+                                        label="Bairro"
+                                        variant="outlined"
+                                        size="small"
+                                        value={this.state.district}
+                                        onChange={this.handleChangeDistrict}
+                                        required
+                                        type="text"
+                                    />
+                                </div>
+                            </Form.Group>
+                            <Form.Group as={Col} md="1"></Form.Group>
+                            <Form.Group as={Col} md="2" controlId="formGridCity">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
@@ -190,15 +233,15 @@ export default class FormRegister extends React.Component {
                                         label="Cidade"
                                         variant="outlined"
                                         size="small"
-                                        value={this.state.city}
+                                        value={this.state.c3ty}
                                         onChange={this.handleChangeCity}
                                         required
                                         type="text"
                                     />
                                 </div>
                             </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridState">
+                            <Form.Group as={Col} md="1"></Form.Group>
+                            <Form.Group as={Col} md="2" controlId="formGridState">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
@@ -215,7 +258,10 @@ export default class FormRegister extends React.Component {
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
-                            <Form.Group as={Col} controlId="formGridCNPJ">
+                            <Form.Group as={Col} md = '3'></Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} md = "3" controlId="formGridCNPJ">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
@@ -230,8 +276,8 @@ export default class FormRegister extends React.Component {
                                     />
                                 </div>
                             </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridPhone">
+                            <Form.Group as={Col} md="1"></Form.Group>
+                            <Form.Group as={Col} md = "3" controlId="formGridPhone">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
@@ -248,6 +294,9 @@ export default class FormRegister extends React.Component {
                             </Form.Group>
 
                         </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} md = '3'></Form.Group>
+                        </Form.Row>
                         <Button variant="primary" type='submit'>
                             {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
                         </Button>
@@ -257,11 +306,11 @@ export default class FormRegister extends React.Component {
                 return (
                     <Form onSubmit={this.handleNext}>
                         <Form.Row>
-                            <Form.Group controlId="formGridDirectorName">
+                            <Form.Group as={Col} md = '2' controlId="formGridDirectorName">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
-                                        id="outlined-basic"
+                                        id="formGridDirectorName"
                                         label="Nome do diretor"
                                         variant="outlined"
                                         size="small"
@@ -272,7 +321,7 @@ export default class FormRegister extends React.Component {
                                     />
                                 </div>
                             </Form.Group>
-
+                            <Form.Group as={Col} md = '1'></Form.Group>
                             <Form.Group controlId="formGridDirectorSurname">
                                 <div noValidate autoComplete="off">
                                     <TextField
@@ -289,9 +338,11 @@ export default class FormRegister extends React.Component {
                                 </div>
                             </Form.Group>
                         </Form.Row>
-
                         <Form.Row>
-                            <Form.Group as={Col} controlId="formGridSchoolType">
+                            <Form.Group as={Col} md = '3'></Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} md = "3" controlId="formGridSchoolType">
                                 <Form.Label>Escola</Form.Label>
                                 <Form.Control required as="select" value={this.state.schoolType} onChange={this.handleChangeTypeSchool}>
                                     <option>Tipo de escola</option>
@@ -300,8 +351,8 @@ export default class FormRegister extends React.Component {
                                     <option>Pública Municipal</option>
                                 </Form.Control>
                             </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridScholarity">
+                            <Form.Group as={Col} md = '1'></Form.Group>
+                            <Form.Group as={Col} md = "3" controlId="formGridScholarity">
                                 <Form.Label>Grau de escolaridade</Form.Label>
                                 <Form.Control required as="select" value={this.state.scholarity} onChange={this.handleChangescholarity}>
                                     <option>Escolaridade</option>
@@ -311,7 +362,9 @@ export default class FormRegister extends React.Component {
                                 </Form.Control>
                             </Form.Group>
                         </Form.Row>
-
+                        <Form.Row>
+                            <Form.Group as={Col} md = '3'></Form.Group>
+                        </Form.Row>
                         <Button
                             disabled={this.state.activeStep === 0}
                             onClick={this.handleBack}
@@ -331,7 +384,7 @@ export default class FormRegister extends React.Component {
                 return (
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Row>
-                            <Form.Group controlId="formGridEmail">
+                            <Form.Group as={Col} md = '4' controlId="formGridEmail">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
@@ -346,8 +399,8 @@ export default class FormRegister extends React.Component {
                                     />
                                 </div>
                             </Form.Group>
-
-                            <Form.Group controlId="formGridLogin">
+                            <Form.Group as={Col} md = '1'></Form.Group>
+                            <Form.Group as={Col} md = '3' controlId="formGridLogin">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
@@ -363,9 +416,11 @@ export default class FormRegister extends React.Component {
                                 </div>
                             </Form.Group>
                         </Form.Row>
-
                         <Form.Row>
-                            <Form.Group as={Col} controlId="formGridPassword">
+                            <Form.Group as={Col} md = '3'></Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} md = '3' controlId="formGridPassword">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
@@ -380,8 +435,8 @@ export default class FormRegister extends React.Component {
                                     />
                                 </div>
                             </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridPassword2">
+                            <Form.Group as={Col} md = '1' ></Form.Group>
+                            <Form.Group as={Col} md = '3' controlId="formGridPassword2">
                             <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth = {true}
@@ -396,6 +451,9 @@ export default class FormRegister extends React.Component {
                                     />
                                 </div>
                             </Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} md = '3'></Form.Group>
                         </Form.Row>
                         <div>
                             <Button
@@ -438,54 +496,29 @@ export default class FormRegister extends React.Component {
         return (
             <div id='root'>
                 <h1 id='titleForm'>Cadastro de Escola</h1>
-                <div>
                     {this.state.controlSucess === true ? (
                         <div>
                             <JumBrotonRegister />
                         </div>
                     ) : (
-                            <div id='contentRegister'>
-                                <Stepper activeStep={this.state.activeStep} alternativeLabel>
-                                    {this.state.steps.map(label => (
-                                        <Step key={label}>
-                                            <StepLabel>{label}</StepLabel>
-                                        </Step>
-                                    ))}
-                                </Stepper>
-                                <div component={'div'} id='instructions'>{this.getStepContent(this.state.activeStep)}</div>
-                                {/* <div>
-                                    <Button
-                                        disabled={this.state.activeStep === 0}
-                                        onClick={this.handleBack}
-                                        variant="primary"
-                                        id='backButton'
-                                    >
-                                        Voltar
-                                    </Button>
-
-                                    <Button variant="primary" onClick={this.state.activeStep === this.state.steps.length - 1 ? this.handleSubmit : this.handleNext}>
-                                        {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
-                                    </Button>
-                                </div> */}
-                            </div>
-                        )}
-                </div>
+                    <div >
+                        <Stepper id = 'step' activeStep={this.state.activeStep} alternativeLabel>
+                            {this.state.steps.map(label => (
+                                <Step key={label}>
+                                    <StepLabel>{label}</StepLabel>
+                                </Step>
+                            ))}
+                        </Stepper>
+                        <div id = 'sesiom' component={'div'} >
+                            {this.getStepContent(this.state.activeStep)}
+                            
+                        </div>
+                    </div>
+                    )}
             </div>
         )
     }
 
 }
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-    },
-    backButton: {
-        marginRight: theme.spacing(1),
-    },
-    instructions: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-    },
-}));
 

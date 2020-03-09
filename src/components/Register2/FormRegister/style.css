@@ -11,13 +11,19 @@
     height: 80vh;
 }
 
+#step{
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #formGridAddress{
     width: 400px;
 }
 
 #formGridDirectorName{
-    width: 300px;
-    margin: 0 150px 0 0;
+    width: 100px;
+    margin-right: 100px;
 }
 
 #formGridDirectorSurname{
