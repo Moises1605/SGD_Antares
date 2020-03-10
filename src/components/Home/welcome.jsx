@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import VisitNight from "./visitNight/visitNight";
 import { Container, Button, ButtonToolbar, Row, Col } from "react-bootstrap";
+import "./welcome.scss";
 
 class Welcome extends Component {
   render() {
@@ -9,7 +10,9 @@ class Welcome extends Component {
         <Container>
           <h2
             style={{
-              padding: "130px 100px 0 100px"
+              //padding: "130px 100px 0 100px",
+              padding: "130px 0px 0 0px",
+              fontSize: "20px"
             }}
           >
             BEM-VINDO AO
@@ -25,7 +28,8 @@ class Welcome extends Component {
           <div id="div_content">
             <h4
               style={{
-                padding: "0 100px  0 100px"
+                //padding: "0 100px  0 100px",
+                fontSize: "15px"
               }}
             >
               DO OBSERVATÓRIO ASTRONÔMICO ANTARES
@@ -33,7 +37,8 @@ class Welcome extends Component {
             <br />
             <h4
               style={{
-                padding: "0 100px  0 100px"
+                //padding: "0 100px  0 100px",
+                fontSize: "15px"
               }}
             >
               O Observatório Astronômico Antares foi inaugurado em{" "}
@@ -63,20 +68,20 @@ class Welcome extends Component {
               marginTop: "30px"
             }}
           >
-            <Col md={3}></Col>
-            <Col md={6}>
-              <Button id="teste" className="mr-2">
+            <Col md={3} xs={2}></Col>
+            <Col md={6} xs={8}>
+              <Button id="teste" block className="mr-2">
                 Agendamento Escolar
               </Button>
             </Col>
-            <Col md={3}></Col>
+            <Col md={3} xs={2}></Col>
           </Row>
           <Row>
-            <Col md={3}></Col>
-            <Col md={6}>
+            <Col md={3} xs={2}></Col>
+            <Col md={6} xs={8}>
               <VisitNight />
             </Col>
-            <Col md={3}></Col>
+            <Col md={3} xs={2}></Col>
           </Row>
           <h6
             style={{
