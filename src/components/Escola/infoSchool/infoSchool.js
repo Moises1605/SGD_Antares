@@ -16,6 +16,7 @@ export default class InfoSchool extends React.Component {
     constructor(props){
         super(props)
         this.state = {
+            IDSchool: this.props.idSchool,
             email: '',
             login: '',
             password: '',
@@ -56,7 +57,7 @@ export default class InfoSchool extends React.Component {
     }
 
     componentDidMount(){
-        /*const response = await api.get("/adicionarBolsista", this.state);
+        /*const response = await api.get("/retornaDadosEscola", this.state.IDSchool);
         this.setState({
             email: response.data.email,
             login: response.data.login,
@@ -139,7 +140,7 @@ export default class InfoSchool extends React.Component {
     }
 
     handleSubmit(){
-
+        //await api.post("/atualizarEscola", this.state);
     }
 
     render(){

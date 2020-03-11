@@ -3,6 +3,7 @@ import { Button, Form, Modal, Container, Col, Row } from "react-bootstrap";
 //import api from "../../services/api"
 import "./style.css";
 import Climate from "./climate/climate";
+import api from '../../../services/api';
 
 export default class VisitNight extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class VisitNight extends React.Component {
 
   send(event) {
     //envia os dados para o banco
+    //const response = await api.get("/visitaNoturna", this.state);
   }
 
   render() {

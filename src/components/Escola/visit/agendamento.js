@@ -16,7 +16,9 @@ export default class Agendamento extends React.Component {
             date:'',
             number:'',
             obs:'',
-            atrações: ['1', '2','3','4','5','6','7','8','9','10','11','12']
+            atrações: [{id:'1',nome:'Exposição 1',tipo:'Astronimia'},{id:'2',nome:'Exposição 2',tipo:'Origem do homem'},{id:'3',nome:'Exposição 3',tipo:'Vida Animal'},{id:'4',nome:'Exposição 4',tipo:'Astronimia'},{id:'5',nome:'Exposição 5',tipo:'Origem do homem'},{id:'6',nome:'Exposição 6',tipo:'Vida animal'},{id:'7',nome:'Exposição 7',tipo:'Astronomia'},{id:'8',nome:'Exposição 8',tipo:'Origem do homem'},{id:'9',nome:'Exposição 9',tipo:'Vida animal'},{id:'10',nome:'Exposição 10',tipo:'Astronomia'},{id:'11',nome:'Exposição 11',tipo:'Origem do homem'},{id:'12',nome:'Exposição 12',tipo:'Vida animal'}],
+            // atraçõesT: ['0', '0','0','0','0','0','0','0','0','0','0','0']
+            atraçõesT: []
         };
         this.setControl = this.setControl.bind(this);
         this.handleChangeResponsible = this.handleChangeResponsible.bind(this);
@@ -25,6 +27,7 @@ export default class Agendamento extends React.Component {
         this.handleChangeNumber = this.handleChangeNumber.bind(this);
         this.handleChangeObs = this.handleChangeObs.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChangeO = this.handleChangeO.bind(this);
     }
     setControl(event) {
         this.setState({ control: true })
@@ -48,10 +51,28 @@ export default class Agendamento extends React.Component {
 
     handleChangeObs(event) {
          this.setState({ obs: event.target.value });
-    }   
+    } 
 
-    async handleSubmit(event){
-        api.post("/adicionarAgendamento", this.state)
+    handleChangeO(event) {
+        console.log(event.target.name);
+        var id = event.target.name;
+        if(!this.state.atraçõesT.includes(id)){
+            this.state.atraçõesT.push(id);
+        }
+        else if(!event.target.checked){
+            const index = this.state.atraçõesT.indexOf(event.target.name);
+            this.state.atraçõesT.splice(index,1);
+        }
+   } 
+    
+    componentDidMount(){
+        //const response = await api.get("/retornaAtrações");
+        //this.setState({atrações: response.data});
+    }
+
+    /*async*/ handleSubmit(event){
+        console.log(this.state.atraçõesT);
+        //await api.post("/adicionarAgendamento", this.state);
     }
 
     render() {
@@ -121,15 +142,19 @@ export default class Agendamento extends React.Component {
                             <Form.Label>
                                 Escolha quais atrações deseja visitar.
                             </Form.Label>
+                            <Row>
                             {this.state.atrações.map(type => (
-                                <div id='hy' key={type} className="mb-3">
-                                    <Form.Check type='radio' id={`check-api-radio`}>
-                                        <Form.Check.Input type='radio' isValid />
-                                        <Form.Check.Label>{`Exposição 1`}</Form.Check.Label>
-                                        <Form.Control.Feedback type="valid">Astronomia</Form.Control.Feedback>
-                                    </Form.Check>
-                                </div>
+                                
+                                    <Col id='hy' as={Col}  md="3" key={type.id.toString()} className="mb-3">
+                                        <Form.Check  type='checkbox' id={`check-api-radio`} >
+                                            <Form.Check.Input onChange ={this.handleChangeO}  name = {type.id} type='checkbox' isValid />
+                                            <Form.Check.Label>{type.nome}</Form.Check.Label>
+                                            <Form.Control.Feedback type="valid">{type.tipo}</Form.Control.Feedback>
+                                        </Form.Check>
+                                    </Col>
+                                
                             ))}
+                            </Row>
                         </div>
                         <Button variant="outline-primary" id = 'agenda' onClick={this.handleSubmit}>
                             Agendar visita

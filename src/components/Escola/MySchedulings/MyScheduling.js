@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import { Card, Button } from "react-bootstrap";
+import api from '../../../services/api';
 //Tela onde a escola poderá vê os seus agendamentos.
 export default class MyScheduling extends React.Component {
   constructor(props) {
@@ -13,10 +14,13 @@ export default class MyScheduling extends React.Component {
 
   componentDidMount() {
     // carrega a lista de agendamentos
+    //const response = await api.get("/agendamentos", this.state.IDSchool);
+    //this.setState({schedulings: Response.data});
   }
 
   cancelScheduling(id) {
     //cancela uma visita
+    //api.get("/cancelarvisita", this.state.id);
   }
 
   render() {

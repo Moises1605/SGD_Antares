@@ -35,9 +35,9 @@ export default class User extends React.Component {
         <TelaAgendamentos />,
         null,
         <Calendar />,
-        <ScheduleScholarship idScholarship = "0" />,
+        <ScheduleScholarship idScholarschip = {this.props.match.params.id.toString().substring(1)} />,
         <FollowVisit />,
-        <Info />,
+        <Info idScholarship = {this.props.match.params.id.toString().substring(1)} />,
       ],
       id: 0,
       permission: [],
@@ -47,16 +47,16 @@ export default class User extends React.Component {
     this.teste = this.teste.bind(this);
     //this.setState({permission: this.loadPermission})
   }
-  componentDidMount = screen => {
-    this.loadPermission();
+  componentDidMount  = /*async*/ screen => {
+    /*await*/ this.loadPermission();
     screen == null
       ? this.setState({ active: this.state.screens[0] })
       : this.setState({ active: this.state.screens[screen] });
   };
 
    async loadPermission(event){
-      //const response = api.get('/algo');
-      //this.setState({permission: Response.data});
+      //const response =  await api.get('/permissoes');
+      //this.setState({permission: response.data});
       await this.setState({id: this.props.match.params.id.toString().substring(1)})
       console.log(this.state.id );
       //await this.teste;
