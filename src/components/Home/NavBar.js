@@ -10,9 +10,14 @@ export default class NavBar extends React.Component {
         <Navbar fixed="top" id="navbar_home" collapseOnSelect expand="lg">
           <Container>
             <Navbar.Brand>
-              <img alt="" src={logo} className="d-inline-block align-top" />{" "}
+              <img
+                alt=""
+                id="logo"
+                src={logo}
+                className="d-inline-block align-top"
+              />{" "}
             </Navbar.Brand>
-            <Navbar.Brand href="/">
+            <Navbar.Brand id="titulo" href="/">
               Observatório Astronômico Antares
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />

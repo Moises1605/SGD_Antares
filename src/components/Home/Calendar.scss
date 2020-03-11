@@ -3,7 +3,6 @@
     @content;
   }
 }
-
 @mixin for-desktop-up {
   @media (min-width: 1200px) {
     @content;
@@ -14,28 +13,18 @@
     @content;
   }
 }
+.fc-today {
+  background-color: inherit !important;
+}
 
-#welcome {
-  padding: 130px 100px 0 100px;
+#titulo_calendario {
   @include for-phone-only {
     font-size: 20px;
-    padding: 130px 0px 0 0px;
   }
 }
 
-#texto_welcome {
-  padding: 0 100px 0 100px;
+#texto_calendario {
   @include for-phone-only {
     font-size: 15px;
-    padding: 0;
-  }
-}
-
-#teste {
-  margin-top: 30px;
-  background-color: #10083ba7 !important;
-  border-width: 0;
-  @include for-phone-only {
-    margin-top: 0;
   }
 }

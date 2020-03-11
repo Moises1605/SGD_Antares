@@ -40,9 +40,7 @@ export default class home extends React.Component {
             </Container>
           </div>
           <div id="div_maps">
-            <Container fluid>
-              <GoogleApiWrapper />
-            </Container>
+            <GoogleApiWrapper />
           </div>
           <div id="div_contato">
             <Contact />

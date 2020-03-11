@@ -1,0 +1,34 @@
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+.MuiTextField-root {
+  background-color: white !important;
+}
+
+#contato_titulo {
+  text-align: center;
+  @include for-phone-only {
+    font-size: 20px;
+  }
+}
+
+#contato_dados {
+  margin-top: 10px;
+  @include for-phone-only {
+    font-size: 15px;
+  }
+}

@@ -3,7 +3,6 @@
     @content;
   }
 }
-
 @mixin for-desktop-up {
   @media (min-width: 1200px) {
     @content;
@@ -15,27 +14,28 @@
   }
 }
 
-#welcome {
-  padding: 130px 100px 0 100px;
+#titulo_atracoes {
   @include for-phone-only {
     font-size: 20px;
-    padding: 130px 0px 0 0px;
   }
 }
 
-#texto_welcome {
-  padding: 0 100px 0 100px;
+#texto_atracoes {
+  padding-top: 10px;
   @include for-phone-only {
     font-size: 15px;
-    padding: 0;
+    padding-bottom: 10px;
   }
 }
 
-#teste {
-  margin-top: 30px;
-  background-color: #10083ba7 !important;
-  border-width: 0;
+#nome_atracao {
   @include for-phone-only {
-    margin-top: 0;
+    font-size: 20px;
+  }
+}
+
+#legenda_atracao {
+  @include for-phone-only {
+    font-size: 12px;
   }
 }

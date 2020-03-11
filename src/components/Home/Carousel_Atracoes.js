@@ -3,6 +3,7 @@ import { Carousel } from "react-bootstrap";
 import image from "../../assets/astronomia.jpg";
 import image2 from "../../assets/rupestre.jpg";
 import image3 from "../../assets/Arara.jpg";
+import "./atracoes.scss";
 
 export default class CarouselAtracoes extends React.Component {
   render() {
@@ -13,6 +14,7 @@ export default class CarouselAtracoes extends React.Component {
             <img className="d-block w-100" src={image} alt="First slide" />
             <Carousel.Caption>
               <h3
+                id="nome_atracao"
                 style={{
                   textShadow: "0 0 0.2em black, 0 0 0.2em black,0 0 0.2em black"
                 }}
@@ -20,6 +22,7 @@ export default class CarouselAtracoes extends React.Component {
                 Astronomia
               </h3>
               <span
+                id="legenda_atracao"
                 style={{
                   textShadow: "0 0 0.2em black, 0 0 0.2em black,0 0 0.2em black"
                 }}
@@ -33,6 +36,7 @@ export default class CarouselAtracoes extends React.Component {
 
             <Carousel.Caption>
               <h3
+                id="nome_atracao"
                 style={{
                   textShadow: "0 0 0.2em black, 0 0 0.2em black,0 0 0.2em black"
                 }}
@@ -40,6 +44,7 @@ export default class CarouselAtracoes extends React.Component {
                 Origem do homem
               </h3>
               <span
+                id="legenda_atracao"
                 style={{
                   textShadow: "0 0 0.2em black, 0 0 0.2em black,0 0 0.2em black"
                 }}
@@ -53,6 +58,7 @@ export default class CarouselAtracoes extends React.Component {
 
             <Carousel.Caption>
               <h3
+                id="nome_atracao"
                 style={{
                   textShadow: "0 0 0.2em black, 0 0 0.2em black,0 0 0.2em black"
                 }}
@@ -60,6 +66,7 @@ export default class CarouselAtracoes extends React.Component {
                 Biodiversidade
               </h3>
               <span
+                id="legenda_atracao"
                 style={{
                   textShadow: "0 0 0.2em black, 0 0 0.2em black,0 0 0.2em black"
                 }}

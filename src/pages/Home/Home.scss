@@ -73,8 +73,6 @@ a {
   text-align: center;
   color: white;
   position: static;
-}
-#teste {
-  background-color: #10083ba7 !important;
-  border-width: 0;
+  @include for-phone-only {
+  }
 }

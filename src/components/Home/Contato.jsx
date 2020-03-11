@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import "./contato.css";
+import "./contato.scss";
 
 class Contact extends Component {
   constructor(props) {
@@ -13,17 +13,9 @@ class Contact extends Component {
     return (
       <React.Fragment>
         <Container>
-          <h2
-            style={{
-              textAlign: "center"
-            }}
-          >
+          <h2 id="contato_titulo">
             Contato
-            <h6
-              style={{
-                marginTop: "10px"
-              }}
-            >
+            <h6 id="contato_dados">
               <i>museuantares@gmail.com</i>
 
               <br />
