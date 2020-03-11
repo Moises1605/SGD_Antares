@@ -38,7 +38,8 @@ export default class Login extends React.Component {
   async handleSubmit(event) {
     //manda os dados do cadastro para o banco.
     //const response = await api.get('/login',this.state);
-    //this.setState({type: response.data.type})
+    //this.setState({type: response.data.type});
+    //this.setState({idUser: response.data.id});
     //Se for um usuário do tipo escola
     if (this.state.email != ' ') {
       this.setState({ redirect: true });
@@ -47,24 +48,27 @@ export default class Login extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      if (this.state.email == "moisesalmeida") {
-        return <Redirect to="/escola/:0" />;
-      }
-      //Se for um usuário do tipo Bolsista
-      else if (this.state.email == "robertomaia") {
-        return <Redirect to="/usuario/:0" />;
-      }
-      //Se for um usuário do tipo Funcionário
-      else if (this.state.email == "raulpeixoto") {
-        return <Redirect to="/usuario/:1" />;
-      }
-      //Se for um usuário do tipo administrador
-      else if (this.state.email == "ricardoporto") {
-        return <Redirect to="/usuario/:2" />;
-      }
-      else {
-        return <Redirect to="/login" />;
-      }
+      //if(this.state.type == 1){
+        if (this.state.email == "moisesalmeida") {
+          return <Redirect to="/escola/:0" />;
+        }
+      //else{
+        //Se for um usuário do tipo Bolsista
+        else if (this.state.email == "robertomaia") {
+          return <Redirect to="/usuario/:0" />;
+        }
+        //Se for um usuário do tipo Funcionário
+        else if (this.state.email == "raulpeixoto") {
+          return <Redirect to="/usuario/:1" />;
+        }
+        //Se for um usuário do tipo administrador
+        else if (this.state.email == "ricardoporto") {
+          return <Redirect to="/usuario/:2" />;
+        }
+        else {
+          return <Redirect to="/login" />;
+        }
+     // }
     } else {
       return (
         <div id="initial">

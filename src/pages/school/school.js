@@ -14,12 +14,11 @@ export default class School extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idSchool: "",
       screens: [
         <Inicio />, 
         <Calendar />, 
-        <MySchedulings idSchool="0" />, 
-        <InfoSchool />
+        <MySchedulings idSchool = {this.props.match.params.id.toString().substring(1)} />, 
+        <InfoSchool idSchool= {this.props.match.params.id.toString().substring(1)} />
       ],
       active: null
     };

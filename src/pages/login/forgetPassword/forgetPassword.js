@@ -21,7 +21,8 @@ export default class ForgetPassword extends React.Component {
         this.setState({ control: true })
     }
     submitEmail(event){
-
+        //manda os dados do cadastro para o banco.
+        //const response = await api.get('/login',this.state);
     }
     render() {
         return (<div>

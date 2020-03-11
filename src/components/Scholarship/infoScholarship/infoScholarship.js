@@ -6,6 +6,7 @@ export default class info extends Component {
   constructor() {
     super();
     this.state = {
+      IDScholarship: this.props.idScholarship,
       login: "", //login
       name: "", //nome
       surname: "", //sobrenome
@@ -26,8 +27,8 @@ export default class info extends Component {
     this.setState({ [className.split(" ")[0]]: value });
   }
 
-  async componentDidMount(){
-    /*const response = await api.get("/adicionarBolsista", this.state);
+  /*async*/ componentDidMount(){
+    /*const response = await api.get("/adicionarBolsista", this.state.IDScholarship);
     this.setState({
         name: response.data.name,
         login: response.data.login,
@@ -42,7 +43,7 @@ export default class info extends Component {
   }
 
   async handleSubmit(event) {
-    api.post("/adicionarBolsista", this.state);
+   /* api.post("/adicionarBolsista", this.state.IDScholarship);
     console.log(this.state.name);
     console.log(this.state.login);
     console.log(this.state.surname);
@@ -51,7 +52,7 @@ export default class info extends Component {
     console.log(this.state.enrollment);
     console.log(this.state.cpf);
     console.log(this.state.phone);
-    console.log(this.state.password);
+    console.log(this.state.password);*/
   }
 
   render() {
