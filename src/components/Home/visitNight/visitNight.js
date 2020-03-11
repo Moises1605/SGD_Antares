@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, Container, Col, Row } from "react-bootstrap";
 //import api from "../../services/api"
 import "./style.css";
 import Climate from "./climate/climate";
@@ -45,11 +45,13 @@ export default class VisitNight extends React.Component {
     return (
       <div>
         {/*Botão que aciona o modal para o agendamento norturno */}
+
         <Button
           id="teste2"
           size="md"
           variant="success"
           className="mr-2"
+          block
           onClick={this.setControl}
         >
           {" "}

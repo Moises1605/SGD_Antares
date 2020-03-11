@@ -6,7 +6,7 @@ import Calendario from "../../components/Home/Calendar";
 import Welcome from "../../components/Home/welcome";
 import Atracoes from "../../components/Home/Atracoes";
 import GoogleApiWrapper from "../../components/Home/maps";
-import "./Home.css";
+import "./Home.scss";
 
 export default class home extends React.Component {
   constructor() {
