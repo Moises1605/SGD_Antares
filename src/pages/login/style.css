@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     color: rgb(15, 94, 214);
-    background-image: url(../../assets/estrela2.jpg);
+    background-image: url(../../assets/astronomia2.jpeg);
     background-size: cover;
     background-position: center;
     /*flex-direction: row;*/    
@@ -39,7 +39,7 @@
     padding: 15px 15px 15px 15px ; 
     margin: 30px 385px 0 0;
     border-radius: 18px;
-    opacity : 0.8;
+    opacity : 0.9;
    /* border-left-style: solid;
     border-left-color: black;
     border-left-width: 2px;*/
@@ -60,11 +60,11 @@
 
 
 #image{
-    width: 18vh;
-    height: 18vh;
+    width: 22vh;
+    height: 22vh;
     background-color: #c2d5ff;
     /* margin: 10px 0 20px 20px; */
-    margin-left: 100px;
+    margin-left: 90px;
     /* background-size: 100%; */
     border-color: #c2d5ff;
     

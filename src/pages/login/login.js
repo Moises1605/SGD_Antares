@@ -9,7 +9,7 @@ import {
 import "./style.css";
 import { Link, Redirect } from "react-router-dom";
 import api from "../../services/api"
-import logo from "../../assets/logo2.png";
+import logo from "../../assets/logoV2.png";
 import ForgetPassword from "./forgetPassword/forgetPassword";
 import Paper from "@material-ui/core/Paper";
 import TextField from '@material-ui/core/TextField';
@@ -104,7 +104,7 @@ export default class Login extends React.Component {
                         <AccountBoxIcon  style={{ fontSize: 33}} />
                       </Grid>
                       <Grid item>
-                        <TextField size="small" variant="outlined" id="inputGridLogin" label="Usuário" />
+                        <TextField size="small" variant="outlined" id="inputGridLogin" label="Usuário" value={this.state.email} onChange={this.handleChangeEmail} />
                       </Grid>
                     </Grid>
                   </div>
@@ -115,7 +115,7 @@ export default class Login extends React.Component {
                         <LockOpenIcon  style={{ fontSize: 33 }} />
                       </Grid>
                       <Grid item>
-                        <TextField size="small" variant="outlined" id="inputGridPassword" label="Senha" />
+                        <TextField size="small" variant="outlined" id="inputGridPassword" label="Senha" type="password" value={this.state.password} onChange={this.handleChangePassword} />
                       </Grid>
                     </Grid>
                   </div>
