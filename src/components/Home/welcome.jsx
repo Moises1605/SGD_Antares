@@ -3,6 +3,7 @@ import VisitNight from "./visitNight/visitNight";
 import { Container, Button, ButtonToolbar, Row, Col } from "react-bootstrap";
 import "./welcome.scss";
 
+
 class Welcome extends Component {
   render() {
     return (
@@ -70,7 +71,6 @@ class Welcome extends Component {
               </u>
             </i>
           </h6>
-
           {/* <Button  variant="outline-success" className="mr-2">Agendamento Noturno</Button> */}
         </Container>
       </React.Fragment>

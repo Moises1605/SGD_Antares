@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../../components/Home/NavBar";
 import Contact from "../../components/Home/Contato";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Calendario from "../../components/Home/Calendar";
 import Welcome from "../../components/Home/welcome";
 import Atracoes from "../../components/Home/Atracoes";

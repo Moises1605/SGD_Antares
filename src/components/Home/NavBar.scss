@@ -27,7 +27,7 @@
 #navbar_home {
   height: 15vh;
   width: 100vw;
-  background-color: #10083bc7 !important;
+  background-color: white !important;
   @include for-phone-only {
     height: auto;
   }
@@ -35,8 +35,8 @@
 
 .navbar-brand,
 #navbar_home .navbar-nav .nav-link {
-  color: white !important;
-  font-size: 15px;
+  color: black !important;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.5;
   @include for-phone-only {

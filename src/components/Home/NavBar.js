@@ -7,7 +7,8 @@ export default class NavBar extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar fixed="top" id="navbar_home" collapseOnSelect expand="lg">
+        <Navbar fixed="top" id="navbar_home" collapseOnSelect expand="lg" style={{
+        }}>
           <Container>
             <Navbar.Brand>
               <img
