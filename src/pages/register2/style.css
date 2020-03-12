@@ -4,6 +4,9 @@
     background-color: rgb(192, 192, 250);
     /* background-color: white; */
     padding: 20px 0 0 0;
+    background-image: url(../../assets/estrela2.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 #formsT{
@@ -14,6 +17,7 @@
     padding: 10px 15px 15px 15px;
     margin: 0 auto;
     border-radius: 10px;
+    opacity : 0.9;
 }
 
 #contentForm{

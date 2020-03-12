@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Col, Form } from 'react-bootstrap';
 import './style.css';
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import api from "../../../services/api"
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -169,7 +169,7 @@ export default class FormRegister extends React.Component {
                                         value={this.state.name} 
                                         onChange={this.handleChangeSchoolName}
                                         required
-                                        type="number"
+                                        type="text"
                                     />
                                 </div>
                             </Form.Group>
@@ -297,6 +297,14 @@ export default class FormRegister extends React.Component {
                         <Form.Row>
                             <Form.Group as={Col} md = '3'></Form.Group>
                         </Form.Row>
+                        <Link to = '/login'><Button
+                            
+                            onClick={this.handleBack}
+                            variant="primary"
+                            id='backButton'
+                        >
+                            Voltar
+                        </Button></Link>
                         <Button variant="primary" type='submit'>
                             {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
                         </Button>

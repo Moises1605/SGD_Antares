@@ -13,6 +13,19 @@
 
 #hh{
     height: 200px;
+    width: 100px;
+}
+
+#inputGridLogin{
+    width: 250px;
+}
+
+#inputGridPassword{
+    width: 250px;
+}
+
+#loginn{
+    margin-bottom: 20px;
 }
 
 #form{
@@ -34,15 +47,6 @@
     float: right;
   
 } 
-/*#leftside{
-    padding: 10px;
-    float: left;
-    background-color: white;
-    width: 75%;
-    height: 100vh;
-    margin: 0px;
-    
-} */
 
 #cadastrar{
    margin: 30px 140px 10px 0;
@@ -54,26 +58,29 @@
     font-family: 'Segoe UI';
 } 
 
-/*#icon{
-    height: 20%;
-    width: 30%;
-    margin: 0 0px 20px 100px;
-    background-color:#384dc9;
-}*/
 
 #image{
     width: 18vh;
     height: 18vh;
     background-color: #c2d5ff;
-    margin: 10px 0 20px 20px;
+    /* margin: 10px 0 20px 20px; */
+    margin-left: 100px;
     /* background-size: 100%; */
     border-color: #c2d5ff;
     
 }
 
+#title2{
+    margin-left: 120px; 
+    font-family: 'Segoe UI';
+    color: #575d80;
+    font-size: 32px;
+}
+
 #title{
-  padding: 40px 85px 0 0;
-  float: left;
+  background-color: black;
+  margin-right: auto;
+  margin-left: auto;
   font-family: 'Segoe UI';
   color: #575d80;
   font-size: 28px;
@@ -86,53 +93,10 @@
     font-family: 'Segoe UI';
 } 
 
-/*#buttons{
-    
-}*/
-
-/*#calendar{
-    background-color: white;
-    height: 500px;
-    margin: 10px 0 0 0;
-    font-family: 'Segoe UI';
-
-}
-
-#visit{
-    float: left;
-    margin: 0 0 0 10px;
-    font-family: 'Segoe UI';
-}
-
-#exhibition{
-    margin: 0 0 0 50px;
-    font-family: 'Segoe UI';
-}*/
-
 #info{
     font-family: 'Segoe UI';
     font-size: 16px;
     font-style: normal;
     color: #575d80;
 }
-
-/*#table{
-    font-family: 'Segoe UI';
-    font-size: 16px;
-    color: #4a4f6d;
-
-}
-
-.linha1{
-    color: rgb(34, 31, 31);
-    font-size: 16px;
-    justify-content:center;
-    align-items: center
-}
-
-#titleCalendar{
-   margin: 0 0 0 370px;
-   font-size: 18px;
-   color: #575d80;
-}*/
 

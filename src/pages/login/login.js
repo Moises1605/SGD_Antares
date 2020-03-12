@@ -12,6 +12,10 @@ import api from "../../services/api"
 import logo from "../../assets/logo2.png";
 import ForgetPassword from "./forgetPassword/forgetPassword";
 import Paper from "@material-ui/core/Paper";
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -49,37 +53,38 @@ export default class Login extends React.Component {
   render() {
     if (this.state.redirect) {
       //if(this.state.type == 1){
-        if (this.state.email == "moisesalmeida") {
-          return <Redirect to="/escola/:0" />;
-        }
+      if (this.state.email == "moisesalmeida") {
+        return <Redirect to="/escola/:0" />;
+      }
       //else{
-        //Se for um usuário do tipo Bolsista
-        else if (this.state.email == "robertomaia") {
-          return <Redirect to="/usuario/:0" />;
-        }
-        //Se for um usuário do tipo Funcionário
-        else if (this.state.email == "raulpeixoto") {
-          return <Redirect to="/usuario/:1" />;
-        }
-        //Se for um usuário do tipo administrador
-        else if (this.state.email == "ricardoporto") {
-          return <Redirect to="/usuario/:2" />;
-        }
-        else {
-          return <Redirect to="/login" />;
-        }
-     // }
+      //Se for um usuário do tipo Bolsista
+      else if (this.state.email == "robertomaia") {
+        return <Redirect to="/usuario/:0" />;
+      }
+      //Se for um usuário do tipo Funcionário
+      else if (this.state.email == "raulpeixoto") {
+        return <Redirect to="/usuario/:1" />;
+      }
+      //Se for um usuário do tipo administrador
+      else if (this.state.email == "ricardoporto") {
+        return <Redirect to="/usuario/:2" />;
+      }
+      else {
+        return <Redirect to="/login" />;
+      }
+      // }
     } else {
       return (
         <div id="initial">
           <Container>
             <div>
               <Paper id="form" elevation={4}>
-                <img id="image" roundedCircle src={logo} />
-                <h1 id="title">Login</h1>
+                <div><img id="image" roundedCircle src={logo}/></div>
+                <div><h1 id="title2" >Login</h1></div>
+                
                 <Form id="info">
                   {/*Campo responsável por pegar o login do usuário */}
-                  <Form.Label>Usuário</Form.Label>
+                  {/* <Form.Label>Usuário</Form.Label>
                   <InputGroup className="mb-3">
                     <InputGroup.Prepend>
                       <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
@@ -92,57 +97,79 @@ export default class Login extends React.Component {
                       value={this.state.email}
                       onChange={this.handleChangeEmail}
                     />
-                  </InputGroup>
+                  </InputGroup> */}
+                  <div id = 'loginn'>
+                    <Grid container spacing={1} alignItems="flex-end">
+                      <Grid item>
+                        <AccountBoxIcon  style={{ fontSize: 33}} />
+                      </Grid>
+                      <Grid item>
+                        <TextField size="small" variant="outlined" id="inputGridLogin" label="Usuário" />
+                      </Grid>
+                    </Grid>
+                  </div>
 
-                  {/*Campo responsável por pegar a senha do usuário */}
-                  <Form.Label>Senha</Form.Label>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id="basic-addon1">#</InputGroup.Text>
-                    </InputGroup.Prepend>
+                  <div id = 'passwaordd'>
+                    <Grid container spacing={1} alignItems="flex-end">
+                      <Grid item>
+                        <LockOpenIcon  style={{ fontSize: 33 }} />
+                      </Grid>
+                      <Grid item>
+                        <TextField size="small" variant="outlined" id="inputGridPassword" label="Senha" />
+                      </Grid>
+                    </Grid>
+                  </div>
 
-                    <FormControl
-                      label="Senha"
-                      placeholder="Senha"
-                      aria-label="Senha"
-                      aria-describedby="basic-addon1"
-                      type="password"
-                      value={this.state.password}
-                      onChange={this.handleChangePassword}
-                    />
-                  </InputGroup>
+
+                {/*Campo responsável por pegar a senha do usuário */}
+                {/* <Form.Label>Senha</Form.Label>
+                <InputGroup className="mb-3">
+                  <InputGroup.Prepend>
+                <InputGroup.Text id="basic-addon1">{ <AccountCircle />}</InputGroup.Text>
+                  </InputGroup.Prepend>
+
+                  <FormControl
+                    label="Senha"
+                    placeholder="Senha"
+                    aria-label="Senha"
+                    aria-describedby="basic-addon1"
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.handleChangePassword}
+                  />
+                </InputGroup> */}
                 </Form>
-                <div
-                  style={{
-                    marginTop: "50px"
-                  }}
+              <div
+                style={{
+                  marginTop: "50px"
+                }}
+              >
+                <Button
+                  id="entrar"
+                  block
+                  variant="success"
+                  onClick={this.handleSubmit}
                 >
-                  <Button
-                    id="entrar"
-                    block
-                    variant="success"
-                    onClick={this.handleSubmit}
-                  >
-                    Entrar
+                  Entrar
                   </Button>
 
-                  <Link to="/cadastro">
-                    <Button
-                      id="cadastrar"
-                      block
-                      variant="secondary"
-                      type="submit"
-                    >
-                      Cadastre-se
+                <Link to="/cadastro">
+                  <Button
+                    id="cadastrar"
+                    block
+                    variant="secondary"
+                    type="submit"
+                  >
+                    Cadastre-se
                     </Button>
-                  </Link>
-                </div>
-                {/*Componente responsável pela recuperação de senha */}
-                <ForgetPassword />
+                </Link>
+              </div>
+              {/*Componente responsável pela recuperação de senha */}
+              <ForgetPassword />
               </Paper>
             </div>
           </Container>
-        </div>
+        </div >
       );
     }
   }
