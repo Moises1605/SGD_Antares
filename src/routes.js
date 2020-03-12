@@ -11,7 +11,7 @@ import funcionario_principal from "./pages/Funcionario/Funcionario";
 import Scholarship from "./pages/Scholarship/Scholarship";
 import Home from "./pages/Home/Home";
 import Admin from "./pages/Admin/Admin";
-
+import User from './pages/user/user'
 const Routes = () => (
   <BrowserRouter>
     <Switch>
@@ -19,6 +19,7 @@ const Routes = () => (
       <Route exact path="/login" component={Login} />
       <Route exact path="/cadastro" component={Register2} />
       <Route exact path="/escola/:id" component={School} />
+      <Route exact path="/usuario/:id" component={User} />
       {/* <Route exact path = '/editarEscola' component = {VisitNight}/> */}
       <Route exact path="/Bolsista/:id" component={Scholarship} />
       {/* <Route exact path = "/editarBolsista" component = {infoScholarship}/> */}

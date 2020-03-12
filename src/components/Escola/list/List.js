@@ -59,7 +59,7 @@ class SimpleList extends Component {
               </ListItemIcon>
               <ListItemText primary="Meus agendamentos" />
             </ListItem>
-            <ListItem button disabled onClick={() => this.props.onClick("3")}>
+            <ListItem button  onClick={() => this.props.onClick("3")}>
               <ListItemIcon>
                 <AssignmentIcon />
               </ListItemIcon>

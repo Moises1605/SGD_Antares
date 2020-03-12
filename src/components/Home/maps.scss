@@ -1,0 +1,39 @@
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+#mapa_titulo {
+  text-align: center;
+  @include for-phone-only {
+    font-size: 20px;
+  }
+}
+
+#mapa_info {
+  margin-top: 10px;
+  @include for-phone-only {
+    font-size: 15px;
+  }
+}
+
+.map {
+  height: 350px !important;
+  margin-top: 20px;
+  width: 100% !important;
+  @include for-phone-only {
+    width: 92% !important;
+  }
+}

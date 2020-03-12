@@ -5,24 +5,8 @@
   a {
     outline: none;
   }
-
-#rightSchool{
-    margin: 100px 75px;
-    height: 40vh;
-    width: 70vw;
-    float: right;
-    Overflow-Y: true;
-} 
-
-#leftSchool{
-    width: 15vw;
-    height: 123vh;
-    float: left;
-    background-color: #eee;
-    
-}
-
-#div_sidebar {
+  
+  #div_sidebar {
     width: 15vw;
     height: 100vh;
     float: left;
@@ -30,14 +14,16 @@
   }
   
   #div_screen {
-    margin: 150px 75px;
-    height: 40vh;
+    margin: 100px 75px;
+    height: 50vh;
     width: 70vw;
     float: right;
+    /* overflow: auto; */
   }
   
   .MuiPaper-root {
     flex-wrap: wrap;
     width: 70vw;
     height: 70vh;
-  } 
+  }
+  

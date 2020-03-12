@@ -1,23 +1,15 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import { Container, Row, Col } from "react-bootstrap";
-
+import "./maps.scss";
 class MapContainer extends Component {
   render() {
     return (
       <React.Fragment>
         <Container fluid>
-          <h2
-            style={{
-              textAlign: "center"
-            }}
-          >
+          <h2 id="mapa_titulo">
             Endereço
-            <h6
-              style={{
-                marginTop: "10px"
-              }}
-            >
+            <h6 id="mapa_info">
               <i>
                 R. Barra, 925 - Jardim Cruzeiro, Feira de Santana - BA,
                 44015-430
@@ -39,26 +31,21 @@ class MapContainer extends Component {
             }}
           ></hr>
         </Container>
-        <div style={{ marginRight: "0" }}>
+        <Container fluid>
           <Row>
             <Col md={2}></Col>
             <Col>
               <Map
+                className="map"
                 mapTypeControl={false}
                 google={this.props.google}
                 zoom={16}
-                style={{
-                  width: "100%",
-                  height: "350px",
-                  position: "relative",
-                  marginTop: "20px"
-                }}
                 initialCenter={{ lat: -12.239816, lng: -38.979001 }}
-              />
+              ></Map>
             </Col>
             <Col md={2}></Col>
           </Row>
-        </div>
+        </Container>
       </React.Fragment>
     );
   }

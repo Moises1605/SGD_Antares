@@ -7,15 +7,19 @@ import NavBar from "../../components/Admin/NavBar";
 //import Visit from './visit/agendamento';
 import MySchedulings from "../../components/Escola/MySchedulings/MyScheduling";
 import Inicio from "../../components/Escola/Inicio/inicio";
-//import EditSchool from './infoSchool';
+import InfoSchool from '../../components/Escola/infoSchool/infoSchool';
 import api from "../../services/api";
 
 export default class School extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idSchool: "",
-      screens: [<Inicio />, <Calendar />, <MySchedulings idSchool="0" />, null],
+      screens: [
+        <Inicio />, 
+        <Calendar />, 
+        <MySchedulings idSchool = {this.props.match.params.id.toString().substring(1)} />, 
+        <InfoSchool idSchool= {this.props.match.params.id.toString().substring(1)} />
+      ],
       active: null
     };
   }

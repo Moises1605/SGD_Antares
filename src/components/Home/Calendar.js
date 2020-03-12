@@ -4,7 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ptBr from "@fullcalendar/core/locales/pt-br";
-import "./Calendar.css";
+import "./Calendar.scss";
 import api from "../../services/api";
 export default class Calendario extends React.Component {
   constructor() {
@@ -24,12 +24,14 @@ export default class Calendario extends React.Component {
     return (
       <div>
         <h2
+          id="titulo_calendario"
           style={{
             textAlign: "center"
           }}
         >
           Horários para Agendamentos
           <h6
+            id="texto_calendario"
             style={{
               marginTop: "10px"
             }}

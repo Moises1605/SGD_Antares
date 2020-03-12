@@ -1,12 +1,12 @@
 import React from "react";
 import NavBar from "../../components/Home/NavBar";
 import Contact from "../../components/Home/Contato";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Calendario from "../../components/Home/Calendar";
 import Welcome from "../../components/Home/welcome";
 import Atracoes from "../../components/Home/Atracoes";
 import GoogleApiWrapper from "../../components/Home/maps";
-import "./Home.css";
+import "./Home.scss";
 
 export default class home extends React.Component {
   constructor() {
@@ -40,9 +40,7 @@ export default class home extends React.Component {
             </Container>
           </div>
           <div id="div_maps">
-            <Container fluid>
-              <GoogleApiWrapper />
-            </Container>
+            <GoogleApiWrapper />
           </div>
           <div id="div_contato">
             <Contact />

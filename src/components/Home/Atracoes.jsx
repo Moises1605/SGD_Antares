@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import CarouselAtracoes from "./Carousel_Atracoes";
 import VisitNight from "./visitNight/visitNight";
+import "./atracoes.scss";
 
 export default class Atracoes extends React.Component {
   render() {
@@ -18,11 +19,12 @@ export default class Atracoes extends React.Component {
           <Row class="efeito">
             <Col
               md={4}
+              sm={12}
               style={{
                 textAlign: "center"
               }}
             >
-              <h2>Atrações</h2>
+              <h2 id="titulo_atracoes">Atrações</h2>
               <hr
                 style={{
                   width: "25%",
@@ -37,11 +39,7 @@ export default class Atracoes extends React.Component {
                   backgroundColor: "#dcdcdc"
                 }}
               ></hr>
-              <h5
-                style={{
-                  paddingTop: "10px"
-                }}
-              >
+              <h5 id="texto_atracoes">
                 No Observatório Astronômico Antares, são realizadas visitas a
                 exposições, observações com telescópios automatizados, cursos,
                 palestras, laboratórios, projeções de vídeo, sessões no
