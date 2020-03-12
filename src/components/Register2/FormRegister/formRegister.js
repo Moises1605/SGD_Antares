@@ -422,7 +422,7 @@ export default class FormRegister extends React.Component {
     async handleSubmit(event) {
         this.setState({ controlSucess: true })
         event.preventDefault();
-        // api.post('/adicionarEscola', this.state)
+         api.post('/adicionarEscola', this.state)
         //     .then(function (response) {
         //         // handle success
         //         this.setState({ redirect: true });
