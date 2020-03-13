@@ -31,30 +31,36 @@ export default class home extends React.Component {
         <NavBar />
         <div id="div_home">
           <ScrollableAnchor id={"inicio"}>
-            <div id="div_inicio">
-              <Welcome />
-            </div>
+            <div></div>
           </ScrollableAnchor>
+          <div id="div_inicio">
+            <Welcome />
+          </div>
+
           <ScrollableAnchor id={"atracoes"}>
-            <div id="div_atracoes">
-              <Atracoes />
-            </div>
+            <div></div>
           </ScrollableAnchor>
+          <div id="div_atracoes">
+            <Atracoes />
+          </div>
+
           {/*<div id="div_calendar">
             <Container>
               <Calendario />
             </Container>
             </div>*/}
           <ScrollableAnchor id={"informacoes"}>
-            <div id="div_maps">
-              <GoogleApiWrapper />
-            </div>
+            <div></div>
           </ScrollableAnchor>
+          <div id="div_maps">
+            <GoogleApiWrapper />
+          </div>
           <ScrollableAnchor id="contato">
-            <div id="div_contato">
-              <Contact />
-            </div>
+            <div></div>
           </ScrollableAnchor>
+          <div id="div_contato">
+            <Contact />
+          </div>
         </div>
       </React.Fragment>
     );
