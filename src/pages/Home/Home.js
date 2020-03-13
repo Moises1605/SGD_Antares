@@ -34,11 +34,11 @@ export default class home extends React.Component {
           <div id="div_atracoes">
             <Atracoes />
           </div>
-          <div id="div_calendar">
+          {/*<div id="div_calendar">
             <Container>
               <Calendario />
             </Container>
-          </div>
+            </div>*/}
           <div id="div_maps">
             <GoogleApiWrapper />
           </div>

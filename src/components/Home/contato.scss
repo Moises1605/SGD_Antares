@@ -20,7 +20,8 @@
 }
 
 #contato_titulo {
-  text-align: center;
+  color: #007bff;
+  //text-align: center;
   @include for-phone-only {
     font-size: 20px;
   }

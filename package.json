@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "google-maps-react": "^2.0.2",
+    "moveto": "^1.8.2",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",

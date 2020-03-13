@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, Row, Col, Toast } from "react-bootstrap";
+import { Badge, Row, Col, Toast, Button } from "react-bootstrap";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -15,11 +15,11 @@ export default class Calendario extends React.Component {
   }
 
   /**NOTE Método que faz requisição de horários dos bolsistas*/
-  async componentDidMount() {
+  /*async componentDidMount() {
     const h = api.post("/listarHorarioBolsistas");
     this.setState({ horarios: (await h).data.map(h => h)[0] });
     console.log(this.state.horarios);
-  }
+  }*/
   render() {
     return (
       <div>
@@ -29,7 +29,7 @@ export default class Calendario extends React.Component {
             textAlign: "center"
           }}
         >
-          Horários para Agendamentos
+          Agendamento
           <h6
             id="texto_calendario"
             style={{
@@ -56,7 +56,7 @@ export default class Calendario extends React.Component {
             backgroundColor: "#dcdcdc"
           }}
         ></hr>
-        <Row>
+        {/*<Row>
           <Col></Col>
           <Col md={12}>
             <div id="calendarBG">
@@ -97,6 +97,22 @@ export default class Calendario extends React.Component {
             </div>
           </Col>
           <Col></Col>
+            </Row>*/}
+        <Row
+          style={{
+            marginTop: "15px"
+          }}
+        >
+          <Col>
+            <h4>Escola</h4>
+            <Button variant="primary">Agendar</Button>
+          </Col>
+          <Col>
+            <h4>Agendamento Pessoa Física</h4>
+            <Button variant="primary" block>
+              Agendar
+            </Button>
+          </Col>
         </Row>
       </div>
     );
