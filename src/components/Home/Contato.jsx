@@ -13,11 +13,6 @@ class Contact extends Component {
     return (
       <React.Fragment>
         <Container>
-          <hr
-            style={{
-              width: "100%"
-            }}
-          ></hr>
           <h2 id="contato_titulo">
             Contato
             {/*<h6 id="contato_dados">

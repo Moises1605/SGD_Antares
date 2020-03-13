@@ -12,13 +12,15 @@ class MapContainer extends Component {
       <React.Fragment>
         <Container>
           <Row>
-            <hr
-              style={{
-                width: "100%"
-              }}
-            ></hr>
             <Col md={4}>
-              <h2 id="mapa_titulo">Informações</h2>
+              <h2
+                id="mapa_titulo"
+                style={{
+                  marginTop: "10px"
+                }}
+              >
+                Informações
+              </h2>
               <h5
                 id="mapa_info"
                 style={{
