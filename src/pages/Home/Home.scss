@@ -41,6 +41,11 @@ a {
   background-color: white;
   padding: 50px 0;
   text-align: justify;
+  @include for-phone-only {
+    padding-left: 15px;
+    padding-right: 15px;
+    align-items: center;
+  }
 }
 #div_calendar {
   padding: 15px 0 20px 0;
@@ -63,16 +68,20 @@ a {
   background-color: white;
   padding: 65px 0;
   color: black;
+  @include for-phone-only {
+    padding-top: 350px;
+  }
 }
 #div_inicio {
   background-image: url(../../assets/Tela_Inicial.png);
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  height: 600px;
+  height: auto;
   text-align: center;
   color: white;
   position: static;
+  padding-bottom: 150px;
   @include for-phone-only {
   }
 }

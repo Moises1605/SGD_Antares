@@ -6,7 +6,8 @@ import {
   Col,
   Button,
   ButtonToolbar,
-  Card
+  Card,
+  CardDeck
 } from "react-bootstrap";
 import CarouselAtracoes from "./Carousel_Atracoes";
 import VisitNight from "./visitNight/visitNight";
@@ -39,12 +40,12 @@ export default class Atracoes extends React.Component {
             </h5>
           </Row>
 
-          <Row
+          {/*<Row
             style={{
               paddingTop: "30px"
             }}
           >
-            <Col md={4} sm={12}>
+            <Col md={4} sm={4}>
               <Card
                 bg="primary"
                 text="light"
@@ -58,7 +59,7 @@ export default class Atracoes extends React.Component {
               </Card>
             </Col>
             <br />
-            <Col md={4} sm={12}>
+            <Col md={4} sm={4}>
               <Card
                 bg="primary"
                 text="light"
@@ -71,7 +72,7 @@ export default class Atracoes extends React.Component {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} sm={12}>
+            <Col md={4} sm={4}>
               <Card
                 bg="primary"
                 text="light"
@@ -84,7 +85,31 @@ export default class Atracoes extends React.Component {
                 </Card.Body>
               </Card>
             </Col>
-          </Row>
+          </Row>*/}
+          <CardDeck
+            style={{
+              paddingTop: "30px"
+            }}
+          >
+            <Card bg="primary" text="light" className="text-center" style={{}}>
+              <Card.Img variant="top" src={image} />
+              <Card.Body>
+                <Card.Title>Astronomia</Card.Title>
+              </Card.Body>
+            </Card>
+            <Card bg="primary" text="light" className="text-center">
+              <Card.Img variant="top" src={image2} />
+              <Card.Body>
+                <Card.Title>Origem do homem</Card.Title>
+              </Card.Body>
+            </Card>
+            <Card bg="primary" text="light" className="text-center">
+              <Card.Img variant="top" src={image3} />
+              <Card.Body>
+                <Card.Title> Biodiversidade</Card.Title>
+              </Card.Body>
+            </Card>
+          </CardDeck>
           {/**<Row class="efeito">
             <Col
               md={4}
