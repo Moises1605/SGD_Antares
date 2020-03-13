@@ -51,7 +51,10 @@
 }
 
 #logo {
-  width: 50px;
+  width: 90px;
+  @include for-phone-only {
+    width: 50px;
+  }
 }
 #titulo {
   @include for-phone-only {
