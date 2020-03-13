@@ -16,7 +16,7 @@
 }
 
 #mapa_titulo {
-  text-align: center;
+  color: white;
   @include for-phone-only {
     font-size: 20px;
   }
@@ -24,13 +24,14 @@
 
 #mapa_info {
   margin-top: 10px;
+  color: white;
   @include for-phone-only {
     font-size: 15px;
   }
 }
 
 .map {
-  height: 350px !important;
+  height: 290px !important;
   margin-top: 20px;
   width: 100% !important;
   @include for-phone-only {

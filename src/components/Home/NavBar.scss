@@ -25,9 +25,10 @@
 }
 
 #navbar_home {
-  height: 15vh;
+  height: auto;
   width: 100vw;
   background-color: white !important;
+  opacity: 0.95;
   @include for-phone-only {
     height: auto;
   }
@@ -46,11 +47,11 @@
 
 .navbar-brand:hover,
 #navbar_home .navbar-nav:hover .nav-link:hover {
-  color: #d86c00 !important;
+  color: #007bff!important;
 }
 
 #logo {
-  width: 55px;
+  width: 90px;
 }
 #titulo {
   @include for-phone-only {

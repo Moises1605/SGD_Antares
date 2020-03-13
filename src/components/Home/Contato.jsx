@@ -15,14 +15,14 @@ class Contact extends Component {
         <Container>
           <h2 id="contato_titulo">
             Contato
-            <h6 id="contato_dados">
+            {/*<h6 id="contato_dados">
               <i>museuantares@gmail.com</i>
 
               <br />
               <i>(75) 3624-1921 </i>
-            </h6>
+    </h6>*/}
           </h2>
-          <hr
+          {/*<hr
             style={{
               width: "25%",
               margin: "auto",
@@ -35,7 +35,8 @@ class Contact extends Component {
               margin: "7px auto 0 auto",
               backgroundColor: "#222"
             }}
-          ></hr>
+          ></hr>*/}
+
           <Form>
             <Form.Row
               style={{
@@ -101,7 +102,7 @@ class Contact extends Component {
                       variant="outlined"
                       size="small"
                       multiline="true"
-                      rows={6}
+                      rows={7}
                     />
                   </form>
                 </Form.Group>
