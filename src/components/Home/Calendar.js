@@ -17,7 +17,8 @@ export default class Calendario extends React.Component {
   /**NOTE Método que faz requisição de horários dos bolsistas*/
   /*async componentDidMount() {
     const h = api.post("/listarHorarioBolsistas");
-    this.setState({ horarios: (await h).data.map(h => h)[0] });
+    console.log((await h).data)
+    this.setState({ horarios: (await h).data.map(h => h) });
     console.log(this.state.horarios);
   }*/
   render() {
@@ -75,9 +76,9 @@ export default class Calendario extends React.Component {
                 maxTime="18:00:00"
                 slotDuration="01:00"
                 events={this.state.horarios.map(h => ({
-                  daysOfWeek: [h.dia],
-                  startTime: h.inicioTurno,
-                  endTime: h.fimTurno,
+                  daysOfWeek: [h.semana],
+                  startTime: h.inicioPeriodo,
+                  endTime: h.fimPeriodo,
                   rendering: "background",
                   color: "#39FF14"
                 }))}

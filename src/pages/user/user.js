@@ -35,9 +35,9 @@ export default class User extends React.Component {
         <TelaAgendamentos />,
         null,
         <Calendar />,
-        <ScheduleScholarship idScholarschip = {this.props.match.params.id.toString().substring(1)} />,
+        {/*<ScheduleScholarship idScholarschip = {this.props.match.params.id.toString().substring(1)} />,
         <FollowVisit />,
-        <Info idScholarship = {this.props.match.params.id.toString().substring(1)} />,
+      <Info idScholarship = {this.props.match.params.id.toString().substring(1)} />*/},
       ],
       id: 0,
       permission: [],
@@ -58,7 +58,7 @@ export default class User extends React.Component {
       //const response =  await api.get('/permissoes');
       //this.setState({permission: response.data});
       await this.setState({id: this.props.match.params.id.toString().substring(1)})
-      console.log(this.state.id );
+      //console.log(this.state.id );
       //await this.teste;
 
   }

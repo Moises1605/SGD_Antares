@@ -36,8 +36,7 @@ class Funcionario extends Component {
 
   async componentDidMount() {
     const f = api.post("/listarFuncionarios");
-    this.setState({ funcionarios: (await f).data.map(f => f) });
-    console.log(this.state.funcionarios);
+    this.setState({ funcionarios: (await f).data.map(f => f)});
   }
 
   render() {
@@ -98,19 +97,20 @@ class Funcionario extends Component {
               <Table striped bordered hover responsive size="sm">
                 <thead>
                   <tr>
-                    <th>#</th>
                     <th>Nome</th>
+                    <th>CPF</th>
                     <th>Telefone</th>
                   </tr>
                 </thead>
                 <tbody>
                   {this.state.funcionarios.map(f => (
                     <tr>
-                      <td>
+                      {/*<td>
                         <b>{f.id}</b>
-                      </td>
-                      <td>{f.name}</td>
-                      <td>{f.phone}</td>
+                      </td>*/}
+                      <td>{f.nome}</td>
+                      <td>{f.CPF_CNPJ}</td>
+                      <td>{f.telefone}</td>
                     </tr>
                   ))}
                 </tbody>
