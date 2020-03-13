@@ -51,7 +51,7 @@
 }
 
 #logo {
-  width: 100px;
+  width: 90px;
   @include for-phone-only {
     width: 50px;
   }
