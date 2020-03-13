@@ -83,5 +83,10 @@ a {
   position: static;
   padding-bottom: 150px;
   @include for-phone-only {
+    background-image: url(../../assets/Tela_Inicial.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: left;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.7);
   }
 }
