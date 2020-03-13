@@ -59,6 +59,9 @@ a {
   height: 375px;
   width: auto;
   color: black;
+  @include for-phone-only {
+    height: 600px;
+  }
 }
 #div_contato {
   //background-color: #007bff;
@@ -67,7 +70,6 @@ a {
   padding: 30px 15px 15px 15px;
   color: black;
   @include for-phone-only {
-    padding-top: 250px;
   }
 }
 #div_inicio {

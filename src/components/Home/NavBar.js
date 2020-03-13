@@ -43,9 +43,17 @@ export default class NavBar extends React.Component {
                 <Nav.Link href="#contato" onClick={this.handleClick}>
                   Contato
                 </Nav.Link>
-                <NavDropdown title="Agendamento" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/Login">Escolar</NavDropdown.Item>
-                  <NavDropdown.Item>Pessoa</NavDropdown.Item>
+                <NavDropdown
+                  title="Agendamento"
+                  id="basic-nav-dropdown"
+                  className="dropnav"
+                >
+                  <NavDropdown.Item className="dropnav" href="/Login">
+                    Escolar
+                  </NavDropdown.Item>
+                  <NavDropdown.Item className="dropnav">
+                    Pessoa
+                  </NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="/login">Login</Nav.Link>
               </Nav>

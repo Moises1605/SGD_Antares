@@ -47,14 +47,20 @@
 
 .navbar-brand:hover,
 #navbar_home .navbar-nav:hover .nav-link:hover {
-  color: #007bff!important;
+  color: #007bff !important;
 }
 
 #logo {
-  width: 90px;
+  width: 50px;
 }
 #titulo {
   @include for-phone-only {
     font-size: 12px;
+  }
+}
+
+.dropnav {
+  @include for-phone-only {
+    font-size: 12px !important;
   }
 }
