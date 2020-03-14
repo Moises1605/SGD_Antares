@@ -4,8 +4,10 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ptBr from "@fullcalendar/core/locales/pt-br";
+
 import "./Calendar.scss";
 import api from "../../services/api";
+import { green } from "@material-ui/core/colors";
 export default class Calendario extends React.Component {
   constructor() {
     super();
@@ -24,43 +26,9 @@ export default class Calendario extends React.Component {
   render() {
     return (
       <div>
-        <h2
-          id="titulo_calendario"
-          style={{
-            textAlign: "center"
-          }}
-        >
-          Agendamento
-          <h6
-            id="texto_calendario"
-            style={{
-              marginTop: "10px"
-            }}
-          >
-            <i>
-              Horário de funcionamento: seg a sex das 9:00 as 12:00 e 14:00 as
-              17:00
-            </i>
-          </h6>
-        </h2>
-        <hr
-          style={{
-            width: "25%",
-            margin: "auto",
-            backgroundColor: "#d3d3d3"
-          }}
-        ></hr>
-        <hr
-          style={{
-            width: "12.5%",
-            margin: "7px auto 0 auto",
-            backgroundColor: "#dcdcdc"
-          }}
-        ></hr>
-        {/*<Row>
-          <Col></Col>
-          <Col md={12}>
-            <div id="calendarBG">
+        <Row>
+          <Col md={12} sm={12} className="calendarBG">
+            <div>
               <FullCalendar
                 defaultView="timeGridWeek"
                 displayEventEnd={true}
@@ -96,23 +64,6 @@ export default class Calendario extends React.Component {
                 </Badge>{" "}
               </h4>
             </div>
-          </Col>
-          <Col></Col>
-            </Row>*/}
-        <Row
-          style={{
-            marginTop: "15px"
-          }}
-        >
-          <Col>
-            <h4>Escola</h4>
-            <Button variant="primary">Agendar</Button>
-          </Col>
-          <Col>
-            <h4>Agendamento Pessoa Física</h4>
-            <Button variant="primary" block>
-              Agendar
-            </Button>
           </Col>
         </Row>
       </div>

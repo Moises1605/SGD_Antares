@@ -33,7 +33,9 @@ a {
   color: black;
 }
 #div_contato {
-  background-color: #eee;
+  background-image: url(../../assets/contato.png);
+  background-size: cover;
+  background-position: center;
   padding: 15px 0;
   color: black;
 }

@@ -36,7 +36,7 @@ class MapContainer extends Component {
                 </p>
                 <p>
                   {" "}
-                  <ScheduleIcon /> Segunda à Sexta 9:00 as 12:00 e 14:00 as
+                  <ScheduleIcon /> Segunda a Sexta 9:00 às 12:00 e 14:00 às
                   17:30
                 </p>
 
