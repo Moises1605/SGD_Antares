@@ -22,8 +22,13 @@ export default class Bolsistas extends React.Component {
       rows: [],
       search: "",
       show: false,
-      bolsistas: []
+      //utilizado para testes.
+      bolsistas: [{name:'Moisés',email:'eu',phone:'124',id:'1'},{name:'Moisés',email:'eu',phone:'124',id:'2'},{name:'Moisés',email:'eu',phone:'124',id:'3'}],
+      control: false,//controle para apresentação do modal
+      BolsistaEscolhido: '-1'//id do bolsista escolhido para edição
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
   /** REVIEW Método para registrar dados da pesquisa */
   handleChange = event => this.setState({ search: event.target.value });
@@ -37,19 +42,47 @@ export default class Bolsistas extends React.Component {
   /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
 
   async componentDidMount() {
-    const b = api.post("/listarBolsistas");
-    this.setState({ bolsistas: (await b).data.map(b => b) });
+    //const b = api.post("/listarBolsistas");
+    //this.setState({ bolsistas: (await b).data.map(b => b) });
     //console.log(this.state.bolsistas);
   }
 
   /**TODO Método para mostrar informação do bolsista */
-  handleClick = async b => {
-    await console.log(b);
+  // handleClick = async b => {
+  //   await console.log(b);
+  // };
+  //Ativa a apresentação do modal e manda o id do bolsista escolhido
+  handleClick(e) {
+    console.log(e);
+     this.setState({ BolsistaEscolhido: e, control: true });
   };
+
+  //Mesma ideia de atualizar, usando o id do cara vc chama a rota pra excluir, mas ai tem que ser no modal que vcs vão criar, por isso não implementei completamente. 
+  delete(){
+    /*const response = await api.get("/atualizarBolsista", this.state.IDScholarship);*/
+  }
 
   render() {
     return (
       <div>
+        {/* Modal para teste, se quiserem podem mudar o jeito de visuaização, a ideia é utilizar o id que mandei
+        para pegar o resto das informações, mas eu não sei se nesse método tu pegar já tudo, ou só o email,nome e telefone */}
+        <Modal
+          size="lg"
+          show={this.state.control}
+          onHide={() => this.setState({ control: false })}
+          aria-labelledby="example-modal-sizes-title-lg"
+          id='modal'
+        >
+          <Modal.Header closeButton id='header'>
+            <Modal.Title id="example-modal-sizes-title-lg">
+              Testando
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {this.state.BolsistaEscolhido}
+          </Modal.Body>
+        </Modal>
         <Container fluid>
           <Row>
             <Col>
@@ -112,7 +145,8 @@ export default class Bolsistas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.bolsistas.map(b => (
-                      <tr onClick={this.handleClick(b)}>
+                      //manda o id para a função
+                      <tr name={b.id} onClick={() => this.handleClick(b.id)} >
                         <td>
                           <b>{b.id}</b>
                         </td>

@@ -19,9 +19,10 @@ export default class FollowVisit extends React.Component {
   constructor() {
     super();
     this.state = {
+      IDScholarship: this.props.idScholarship,
       rows: [],
       search: "",
-      escolas: []
+      visits: []
     };
   }
 
@@ -29,7 +30,7 @@ export default class FollowVisit extends React.Component {
   handleChange = event => this.setState({ search: event.target.value });
 
   async componentDidMount() {
-    const e = api.post("/listarEscolas");
+    const e = api.get("/listarVisitas",this.state.IDScholarship);
     this.setState({ escolas: (await e).data.map(e => e) });
     console.log(this.state.escolas);
   }

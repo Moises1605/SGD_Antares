@@ -19,8 +19,12 @@ class Funcionario extends Component {
       rows: [],
       search: "",
       show: false,
-      funcionarios: []
+      funcionarios: [{name:'Moisés',email:'eu',phone:'124',id:'1'},{name:'Moisés',email:'eu',phone:'124',id:'2'},{name:'Moisés',email:'eu',phone:'124',id:'3'}],
+      control: false,//controle para apresentação do modal
+      FuncionárioEscolhido: '-1'//id do bolsista escolhido para edição
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   /** REVIEW Método para registrar dados da pesquisa */
@@ -40,9 +44,33 @@ class Funcionario extends Component {
     console.log(this.state.funcionarios);
   }
 
+  //Ativa a apresentação do modal e manda o id do funcionário escolhido
+  handleClick(e) {
+    console.log(e);
+     this.setState({ FuncionárioEscolhido: e, control: true });
+  };
+
   render() {
     return (
       <Container fluid>
+        {/* Modal para teste, se quiserem podem mudar o jeito de visuaização, a ideia é utilizar o id que mandei
+        para pegar o resto das informações, mas eu não sei se nesse método tu pegar já tudo, ou só o email,nome e telefone */}
+        <Modal
+          size="lg"
+          show={this.state.control}
+          onHide={() => this.setState({ control: false })}
+          aria-labelledby="example-modal-sizes-title-lg"
+          id='modal'
+        >
+          <Modal.Header closeButton id='header'>
+            <Modal.Title id="example-modal-sizes-title-lg">
+              Testando
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {this.state.BolsistaEscolhido}
+          </Modal.Body>
+        </Modal>
         <Row>
           <Col>
             <h3 style={{ textAlign: "left", marginTop: "15px" }}>
@@ -105,7 +133,7 @@ class Funcionario extends Component {
                 </thead>
                 <tbody>
                   {this.state.funcionarios.map(f => (
-                    <tr>
+                    <tr onClick={() => this.handleClick(f.id)}>
                       <td>
                         <b>{f.id}</b>
                       </td>

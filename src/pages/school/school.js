@@ -17,8 +17,8 @@ export default class School extends React.Component {
       screens: [
         <Inicio />, 
         <Calendar />, 
-        <MySchedulings idSchool = {this.props.match.params.id.toString().substring(1)} />, 
-        <InfoSchool idSchool= {this.props.match.params.id.toString().substring(1)} />
+        <MySchedulings idSchool = {this.props.location.state.id}/>, 
+        <InfoSchool idSchool= {this.props.location.state.id} />
       ],
       active: null
     };
@@ -26,7 +26,7 @@ export default class School extends React.Component {
   componentDidMount = screen => {
     //Colocar essa parte comentada na parte de editar dados da escola.
     // var dadosEscola = api.post("/retornaDadosEscola",this.idSchool)
-    // console.log((await dadosEscola).data)
+    // console.log((await dadosEscola).data
     screen == null
       ? this.setState({ active: this.state.screens[0] })
       : this.setState({ active: this.state.screens[screen] });

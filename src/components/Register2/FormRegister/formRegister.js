@@ -44,7 +44,8 @@ export default class FormRegister extends React.Component {
             activeStep: 0,
             steps: ['Dados da escola', 'Informações sobre a escola', 'Configuração da conta'],
             controlSucess: false,
-            currencies: ["Particular", "Pública Estadual", "Pública Municipal"]
+            currencies: ["Particular", "Pública Estadual", "Pública Municipal"],
+            controlPassword: true
         };
 
         //Funções responsáveis por atualizar os estados das informções.
@@ -86,10 +87,22 @@ export default class FormRegister extends React.Component {
     }
 
     handleChangePassword(event) {
+        if(event.target.value == this.state.password2){
+            this.setState({controlPassword:true});
+        }
+        else{
+            this.setState({controlPassword:false});
+        }
         this.setState({ password: event.target.value });
     }
 
     handleChangePassword2(event) {
+        if(this.state.password == event.target.value){
+            this.setState({controlPassword:true});
+        }
+        else{
+            this.setState({controlPassword:false});
+        }
         this.setState({ password2: event.target.value });
     }
 
@@ -151,7 +164,7 @@ export default class FormRegister extends React.Component {
     handleBack = () => {
         var temp = this.state.activeStep - 1;
         this.setState({ activeStep: temp })
-    };
+    }; 
 
     getStepContent(stepIndex) {
         switch (stepIndex) {
@@ -489,6 +502,7 @@ export default class FormRegister extends React.Component {
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth={true}
+                                        error = {!this.state.controlPassword}
                                         id="outlined-basic"
                                         label="Confirme a senha"
                                         variant="outlined"
@@ -497,6 +511,7 @@ export default class FormRegister extends React.Component {
                                         onChange={this.handleChangePassword2}
                                         required
                                         type="password"
+                                        helperText={this.state.controlPassword == true? ' ' : 'As senhas estão diferentes'}
                                     />
                                 </div>
                             </Form.Group>
@@ -514,7 +529,7 @@ export default class FormRegister extends React.Component {
                                 Voltar
                             </Button>
 
-                            <Button variant="primary" type='submit'>
+                            <Button variant="primary" disabled = {!this.state.controlPassword} type='submit'>
                                 {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
                             </Button>
                         </div>
@@ -528,6 +543,12 @@ export default class FormRegister extends React.Component {
     //envia ps dados do formulário para o back-end;
     async handleSubmit(event) {
         this.setState({ controlSucess: true })
+        if(this.state.controlPassword){
+            alert("Safe")
+        }
+        else{
+            alert('algo de errado não está certo')
+        }
         event.preventDefault();
         // api.post('/adicionarEscola', this.state)
         //     .then(function (response) {

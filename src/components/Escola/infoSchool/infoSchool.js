@@ -160,7 +160,7 @@ export default class InfoSchool extends React.Component {
                             value={this.state.name} 
                             onChange={this.handleChangeSchoolName}
                             required
-                            type="number"
+                            type="text"
                         />
                     </div>
                 </Form.Group>

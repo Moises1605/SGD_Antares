@@ -25,7 +25,8 @@ export default class Login extends React.Component {
       password: "",
       type: '-1',
       idUser: "0",
-      redirect: false
+      redirect: false,
+      permission2: []
     };
 
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -54,20 +55,20 @@ export default class Login extends React.Component {
     if (this.state.redirect) {
       //if(this.state.type == 1){
       if (this.state.email == "moisesalmeida") {
-        return <Redirect to="/escola/:0" />;
+        return <Redirect to={{pathname: "/escola/" , state:{id: '0'}}}/>;
       }
       //else{
       //Se for um usuário do tipo Bolsista
       else if (this.state.email == "robertomaia") {
-        return <Redirect to="/usuario/:0" />;
+        return <Redirect to={{pathname: "/usuario/" , state: {permission:['0','0','0','0','0','0','0','0','1','1','1'],id:'0'}}} />;
       }
       //Se for um usuário do tipo Funcionário
       else if (this.state.email == "raulpeixoto") {
-        return <Redirect to="/usuario/:1" />;
+        return <Redirect to={{pathname: "/usuario/" , state: {permission:['0','1','1','1','0','1','1','1','0','0','0'],id:'1'}}} />;
       }
       //Se for um usuário do tipo administrador
       else if (this.state.email == "ricardoporto") {
-        return <Redirect to="/usuario/:2" />;
+        return <Redirect to={{pathname: "/usuario/" , state: {permission:['1','1','1','1','1','0','0','0','0','0','0'],id:'2'}}} />;
       }
       else {
         return <Redirect to="/login" />;
@@ -79,7 +80,7 @@ export default class Login extends React.Component {
           <Container>
             <div>
               <Paper id="form" elevation={4}>
-                <div><img id="image" roundedCircle src={logo}/></div>
+      <div><img id="image" roundedCircle src={logo}/></div>
                 <div><h1 id="title2" >Login</h1></div>
                 
                 <Form id="info">

@@ -16,7 +16,7 @@ export default class Agendamento extends React.Component {
             date:'',
             number:'',
             obs:'',
-            atrações: [{id:'1',nome:'Exposição 1',tipo:'Astronimia'},{id:'2',nome:'Exposição 2',tipo:'Origem do homem'},{id:'3',nome:'Exposição 3',tipo:'Vida Animal'},{id:'4',nome:'Exposição 4',tipo:'Astronimia'},{id:'5',nome:'Exposição 5',tipo:'Origem do homem'},{id:'6',nome:'Exposição 6',tipo:'Vida animal'},{id:'7',nome:'Exposição 7',tipo:'Astronomia'},{id:'8',nome:'Exposição 8',tipo:'Origem do homem'},{id:'9',nome:'Exposição 9',tipo:'Vida animal'},{id:'10',nome:'Exposição 10',tipo:'Astronomia'},{id:'11',nome:'Exposição 11',tipo:'Origem do homem'},{id:'12',nome:'Exposição 12',tipo:'Vida animal'}],
+            atrações: [{id:'1',name:'Exposição 1',tipo:'Astronimia'},{id:'2',name:'Exposição 2',tipo:'Origem do homem'},{id:'3',name:'Exposição 3',tipo:'Vida Animal'},{id:'4',name:'Exposição 4',tipo:'Astronimia'},{id:'5',name:'Exposição 5',tipo:'Origem do homem'},{id:'6',name:'Exposição 6',tipo:'Vida animal'},{id:'7',name:'Exposição 7',tipo:'Astronomia'},{id:'8',name:'Exposição 8',tipo:'Origem do homem'},{id:'9',name:'Exposição 9',tipo:'Vida animal'},{id:'10',name:'Exposição 10',tipo:'Astronomia'},{id:'11',name:'Exposição 11',tipo:'Origem do homem'},{id:'12',name:'Exposição 12',tipo:'Vida animal'}],
             // atraçõesT: ['0', '0','0','0','0','0','0','0','0','0','0','0']
             atraçõesT: []
         };
@@ -147,8 +147,8 @@ export default class Agendamento extends React.Component {
                                 
                                     <Col id='hy' as={Col}  md="3" key={type.id.toString()} className="mb-3">
                                         <Form.Check  type='checkbox' id={`check-api-radio`} >
-                                            <Form.Check.Input onChange ={this.handleChangeO}  name = {type.id} type='checkbox' isValid />
-                                            <Form.Check.Label>{type.nome}</Form.Check.Label>
+                                            <Form.Check.Input onChange ={this.handleChangeO}  name = {type.name} type='checkbox' isValid />
+                                            <Form.Check.Label>{type.name}</Form.Check.Label>
                                             <Form.Control.Feedback type="valid">{type.tipo}</Form.Control.Feedback>
                                         </Form.Check>
                                     </Col>

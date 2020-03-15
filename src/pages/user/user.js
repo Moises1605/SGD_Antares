@@ -22,8 +22,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
 export default class User extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       screens: [
         <Inicio />,
@@ -35,12 +35,13 @@ export default class User extends React.Component {
         <TelaAgendamentos />,
         null,
         <Calendar />,
-        <ScheduleScholarship idScholarschip = {this.props.match.params.id.toString().substring(1)} />,
+        // <ScheduleScholarship idScholarschip = {this.props.match.params.id.toString().substring(1)} />,
+        <ScheduleScholarship idScholarschip = {this.props.location.state.id} />,
         <FollowVisit />,
-        <Info idScholarship = {this.props.match.params.id.toString().substring(1)} />,
+        <Info idScholarship = {this.props.location.state.id} />,
       ],
-      id: 0,
-      permission: [],
+      id: this.props.location.state.id,
+      permission: this.props.location.state.permission,
       active: null
     };
     this.loadPermission = this.loadPermission.bind(this);
@@ -57,7 +58,7 @@ export default class User extends React.Component {
    async loadPermission(event){
       //const response =  await api.get('/permissoes');
       //this.setState({permission: response.data});
-      await this.setState({id: this.props.match.params.id.toString().substring(1)})
+      //await this.setState({id: this.props.match.params.id.toString().substring(1)})
       console.log(this.state.id );
       //await this.teste;
 
@@ -97,7 +98,8 @@ export default class User extends React.Component {
               <SimpleList
                 screens={this.state.screen}
                 onClick={this.componentDidMount}
-                permission = {this.teste()}
+                // permission = {this.teste()}
+                permission = {this.state.permission}
               />
             </div>
 
