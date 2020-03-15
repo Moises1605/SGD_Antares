@@ -1,11 +1,13 @@
 import React from "react";
-import { Badge, Row, Col, Toast } from "react-bootstrap";
+import { Badge, Row, Col, Toast, Button } from "react-bootstrap";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ptBr from "@fullcalendar/core/locales/pt-br";
+
 import "./Calendar.scss";
 import api from "../../services/api";
+import { green } from "@material-ui/core/colors";
 export default class Calendario extends React.Component {
   constructor() {
     super();
@@ -15,51 +17,18 @@ export default class Calendario extends React.Component {
   }
 
   /**NOTE Método que faz requisição de horários dos bolsistas*/
-  async componentDidMount() {
+  /*async componentDidMount() {
     const h = api.post("/listarHorarioBolsistas");
-    this.setState({ horarios: (await h).data.map(h => h)[0] });
+    console.log((await h).data)
+    this.setState({ horarios: (await h).data.map(h => h) });
     console.log(this.state.horarios);
-  }
+  }*/
   render() {
     return (
       <div>
-        <h2
-          id="titulo_calendario"
-          style={{
-            textAlign: "center"
-          }}
-        >
-          Horários para Agendamentos
-          <h6
-            id="texto_calendario"
-            style={{
-              marginTop: "10px"
-            }}
-          >
-            <i>
-              Horário de funcionamento: seg a sex das 9:00 as 12:00 e 14:00 as
-              17:00
-            </i>
-          </h6>
-        </h2>
-        <hr
-          style={{
-            width: "25%",
-            margin: "auto",
-            backgroundColor: "#d3d3d3"
-          }}
-        ></hr>
-        <hr
-          style={{
-            width: "12.5%",
-            margin: "7px auto 0 auto",
-            backgroundColor: "#dcdcdc"
-          }}
-        ></hr>
         <Row>
-          <Col></Col>
-          <Col md={12}>
-            <div id="calendarBG">
+          <Col md={12} sm={12} className="calendarBG">
+            <div>
               <FullCalendar
                 defaultView="timeGridWeek"
                 displayEventEnd={true}
@@ -75,9 +44,9 @@ export default class Calendario extends React.Component {
                 maxTime="18:00:00"
                 slotDuration="01:00"
                 events={this.state.horarios.map(h => ({
-                  daysOfWeek: [h.dia],
-                  startTime: h.inicioTurno,
-                  endTime: h.fimTurno,
+                  daysOfWeek: [h.semana],
+                  startTime: h.inicioPeriodo,
+                  endTime: h.fimPeriodo,
                   rendering: "background",
                   color: "#39FF14"
                 }))}
@@ -96,7 +65,6 @@ export default class Calendario extends React.Component {
               </h4>
             </div>
           </Col>
-          <Col></Col>
         </Row>
       </div>
     );

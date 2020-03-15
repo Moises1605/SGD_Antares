@@ -550,7 +550,7 @@ export default class FormRegister extends React.Component {
             alert('algo de errado não está certo')
         }
         event.preventDefault();
-        // api.post('/adicionarEscola', this.state)
+         api.post('/adicionarEscola', this.state)
         //     .then(function (response) {
         //         // handle success
         //         this.setState({ redirect: true });

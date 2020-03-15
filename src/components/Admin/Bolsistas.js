@@ -42,9 +42,9 @@ export default class Bolsistas extends React.Component {
   /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
 
   async componentDidMount() {
-    //const b = api.post("/listarBolsistas");
+    const b = api.post("/listarBolsistas");
     //this.setState({ bolsistas: (await b).data.map(b => b) });
-    //console.log(this.state.bolsistas);
+    console.log(this.state.bolsistas);
   }
 
   /**TODO Método para mostrar informação do bolsista */
@@ -137,10 +137,10 @@ export default class Bolsistas extends React.Component {
                 <Table striped bordered hover responsive size="sm">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      {/*<th>#</th>*/}
                       <th>Nome</th>
-                      <th>Telefone</th>
                       <th>Email</th>
+                      <th>Telefone</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -148,11 +148,11 @@ export default class Bolsistas extends React.Component {
                       //manda o id para a função
                       <tr name={b.id} onClick={() => this.handleClick(b.id)} >
                         <td>
-                          <b>{b.id}</b>
+                          <b></b>
                         </td>
-                        <td>{b.name}</td>
-                        <td>{b.phone}</td>
+                        <td>{b.nome}</td>
                         <td>{b.email}</td>
+                        <td>{b.telefone}</td>
                       </tr>
                     ))}
                   </tbody>

@@ -16,15 +16,3 @@
 .fc-today {
   background-color: inherit !important;
 }
-
-#titulo_calendario {
-  @include for-phone-only {
-    font-size: 20px;
-  }
-}
-
-#texto_calendario {
-  @include for-phone-only {
-    font-size: 15px;
-  }
-}

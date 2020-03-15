@@ -37,8 +37,9 @@ export default class User extends React.Component {
         <Calendar />,
         // <ScheduleScholarship idScholarschip = {this.props.match.params.id.toString().substring(1)} />,
         <ScheduleScholarship idScholarschip = {this.props.location.state.id} />,
-        <FollowVisit />,
+        <FollowVisit idScholarschip = {this.props.location.state.id}/>,
         <Info idScholarship = {this.props.location.state.id} />,
+
       ],
       id: this.props.location.state.id,
       permission: this.props.location.state.permission,
