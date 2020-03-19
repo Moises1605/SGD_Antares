@@ -1,11 +1,17 @@
-.navbar{
+/* .navbar{
     height: 10vh;
     width: 100%;
+} */
+
+ 
+
+#NavTitle{
+    color: red;
+    background-color:white;
+    
 }
 
-.navbar-brand, .navbar-nav .nav-link{
-    color: #CCC;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
+
+.Navbar.Brand  {
+    color: white;
 }

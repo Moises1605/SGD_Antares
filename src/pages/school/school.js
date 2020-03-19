@@ -3,7 +3,7 @@ import { Container, Row, Col, Nav } from "react-bootstrap";
 import "./style.css";
 import Calendar from "../../components/Escola/calendar/calendar";
 import LateralBar from "../../components/Escola/list/List";
-import NavBar from "../../components/Admin/NavBar";
+import NavBar from "../../components/Padrao/NavBar/NavBar";
 //import Visit from './visit/agendamento';
 import MySchedulings from "../../components/Escola/MySchedulings/MyScheduling";
 import Inicio from "../../components/Escola/Inicio/inicio";

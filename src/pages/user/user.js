@@ -15,7 +15,7 @@ import Info from "../../components/Scholarship/infoScholarship/infoScholarship";
 import Inicio from "../../components/Scholarship/Inicio/inicio";
 
 import api from '../../services/api'
-import NavBar from "../../components/Admin/NavBar";
+import NavBar from "../../components/Padrao/NavBar/NavBar";
 import SimpleList from "../../components/Padrao/teste/List";
 import "./style.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -37,7 +37,7 @@ export default class User extends React.Component {
         <Calendar />,
         // <ScheduleScholarship idScholarschip = {this.props.match.params.id.toString().substring(1)} />,
         <ScheduleScholarship idScholarschip = {this.props.location.state.id} />,
-        <FollowVisit idScholarschip = {this.props.location.state.id}/>,
+        <FollowVisit idScholarschip = {this.props.location.state.id} />,
         <Info idScholarship = {this.props.location.state.id} />,
 
       ],

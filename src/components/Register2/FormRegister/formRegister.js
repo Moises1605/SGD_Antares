@@ -45,7 +45,10 @@ export default class FormRegister extends React.Component {
             steps: ['Dados da escola', 'Informações sobre a escola', 'Configuração da conta'],
             controlSucess: false,
             currencies: ["Particular", "Pública Estadual", "Pública Municipal"],
-            controlPassword: true
+            controlPassword: true,
+            controlCNPJ: true,
+            controlLength:true,
+            controlPhone:true
         };
 
         //Funções responsáveis por atualizar os estados das informções.
@@ -107,42 +110,102 @@ export default class FormRegister extends React.Component {
     }
 
     handleChangeLogin(event) {
+        if(event.target.value.length < 30){
+            this.setState({controlLength:true});
+        }
+        else{
+            this.setState({controlLength:false});
+        }
         this.setState({ login: event.target.value });
     }
 
     handleChangeSchoolName(event) {
+        if(event.target.value.length <= 2){
+            this.setState({controlLength:true});
+        }
+        else{
+            this.setState({controlLength:false});
+        }
         this.setState({ name: event.target.value });
     }
     handleChangeDistrict(event) {
+        if(event.target.value.length < 30){
+            this.setState({controlLength:true});
+        }
+        else{
+            this.setState({controlLength:false});
+        }
         this.setState({ district: event.target.value });
     }
     handleChangeNumber(event) {
         this.setState({ number: event.target.value });
     }
     handleChangeStreet(event) {
+        if(event.target.value.length < 30){
+            this.setState({controlLength:true});
+        }
+        else{
+            this.setState({controlLength:false});
+        }
         this.setState({ street: event.target.value });
     }
     handleChangeCity(event) {
+        if(event.target.value.length < 30){
+            this.setState({controlLength:true});
+        }
+        else{
+            this.setState({controlLength:false});
+        }
         this.setState({ city: event.target.value });
     }
 
     handleChangeState(event) {
+        if(event.target.value.length < 30){
+            this.setState({controlLength:true});
+        }
+        else{
+            this.setState({controlLength:false});
+        }
         this.setState({ state: event.target.value });
     }
 
     handleChangeCNPJ(event) {
+        if(event.target.value.length >14 || event.target.value.length<14){
+            this.setState({controlCNPJ:false});
+        }
+        else{
+            this.setState({controlCNPJ:true});
+        }
         this.setState({ CNPJ: event.target.value });
     }
 
     handleChangePhone(event) {
+        if(event.target.value.length >8 || event.target.value.length<8){
+            this.setState({controlPhone:false});
+        }
+        else{
+            this.setState({controlPhone:true});
+        }
         this.setState({ phone: event.target.value });
     }
 
     handleChangeDirectorName(event) {
+        if(event.target.value.length < 30){
+            this.setState({controlLength:true});
+        }
+        else{
+            this.setState({controlLength:false});
+        }
         this.setState({ respName: event.target.value });
     }
 
     handleChangeDirectorSurname(event) {
+        if(event.target.value.length < 30){
+            this.setState({controlLength:true});
+        }
+        else{
+            this.setState({controlLength:false});
+        }
         this.setState({ respSurname: event.target.value });
     }
 
@@ -172,7 +235,7 @@ export default class FormRegister extends React.Component {
                 return (
                     <Form onSubmit={this.handleNext}>
                         <Form.Row>
-                            <Form.Group as={Col} md="5" controlId="formGridNameSchool">
+                            <Form.Group  maxlength="5"  as={Col} md="5" controlId="formGridNameSchool">
                                 <div noValidate autoComplete="off">
                                     <TextField
                                         fullWidth={true}
@@ -184,6 +247,8 @@ export default class FormRegister extends React.Component {
                                         onChange={this.handleChangeSchoolName}
                                         required
                                         type="text"
+                                        error = {this.state.name.length > 30}
+                                        helperText={(this.state.name.length < 30) == true? ' ' : 'Máximo de 30 Caracteres'}
                                     />
                                 </div>
                             </Form.Group>
@@ -199,6 +264,9 @@ export default class FormRegister extends React.Component {
                                         onChange={this.handleChangeStreet}
                                         required
                                         type="text"
+                                        maxlength="5"
+                                        error = {this.state.street.length > 30}
+                                        helperText={(this.state.street.length < 30) == true? ' ' : 'Máximo de 30 Caracteres'}
                                     />
                                 </div>
                             </Form.Group>
@@ -213,7 +281,9 @@ export default class FormRegister extends React.Component {
                                         value={this.state.number}
                                         onChange={this.handleChangeNumber}
                                         required
-                                        type="text"
+                                        type="number"
+                                        max = '9999'
+                                        
                                     />
                                 </div>
                             </Form.Group>
@@ -235,6 +305,9 @@ export default class FormRegister extends React.Component {
                                         onChange={this.handleChangeDistrict}
                                         required
                                         type="text"
+                                        maxlength="5"
+                                        error = {this.state.district.length > 30}
+                                        helperText={(this.state.district.length < 30) == true? ' ' : 'Máximo de 30 Caracteres'}
                                     />
                                 </div>
                             </Form.Group>
@@ -251,6 +324,9 @@ export default class FormRegister extends React.Component {
                                         onChange={this.handleChangeCity}
                                         required
                                         type="text"
+                                        maxlength="5"
+                                        error = {this.state.city.length > 30}
+                                        helperText={(this.state.city.length < 30) == true? ' ' : 'Máximo de 30 Caracteres'}
                                     />
                                 </div>
                             </Form.Group>
@@ -267,6 +343,9 @@ export default class FormRegister extends React.Component {
                                         onChange={this.handleChangeState}
                                         required
                                         type="text"
+                                        maxlength="5"
+                                        error = {this.state.state.length > 30}
+                                        helperText={(this.state.state.length < 30) == true? ' ' : 'Máximo de 30 Caracteres'}
                                     />
                                 </div>
                             </Form.Group>
@@ -278,6 +357,7 @@ export default class FormRegister extends React.Component {
                             <Form.Group as={Col} md="3" controlId="formGridCNPJ">
                                 <div noValidate autoComplete="off">
                                     <TextField
+                                        error = {!this.state.controlCNPJ}
                                         fullWidth={true}
                                         id="outlined-basic"
                                         label="CNPJ"
@@ -287,6 +367,7 @@ export default class FormRegister extends React.Component {
                                         onChange={this.handleChangeCNPJ}
                                         required
                                         type="number"
+                                        helperText={this.state.controlCNPJ == true? ' ' : 'CNPJ inválido'}
                                     />
                                 </div>
                             </Form.Group>
@@ -303,14 +384,15 @@ export default class FormRegister extends React.Component {
                                         onChange={this.handleChangePhone}
                                         required
                                         type="number"
+                                        max =  '99999999'
+                                        error = {!this.state.controlPhone}
+                                        helperText={this.state.controlPhone == true? ' ' : 'CNPJ inválido'}
                                     />
                                 </div>
                             </Form.Group>
 
                         </Form.Row>
-                        <Form.Row>
-                            <Form.Group as={Col} md='3'></Form.Group>
-                        </Form.Row>
+                        
                         <Link to='/login'><Button
 
                             onClick={this.handleBack}
@@ -319,7 +401,7 @@ export default class FormRegister extends React.Component {
                         >
                             Voltar
                         </Button></Link>
-                        <Button variant="primary" type='submit'>
+                        <Button variant="primary" disabled = {!(this.state.controlCNPJ && this.state.controlLength && this.state.controlPhone)} type='submit'>
                             {this.state.activeStep === this.state.steps.length - 1 ? 'Cadastrar' : 'Próximo'}
                         </Button>
                     </Form>

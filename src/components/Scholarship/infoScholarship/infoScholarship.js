@@ -3,8 +3,8 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import api from "../../../services/api";
 import './style.css'
 export default class info extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       IDScholarship: this.props.idScholarship,
       login: "", //login
