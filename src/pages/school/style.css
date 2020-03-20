@@ -12,11 +12,12 @@
     width: 70vw;
     float: right;
     Overflow-Y: true;
+    padding: 30px 0 0 0 ;
 } 
 
 #leftSchool{
     width: 15vw;
-    height: 123vh;
+    height: 127vh;
     float: left;
     background-color: #eee;
     
