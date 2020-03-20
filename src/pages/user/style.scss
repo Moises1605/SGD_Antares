@@ -1,0 +1,77 @@
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+* {
+  margin: 0 0;
+  padding: 0 0;
+}
+a {
+  outline: none;
+}
+
+#div_sidebar {
+  width: 15vw;
+  height: 100vh;
+  float: left;
+  background-color: white !important;
+  @include for-phone-only {
+    width: auto;
+  }
+}
+
+body {
+  background-image: url(../../assets/contato.png);
+  background-size: cover;
+  background-position: center;
+  @include for-phone-only {
+    background-size: auto;
+  }
+}
+
+#div_screen {
+  margin: 100px 75px;
+  height: 50vh;
+  width: 70vw;
+  float: right;
+  padding: 30px 0 0 0;
+  /* overflow: auto; */
+  @include for-phone-only {
+    width: 80vw;
+    height: 60vh;
+    margin: 0;
+  }
+}
+
+.MuiPaper-root {
+  flex-wrap: wrap;
+  width: 70vw;
+  height: 70vh;
+  @include for-phone-only {
+    float: right;
+    height: 100vh;
+    width: 80vw;
+  }
+}

@@ -2,7 +2,6 @@ import React from "react";
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import "./NavBar.scss";
 import { configureAnchors } from "react-scrollable-anchor";
-import { removeHash } from "react-scrollable-anchor";
 import logo from "../../assets/logoV2.png";
 
 configureAnchors({

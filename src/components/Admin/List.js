@@ -15,11 +15,11 @@ import SchoolIcon from "@material-ui/icons/School";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import BackupIcon from "@material-ui/icons/Backup";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Divider from "@material-ui/core/Divider";
 import { Row } from "react-bootstrap";
 import "./List.css";
 
 class SimpleList extends Component {
-
   handleClick = teste => {
     this.setState({ screen: teste });
   };
@@ -31,6 +31,7 @@ class SimpleList extends Component {
           <Row>
             <div style={{ height: "150px" }}></div>
           </Row>
+          <Divider />
           <List component="nav" aria-label="main mailbox folders">
             <ListItem
               button
@@ -43,29 +44,29 @@ class SimpleList extends Component {
               <ListItemText primary="Relátorios" />
             </ListItem>
             <ListItem button onClick={() => this.props.onClick("1")}>
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Gerir Funcionários" />
-              </ListItem>
-            <ListItem button onClick={() => this.props.onClick("2")}>
-                  <ListItemIcon>
-                    <SchoolIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Gerir Bolsistas" />
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Gerir Funcionários" />
             </ListItem>
-                <ListItem button onClick={() => this.props.onClick("3")}>
-                  <ListItemIcon>
-                    <ImportContactsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Gerir Escolas" />
+            <ListItem button onClick={() => this.props.onClick("2")}>
+              <ListItemIcon>
+                <SchoolIcon />
+              </ListItemIcon>
+              <ListItemText primary="Gerir Bolsistas" />
+            </ListItem>
+            <ListItem button onClick={() => this.props.onClick("3")}>
+              <ListItemIcon>
+                <ImportContactsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Gerir Escolas" />
             </ListItem>
             <ListItem button onClick={() => this.props.onClick("4")}>
-                  <ListItemIcon>
-                    <BackupIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Realizar Backup" />
-                </ListItem>
+              <ListItemIcon>
+                <BackupIcon />
+              </ListItemIcon>
+              <ListItemText primary="Realizar Backup" />
+            </ListItem>
             <ListItem button>
               <ListItemIcon>
                 <ExitToAppIcon />

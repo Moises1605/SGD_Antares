@@ -10,7 +10,6 @@ a {
   width: 15vw;
   height: 100vh;
   float: left;
-  background-color: #eee;
 }
 
 #div_screen {
@@ -24,4 +23,9 @@ a {
   flex-wrap: wrap;
   width: 70vw;
   height: 70vh;
+}
+
+body {
+  background-image: url(../../assets/contato.png);
+  background-size: cover;
 }

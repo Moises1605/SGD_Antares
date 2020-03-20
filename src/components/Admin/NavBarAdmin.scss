@@ -24,18 +24,16 @@
   }
 }
 
-#navbar_padrao {
+#navbar_admin {
+  background-color: white !important;
   height: auto;
-  /*width: 100vw*/
-  width: auto;
-  /*background-color: white !important;*/
-  @include for-phone-only {
-    height: auto;
-  }
+  width: 100vw;
+
+  opacity: 0.95;
 }
 
 .navbar-brand,
-#navbar_padrao .navbar-nav .nav-link {
+#navbar_admin .navbar-nav .nav-link {
   color: black !important;
   font-size: 20px;
   font-weight: 400;
@@ -46,25 +44,18 @@
 }
 
 .navbar-brand:hover,
-#navbar_padrao .navbar-nav:hover .nav-link:hover {
+#navbar_admin .navbar-nav:hover .nav-link:hover {
   color: #007bff !important;
 }
 
-#logo_padrao {
-  width: 140px;
-  margin-left: 18px;
+#logo {
+  width: 90px;
   @include for-phone-only {
-    width: 65px;
+    width: 50px;
   }
 }
-#titulo_padrao {
+#titulo {
   @include for-phone-only {
-    font-size: 15px;
-  }
-}
-
-.dropnav {
-  @include for-phone-only {
-    font-size: 12px !important;
+    font-size: 12px;
   }
 }
