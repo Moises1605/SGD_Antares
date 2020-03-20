@@ -84,7 +84,7 @@ class Welcome extends Component {
                   <Col md={12}>
                     <h5>Individual</h5>
                     <h6>
-                      O agendamento individual pode ser realizada por uma ou um
+                      O agendamento individual pode ser realizado por uma ou um
                       grupo de pessoas. <br />
                       Durante o período{" "}
                       <span style={{ color: "red" }}>

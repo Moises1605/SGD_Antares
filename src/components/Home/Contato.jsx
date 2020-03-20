@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import { Form, Col, Button, Container } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import "./contato.scss";
 
 class Contact extends Component {
@@ -70,28 +69,18 @@ class Contact extends Component {
               }}
             >
               <Col md={6} sm={12}>
-                {/*<Form.Group controlId="Name">
-                  <Form.Control type="text" placeholder="Nome completo" />
-                </Form.Group>
-                <Form.Group controlId="Email">
-                  <Form.Control type="email" placeholder="Email" />
-                </Form.Group>
-                <Form.Group controlId="Assunto">
-                  <Form.Control type="text" placeholder="Assunto" />
-            </Form.Group>*/}
                 <Form.Group>
                   <div noValidate autoComplete="off">
                     <TextField
                       fullWidth="true"
-                      id="outlined-basic"
+                      id="contato_name"
                       label="Nome Completo"
                       variant="outlined"
                       size="small"
                       required
-                      type="char"
-                      error={this.state.name.length > 30}
+                      type="text"
                       onChange={this.handleChangeName}
-                    />
+                    ></TextField>
                   </div>
                 </Form.Group>
                 <Form.Group>

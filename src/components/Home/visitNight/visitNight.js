@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Form, Modal, Container, Col, Row } from "react-bootstrap";
 //import api from "../../services/api"
-//import "./style.css";
+import "./style.css";
+import TextField from "@material-ui/core/TextField";
 import Climate from "./climate/climate";
 import api from "../../../services/api";
 
@@ -12,7 +13,8 @@ export default class VisitNight extends React.Component {
       control: false,
       students: "",
       date: "",
-      email: ""
+      email: "",
+      disable: true
     };
     this.setControl = this.setControl.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -36,6 +38,16 @@ export default class VisitNight extends React.Component {
     this.setState({ date: event.target.value });
   }
 
+  handleSubmit = async event => {
+    console.log(this.state.students);
+    console.log(this.state.email);
+    console.log(this.state.date);
+  };
+
+  disableButton = () => {
+    return this.state.students > 20 ? true : false;
+  };
+
   send(event) {
     //envia os dados para o banco
     //const response = await api.get("/visitaNoturna", this.state);
@@ -44,7 +56,7 @@ export default class VisitNight extends React.Component {
   render() {
     return (
       <div>
-        {/*Botão que aciona o modal para o agendamento norturno */}
+        {/*Botão que aciona o modal para o agendamento noturno */}
 
         <Button
           id="teste2"
@@ -68,21 +80,32 @@ export default class VisitNight extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <div id="leftSide">
-              <Form>
+              <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="formBasicNumber">
                   <Form.Label>
                     <h6>Informe o número de visitantes</h6>
                   </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder=""
-                    id="ccf"
-                    value={this.state.students}
-                    onChange={this.handleChangeStudents}
-                  />
+                  <div noValidate autoComplete="off">
+                    <TextField
+                      fullWidth="true"
+                      label="N° Visitantes"
+                      variant="outlined"
+                      size="small"
+                      required
+                      type="number"
+                      error={this.state.students > 20}
+                      helperText={
+                        this.state.students > 20 == true
+                          ? "Máximo de 20 Pessoas"
+                          : " "
+                      }
+                      onChange={this.handleChangeStudents}
+                    ></TextField>
+                  </div>
+
                   <Form.Text className="text-muted">
                     *informe quantas pessoas irão acompanhar você nessa
-                    visita(Ex: 1,2...)
+                    visita(Max: 20 pessoas)
                   </Form.Text>
                 </Form.Group>
 
@@ -90,41 +113,53 @@ export default class VisitNight extends React.Component {
                   <Form.Label>
                     <h6>Dia da visita</h6>
                   </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="DD/MM/AAAA"
-                    value={this.state.date}
-                    onChange={this.handleChangeDate}
-                  />
-                  <Form.Text className="text-muted">
-                    *Coloque a data no formato indicado
-                  </Form.Text>
+                  <div Validate autoComplete="off">
+                    <TextField
+                      fullWidth="true"
+                      variant="outlined"
+                      size="small"
+                      required
+                      type="date"
+                      onChange={this.handleChangeStudents}
+                      max="2100-12-30"
+                      min="2020-03-20"
+                    ></TextField>
+                  </div>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>
                     <h6>
                       Informe o seu email, para atualizar as informações da sua
-                      visita
+                      visita.
                     </h6>
                   </Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Email"
-                    value={this.state.email}
-                    onChange={this.handleChangeEmail}
-                  />
+                  <div noValidate autoComplete="off">
+                    <TextField
+                      fullWidth="true"
+                      label="Email"
+                      variant="outlined"
+                      size="small"
+                      required
+                      type="email"
+                      onChange={this.handleChangeStudents}
+                    ></TextField>
+                  </div>
                 </Form.Group>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  onClick={() => this.setState({ control: false })}
-                >
-                  Agendar visita
-                </Button>
-                <br />
-                {/*Componente responsável por avisar ao usuário sobre as condições climaticas */}
-                <Climate />
+                <Form.Row>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    //onClick={() => this.setState({ control: false })}
+                    type="submit"
+                    disabled={this.disableButton}
+                  >
+                    Agendar visita
+                  </Button>
+                  <br />
+                  {/*Componente responsável por avisar ao usuário sobre as condições climaticas */}
+                  <Climate />
+                </Form.Row>
               </Form>
             </div>
             {/*Só para manter a formatação */}
