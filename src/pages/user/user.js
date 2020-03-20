@@ -78,7 +78,7 @@ export default class User extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="div_user">
         <Container
           fluid
           style={{

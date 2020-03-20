@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Modal, Container, Col, Row } from "react-bootstrap";
 //import api from "../../services/api"
-import "./style.css";
+//import "./style.css";
 import Climate from "./climate/climate";
 import api from "../../../services/api";
 
@@ -49,30 +49,30 @@ export default class VisitNight extends React.Component {
         <Button
           id="teste2"
           size="md"
-          variant="success"
+          variant="primary"
           className="mr-2"
           onClick={this.setControl}
+          block
         >
           {" "}
           <b>Agendamento Noturno</b>
         </Button>
 
         <Modal
-          size="lg"
           show={this.state.control}
           onHide={() => this.setState({ control: false })}
           aria-labelledby="example-modal-sizes-title-lg"
         >
-          <Modal.Header closeButton id="header">
-            <Modal.Title id="example-modal-sizes-title-lg">
-              Agendamento Noturno
-            </Modal.Title>
+          <Modal.Header closeButton>
+            <Modal.Title>Agendamento Noturno</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div id="leftSide">
               <Form>
                 <Form.Group controlId="formBasicNumber">
-                  <Form.Label>Informe o número de visitantes</Form.Label>
+                  <Form.Label>
+                    <h6>Informe o número de visitantes</h6>
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     placeholder=""
@@ -87,7 +87,9 @@ export default class VisitNight extends React.Component {
                 </Form.Group>
 
                 <Form.Group controlId="formBasicDay">
-                  <Form.Label>Dia da visita</Form.Label>
+                  <Form.Label>
+                    <h6>Dia da visita</h6>
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="DD/MM/AAAA"
@@ -101,8 +103,10 @@ export default class VisitNight extends React.Component {
 
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>
-                    Informe o seu email, para atualizar as informações da sua
-                    visita
+                    <h6>
+                      Informe o seu email, para atualizar as informações da sua
+                      visita
+                    </h6>
                   </Form.Label>
                   <Form.Control
                     type="email"
@@ -111,9 +115,14 @@ export default class VisitNight extends React.Component {
                     onChange={this.handleChangeEmail}
                   />
                 </Form.Group>
-                <Button variant="primary" onClick={this.send}>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => this.setState({ control: false })}
+                >
                   Agendar visita
                 </Button>
+                <br />
                 {/*Componente responsável por avisar ao usuário sobre as condições climaticas */}
                 <Climate />
               </Form>
