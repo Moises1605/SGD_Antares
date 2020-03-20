@@ -49,6 +49,9 @@ body {
   background-image: url(../../assets/contato.png);
   background-size: cover;
   background-position: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   @include for-phone-only {
     background-size: auto;
   }

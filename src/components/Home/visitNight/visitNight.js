@@ -152,7 +152,7 @@ export default class VisitNight extends React.Component {
                     size="sm"
                     //onClick={() => this.setState({ control: false })}
                     type="submit"
-                    disabled={this.disableButton}
+                    disabled={this.disableButton()}
                   >
                     Agendar visita
                   </Button>
