@@ -14,11 +14,16 @@ class Welcome extends Component {
   constructor() {
     super();
     this.state = {
-      control: false
+      Agendamento: false,
+      controlNoturno: false,
+      teste: true
     };
+    this.setControlNoturno = this.setControlNoturno.bind(this)
   }
-  setControl = () => this.setState({ control: true });
-  handleClose = () => this.setState({ control: false });
+  setControlAgendamento = () => this.setState({ Agendamento: true });
+  setControlNoturno(event) {
+    this.setState({ controlNoturno: true });
+  }
   render() {
     return (
       <React.Fragment>
@@ -49,16 +54,17 @@ class Welcome extends Component {
                 variant="primary"
                 block
                 className="mr-2"
-                onClick={this.setControl}
+                onClick={this.setControlAgendamento}
               >
                 Realizar Agendamento
               </Button>
             </Col>
             <Modal
+
               aria-labelledby="contained-modal-title-vcenter"
               centered
-              show={this.state.control}
-              onHide={this.handleClose}
+              show={this.state.Agendamento}
+              onHide={() => this.setState({ Agendamento: false })}
               style={{ textAlign: "justify" }}
             >
               <Modal.Header closeButton>
@@ -99,27 +105,51 @@ class Welcome extends Component {
                       </span>
                       , serão solicitados dados dos visitantes.
                     </h6>
-                    <VisitNight onClick={this.setControl} />
+                    <Button
+                      id="teste2"
+                      size="md"
+                      variant="primary"
+                      className="mr-2"
+                      onClick={this.setControlNoturno}
+                      block
+                    >
+                      {" "}
+                      <b>Agendamento Noturno</b>
+                    </Button>
+
+                    <Modal
+                      show={this.state.controlNoturno}
+                      onHide={() => this.setState({controlNoturno: false})}
+                      aria-labelledby="example-modal-sizes-title-lg"
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title>Agendamento Noturno</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                          <VisitNight/>
+                      </Modal.Body>
+                    </Modal>
+                      
                   </Col>
                 </Row>
               </Modal.Body>
             </Modal>
-            <Col md={4} xs={2}></Col>
+              <Col md={4} xs={2}></Col>
           </Row>
 
-          <h6
-            style={{
-              marginTop: "15px"
-            }}
-          >
-            <i>
-              <u>
-                O atendimento é gratuito. Não cobramos qualquer taxa pela
-                visitação.
+            <h6
+              style={{
+                marginTop: "15px"
+              }}
+            >
+              <i>
+                <u>
+                  O atendimento é gratuito. Não cobramos qualquer taxa pela
+                  visitação.
               </u>
-            </i>
-          </h6>
-          {/* <Button  variant="outline-success" className="mr-2">Agendamento Noturno</Button> */}
+              </i>
+            </h6>
+            {/* <Button  variant="outline-success" className="mr-2">Agendamento Noturno</Button> */}
         </Container>
       </React.Fragment>
     );

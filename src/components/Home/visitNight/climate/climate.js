@@ -12,10 +12,14 @@ import "./style.css";
 export default class Climate extends React.Component {
   render() {
     return (
+      <div>
+      <br></br>
+      <br></br>
       <ButtonToolbar>
-        <p id="alert">
-          <h6>Cuidado com as condições climaticas.</h6>
-        </p>
+        
+        {/* <p id="alert"> */}
+          <h6 id="alert">Cuidado com as condições climaticas.</h6>
+        {/* </p> */}
         <OverlayTrigger
           trigger="click"
           key="top"
@@ -36,6 +40,7 @@ export default class Climate extends React.Component {
           </Button>
         </OverlayTrigger>
       </ButtonToolbar>
+      </div>
     );
   }
 }

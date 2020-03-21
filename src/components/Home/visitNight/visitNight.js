@@ -10,20 +10,15 @@ export default class VisitNight extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      control: false,
       students: "",
       date: "",
       email: "",
-      disable: true
+      disable: true,
     };
-    this.setControl = this.setControl.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangeStudents = this.handleChangeStudents.bind(this);
     this.send = this.send.bind(this);
-  }
-  setControl(event) {
-    this.setState({ control: true });
   }
 
   handleChangeEmail(event) {
@@ -42,6 +37,7 @@ export default class VisitNight extends React.Component {
     console.log(this.state.students);
     console.log(this.state.email);
     console.log(this.state.date);
+    event.preventDefault();
   };
 
   disableButton = () => {
@@ -56,31 +52,8 @@ export default class VisitNight extends React.Component {
   render() {
     return (
       <div>
-        {/*Botão que aciona o modal para o agendamento noturno */}
-
-        <Button
-          id="teste2"
-          size="md"
-          variant="primary"
-          className="mr-2"
-          onClick={this.setControl}
-          block
-        >
-          {" "}
-          <b>Agendamento Noturno</b>
-        </Button>
-
-        <Modal
-          show={this.state.control}
-          onHide={() => this.setState({ control: false })}
-          aria-labelledby="example-modal-sizes-title-lg"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Agendamento Noturno</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
             <div id="leftSide">
-              <Form onSubmit={this.handleSubmit}>
+              <Form onSubmit={this.send}>
                 <Form.Group controlId="formBasicNumber">
                   <Form.Label>
                     <h6>Informe o número de visitantes</h6>
@@ -120,7 +93,7 @@ export default class VisitNight extends React.Component {
                       size="small"
                       required
                       type="date"
-                      onChange={this.handleChangeStudents}
+                      onChange={this.handleChangeDate}
                       max="2100-12-30"
                       min="2020-03-20"
                     ></TextField>
@@ -142,30 +115,28 @@ export default class VisitNight extends React.Component {
                       size="small"
                       required
                       type="email"
-                      onChange={this.handleChangeStudents}
+                      onChange={this.handleChangeEmail}
                     ></TextField>
                   </div>
-                </Form.Group>
+                </Form.Group>                  
                 <Form.Row>
                   <Button
                     variant="primary"
                     size="sm"
-                    //onClick={() => this.setState({ control: false })}
                     type="submit"
                     disabled={this.disableButton()}
                   >
                     Agendar visita
                   </Button>
-                  <br />
                   {/*Componente responsável por avisar ao usuário sobre as condições climaticas */}
+                  
                   <Climate />
                 </Form.Row>
+                
               </Form>
             </div>
-            {/*Só para manter a formatação */}
+            {/*Só para manter a formatação */}          
             <div id="rightSide"></div>
-          </Modal.Body>
-        </Modal>
       </div>
     );
   }
