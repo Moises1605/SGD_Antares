@@ -6,7 +6,7 @@
 #titleScheduling{
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
-    color: #575d80;
+    color: white;
 }
 
 #head{
@@ -15,17 +15,8 @@
 
 #item{
     margin: 10px auto 10px auto;
-    width: 800px;
+    width: 900px;
 }
-
-#list{
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
-    padding: 20px;
-    
-}
-
 
 #test{
     margin: 0 10px 0 0;
@@ -55,4 +46,10 @@
 #responsavel{
     font-size: 20px;
     margin: 0 0 0 10px; 
-}
+} 
+
+/* css do modal */ 
+/* #modal{
+    width: 500px;
+   
+} */

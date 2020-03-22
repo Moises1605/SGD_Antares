@@ -22,6 +22,8 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import {Link} from 'react-router-dom'
 import { Row } from "react-bootstrap";
 import "./List.css";
+import logo from "../../../assets/logoV2.png";
+import Divider from "@material-ui/core/Divider";
 
 class SimpleList extends Component {
   handleClick = teste => {
@@ -31,10 +33,18 @@ class SimpleList extends Component {
   render() {
     return (
       <div id="div_side">
-        <div id="side_content">
+        {/* <div id="side_content">
           <Row>
             <div style={{ height: "150px" }}></div>
-          </Row>
+          </Row> */}
+        <div id="side_content">
+          <img
+            alt=""
+            id="logo_list"
+            src={logo}
+            className="d-inline-block align-top"
+          />
+          <Divider />
           <List component="nav" aria-label="main mailbox folders">
             <ListItem
               button

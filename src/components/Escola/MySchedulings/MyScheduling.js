@@ -8,12 +8,17 @@ export default class MyScheduling extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      schedulings: [{ data: "25/02", Responsável: "Ana", horario: "09:30" }, { data: "20/02", Responsável: "Samuel", horario: "11:30" }, { data: "25/09", Responsável: "Alice", horario: "15:30" }],
+      schedulings: [{ agendamento: "25/02", Responsável: "Ana", horario: "09:30", status: '0',numAlunos: '40' }, { agendamento: "20/02", Responsável: "Samuel", horario: "11:30", status: '1',numAlunos: '40' }, { agendamento: "25/09", Responsável: "Alice", horario: "15:30", status: '2',numAlunos: '40' }, { agendamento: "25/02", Responsável: "Ana", horario: "09:30", status: '0',numAlunos: '40' }],
       idSchooll: this.props.idSchool,
       controle: false,
-      current: {}
+      controlCancel:false,
+      current: {},
+      status: ['warning', 'success', 'secondary'],
+      legends: ['Análise', 'confirmado', 'feito']
     };
     this.setControl = this.setControl.bind(this);
+    this.setControlCancel = this.setControlCancel.bind(this);
+    this.cancelScheduling = this.cancelScheduling.bind(this);
   }
 
   componentDidMount() {
@@ -22,9 +27,17 @@ export default class MyScheduling extends React.Component {
     //this.setState({schedulings: Response.data});
   }
 
-  cancelScheduling(id) {
+  cancelScheduling() {
     //cancela uma visita
     //api.get("/cancelarvisita", this.state.id);
+    this.setState({controlCancel: false});
+  }
+
+  setControlCancel(event){
+    console.log(event.target.name);
+    var teste = event.target.name;
+    this.setState({ current: this.state.schedulings[teste] })
+    this.setState({ controlCancel: true })
   }
 
   setControl(event) {
@@ -38,8 +51,9 @@ export default class MyScheduling extends React.Component {
     return (
       <div>
         <Modal
-          size="lg"
+
           show={this.state.controle}
+          centered
           onHide={() => this.setState({ controle: false })}
           aria-labelledby="example-modal-sizes-title-lg"
           id='modal'
@@ -63,9 +77,9 @@ export default class MyScheduling extends React.Component {
               <Form.Group as={Row} controlId="formHorizontalStudent">
                 <Form.Label column sm={3}>
                   Quantidade de alunos
-                            </Form.Label>
+                </Form.Label>
                 <Col sm={3}>
-                  {/* <Form.Control type="text" placeholder="Max: 40" value={this.state.students} /> */}
+                  <Form.Control type="text" placeholder="Max: 40"  value={this.state.current.numAlunos} />
                 </Col>
               </Form.Group>
 
@@ -77,22 +91,35 @@ export default class MyScheduling extends React.Component {
                   <Form.Control Type="text" value={this.state.current.horario} />
                 </Col>
               </Form.Group>
-
-              <Form.Group as={Row} controlId="formHorizontalSerie">
-                <Form.Label column sm={3}>
-                  Série(Ano)
-                </Form.Label>
-                <Col sm={2}>
-                  {/* <Form.Control type="text" placeholder=" " value={this.state.number} /> */}
-                </Col>
-              </Form.Group>
             </Form>
             <span>
               Status:
-              <Alert variant="success">
-                Confirmado
+              <Alert variant={this.state.status[this.state.current.status]}>
+                {this.state.legends[this.state.current.status]}
               </Alert>
             </span>
+          </Modal.Body>
+        </Modal>
+        <Modal
+          show={this.state.controlCancel}
+          
+          onHide={() => this.setState({ controlCancel: false })}
+          aria-labelledby="example-modal-sizes-title-lg"
+          id='modal'
+        >
+          <Modal.Header closeButton id='header'>
+            <Modal.Title id="example-modal-sizes-title-lg">
+              Tem certeza que deseja cancelar a visita?
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Button
+              variant="outline-danger"
+              id="cancel2"
+              onClick={this.cancelScheduling}
+            >
+              Cancelar visita
+                    </Button>
           </Modal.Body>
         </Modal>
         <div id="head">
@@ -133,7 +160,7 @@ export default class MyScheduling extends React.Component {
                     <Button
                       variant="outline-primary"
                       id="view"
-                      name = {this.state.schedulings.indexOf(item)}
+                      name={this.state.schedulings.indexOf(item)}
                       onClick={this.setControl}
                     >
                       Visualizar
@@ -142,7 +169,8 @@ export default class MyScheduling extends React.Component {
                     <Button
                       variant="outline-danger"
                       id="cancel2"
-                      onClick={this.cancelScheduling(item)}
+                      name={this.state.schedulings.indexOf(item)}
+                      onClick={this.setControlCancel}
                     >
                       Cancelar visita
                     </Button>

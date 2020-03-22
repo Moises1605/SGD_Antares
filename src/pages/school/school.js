@@ -33,7 +33,7 @@ export default class School extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div id = 'schoolUser'>
         <Container
           fluid
           style={{
@@ -42,9 +42,10 @@ export default class School extends React.Component {
         >
           <Row>
             <Col md={12}>
-              <NavBar />
+              {/* <NavBar /> */}
             </Col>
           </Row>
+          <Row></Row>
           <div id="div_sidearea">
             <div id="leftSchool">
               <LateralBar

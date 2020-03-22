@@ -24,6 +24,7 @@ import AlarmIcon from "@material-ui/icons/Alarm";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Row } from "react-bootstrap";
 import "./List.scss";
+import {Link} from 'react-router-dom'
 
 class SimpleList extends Component {
   constructor(props) {
@@ -152,12 +153,12 @@ class SimpleList extends Component {
                 <ListItemText primary="Editar dados" />
               </ListItem>
             )}
-            <ListItem button>
+            <Link to = '/login'><ListItem button>
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
               <ListItemText primary="Encerrar Sessão" />
-            </ListItem>
+            </ListItem></Link>
           </List>
         </div>
       </div>
