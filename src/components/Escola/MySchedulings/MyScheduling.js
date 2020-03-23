@@ -14,11 +14,27 @@ export default class MyScheduling extends React.Component {
       controlCancel:false,
       current: {},
       status: ['warning', 'success', 'secondary'],
-      legends: ['Análise', 'confirmado', 'feito']
+      legends: ['Análise', 'confirmado', 'feito'],
+      search:'',
+      resultSearch:[],
+      controlSearch: "false"
     };
     this.setControl = this.setControl.bind(this);
     this.setControlCancel = this.setControlCancel.bind(this);
     this.cancelScheduling = this.cancelScheduling.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.searchScheduling = this.searchScheduling.bind(this);
+    this.att = this.att.bind(this);
+  }
+
+  searchScheduling(date){
+      return (date.agendamento == this.state.search)
+  }
+
+  async att(){
+      var aux = await this.state.schedulings.filter(this.searchScheduling);
+      this.setState({resultSearch: aux});
+      this.setState({controlSearch:true});
   }
 
   componentDidMount() {
@@ -45,6 +61,14 @@ export default class MyScheduling extends React.Component {
     var teste = event.target.name;
     this.setState({ current: this.state.schedulings[teste] })
     this.setState({ controle: true })
+  }
+
+  handleChange(event){
+    var aux2 = event.target.value;
+      this.setState({search: event.target.value});
+      if(aux2.length == 0){
+          this.setState({controlSearch: false});
+      }
   }
 
   render() {
@@ -135,14 +159,14 @@ export default class MyScheduling extends React.Component {
                   onChange={this.handleChange}
                 />
                 <InputGroup.Prepend>
-                  <Button variant="outline-secondary">&#128269;</Button>
+                  <Button onClick = {this.att} variant="outline-secondary">&#128269;</Button>
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>
           </Row>
         </div>
         <div id="list">
-          {this.state.schedulings.map(item => (
+          {(this.state.controlSearch == true ? this.state.resultSearch : this.state.schedulings).map(item => (
             // {this.state.days.indexOf(item).toString()}
             <Card id='item' >
               <Card.Body>
