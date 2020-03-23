@@ -15,23 +15,23 @@ export default class MyScheduling extends React.Component {
       current: {},
       status: ['warning', 'success', 'secondary'],
       legends: ['Análise', 'confirmado', 'feito'],
-      search:'',
-      resultSearch:[],
-      controlSearch: "false"
+      search:'', //o que o usuario digita para pesquisa
+      resultSearch:[], // resultado da pesquisa
+      controlSearch: "false" //se o usuário digitou alguma coisa para pesquisa
     };
     this.setControl = this.setControl.bind(this);
     this.setControlCancel = this.setControlCancel.bind(this);
     this.cancelScheduling = this.cancelScheduling.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.searchScheduling = this.searchScheduling.bind(this);
-    this.att = this.att.bind(this);
+    this.filterDates = this.filterDates.bind(this);
   }
 
   searchScheduling(date){
-      return (date.agendamento == this.state.search)
+      return (date.agendamento == this.state.search);
   }
 
-  async att(){
+  async filterDates(){
       var aux = await this.state.schedulings.filter(this.searchScheduling);
       this.setState({resultSearch: aux});
       this.setState({controlSearch:true});
@@ -143,7 +143,7 @@ export default class MyScheduling extends React.Component {
               onClick={this.cancelScheduling}
             >
               Cancelar visita
-                    </Button>
+            </Button>
           </Modal.Body>
         </Modal>
         <div id="head">
@@ -154,12 +154,12 @@ export default class MyScheduling extends React.Component {
             <Col>
               <InputGroup>
                 <FormControl
-                  placeholder="Digite a data da visita..."
+                  placeholder="Digite a data da visita...Ex:25/10/2020"
                   value={this.state.search}
                   onChange={this.handleChange}
                 />
                 <InputGroup.Prepend>
-                  <Button onClick = {this.att} variant="outline-secondary">&#128269;</Button>
+                  <Button onClick = {this.filterDates} variant="outline-secondary">&#128269;</Button>
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>
