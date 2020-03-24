@@ -27,8 +27,8 @@
 }
 
 #formGridDirectorName{
-    width: 100px;
-    margin-right: 100px;
+    width: 300px;
+    /* margin-right: 100px; */
 }
 
 #formGridDirectorSurname{

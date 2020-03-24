@@ -1,19 +1,12 @@
 import React from "react";
 import NavBar from "../../components/Home/NavBar";
 import Contact from "../../components/Home/Contato";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import Calendario from "../../components/Home/Calendar";
 import Welcome from "../../components/Home/welcome";
 import Atracoes from "../../components/Home/Atracoes";
 import VisitNight from "../../components/Home/visitNight/visitNight";
 import GoogleApiWrapper from "../../components/Home/maps";
 import ScrollableAnchor from "react-scrollable-anchor";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import BeenhereRoundedIcon from "@material-ui/icons/BeenhereRounded";
-import DoneIcon from "@material-ui/icons/Done";
-import { removeHash } from "react-scrollable-anchor";
 import "./Home.scss";
-import { green } from "@material-ui/core/colors";
 
 export default class home extends React.Component {
   constructor() {

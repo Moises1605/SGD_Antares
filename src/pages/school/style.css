@@ -6,35 +6,38 @@
     outline: none;
   }
 
+  #schoolUser{
+    background-image: url(../../assets/contato.png);
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
 #rightSchool{
-    margin: 100px 75px;
-    height: 40vh;
-    width: 70vw;
+    margin: 30px auto 0 auto; 
+    height: 85vh;
+    width: 80vw;
     float: right;
-    Overflow-Y: true;
+    background-color: white;
+    overflow-y: auto;
+    padding: 10px;
+   
 } 
 
 #leftSchool{
     width: 15vw;
-    height: 123vh;
+    height: 100vh;
     float: left;
-    background-color: #eee;
-    
+    background-color: white;   
 }
 
-#div_sidebar {
+/* #div_sidebar {
     width: 15vw;
     height: 100vh;
     float: left;
-    background-color: #eee;
-  }
-  
-  #div_screen {
-    margin: 150px 75px;
-    height: 40vh;
-    width: 70vw;
-    float: right;
-  }
+    background-color: white;
+  } */
   
   .MuiPaper-root {
     flex-wrap: wrap;

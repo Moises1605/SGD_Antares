@@ -1,0 +1,53 @@
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+.MuiListItemText-primary {
+  font-size: 13px !important;
+  @include for-phone-only {
+    font-size: 0 !important;
+  }
+}
+.MuiButtonBase-root {
+  font-size: 15px !important;
+  @include for-phone-only {
+    font-size: 0 !important;
+  }
+}
+.MuiListItemIcon-root {
+  min-width: 40px !important;
+  @include for-phone-only {
+    //width: 50px;
+  }
+}
+
+#logo_list {
+  height: 130px;
+  margin-left: 40px;
+  @include for-phone-only {
+    height: 70px;
+    margin-left: 0;
+  }
+}

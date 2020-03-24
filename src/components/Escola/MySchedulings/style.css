@@ -5,20 +5,51 @@
 
 #titleScheduling{
     font-size: 24px;
-    margin: 20px 0 40px 20px;
     font-family: Arial, Helvetica, sans-serif;
-    color: #575d80;
+    color: white;
+}
+
+#head{
+    margin: 20px 0 20px 20px;
 }
 
 #item{
-    margin: 10px 0 10px 20px;
-    width: 800px;
+    margin: 10px auto 10px auto;
+    width: 900px;
 }
 
-#cancel{
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
-    margin: 0 0 0 600px;
-    height:40px;
+#test{
+    margin: 0 10px 0 0;
 }
+
+#button{ 
+    margin: 0 0 0 auto;
+    display: block;
+    width: 300px;
+}
+
+#view{
+    margin: 0 10px 0 10px;  
+    height: 40px;
+    width: 150px;
+}
+#cancel2{
+    width: 120px;
+    margin-left: auto;
+}
+
+#data{
+    font-size: 20px;
+    margin: 0 0 0 0;
+} 
+
+#responsavel{
+    font-size: 20px;
+    margin: 0 0 0 10px; 
+} 
+
+/* css do modal */ 
+/* #modal{
+    width: 500px;
+   
+} */

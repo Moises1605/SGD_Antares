@@ -16,7 +16,7 @@ export default class ScheduleScholarship extends React.Component {
     this.state = {
       control: false,
       schedules: [],
-      idScholarschip: this.props.idScholarschip
+      IDScholarschip: this.props.idScholarschip
     }
   }
 
@@ -69,9 +69,9 @@ export default class ScheduleScholarship extends React.Component {
             
             events = {this.state.schedules.map(item =>(
               {
-                daysOfWeek: [ item.day ], // Thursday, Friday
-                startTime: item.start, // 10am
-                endTime: item.end, // 4pm
+                daysOfWeek:[item.semana], // Thursday, Friday
+                startTime:  item.inicioPeriodo, // 10am
+                endTime: item.fimPeriodo, // 4pm
                 rendering: 'background'
               } 
             ))}

@@ -9,10 +9,9 @@ export default class Inicio extends React.Component {
             <div>
                 <Jumbotron fluid>
                     <Container>
-                        <h1>Bem vindo, Nome da escola</h1>
+                        <h1>Bem vindo, ao Sistema de Agendamentod do Antares</h1>
                         <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                            frase de shigatsu e morzat
                         </p>
                     </Container>
                 </Jumbotron>

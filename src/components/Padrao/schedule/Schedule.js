@@ -17,9 +17,12 @@ export default class Schedule extends React.Component {
     }
   }
 
-  componentDidMount(){
-    
-  }
+  /*async componentDidMount() {
+    const h = api.post("/listarHorarioBolsistas");
+    console.log((await h).data)
+    this.setState({ horarios: (await h).data.map(h => h) });
+    console.log(this.state.horarios);
+  }*/
 
   render() {
     return (
@@ -64,9 +67,9 @@ export default class Schedule extends React.Component {
             
             events = {this.state.schedules.map(item =>(
               {
-                daysOfWeek: [ item.day ], // Thursday, Friday
-                startTime: item.start, // 10am
-                endTime: item.end, // 4pm
+                daysOfWeek:[item.semana], // Thursday, Friday
+                startTime:  item.inicioPeriodo, // 10am
+                endTime: item.fimPeriodo, // 4pm
                 rendering: 'background'
               } 
             ))}

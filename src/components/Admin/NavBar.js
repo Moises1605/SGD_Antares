@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
-import "./NavBarAdmin.css";
+import "./NavBarAdmin.scss";
 import logo from "../../assets/logo2.png";
 
 export default class NavBar extends React.Component {
@@ -8,12 +8,11 @@ export default class NavBar extends React.Component {
     return (
       <React.Fragment>
         <Navbar
-          id="navbaradmin"
+          fixed="top"
+          id="navbar_admin"
           collapseOnSelect
           expand="lg"
-          bg="dark"
-          variant="dark"
-          fixed="top"
+          bg="light"
         >
           <Navbar.Brand>
             <img alt="" src={logo} className="d-inline-block align-top" />{" "}

@@ -1,14 +1,39 @@
 import React, { Component } from "react";
-import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import { Form, Col, Button, Container } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import "./contato.scss";
 
 class Contact extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name: "",
+      email: "",
+      assunto: "",
+      msg: ""
+    };
   }
+
+  handleChangeName = event => {
+    this.setState({ name: event.target.value });
+  };
+  handleChangeEmail = event => {
+    this.setState({ email: event.target.value });
+  };
+  handleChangeAssunto = event => {
+    this.setState({ assunto: event.target.value });
+  };
+  handleChangeMsg = event => {
+    this.setState({ msg: event.target.value });
+  };
+
+  handleSubmit = async event => {
+    console.log(this.state.name);
+    console.log(this.state.email);
+    console.log(this.state.assunto);
+    console.log(this.state.msg);
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -37,52 +62,52 @@ class Contact extends Component {
             }}
           ></hr>*/}
 
-          <Form>
+          <Form onSubmit={this.handleSubmit}>
             <Form.Row
               style={{
                 marginTop: "30px"
               }}
             >
               <Col md={6} sm={12}>
-                {/*<Form.Group controlId="Name">
-                  <Form.Control type="text" placeholder="Nome completo" />
-                </Form.Group>
-                <Form.Group controlId="Email">
-                  <Form.Control type="email" placeholder="Email" />
-                </Form.Group>
-                <Form.Group controlId="Assunto">
-                  <Form.Control type="text" placeholder="Assunto" />
-            </Form.Group>*/}
                 <Form.Group>
-                  <form noValidate autoComplete="off">
+                  <div noValidate autoComplete="off">
                     <TextField
                       fullWidth="true"
-                      id="outlined-basic"
+                      id="contato_name"
                       label="Nome Completo"
                       variant="outlined"
                       size="small"
-                    />
-                  </form>
+                      required
+                      type="text"
+                      onChange={this.handleChangeName}
+                    ></TextField>
+                  </div>
                 </Form.Group>
                 <Form.Group>
-                  <form Validate autoComplete="off">
+                  <div Validate autoComplete="off">
                     <TextField
                       fullWidth="true"
                       label="Email"
                       variant="outlined"
                       size="small"
+                      required
+                      type="email"
+                      onChange={this.handleChangeEmail}
                     />
-                  </form>
+                  </div>
                 </Form.Group>
                 <Form.Group>
-                  <form noValidate autoComplete="off">
+                  <div noValidate autoComplete="off">
                     <TextField
                       fullWidth="true"
                       label="Assunto"
                       variant="outlined"
                       size="small"
+                      type="text"
+                      required
+                      onChange={this.handleChangeAssunto}
                     />
-                  </form>
+                  </div>
                 </Form.Group>
               </Col>
               <Col
@@ -95,16 +120,19 @@ class Contact extends Component {
                 }
               >
                 <Form.Group controlId="msg">
-                  <form noValidate autoComplete="off">
+                  <div noValidate autoComplete="off">
                     <TextField
                       fullWidth="true"
                       label="Insira sua Mensagem"
                       variant="outlined"
                       size="small"
                       multiline="true"
+                      type="text"
                       rows={7}
+                      required
+                      onChange={this.handleChangeMsg}
                     />
-                  </form>
+                  </div>
                 </Form.Group>
               </Col>
             </Form.Row>

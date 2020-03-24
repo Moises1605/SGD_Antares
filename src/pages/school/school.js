@@ -3,7 +3,7 @@ import { Container, Row, Col, Nav } from "react-bootstrap";
 import "./style.css";
 import Calendar from "../../components/Escola/calendar/calendar";
 import LateralBar from "../../components/Escola/list/List";
-import NavBar from "../../components/Admin/NavBar";
+import NavBar from "../../components/Padrao/NavBar/NavBar";
 //import Visit from './visit/agendamento';
 import MySchedulings from "../../components/Escola/MySchedulings/MyScheduling";
 import Inicio from "../../components/Escola/Inicio/inicio";
@@ -24,6 +24,7 @@ export default class School extends React.Component {
     };
   }
   componentDidMount = screen => {
+    console.log(this.props.location.state.id);
     //Colocar essa parte comentada na parte de editar dados da escola.
     // var dadosEscola = api.post("/retornaDadosEscola",this.idSchool)
     // console.log((await dadosEscola).data
@@ -33,7 +34,7 @@ export default class School extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div id = 'schoolUser'>
         <Container
           fluid
           style={{
@@ -42,9 +43,10 @@ export default class School extends React.Component {
         >
           <Row>
             <Col md={12}>
-              <NavBar />
+              {/* <NavBar /> */}
             </Col>
           </Row>
+          <Row></Row>
           <div id="div_sidearea">
             <div id="leftSchool">
               <LateralBar

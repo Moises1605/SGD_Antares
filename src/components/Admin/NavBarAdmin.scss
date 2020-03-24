@@ -1,0 +1,61 @@
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+#navbar_admin {
+  background-color: white !important;
+  height: auto;
+  width: 100vw;
+
+  opacity: 0.95;
+}
+
+.navbar-brand,
+#navbar_admin .navbar-nav .nav-link {
+  color: black !important;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  @include for-phone-only {
+    font-size: 12px;
+  }
+}
+
+.navbar-brand:hover,
+#navbar_admin .navbar-nav:hover .nav-link:hover {
+  color: #007bff !important;
+}
+
+#logo {
+  width: 90px;
+  @include for-phone-only {
+    width: 50px;
+  }
+}
+#titulo {
+  @include for-phone-only {
+    font-size: 12px;
+  }
+}

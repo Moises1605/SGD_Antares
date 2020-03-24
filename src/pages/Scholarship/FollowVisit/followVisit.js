@@ -16,13 +16,13 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 export default class FollowVisit extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      IDScholarship: this.props.idScholarship,
       rows: [],
       search: "",
-      visits: []
+      visits: [],
+      IDScholarschip: this.props.idScholarschip
     };
   }
 
@@ -140,7 +140,7 @@ export default class FollowVisit extends React.Component {
                     </Table>*/}
                 <BootstrapTable
                   keyField="id"
-                  data={this.state.escolas}
+                  data={this.state.visits}
                   columns={columns}
                   striped
                   hover

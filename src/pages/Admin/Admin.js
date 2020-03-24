@@ -4,7 +4,7 @@ import Bolsistas from "../../components/Admin/Bolsistas";
 import Funcionario from "../../components/Admin/Funcionario";
 import Relatorio from "../../components/Admin/Relatorio";
 import Escolas from "../../components/Admin/Escolas";
-import NavBar from "../../components/Admin/NavBar";
+import NavBar from "../../components/Padrao/NavBar/NavBar";
 import SimpleList from "../../components/Admin/List";
 import "./Admin.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -39,11 +39,7 @@ export default class Admin extends React.Component {
             paddingLeft: 0
           }}
         >
-          <Row>
-            <Col md={12}>
-              <NavBar />
-            </Col>
-          </Row>
+          <Row></Row>
           <div id="div_sidearea">
             <div id="div_sidebar">
               <SimpleList
