@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Login from "./pages/login/login";
 import Register2 from "./pages/register2/Register";
 //import FollowVisit from './pages/Scholarship/FollowVisit/followVisit'
@@ -11,7 +11,22 @@ import funcionario_principal from "./pages/Funcionario/Funcionario";
 import Scholarship from "./pages/Scholarship/Scholarship";
 import Home from "./pages/Home/Home";
 import Admin from "./pages/Admin/Admin";
-import User from './pages/user/user'
+import User from './pages/user/user';
+import { isAuthenticated } from "./auth";
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    { ...rest }
+    render={props => 
+        isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={{ pathname: '/', state: {from: props.location} }} />
+      )
+    }
+  />
+);
+
 const Routes = () => (
   <BrowserRouter>
     <Switch>
