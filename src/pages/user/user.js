@@ -50,6 +50,7 @@ export default class User extends React.Component {
   }
   componentDidMount = /*async*/ screen => {
     /*await*/ this.loadPermission();
+    console.log(this.props.location.state.id);
     screen == null
       ? this.setState({ active: this.state.screens[0] })
       : this.setState({ active: this.state.screens[screen] });

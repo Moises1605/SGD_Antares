@@ -403,7 +403,7 @@ export default class FormRegister extends React.Component {
                     max="99999999"
                     error={!this.state.controlPhone}
                     helperText={
-                      this.state.controlPhone == true ? " " : "CNPJ inválido"
+                      this.state.controlPhone == true ? " " : "Telefone válido possui 8 caracteres"
                     }
                   />
                 </div>

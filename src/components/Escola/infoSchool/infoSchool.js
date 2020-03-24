@@ -17,6 +17,7 @@ export default class InfoSchool extends React.Component {
         super(props)
         this.state = {
             IDSchool: this.props.idSchool,
+            idPessoa:'',
             email: '',
             login: '',
             password: '',
@@ -57,8 +58,10 @@ export default class InfoSchool extends React.Component {
     }
 
     componentDidMount(){
-        /*const response = await api.get("/retornaDadosEscola", this.state.IDSchool);
+        console.log("safe:" + this.state.IDSchool)
+        /*const response = await api.get("/retornaDadosEscola", this.state);
         this.setState({
+            idPessoa: response.data.idPessoa
             email: response.data.email,
             login: response.data.login,
             password: '',
@@ -139,15 +142,16 @@ export default class InfoSchool extends React.Component {
         this.setState({ scholarity: event.target.value });
     }
 
-    handleSubmit(){
+    handleSubmit(event){
         //await api.post("/atualizarEscola", this.state);
+        event.preventDefault();
     }
 
     render(){
         return(
             <div>
             <h1 id = 'titleSchool'>Gerenciar Dados</h1>
-            <Form onSubmit={this.handleNext}>
+            <Form>
             <Form.Row>
                 <Form.Group as={Col}  md="5" controlId="formGridNameSchool">
                     <div noValidate autoComplete="off">
@@ -404,7 +408,7 @@ export default class InfoSchool extends React.Component {
                                 </div>
                             </Form.Group>
             </Form.Row>
-            <Button variant="primary" type='submit'>
+            <Button variant="primary" onClick = {this.handleSubmit}>
                 Salvar alterações
             </Button>
         </Form>

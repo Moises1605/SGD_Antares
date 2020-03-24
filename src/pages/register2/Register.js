@@ -9,7 +9,7 @@ export default class Register2 extends React.Component {
     return (
       <div id="contentForm">
         <div>
-          <NavBar />
+          {/* <NavBar /> */}
         </div>
         <div id="leftSideT">
           <div id="formsT">

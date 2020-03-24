@@ -22,9 +22,9 @@ export default class NavBar extends React.Component {
               className="d-inline-block align-center"
             />{" "}
           </Navbar.Brand>
-          {/*<Navbar.Brand href="/" id="titulo_padrao">
-            Observatório Astronômico Antares
-    </Navbar.Brand>*/}
+          <Navbar.Brand href="/" id="titulo_padrao">
+                Observatório Astronômico Antares
+          </Navbar.Brand>
         </Navbar>
       </React.Fragment>
     );

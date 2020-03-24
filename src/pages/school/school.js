@@ -24,6 +24,7 @@ export default class School extends React.Component {
     };
   }
   componentDidMount = screen => {
+    console.log(this.props.location.state.id);
     //Colocar essa parte comentada na parte de editar dados da escola.
     // var dadosEscola = api.post("/retornaDadosEscola",this.idSchool)
     // console.log((await dadosEscola).data
