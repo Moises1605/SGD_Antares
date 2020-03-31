@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import api from "../../../services/api";
 import './style.css'
+import SweetAlert from 'sweetalert2-react';
 export default class info extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,8 @@ export default class info extends Component {
       enrollment: "", //matrícula
       cpf: "", //cpf
       phone: "", //telefone
-      password: "" //senha
+      password: "", //senha
+      show: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,8 +29,8 @@ export default class info extends Component {
     this.setState({ [className.split(" ")[0]]: value });
   }
 
-  /*async*/ componentDidMount(){
-    /*const response = await api.get("/adicionarBolsista", this.state.IDScholarship);
+  /*async*/ componentDidMount() {
+    /*const response = await api.post("/adicionarBolsista", this.state);
     this.setState({
         name: response.data.name,
         login: response.data.login,
@@ -43,21 +45,30 @@ export default class info extends Component {
   }
 
   async handleSubmit(event) {
-   /* api.post("/adicionarBolsista", this.state.IDScholarship);
-    console.log(this.state.name);
-    console.log(this.state.login);
-    console.log(this.state.surname);
-    console.log(this.state.address);
-    console.log(this.state.email);
-    console.log(this.state.enrollment);
-    console.log(this.state.cpf);
-    console.log(this.state.phone);
-    console.log(this.state.password);*/
+    /* api.post("/adicionarBolsista", this.state);
+     console.log(this.state.name);
+     console.log(this.state.login);
+     console.log(this.state.surname);
+     console.log(this.state.address);
+     console.log(this.state.email);
+     console.log(this.state.enrollment);
+     console.log(this.state.cpf);
+     console.log(this.state.phone);
+     console.log(this.state.password);*/
+    this.setState({ show: true });
+    event.preventDefault();
   }
 
   render() {
     return (
       <Container>
+        <SweetAlert
+          show={this.state.show}
+          icon='sucess'
+          title="Sucesso"
+          text="Alterações salvas com sucesso"
+          onConfirm={() => this.setState({ show: false })}
+        />
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlledId="Name-surname">
             <Form.Row>
@@ -182,14 +193,14 @@ export default class info extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-              <Button
-                id = 'buttonUpdate'
-                // block
-                variant="success"
-                type="submit"
-                //onClick={this.handleSubmit}
-              >
-                Salvar alterações
+          <Button
+            id='buttonUpdate'
+            // block
+            variant="success"
+            type="submit"
+          //onClick={this.handleSubmit}
+          >
+            Salvar alterações
               </Button>
         </Form>
       </Container>

@@ -14,7 +14,7 @@ export default class MyScheduling extends React.Component {
       controlCancel:false,
       current: {},
       status: ['warning', 'success', 'secondary'],
-      legends: ['Análise', 'confirmado', 'feito'],
+      legends: ['Análise', 'confirmado', 'feito','cancelado'],
       search:'', //o que o usuario digita para pesquisa
       resultSearch:[], // resultado da pesquisa
       controlSearch: "false" //se o usuário digitou alguma coisa para pesquisa
@@ -46,7 +46,8 @@ export default class MyScheduling extends React.Component {
   cancelScheduling() {
     //cancela uma visita
     //api.get("/cancelarvisita", this.state.id);
-    this.setState({controlCancel: false});
+    var position = this.state.schedulings.indexOf(this.state.current);
+    this.state.schedulings[position].status = 4;
   }
 
   setControlCancel(event){

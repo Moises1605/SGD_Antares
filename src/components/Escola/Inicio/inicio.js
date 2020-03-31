@@ -11,7 +11,7 @@ export default class Inicio extends React.Component {
                     <Container>
                         <h1>Bem vindo, ao Sistema de Agendamentod do Antares</h1>
                         <p>
-                            frase de shigatsu e morzat
+                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                         </p>
                     </Container>
                 </Jumbotron>

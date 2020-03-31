@@ -37,7 +37,7 @@ export default class ScheduleScholarship extends React.Component {
             //Como mostrar a informação 
             defaultView = 'timeGridWeek'
             //Tamanho do calendário.
-            height = {420}
+            //height = {420}
 
             header = {{
                 left: ' ',

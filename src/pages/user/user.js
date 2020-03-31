@@ -102,9 +102,9 @@ export default class User extends React.Component {
 
             <Container fluid>
               <div id="div_screen">
-                <Paper id="testando" elevation={3}>
+                {/* <Paper id="testando" elevation={3}> */}
                   {this.state.active}
-                </Paper>
+                {/* </Paper> */}
                 {/* {this.state.active} */}
               </div>
             </Container>
