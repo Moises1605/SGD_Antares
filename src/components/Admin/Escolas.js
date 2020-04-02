@@ -30,7 +30,7 @@ export default class Escolas extends React.Component {
 
   async componentDidMount() {
     const e = api.post("/listarEscolas");
-    this.setState({ escolas: (await e).data.map(e => e) });
+    //this.setState({ escolas: (await e).data.map(e => e) });
     console.log(this.state.escolas);
   }
 
@@ -76,7 +76,7 @@ export default class Escolas extends React.Component {
           <Row>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="outline-danger">
+                <Dropdown.Toggle variant="outline-primary">
                   Ordenar Por
                 </Dropdown.Toggle>
 
@@ -114,7 +114,7 @@ export default class Escolas extends React.Component {
                   overflowY: "auto"
                 }}
               >
-                {/*<Table striped bordered hover responsive size="sm">
+                <Table striped bordered hover responsive size="md">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -124,10 +124,10 @@ export default class Escolas extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.escolas.map(e => (
+                    {this.state.escolas.map((e, i = 0) => (
                       <tr>
                         <td>
-                          <b>{e.id}</b>
+                          <b>{i++}</b>
                         </td>
                         <td>{e.name}</td>
                         <td>{e.phone}</td>
@@ -135,8 +135,8 @@ export default class Escolas extends React.Component {
                       </tr>
                     ))}
                   </tbody>
-                    </Table>*/}
-                <BootstrapTable
+                </Table>
+                {/*<BootstrapTable
                   keyField="id"
                   data={this.state.escolas}
                   columns={columns}
@@ -148,7 +148,7 @@ export default class Escolas extends React.Component {
                   style={{
                     outline: "none"
                   }}
-                />
+                />*/}
               </div>
             </Col>
           </Row>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import api from "../../services/api";
+import TextField from "@material-ui/core/TextField";
 
 export default class CadastroFuncionario extends Component {
   constructor() {
@@ -13,19 +14,21 @@ export default class CadastroFuncionario extends Component {
       email: "", //email
       cpf: "", //cpf
       phone: "", //telefone
-      password: "" //senha
+      password: "", //senha
+      repassword: "" //confirmar senha
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   /** NOTE Método para registrar dados do form quando alterado*/
   handleChange(event) {
-    let { className, value } = event.target;
-    this.setState({ [className.split(" ")[0]]: value });
+    let { name, value } = event.target;
+    //this.setState({ [className.split(" ")[0]]: value });
+    this.setState({ [event.target.name]: value });
   }
 
   async handleSubmit(event) {
-    api.post("/adicionarFuncionario", this.state);
+    //api.post("/adicionarFuncionario", this.state);
     console.log(this.state.name);
     console.log(this.state.login);
     console.log(this.state.surname);
@@ -34,7 +37,16 @@ export default class CadastroFuncionario extends Component {
     console.log(this.state.cpf);
     console.log(this.state.phone);
     console.log(this.state.password);
+    event.PreventDefault();
   }
+
+  disableButton = () => {
+    return this.state.repassword === ""
+      ? false
+      : this.state.password === this.state.repassword
+      ? false
+      : true;
+  };
 
   render() {
     return (
@@ -43,41 +55,84 @@ export default class CadastroFuncionario extends Component {
           <Form.Group controlledId="Name-surname">
             <Form.Row>
               <Col>
-                <Form.Label>Nome</Form.Label>
+                {/*<Form.Label>Nome</Form.Label>
                 <Form.Control
                   required
                   placeholder="Nome"
                   value={this.state.name}
                   onChange={this.handleChange}
                   className="name"
-                />
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    name="name"
+                    fullWidth="true"
+                    id="func_name"
+                    label="Nome"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="text"
+                    //className="name"
+                    onChange={this.handleChange}
+                    value={this.state.name}
+                  ></TextField>
+                </div>
               </Col>
               <Col>
-                <Form.Label>Sobrenome</Form.Label>
+                {/* <Form.Label>Sobrenome</Form.Label>
                 <Form.Control
                   required
                   placeholder="Sobrenome"
                   value={this.state.surname}
                   onChange={this.handleChange}
                   className="surname"
-                />
+               />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_surname"
+                    label="Sobrenome"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="text"
+                    name="surname"
+                    value={this.state.surname}
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
               </Col>
             </Form.Row>
           </Form.Group>
           <Form.Group controlledId="Login-Email">
             <Form.Row>
               <Col xs={5}>
-                <Form.Label>Nome de usuário</Form.Label>
+                {/*<Form.Label>Nome de usuário</Form.Label>
                 <Form.Control
                   required
                   placeholder="Nome de usuário"
                   value={this.state.login}
                   className="login"
                   onChange={this.handleChange}
-                />
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_login"
+                    label="Login"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="text"
+                    name="login"
+                    value={this.state.login}
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
               </Col>
               <Col xs={7}>
-                <Form.Label>Email</Form.Label>
+                {/*<Form.Label>Email</Form.Label>
                 <Form.Control
                   required
                   type="email"
@@ -85,52 +140,109 @@ export default class CadastroFuncionario extends Component {
                   value={this.state.email}
                   onChange={this.handleChange}
                   className="email"
-                />
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_email"
+                    label="Email"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="email"
+                    value={this.state.email}
+                    name="email"
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
               </Col>
             </Form.Row>
           </Form.Group>
           <Form.Group controlledId="Phone-CPF">
             <Form.Row>
               <Col xs={6}>
-                <Form.Label>CPF</Form.Label>
+                {/* <Form.Label>CPF</Form.Label>
                 <Form.Control
                   required
                   placeholder="CPF"
                   value={this.state.cpf}
                   className="cpf"
                   onChange={this.handleChange}
-                />
+            />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_cpf"
+                    label="CPF"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="number"
+                    value={this.state.cpf}
+                    name="cpf"
+                    inputProps={{ maxLength: 11 }}
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
               </Col>
               <Col xs={6}>
-                <Form.Label>Telefone</Form.Label>
+                {/*<Form.Label>Telefone</Form.Label>
                 <Form.Control
                   required
                   placeholder="Telefone"
                   value={this.state.phone}
                   className="phone"
                   onChange={this.handleChange}
-                />
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_phone"
+                    label="Telefone"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="number"
+                    name="phone"
+                    value={this.state.phone}
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Group controlledId="Adress">
+          <Form.Group controlledId="Address">
             <Form.Row>
               <Col xs={12}>
-                <Form.Label>Endereço</Form.Label>
+                {/*<Form.Label>Endereço</Form.Label>
                 <Form.Control
                   required
                   placeholder="Rua, Bairro, Número."
                   value={this.state.adress}
                   className="address"
                   onChange={this.handleChange}
-                />
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_address"
+                    label="Endereço: Rua, Bairro, Número."
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="texte"
+                    value={this.state.adress}
+                    name="address"
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
               </Col>
             </Form.Row>
           </Form.Group>
           <Form.Group controlledId="Password">
             <Form.Row>
               <Col>
-                <Form.Label>Senha</Form.Label>
+                {/*<Form.Label>Senha</Form.Label>
                 <Form.Control
                   required
                   type="password"
@@ -138,10 +250,31 @@ export default class CadastroFuncionario extends Component {
                   value={this.state.password}
                   className="password"
                   onChange={this.handleChange}
-                />
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_password"
+                    label="Senha"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="password"
+                    value={this.state.password}
+                    name="password"
+                    error={
+                      this.state.repassword === ""
+                        ? ""
+                        : this.state.password !== this.state.repassword
+                        ? true
+                        : false
+                    }
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
               </Col>
               <Col>
-                <Form.Label>Repetir Senha</Form.Label>
+                {/*<Form.Label>Repetir Senha</Form.Label>
                 <Form.Control
                   required
                   type="password"
@@ -149,7 +282,35 @@ export default class CadastroFuncionario extends Component {
                   value={this.state.repPassword}
                   className="repPassword"
                   onChange={this.handleChange}
-                />
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_repassword"
+                    label="Repetir Senha"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="password"
+                    value={this.state.repassword}
+                    name="repassword"
+                    onChange={this.handleChange}
+                    error={
+                      this.state.repassword === ""
+                        ? ""
+                        : this.state.password !== this.state.repassword
+                        ? true
+                        : false
+                    }
+                    helperText={
+                      this.state.repassword === ""
+                        ? ""
+                        : this.state.password !== this.state.repassword
+                        ? "As senhas não correspondem"
+                        : ""
+                    }
+                  ></TextField>
+                </div>
               </Col>
             </Form.Row>
           </Form.Group>
@@ -160,6 +321,7 @@ export default class CadastroFuncionario extends Component {
                 block
                 variant="success"
                 type="submit"
+                disabled={this.disableButton()}
                 //onClick={this.handleSubmit}
               >
                 Cadastrar
