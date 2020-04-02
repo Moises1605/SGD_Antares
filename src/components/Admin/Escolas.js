@@ -7,9 +7,12 @@ import {
   Dropdown,
   InputGroup,
   FormControl,
-  Table
+  Table,
+  Toast,
+  Badge
 } from "react-bootstrap";
 import api from "../../services/api";
+import { Alert, AlertTitle } from "@material-ui/lab";
 //import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
@@ -153,9 +156,24 @@ export default class Escolas extends React.Component {
             </Col>
           </Row>
           <Row>
+            <Col></Col>
             <Col>
-              <div style={{ height: "3vh" }}></div>
+              {this.state.escolas.length === 0 && (
+                <Alert
+                  severity="warning"
+                  variant="outlined"
+                  style={{
+                    width: "60vh",
+                    height: "auto"
+                  }}
+                >
+                  <AlertTitle>
+                    <b>Ainda não há escolas cadastradas </b>
+                  </AlertTitle>
+                </Alert>
+              )}
             </Col>
+            <Col></Col>
           </Row>
         </Container>
       </div>

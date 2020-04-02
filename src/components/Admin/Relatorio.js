@@ -10,6 +10,7 @@ import {
   FormControl,
   Table
 } from "react-bootstrap";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 class Relatorio extends Component {
   constructor() {
@@ -32,8 +33,6 @@ class Relatorio extends Component {
   componentDidMount() {
     this.setState({});
   }
-
- 
 
   render() {
     return (
@@ -101,7 +100,24 @@ class Relatorio extends Component {
           </Col>
         </Row>
         <Row>
-          <div style={{ height: "3vh" }}></div>
+          <Col></Col>
+          <Col>
+            {this.state.rows.length === 0 && (
+              <Alert
+                severity="warning"
+                variant="outlined"
+                style={{
+                  width: "60vh",
+                  height: "auto"
+                }}
+              >
+                <AlertTitle>
+                  <b>Ainda não há escolas cadastradas </b>
+                </AlertTitle>
+              </Alert>
+            )}
+          </Col>
+          <Col></Col>
         </Row>
       </Container>
     );

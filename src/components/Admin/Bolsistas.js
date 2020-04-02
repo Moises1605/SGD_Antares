@@ -12,6 +12,7 @@ import {
   ModalBody,
   ModalTitle
 } from "react-bootstrap";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
 
@@ -152,28 +153,42 @@ export default class Bolsistas extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.bolsistas.map((b, i = 0) =>
-                      this.state.bolsistas.length === 0 ? (
-                        <tr name="empty">
-                          <td>TABELA VAZIA</td>
-                        </tr>
-                      ) : (
-                        <tr name={b.id} onClick={() => this.handleClick(b.id)}>
-                          <td>
-                            <b>{i++}</b>
-                          </td>
-                          <td>{b.name}</td>
-                          <td>{b.email}</td>
-                          <td>{b.phone}</td>
-                        </tr>
-                      )
-                    )}
+                    {this.state.bolsistas.map((b, i = 0) => (
+                      <tr name={b.id} onClick={() => this.handleClick(b.id)}>
+                        <td>
+                          <b>{i++}</b>
+                        </td>
+                        <td>{b.name}</td>
+                        <td>{b.email}</td>
+                        <td>{b.phone}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </div>
             </Col>
           </Row>
           <br />
+          <Row>
+            <Col></Col>
+            <Col>
+              {this.state.bolsistas.length === 0 && (
+                <Alert
+                  severity="warning"
+                  variant="outlined"
+                  style={{
+                    width: "60vh",
+                    height: "auto"
+                  }}
+                >
+                  <AlertTitle>
+                    <b>Ainda não há escolas cadastradas </b>
+                  </AlertTitle>
+                </Alert>
+              )}
+            </Col>
+            <Col></Col>
+          </Row>
           <Row>
             <Col xs={10}></Col>
             <Col>
