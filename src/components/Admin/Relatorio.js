@@ -33,6 +33,8 @@ class Relatorio extends Component {
     this.setState({});
   }
 
+ 
+
   render() {
     return (
       <Container fluid>
@@ -85,7 +87,7 @@ class Relatorio extends Component {
                 overflowY: "auto"
               }}
             >
-              <Table size="sm" bordered hover responsive striped>
+              <Table size="md" bordered hover responsive striped>
                 <thead>
                   <tr>
                     <th>Relatórios</th>
