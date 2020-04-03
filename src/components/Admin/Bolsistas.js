@@ -24,11 +24,8 @@ export default class Bolsistas extends React.Component {
       search: "",
       show: false,
       //utilizado para testes.
-      bolsistas: [
-        { name: "Moisés", email: "eu", phone: "124", id: "1" },
-        { name: "Moisés", email: "eu", phone: "124", id: "2" },
-        { name: "Moisés", email: "eu", phone: "124", id: "3" }
-      ],
+
+      bolsistas: [],
       control: false, //controle para apresentação do modal
       BolsistaEscolhido: "-1" //id do bolsista escolhido para edição
     };
@@ -48,7 +45,7 @@ export default class Bolsistas extends React.Component {
 
   async componentDidMount() {
     const b = api.post("/listarBolsistas");
-    //this.setState({ bolsistas: (await b).data.map(b => b) });
+    this.setState({ bolsistas: (await b).data.map(b => b) });
     console.log(this.state.bolsistas);
   }
 
