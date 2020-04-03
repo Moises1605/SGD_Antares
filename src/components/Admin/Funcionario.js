@@ -52,12 +52,14 @@ class Funcionario extends Component {
 
   count = () => this.setState({ count: this.state.count + 1 });
 
-  deleteItem = id => console.log(id);
+  deleteItem = id => {
+    console.log(id);
+  };
 
-  async componentDidMount() {
+  /*async componentDidMount() {
     const f = api.post("/listarFuncionarios");
     this.setState({ funcionarios: (await f).data.map(f => f) });
-  }
+  }*/
 
   //Ativa a apresentação do modal e manda o id do funcionário escolhido
   handleClick(e) {
@@ -146,7 +148,7 @@ class Funcionario extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.funcionarios.map((f, i = 0) => (
+                  {this.state.funcionarios.map((f, i = 1) => (
                     <tr key={f.id} onClick={() => this.handleClick(f.id)}>
                       <td>
                         <b>{i++}</b>
@@ -168,11 +170,12 @@ class Funcionario extends Component {
           >
             {this.state.funcionarios.map(f => (
               <Row style={{ paddingTop: "14px" }}>
+                {console.log(f.id)}
                 <Button
-                  key={f.id}
+                  name={f.id}
                   size="sm"
                   variant="danger"
-                  onClick={this.deleteItem(f.id)}
+                  onClick={() => this.deleteItem(f.id)}
                 >
                   <DeleteIcon />
                 </Button>
