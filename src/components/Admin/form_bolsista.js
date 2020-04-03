@@ -12,6 +12,7 @@ class CadastroBolsista extends Component {
       surname: "", //sobrenome
       rua: "", //rua
       cidade: "", // cidade
+      bairro: "", //bairro
       numero: "", //numero
       email: "", //email
       enrollment: "", //matrícula
@@ -45,6 +46,7 @@ class CadastroBolsista extends Component {
     console.log(this.state.login);
     console.log(this.state.surname);
     console.log(this.state.cidade);
+    console.log(this.state.bairro);
     console.log(this.state.rua);
     console.log(this.state.numero);
     console.log(this.state.email);
@@ -242,7 +244,7 @@ class CadastroBolsista extends Component {
           </Form.Group>
           <Form.Group controlledId="Address">
             <Form.Row>
-              <Col xs={4}>
+              <Col xs={6}>
                 {/*<Form.Label>Endereço</Form.Label>
                 <Form.Control
                   required
@@ -266,7 +268,35 @@ class CadastroBolsista extends Component {
                   ></TextField>
                 </div>
               </Col>
-              <Col xs={4}>
+              <Col xs={6}>
+                {/*<Form.Label>Endereço</Form.Label>
+                <Form.Control
+                  required
+                  placeholder="Rua, Bairro, Número."
+                  value={this.state.adress}
+                  className="address"
+                  onChange={this.handleChange}
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="bols_bairro"
+                    label="Bairro"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="text"
+                    value={this.state.bairro}
+                    name="bairro"
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
+              </Col>
+            </Form.Row>
+          </Form.Group>
+          <Form.Group>
+            <Form.Row>
+              <Col xs={8}>
                 {/*<Form.Label>Endereço</Form.Label>
                 <Form.Control
                   required

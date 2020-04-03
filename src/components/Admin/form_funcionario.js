@@ -11,6 +11,7 @@ export default class CadastroFuncionario extends Component {
       name: "", //nome
       surname: "", //sobrenome
       rua: "", //rua
+      bairro: "", //bairro
       cidade: "", // cidade
       numero: "", //numero
       email: "", //email
@@ -35,6 +36,7 @@ export default class CadastroFuncionario extends Component {
     console.log(this.state.login);
     console.log(this.state.surname);
     console.log(this.state.cidade);
+    console.log(this.state.bairro);
     console.log(this.state.rua);
     console.log(this.state.numero);
     console.log(this.state.email);
@@ -217,7 +219,7 @@ export default class CadastroFuncionario extends Component {
           </Form.Group>
           <Form.Group controlledId="Address">
             <Form.Row>
-              <Col xs={4}>
+              <Col xs={6}>
                 {/*<Form.Label>Endereço</Form.Label>
                 <Form.Control
                   required
@@ -241,7 +243,35 @@ export default class CadastroFuncionario extends Component {
                   ></TextField>
                 </div>
               </Col>
-              <Col xs={4}>
+              <Col xs={6}>
+                {/*<Form.Label>Endereço</Form.Label>
+                <Form.Control
+                  required
+                  placeholder="Rua, Bairro, Número."
+                  value={this.state.adress}
+                  className="address"
+                  onChange={this.handleChange}
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_bairro"
+                    label="Bairro"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="text"
+                    value={this.state.bairro}
+                    name="bairro"
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
+              </Col>
+            </Form.Row>
+          </Form.Group>
+          <Form.Group>
+            <Form.Row>
+              <Col xs={8}>
                 {/*<Form.Label>Endereço</Form.Label>
                 <Form.Control
                   required
