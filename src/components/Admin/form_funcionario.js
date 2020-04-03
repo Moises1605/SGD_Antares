@@ -10,7 +10,9 @@ export default class CadastroFuncionario extends Component {
       login: "", //login
       name: "", //nome
       surname: "", //sobrenome
-      address: "", //endereço
+      rua: "", //rua
+      cidade: "", // cidade
+      numero: "", //numero
       email: "", //email
       cpf: "", //cpf
       phone: "", //telefone
@@ -32,7 +34,9 @@ export default class CadastroFuncionario extends Component {
     console.log(this.state.name);
     console.log(this.state.login);
     console.log(this.state.surname);
-    console.log(this.state.address);
+    console.log(this.state.cidade);
+    console.log(this.state.rua);
+    console.log(this.state.numero);
     console.log(this.state.email);
     console.log(this.state.cpf);
     console.log(this.state.phone);
@@ -213,7 +217,7 @@ export default class CadastroFuncionario extends Component {
           </Form.Group>
           <Form.Group controlledId="Address">
             <Form.Row>
-              <Col xs={12}>
+              <Col xs={4}>
                 {/*<Form.Label>Endereço</Form.Label>
                 <Form.Control
                   required
@@ -225,14 +229,62 @@ export default class CadastroFuncionario extends Component {
                 <div noValidate autoComplete="off">
                   <TextField
                     fullWidth="true"
-                    id="func_address"
-                    label="Endereço: Rua, Bairro, Número."
+                    id="func_cidade"
+                    label="Cidade"
                     variant="outlined"
                     size="small"
                     required
-                    type="texte"
-                    value={this.state.adress}
-                    name="address"
+                    type="text"
+                    value={this.state.cidade}
+                    name="cidade"
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
+              </Col>
+              <Col xs={4}>
+                {/*<Form.Label>Endereço</Form.Label>
+                <Form.Control
+                  required
+                  placeholder="Rua, Bairro, Número."
+                  value={this.state.adress}
+                  className="address"
+                  onChange={this.handleChange}
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_rua"
+                    label="Rua"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="text"
+                    value={this.state.rua}
+                    name="rua"
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
+              </Col>
+              <Col xs={4}>
+                {/*<Form.Label>Endereço</Form.Label>
+                <Form.Control
+                  required
+                  placeholder="Rua, Bairro, Número."
+                  value={this.state.adress}
+                  className="address"
+                  onChange={this.handleChange}
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="func_numero"
+                    label="Número"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="number"
+                    value={this.state.numero}
+                    name="numero"
                     onChange={this.handleChange}
                   ></TextField>
                 </div>

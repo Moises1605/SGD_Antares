@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Form, Container, Row, Col, Button, FormLabel } from "react-bootstrap";
 import api from "../../services/api";
 import TextField from "@material-ui/core/TextField";
 
@@ -10,7 +10,9 @@ class CadastroBolsista extends Component {
       login: "", //login
       name: "", //nome
       surname: "", //sobrenome
-      address: "", //endereço
+      rua: "", //rua
+      cidade: "", // cidade
+      numero: "", //numero
       email: "", //email
       enrollment: "", //matrícula
       cpf: "", //cpf
@@ -42,7 +44,9 @@ class CadastroBolsista extends Component {
     console.log(this.state.name);
     console.log(this.state.login);
     console.log(this.state.surname);
-    console.log(this.state.address);
+    console.log(this.state.cidade);
+    console.log(this.state.rua);
+    console.log(this.state.numero);
     console.log(this.state.email);
     console.log(this.state.enrollment);
     console.log(this.state.cpf);
@@ -238,7 +242,7 @@ class CadastroBolsista extends Component {
           </Form.Group>
           <Form.Group controlledId="Address">
             <Form.Row>
-              <Col xs={12}>
+              <Col xs={4}>
                 {/*<Form.Label>Endereço</Form.Label>
                 <Form.Control
                   required
@@ -250,14 +254,62 @@ class CadastroBolsista extends Component {
                 <div noValidate autoComplete="off">
                   <TextField
                     fullWidth="true"
-                    id="bols_address"
-                    label="Endereço: Rua, Bairro, Número."
+                    id="bols_cidade"
+                    label="Cidade"
                     variant="outlined"
                     size="small"
                     required
-                    type="texte"
-                    value={this.state.adress}
-                    name="address"
+                    type="text"
+                    value={this.state.cidade}
+                    name="cidade"
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
+              </Col>
+              <Col xs={4}>
+                {/*<Form.Label>Endereço</Form.Label>
+                <Form.Control
+                  required
+                  placeholder="Rua, Bairro, Número."
+                  value={this.state.adress}
+                  className="address"
+                  onChange={this.handleChange}
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="bols_rua"
+                    label="Rua"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="text"
+                    value={this.state.rua}
+                    name="rua"
+                    onChange={this.handleChange}
+                  ></TextField>
+                </div>
+              </Col>
+              <Col xs={4}>
+                {/*<Form.Label>Endereço</Form.Label>
+                <Form.Control
+                  required
+                  placeholder="Rua, Bairro, Número."
+                  value={this.state.adress}
+                  className="address"
+                  onChange={this.handleChange}
+                />*/}
+                <div noValidate autoComplete="off">
+                  <TextField
+                    fullWidth="true"
+                    id="bols_numero"
+                    label="Número"
+                    variant="outlined"
+                    size="small"
+                    required
+                    type="number"
+                    value={this.state.numero}
+                    name="numero"
                     onChange={this.handleChange}
                   ></TextField>
                 </div>
