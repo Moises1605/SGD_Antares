@@ -17,6 +17,7 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 export default class Escolas extends React.Component {
   constructor() {
@@ -30,6 +31,8 @@ export default class Escolas extends React.Component {
 
   /** REVIEW Método para registrar dados da pesquisa */
   handleChange = event => this.setState({ search: event.target.value });
+
+  deleteItem = id => console.log(id);
 
   async componentDidMount() {
     const e = api.post("/listarEscolas");
@@ -110,7 +113,7 @@ export default class Escolas extends React.Component {
             <div style={{ height: "3vh" }}></div>
           </Row>
           <Row>
-            <Col>
+            <Col md={11}>
               <div
                 style={{
                   height: "40vh",
@@ -128,7 +131,7 @@ export default class Escolas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.escolas.map((e, i = 0) => (
-                      <tr>
+                      <tr key={e.id}>
                         <td>
                           <b>{i++}</b>
                         </td>
@@ -153,6 +156,25 @@ export default class Escolas extends React.Component {
                   }}
                 />*/}
               </div>
+            </Col>
+            <Col
+              md={1}
+              style={{
+                paddingTop: "45px"
+              }}
+            >
+              {this.state.escolas.map(e => (
+                <Row style={{ paddingTop: "14px" }}>
+                  <Button
+                    key={e.id}
+                    size="sm"
+                    variant="danger"
+                    onClick={this.deleteItem(e.id)}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Row>
+              ))}
             </Col>
           </Row>
           <br />

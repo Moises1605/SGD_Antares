@@ -13,6 +13,7 @@ import {
 import api from "../../services/api";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import CadastroFuncionario from "./form_funcionario";
+import DeleteIcon from "@material-ui/icons/Delete";
 class Funcionario extends Component {
   constructor() {
     super();
@@ -21,9 +22,18 @@ class Funcionario extends Component {
       search: "",
       show: false,
       count: 0,
-      funcionarios: [],
+      funcionarios: [
+        { name: "Moisés", email: "eu", phone: "124", id: "1" },
+        { name: "Moisés", email: "eu", phone: "124", id: "2" },
+        { name: "Moisés", email: "eu", phone: "124", id: "3" },
+        { name: "Moisés", email: "eu", phone: "124", id: "4" },
+        { name: "Moisés", email: "eu", phone: "124", id: "5" },
+        { name: "Moisés", email: "eu", phone: "124", id: "6" },
+        { name: "Moisés", email: "eu", phone: "124", id: "7" },
+        { name: "Moisés", email: "eu", phone: "124", id: "8" }
+      ],
       control: false, //controle para apresentação do modal
-      FuncionárioEscolhido: "-1" //id do bolsista escolhido para edição,
+      FuncionárioEscolhido: "-1" //id do funcionario escolhido para edição,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -41,6 +51,8 @@ class Funcionario extends Component {
   /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem*/
 
   count = () => this.setState({ count: this.state.count + 1 });
+
+  deleteItem = id => console.log(id);
 
   async componentDidMount() {
     const f = api.post("/listarFuncionarios");
@@ -116,14 +128,14 @@ class Funcionario extends Component {
         <Row>
           <div style={{ height: "3vh" }}></div>
         </Row>
-        <Row>
-          <Col>
-            <div
-              style={{
-                height: "40vh",
-                overflowY: "auto"
-              }}
-            >
+        <Row
+          style={{
+            height: "40vh",
+            overflowY: "auto"
+          }}
+        >
+          <Col md={11}>
+            <div>
               <Table striped bordered hover responsive size="md">
                 <thead>
                   <tr>
@@ -135,7 +147,7 @@ class Funcionario extends Component {
                 </thead>
                 <tbody>
                   {this.state.funcionarios.map((f, i = 0) => (
-                    <tr onClick={() => this.handleClick(f.id)}>
+                    <tr key={f.id} onClick={() => this.handleClick(f.id)}>
                       <td>
                         <b>{i++}</b>
                       </td>
@@ -147,6 +159,25 @@ class Funcionario extends Component {
                 </tbody>
               </Table>
             </div>
+          </Col>
+          <Col
+            md={1}
+            style={{
+              paddingTop: "45px"
+            }}
+          >
+            {this.state.funcionarios.map(f => (
+              <Row style={{ paddingTop: "14px" }}>
+                <Button
+                  key={f.id}
+                  size="sm"
+                  variant="danger"
+                  onClick={this.deleteItem(f.id)}
+                >
+                  <DeleteIcon />
+                </Button>
+              </Row>
+            ))}
           </Col>
         </Row>
         <br />

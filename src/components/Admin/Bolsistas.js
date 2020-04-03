@@ -12,6 +12,7 @@ import {
   ModalBody,
   ModalTitle
 } from "react-bootstrap";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
@@ -48,6 +49,8 @@ export default class Bolsistas extends React.Component {
     this.setState({ bolsistas: (await b).data.map(b => b) });
     console.log(this.state.bolsistas);
   }
+
+  deleteItem = id => console.log(id);
 
   /**TODO Método para mostrar informação do bolsista */
   // handleClick = async b => {
@@ -127,7 +130,7 @@ export default class Bolsistas extends React.Component {
             <div style={{ height: "3vh" }}></div>
           </Row>
           <Row>
-            <Col>
+            <Col md={11}>
               <div
                 style={{
                   height: "40vh",
@@ -145,7 +148,11 @@ export default class Bolsistas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.bolsistas.map((b, i = 0) => (
-                      <tr name={b.id} onClick={() => this.handleClick(b.id)}>
+                      <tr
+                        key={b.id}
+                        name={b.id}
+                        onClick={() => this.handleClick(b.id)}
+                      >
                         <td>
                           <b>{i++}</b>
                         </td>
@@ -157,6 +164,25 @@ export default class Bolsistas extends React.Component {
                   </tbody>
                 </Table>
               </div>
+            </Col>
+            <Col
+              md={1}
+              style={{
+                paddingTop: "45px"
+              }}
+            >
+              {this.state.bolsistas.map(b => (
+                <Row style={{ paddingTop: "14px" }}>
+                  <Button
+                    key={b.id}
+                    size="sm"
+                    variant="danger"
+                    onClick={this.deleteItem(b.id)}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Row>
+              ))}
             </Col>
           </Row>
           <br />
