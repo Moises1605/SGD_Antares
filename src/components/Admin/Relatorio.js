@@ -100,8 +100,9 @@ class Relatorio extends Component {
           </Col>
         </Row>
         <Row>
-          <Col></Col>
-          <Col>
+          <br />
+          <Col md={4}></Col>
+          <Col md={4}>
             {this.state.rows.length === 0 && (
               <Alert
                 severity="warning"
@@ -117,7 +118,7 @@ class Relatorio extends Component {
               </Alert>
             )}
           </Col>
-          <Col></Col>
+          <Col md={4}></Col>
         </Row>
       </Container>
     );
