@@ -27,12 +27,6 @@ export default class Bolsistas extends React.Component {
       bolsistas: [
         { name: "Moisés", email: "eu", phone: "124", id: "1" },
         { name: "Moisés", email: "eu", phone: "124", id: "2" },
-        { name: "Moisés", email: "eu", phone: "124", id: "1" },
-        { name: "Moisés", email: "eu", phone: "124", id: "2" },
-        { name: "Moisés", email: "eu", phone: "124", id: "1" },
-        { name: "Moisés", email: "eu", phone: "124", id: "2" },
-        { name: "Moisés", email: "eu", phone: "124", id: "1" },
-        { name: "Moisés", email: "eu", phone: "124", id: "2" },
         { name: "Moisés", email: "eu", phone: "124", id: "3" }
       ],
       control: false, //controle para apresentação do modal
@@ -170,8 +164,8 @@ export default class Bolsistas extends React.Component {
           </Row>
           <br />
           <Row>
-            <Col></Col>
-            <Col>
+            <Col xs={4}></Col>
+            <Col xs={4}>
               {this.state.bolsistas.length === 0 && (
                 <Alert
                   severity="warning"
@@ -182,16 +176,13 @@ export default class Bolsistas extends React.Component {
                   }}
                 >
                   <AlertTitle>
-                    <b>Ainda não há escolas cadastradas </b>
+                    <b>Ainda não há bolsistas cadastrados </b>
                   </AlertTitle>
                 </Alert>
               )}
             </Col>
-            <Col></Col>
-          </Row>
-          <Row>
-            <Col xs={10}></Col>
-            <Col>
+            <Col xs={2}></Col>
+            <Col xs={2}>
               <Button variant="primary" block onClick={this.setControl}>
                 Novo Cadastro
               </Button>

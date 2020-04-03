@@ -107,12 +107,12 @@ class Relatorio extends Component {
                 severity="warning"
                 variant="outlined"
                 style={{
-                  width: "60vh",
+                  width: "70vh",
                   height: "auto"
                 }}
               >
                 <AlertTitle>
-                  <b>Ainda não há escolas cadastradas </b>
+                  <b>Ainda não há relatórios no banco de dados </b>
                 </AlertTitle>
               </Alert>
             )}
