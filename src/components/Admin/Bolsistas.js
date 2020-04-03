@@ -12,6 +12,7 @@ import {
   ModalBody,
   ModalTitle
 } from "react-bootstrap";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
 
@@ -23,9 +24,19 @@ export default class Bolsistas extends React.Component {
       search: "",
       show: false,
       //utilizado para testes.
-      bolsistas: [{name:'Moisés',email:'eu',phone:'124',id:'1'},{name:'Moisés',email:'eu',phone:'124',id:'2'},{name:'Moisés',email:'eu',phone:'124',id:'3'}],
-      control: false,//controle para apresentação do modal
-      BolsistaEscolhido: '-1'//id do bolsista escolhido para edição
+      bolsistas: [
+        { name: "Moisés", email: "eu", phone: "124", id: "1" },
+        { name: "Moisés", email: "eu", phone: "124", id: "2" },
+        { name: "Moisés", email: "eu", phone: "124", id: "1" },
+        { name: "Moisés", email: "eu", phone: "124", id: "2" },
+        { name: "Moisés", email: "eu", phone: "124", id: "1" },
+        { name: "Moisés", email: "eu", phone: "124", id: "2" },
+        { name: "Moisés", email: "eu", phone: "124", id: "1" },
+        { name: "Moisés", email: "eu", phone: "124", id: "2" },
+        { name: "Moisés", email: "eu", phone: "124", id: "3" }
+      ],
+      control: false, //controle para apresentação do modal
+      BolsistaEscolhido: "-1" //id do bolsista escolhido para edição
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -54,11 +65,11 @@ export default class Bolsistas extends React.Component {
   //Ativa a apresentação do modal e manda o id do bolsista escolhido
   handleClick(e) {
     console.log(e);
-     this.setState({ BolsistaEscolhido: e, control: true });
-  };
+    this.setState({ BolsistaEscolhido: e, control: true });
+  }
 
-  //Mesma ideia de atualizar, usando o id do cara vc chama a rota pra excluir, mas ai tem que ser no modal que vcs vão criar, por isso não implementei completamente. 
-  delete(){
+  //Mesma ideia de atualizar, usando o id do cara vc chama a rota pra excluir, mas ai tem que ser no modal que vcs vão criar, por isso não implementei completamente.
+  delete() {
     /*const response = await api.get("/atualizarBolsista", this.state.IDScholarship);*/
   }
 
@@ -72,16 +83,14 @@ export default class Bolsistas extends React.Component {
           show={this.state.control}
           onHide={() => this.setState({ control: false })}
           aria-labelledby="example-modal-sizes-title-lg"
-          id='modal'
+          id="modal"
         >
-          <Modal.Header closeButton id='header'>
+          <Modal.Header closeButton id="header">
             <Modal.Title id="example-modal-sizes-title-lg">
               Testando
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            {this.state.BolsistaEscolhido}
-          </Modal.Body>
+          <Modal.Body>{this.state.BolsistaEscolhido}</Modal.Body>
         </Modal>
         <Container fluid>
           <Row>
@@ -134,25 +143,24 @@ export default class Bolsistas extends React.Component {
                   overflowY: "auto"
                 }}
               >
-                <Table striped bordered hover responsive size="sm">
+                <Table striped bordered hover responsive size="md">
                   <thead>
                     <tr>
-                      {/*<th>#</th>*/}
+                      <th>#</th>
                       <th>Nome</th>
                       <th>Email</th>
                       <th>Telefone</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.bolsistas.map(b => (
-                      //manda o id para a função
-                      <tr name={b.id} onClick={() => this.handleClick(b.id)} >
+                    {this.state.bolsistas.map((b, i = 0) => (
+                      <tr name={b.id} onClick={() => this.handleClick(b.id)}>
                         <td>
-                          <b></b>
+                          <b>{i++}</b>
                         </td>
-                        <td>{b.nome}</td>
+                        <td>{b.name}</td>
                         <td>{b.email}</td>
-                        <td>{b.telefone}</td>
+                        <td>{b.phone}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -161,6 +169,26 @@ export default class Bolsistas extends React.Component {
             </Col>
           </Row>
           <br />
+          <Row>
+            <Col></Col>
+            <Col>
+              {this.state.bolsistas.length === 0 && (
+                <Alert
+                  severity="warning"
+                  variant="outlined"
+                  style={{
+                    width: "60vh",
+                    height: "auto"
+                  }}
+                >
+                  <AlertTitle>
+                    <b>Ainda não há escolas cadastradas </b>
+                  </AlertTitle>
+                </Alert>
+              )}
+            </Col>
+            <Col></Col>
+          </Row>
           <Row>
             <Col xs={10}></Col>
             <Col>

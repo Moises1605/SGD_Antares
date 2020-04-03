@@ -19,9 +19,14 @@ class Funcionario extends Component {
       rows: [],
       search: "",
       show: false,
-      funcionarios: [{name:'Moisés',email:'eu',phone:'124',id:'1'},{name:'Moisés',email:'eu',phone:'124',id:'2'},{name:'Moisés',email:'eu',phone:'124',id:'3'}],
-      control: false,//controle para apresentação do modal
-      FuncionárioEscolhido: '-1'//id do bolsista escolhido para edição
+      count: 0,
+      funcionarios: [
+        { name: "Moisés", email: "eu", phone: "124", id: "1" },
+        { name: "Moisés", email: "eu", phone: "124", id: "2" },
+        { name: "Moisés", email: "eu", phone: "124", id: "3" }
+      ],
+      control: false, //controle para apresentação do modal
+      FuncionárioEscolhido: "-1" //id do bolsista escolhido para edição,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -38,16 +43,18 @@ class Funcionario extends Component {
 
   /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem*/
 
+  count = () => this.setState({ count: this.state.count + 1 });
+
   async componentDidMount() {
     const f = api.post("/listarFuncionarios");
-    this.setState({ funcionarios: (await f).data.map(f => f)});
+    this.setState({ funcionarios: (await f).data.map(f => f) });
   }
 
   //Ativa a apresentação do modal e manda o id do funcionário escolhido
   handleClick(e) {
     console.log(e);
-     this.setState({ FuncionárioEscolhido: e, control: true });
-  };
+    this.setState({ FuncionárioEscolhido: e, control: true });
+  }
 
   render() {
     return (
@@ -59,16 +66,14 @@ class Funcionario extends Component {
           show={this.state.control}
           onHide={() => this.setState({ control: false })}
           aria-labelledby="example-modal-sizes-title-lg"
-          id='modal'
+          id="modal"
         >
-          <Modal.Header closeButton id='header'>
+          <Modal.Header closeButton id="header">
             <Modal.Title id="example-modal-sizes-title-lg">
               Testando
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            {this.state.BolsistaEscolhido}
-          </Modal.Body>
+          <Modal.Body>{this.state.BolsistaEscolhido}</Modal.Body>
         </Modal>
         <Row>
           <Col>
@@ -122,23 +127,24 @@ class Funcionario extends Component {
                 overflowY: "auto"
               }}
             >
-              <Table striped bordered hover responsive size="sm">
+              <Table striped bordered hover responsive size="md">
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Telefone</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.funcionarios.map(f => (
+                  {this.state.funcionarios.map((f, i = 0) => (
                     <tr onClick={() => this.handleClick(f.id)}>
                       <td>
-                        <b></b>
+                        <b>{i++}</b>
                       </td>
-                      <td>{f.nome}</td>
-                      <td>{f.CPF_CNPJ}</td>
-                      <td>{f.telefone}</td>
+                      <td>{f.name}</td>
+                      <td>{f.email}</td>
+                      <td>{f.phone}</td>
                     </tr>
                   ))}
                 </tbody>
