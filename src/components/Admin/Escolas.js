@@ -178,19 +178,19 @@ export default class Escolas extends React.Component {
           </Row>
           <br />
           <Row>
-            <Col md={4}></Col>
-            <Col md={4}>
+            <Col md={3}></Col>
+            <Col md={5}>
               {this.state.escolas.length === 0 && (
                 <Alert
                   severity="warning"
                   variant="outlined"
                   style={{
-                    width: "60vh",
+                    width: "auto",
                     height: "auto"
                   }}
                 >
                   <AlertTitle>
-                    <b>Ainda não há escolas cadastradas </b>
+                    <b>Ainda não há escolas cadastradas no sistema </b>
                   </AlertTitle>
                 </Alert>
               )}

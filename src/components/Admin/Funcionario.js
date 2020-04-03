@@ -22,12 +22,8 @@ class Funcionario extends Component {
       search: "",
       show: false,
       count: 0,
-      funcionarios: [],
-      control: false, //controle para apresentação do modal
-      FuncionárioEscolhido: "-1" //id do funcionario escolhido para edição,
+      funcionarios: []
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
   /** REVIEW Método para registrar dados da pesquisa */
@@ -45,36 +41,14 @@ class Funcionario extends Component {
 
   deleteItem = id => console.log(id);
 
-  /*async componentDidMount() {
+  async componentDidMount() {
     const f = api.post("/listarFuncionarios");
     this.setState({ funcionarios: (await f).data.map(f => f) });
-  }*/
-
-  //Ativa a apresentação do modal e manda o id do funcionário escolhido
-  handleClick(e) {
-    console.log(e);
-    this.setState({ FuncionárioEscolhido: e, control: true });
   }
 
   render() {
     return (
       <Container fluid>
-        {/* Modal para teste, se quiserem podem mudar o jeito de visuaização, a ideia é utilizar o id que mandei
-        para pegar o resto das informações, mas eu não sei se nesse método tu pegar já tudo, ou só o email,nome e telefone */}
-        <Modal
-          size="lg"
-          show={this.state.control}
-          onHide={() => this.setState({ control: false })}
-          aria-labelledby="example-modal-sizes-title-lg"
-          id="modal"
-        >
-          <Modal.Header closeButton id="header">
-            <Modal.Title id="example-modal-sizes-title-lg">
-              Testando
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>{this.state.BolsistaEscolhido}</Modal.Body>
-        </Modal>
         <Row>
           <Col>
             <h3 style={{ textAlign: "left", marginTop: "15px" }}>
@@ -138,7 +112,7 @@ class Funcionario extends Component {
                 </thead>
                 <tbody>
                   {this.state.funcionarios.map((f, i = 1) => (
-                    <tr key={f.id} onClick={() => this.handleClick(f.id)}>
+                    <tr key={f.id}>
                       <td>
                         <b>{i++}</b>
                       </td>
@@ -172,19 +146,19 @@ class Funcionario extends Component {
         </Row>
         <br />
         <Row>
-          <Col xs={4}></Col>
-          <Col xs={4}>
+          <Col xs={3}></Col>
+          <Col xs={5}>
             {this.state.funcionarios.length === 0 && (
               <Alert
                 severity="warning"
                 variant="outlined"
                 style={{
-                  width: "60vh",
+                  width: "auto",
                   height: "auto"
                 }}
               >
                 <AlertTitle>
-                  <b>Ainda não há funcionários cadastrados </b>
+                  <b>Ainda não há funcionários cadastrados no sistema </b>
                 </AlertTitle>
               </Alert>
             )}

@@ -26,14 +26,8 @@ export default class Bolsistas extends React.Component {
       show: false,
       //utilizado para testes.
 
-      bolsistas: [
-       
-      ],
-      control: false, //controle para apresentação do modal
-      BolsistaEscolhido: "-1" //id do bolsista escolhido para edição
+      bolsistas: []
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
   /** REVIEW Método para registrar dados da pesquisa */
   handleChange = event => this.setState({ search: event.target.value });
@@ -54,40 +48,9 @@ export default class Bolsistas extends React.Component {
 
   deleteItem = id => console.log(id);
 
-  /**TODO Método para mostrar informação do bolsista */
-  // handleClick = async b => {
-  //   await console.log(b);
-  // };
-  //Ativa a apresentação do modal e manda o id do bolsista escolhido
-  handleClick(e) {
-    console.log(e);
-    this.setState({ BolsistaEscolhido: e, control: true });
-  }
-
-  //Mesma ideia de atualizar, usando o id do cara vc chama a rota pra excluir, mas ai tem que ser no modal que vcs vão criar, por isso não implementei completamente.
-  delete() {
-    /*const response = await api.get("/atualizarBolsista", this.state.IDScholarship);*/
-  }
-
   render() {
     return (
       <div>
-        {/* Modal para teste, se quiserem podem mudar o jeito de visuaização, a ideia é utilizar o id que mandei
-        para pegar o resto das informações, mas eu não sei se nesse método tu pegar já tudo, ou só o email,nome e telefone */}
-        <Modal
-          size="lg"
-          show={this.state.control}
-          onHide={() => this.setState({ control: false })}
-          aria-labelledby="example-modal-sizes-title-lg"
-          id="modal"
-        >
-          <Modal.Header closeButton id="header">
-            <Modal.Title id="example-modal-sizes-title-lg">
-              Testando
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>{this.state.BolsistaEscolhido}</Modal.Body>
-        </Modal>
         <Container fluid>
           <Row>
             <Col>
@@ -150,11 +113,7 @@ export default class Bolsistas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.bolsistas.map((b, i = 0) => (
-                      <tr
-                        key={b.id}
-                        name={b.id}
-                        onClick={() => this.handleClick(b.id)}
-                      >
+                      <tr key={b.id} name={b.id}>
                         <td>
                           <b>{i++}</b>
                         </td>
@@ -188,19 +147,19 @@ export default class Bolsistas extends React.Component {
           </Row>
           <br />
           <Row>
-            <Col xs={4}></Col>
-            <Col xs={4}>
+            <Col xs={3}></Col>
+            <Col xs={5}>
               {this.state.bolsistas.length === 0 && (
                 <Alert
                   severity="warning"
                   variant="outlined"
                   style={{
-                    width: "60vh",
+                    width: "auto",
                     height: "auto"
                   }}
                 >
                   <AlertTitle>
-                    <b>Ainda não há bolsistas cadastrados </b>
+                    <b>Ainda não há bolsistas cadastrados no sistema </b>
                   </AlertTitle>
                 </Alert>
               )}
