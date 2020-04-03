@@ -33,7 +33,7 @@ export default class Escolas extends React.Component {
 
   async componentDidMount() {
     const e = api.post("/listarEscolas");
-    //this.setState({ escolas: (await e).data.map(e => e) });
+    this.setState({ escolas: (await e).data.map(e => e) });
     console.log(this.state.escolas);
   }
 
@@ -132,9 +132,9 @@ export default class Escolas extends React.Component {
                         <td>
                           <b>{i++}</b>
                         </td>
-                        <td>{e.name}</td>
-                        <td>{e.phone}</td>
-                        <td>{e.email}</td>
+                        <td>{e.nomeResponsavel}</td>
+                        <td>{e.telefoneResponsavel}</td>
+                        <td>{e.Login}</td>
                       </tr>
                     ))}
                   </tbody>

@@ -56,7 +56,7 @@ export default class Login extends React.Component {
     if (this.state.redirect) {
       //if(this.state.role == "school"){
       if (this.state.email == "moisesalmeida") {
-        return <Redirect to={{ pathname: "/escola/", state: { id: "10" } }} />;
+        return <Redirect to={{ pathname: "/escola/", state: { id: "15" } }} />;
       }
       //else{
       //Se for um usuário do tipo Bolsista
