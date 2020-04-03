@@ -99,8 +99,8 @@ class Relatorio extends Component {
             </div>
           </Col>
         </Row>
+        <br />
         <Row>
-          <br />
           <Col md={4}></Col>
           <Col md={4}>
             {this.state.rows.length === 0 && (
