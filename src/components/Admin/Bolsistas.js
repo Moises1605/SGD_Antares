@@ -26,7 +26,9 @@ export default class Bolsistas extends React.Component {
       show: false,
       //utilizado para testes.
 
-      bolsistas: [],
+      bolsistas: [
+       
+      ],
       control: false, //controle para apresentação do modal
       BolsistaEscolhido: "-1" //id do bolsista escolhido para edição
     };
@@ -129,14 +131,14 @@ export default class Bolsistas extends React.Component {
           <Row>
             <div style={{ height: "3vh" }}></div>
           </Row>
-          <Row>
+          <Row
+            style={{
+              height: "40vh",
+              overflowY: "auto"
+            }}
+          >
             <Col md={11}>
-              <div
-                style={{
-                  height: "40vh",
-                  overflowY: "auto"
-                }}
-              >
+              <div>
                 <Table striped bordered hover responsive size="md">
                   <thead>
                     <tr>
@@ -174,10 +176,9 @@ export default class Bolsistas extends React.Component {
               {this.state.bolsistas.map(b => (
                 <Row style={{ paddingTop: "14px" }}>
                   <Button
-                    key={b.id}
                     size="sm"
                     variant="danger"
-                    onClick={this.deleteItem(b.id)}
+                    onClick={() => this.deleteItem(b.id)}
                   >
                     <DeleteIcon />
                   </Button>

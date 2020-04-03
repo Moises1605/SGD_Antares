@@ -22,16 +22,7 @@ class Funcionario extends Component {
       search: "",
       show: false,
       count: 0,
-      funcionarios: [
-        { name: "Moisés", email: "eu", phone: "124", id: "1" },
-        { name: "Moisés", email: "eu", phone: "124", id: "2" },
-        { name: "Moisés", email: "eu", phone: "124", id: "3" },
-        { name: "Moisés", email: "eu", phone: "124", id: "4" },
-        { name: "Moisés", email: "eu", phone: "124", id: "5" },
-        { name: "Moisés", email: "eu", phone: "124", id: "6" },
-        { name: "Moisés", email: "eu", phone: "124", id: "7" },
-        { name: "Moisés", email: "eu", phone: "124", id: "8" }
-      ],
+      funcionarios: [],
       control: false, //controle para apresentação do modal
       FuncionárioEscolhido: "-1" //id do funcionario escolhido para edição,
     };
@@ -52,9 +43,7 @@ class Funcionario extends Component {
 
   count = () => this.setState({ count: this.state.count + 1 });
 
-  deleteItem = id => {
-    console.log(id);
-  };
+  deleteItem = id => console.log(id);
 
   /*async componentDidMount() {
     const f = api.post("/listarFuncionarios");
@@ -170,9 +159,7 @@ class Funcionario extends Component {
           >
             {this.state.funcionarios.map(f => (
               <Row style={{ paddingTop: "14px" }}>
-                {console.log(f.id)}
                 <Button
-                  name={f.id}
                   size="sm"
                   variant="danger"
                   onClick={() => this.deleteItem(f.id)}

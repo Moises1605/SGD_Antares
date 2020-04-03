@@ -112,14 +112,14 @@ export default class Escolas extends React.Component {
           <Row>
             <div style={{ height: "3vh" }}></div>
           </Row>
-          <Row>
+          <Row
+            style={{
+              height: "40vh",
+              overflowY: "auto"
+            }}
+          >
             <Col md={11}>
-              <div
-                style={{
-                  height: "40vh",
-                  overflowY: "auto"
-                }}
-              >
+              <div>
                 <Table striped bordered hover responsive size="md">
                   <thead>
                     <tr>
@@ -166,10 +166,9 @@ export default class Escolas extends React.Component {
               {this.state.escolas.map(e => (
                 <Row style={{ paddingTop: "14px" }}>
                   <Button
-                    key={e.id}
                     size="sm"
                     variant="danger"
-                    onClick={this.deleteItem(e.id)}
+                    onClick={() => this.deleteItem(e.id)}
                   >
                     <DeleteIcon />
                   </Button>
