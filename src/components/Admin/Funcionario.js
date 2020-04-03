@@ -11,6 +11,7 @@ import {
   Modal
 } from "react-bootstrap";
 import api from "../../services/api";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import CadastroFuncionario from "./form_funcionario";
 class Funcionario extends Component {
   constructor() {
@@ -150,8 +151,25 @@ class Funcionario extends Component {
         </Row>
         <br />
         <Row>
-          <Col xs={10}></Col>
-          <Col>
+          <Col xs={4}></Col>
+          <Col xs={4}>
+            {this.state.funcionarios.length === 0 && (
+              <Alert
+                severity="warning"
+                variant="outlined"
+                style={{
+                  width: "60vh",
+                  height: "auto"
+                }}
+              >
+                <AlertTitle>
+                  <b>Ainda não há funcionários cadastrados </b>
+                </AlertTitle>
+              </Alert>
+            )}
+          </Col>
+          <Col xs={2}></Col>
+          <Col xs={2}>
             <Button variant="primary" block onClick={this.setControl}>
               Novo Cadastro
             </Button>

@@ -155,9 +155,10 @@ export default class Escolas extends React.Component {
               </div>
             </Col>
           </Row>
+          <br />
           <Row>
-            <Col></Col>
-            <Col>
+            <Col md={4}></Col>
+            <Col md={4}>
               {this.state.escolas.length === 0 && (
                 <Alert
                   severity="warning"
@@ -173,7 +174,7 @@ export default class Escolas extends React.Component {
                 </Alert>
               )}
             </Col>
-            <Col></Col>
+            <Col md={4}></Col>
           </Row>
         </Container>
       </div>
