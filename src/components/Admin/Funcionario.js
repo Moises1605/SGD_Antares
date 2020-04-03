@@ -20,11 +20,7 @@ class Funcionario extends Component {
       search: "",
       show: false,
       count: 0,
-      funcionarios: [
-        { name: "Moisés", email: "eu", phone: "124", id: "1" },
-        { name: "Moisés", email: "eu", phone: "124", id: "2" },
-        { name: "Moisés", email: "eu", phone: "124", id: "3" }
-      ],
+      funcionarios: [],
       control: false, //controle para apresentação do modal
       FuncionárioEscolhido: "-1" //id do bolsista escolhido para edição,
     };
@@ -132,7 +128,7 @@ class Funcionario extends Component {
                   <tr>
                     <th>#</th>
                     <th>Nome</th>
-                    <th>CPF</th>
+                    <th>Email</th>
                     <th>Telefone</th>
                   </tr>
                 </thead>
