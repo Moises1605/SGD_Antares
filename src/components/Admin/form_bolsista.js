@@ -45,18 +45,6 @@ class CadastroBolsista extends Component {
   async handleSubmit(event) {
     api.post("/adicionarBolsista", this.state);
     this.setState({ showcadastro: true });
-    console.log(this.state.name);
-    console.log(this.state.login);
-    console.log(this.state.surname);
-    console.log(this.state.cidade);
-    console.log(this.state.bairro);
-    console.log(this.state.rua);
-    console.log(this.state.numero);
-    console.log(this.state.email);
-    console.log(this.state.enrollment);
-    console.log(this.state.cpf);
-    console.log(this.state.phone);
-    console.log(this.state.password);
   }
 
   render() {
@@ -67,7 +55,7 @@ class CadastroBolsista extends Component {
           title="Sucesso"
           text="O bolsista foi cadastrado"
           onConfirm={() =>
-            this.setState({ show: false, controlCancel2: false })
+            this.setState({ showcadastro: false, controlCancel2: false })
           }
         />
         <Form onSubmit={this.handleSubmit}>

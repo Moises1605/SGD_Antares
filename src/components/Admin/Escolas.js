@@ -75,9 +75,8 @@ export default class Escolas extends React.Component {
             </Col>
             <Col></Col>
           </Row>
-          <Row>
-            <div style={{ height: "3vh" }}></div>
-          </Row>
+          <hr />
+
           <Row>
             <Col>
               <Dropdown>
@@ -141,7 +140,7 @@ export default class Escolas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.escolas.map((e, i = 0) => (
-                      <tr key={e.id}>
+                      <tr key={e.idPessoa}>
                         <td>
                           <b>{i++}</b>
                         </td>

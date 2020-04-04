@@ -24,7 +24,6 @@ export default class Bolsistas extends React.Component {
       search: "",
       show: false,
       showdelete: false,
-
       controlCancel1: false,
       //utilizado para testes.
       bolsistas: [
@@ -100,9 +99,7 @@ export default class Bolsistas extends React.Component {
             </Col>
             <Col></Col>
           </Row>
-          <Row>
-            <div style={{ height: "3vh" }}></div>
-          </Row>
+          <hr />
           <Row>
             <Col>
               <Dropdown>

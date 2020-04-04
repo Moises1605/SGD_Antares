@@ -14,12 +14,12 @@ import api from "../../services/api";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import CadastroFuncionario from "./form_funcionario";
 import DeleteIcon from "@material-ui/icons/Delete";
+import SweetAlert from "sweetalert2-react";
 import SearchIcon from "@material-ui/icons/Search";
 class Funcionario extends Component {
   constructor() {
     super();
     this.state = {
-      rows: [],
       search: "",
       show: false,
       count: 0,
@@ -35,6 +35,7 @@ class Funcionario extends Component {
         { name: "Moisés", email: "eu", phone: "124", id: "8" },
         { name: "Moisés", email: "eu", phone: "124", id: "9" },*/
       ],
+      showdelete: false,
     };
   }
 
@@ -54,8 +55,8 @@ class Funcionario extends Component {
   deleteItem = (id) => {
     var newList = this.state.funcionarios.filter((obj) => obj.idPessoa !== id);
     this.setState({ funcionarios: newList });
-    var removido=this.state.funcionarios.filter((obj)=> obj.idPessoa===id)
-    console.log(removido[0])
+    var removido = this.state.funcionarios.filter((obj) => obj.idPessoa === id);
+    this.setState({ showdelete: true });
     api.post("/removerFuncionario", removido);
   };
 
@@ -81,6 +82,14 @@ class Funcionario extends Component {
   render() {
     return (
       <Container fluid>
+        <SweetAlert
+          show={this.state.showdelete}
+          title="Sucesso"
+          text="O bolsistas foi removido"
+          onConfirm={() =>
+            this.setState({ showdelete: false, controlCancel1: false })
+          }
+        />
         <Row>
           <Col>
             <h3 style={{ textAlign: "left", marginTop: "15px" }}>
@@ -89,9 +98,7 @@ class Funcionario extends Component {
           </Col>
           <Col></Col>
         </Row>
-        <Row>
-          <div style={{ height: "3vh" }}></div>
-        </Row>
+        <hr />
         <Row>
           <Col>
             <Dropdown>
@@ -114,11 +121,7 @@ class Funcionario extends Component {
                 onChange={this.handleChange}
               />
               <InputGroup.Prepend>
-                <Button
-                  size="sm"
-                  variant="primary"
-                  onClick={this.handleSearch}
-                >
+                <Button size="sm" variant="primary" onClick={this.handleSearch}>
                   <SearchIcon size="small" />
                 </Button>
               </InputGroup.Prepend>
