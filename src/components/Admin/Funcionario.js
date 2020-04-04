@@ -51,9 +51,11 @@ class Funcionario extends Component {
   count = () => this.setState({ count: this.state.count + 1 });
 
   deleteItem = (id) => {
-    var newList = this.state.funcionarios.filter((obj) => obj.id !== id);
+    var newList = this.state.funcionarios.filter((obj) => obj.idPessoa !== id);
     this.setState({ funcionarios: newList });
-    api.post("/removerFuncionário", id);
+    var removido=this.state.funcionarios.filter((obj)=> obj.idPessoa===id)
+    console.log(removido[0])
+    api.post("/removerFuncionario", removido);
   };
 
   orderName = () => {
@@ -172,7 +174,7 @@ class Funcionario extends Component {
                 <Button
                   size="sm"
                   variant="outline-danger"
-                  onClick={() => this.deleteItem(f.id)}
+                  onClick={() => this.deleteItem(f.idPessoa)}
                 >
                   <DeleteIcon />
                 </Button>

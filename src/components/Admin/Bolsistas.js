@@ -28,7 +28,7 @@ export default class Bolsistas extends React.Component {
       //utilizado para testes.
       bolsistas: [
         // PARA TESTES
-        { name: "Gina", email: "eu", phone: "124", id: 1, tag: 1 },
+        /*{ name: "Gina", email: "eu", phone: "124", id: 1, tag: 1 },
         { name: "Carlos", email: "eu", phone: "124", id: 2, tag: 2 },
         { name: "Daniel", email: "eu", phone: "124", id: 3, tag: 3 },
         { name: "Moisés", email: "eu", phone: "124", id: 4, tag: 4 },
@@ -36,7 +36,7 @@ export default class Bolsistas extends React.Component {
         { name: "Samuel", email: "eu", phone: "124", id: 6, tag: 6 },
         { name: "Ludmilla", email: "eu", phone: "124", id: 7, tag: 7 },
         { name: "Moisés", email: "eu", phone: "124", id: 8, tag: 8 },
-        { name: "Moisés", email: "eu", phone: "124", id: 9, tag: 9 },
+        { name: "Moisés", email: "eu", phone: "124", id: 9, tag: 9 },*/
       ],
     };
   }
@@ -53,15 +53,15 @@ export default class Bolsistas extends React.Component {
 
   async componentDidMount() {
     const b = api.post("/listarBolsistas");
-    var i = 0;
-    this.setState({ bolsistas: (await b).data.map((b) => b, b.tag === i++) });
+    this.setState({ bolsistas: (await b).data.map((b) => b) });
     console.log(this.state.bolsistas);
   }
 
   deleteItem = (id) => {
-    var newList = this.state.bolsistas.filter((obj) => obj.id !== id);
+    var newList = this.state.bolsistas.filter((obj) => obj.idPessoa !== id);
     this.setState({ bolsistas: newList });
-    api.post("/removerBolsista", id);
+    var removido=this.state.bolsistas.filter((obj)=> obj.idPessoa===id)
+    api.post("/removerBolsista", removido);
   };
 
   orderName = () => {
@@ -107,7 +107,6 @@ export default class Bolsistas extends React.Component {
                   Ordenar Por
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={this.orderTag}>#</Dropdown.Item>
                   <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
                   <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
                 </Dropdown.Menu>
@@ -149,9 +148,9 @@ export default class Bolsistas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.bolsistas.map((b, i = 0) => (
-                      <tr key={b.id} name={b.id}>
+                      <tr key={b.idPessoa} name={b.idPessoa}>
                         <td>
-                          <b>{b.tag}</b>
+                          <b>{i++}</b>
                         </td>
                         <td>{b.nome}</td>
                         <td>{b.email}</td>
@@ -173,7 +172,7 @@ export default class Bolsistas extends React.Component {
                   <Button
                     size="sm"
                     variant="outline-danger"
-                    onClick={() => this.deleteItem(b.id)}
+                    onClick={() => this.deleteItem(b.idPessoa)}
                   >
                     <DeleteIcon />
                   </Button>
