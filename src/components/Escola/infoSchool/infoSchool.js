@@ -427,12 +427,12 @@ export default class InfoSchool extends React.Component {
                             </div>
                         </Form.Group>
 
-                        <Form.Group controlId="formGridDirectorSurname">
+                        <Form.Group as={Col} md='2' controlId="formGridDirectorSurname">
                             <div noValidate autoComplete="off">
                                 <TextField
                                     fullWidth={true}
-                                    id="outlined-basic"
-                                    label="Sobrenome do diretor"
+                                    id="directorSurname"
+                                    label="Sobrenome diretor"
                                     variant="outlined"
                                     size="small"
                                     value={this.state.respSurname}
@@ -449,44 +449,52 @@ export default class InfoSchool extends React.Component {
                             </div>
                         </Form.Group>
                         {/* <Form.Group as={Col} md='1' ></Form.Group> */}
-                        <TextField
-                            id="typeSchool"
-                            size="small"
-                            select
-                            label="Tipo de escola"
-                            value={this.state.schoolType}
-                            onChange={this.handleChangeTypeSchool}
-                            SelectProps={{
-                                native: true
-                            }}
-                            variant="outlined"
-                            helperText="Por favor escolha uma opção"
-                        >
-                            {this.state.currencies.map(option => (
-                                <option key={option} value={option}>
-                                    {option}
-                                </option>
-                            ))}
-                        </TextField>
+                       
                         {/* <Form.Group as={Col} md='1' ></Form.Group> */}
-                        <TextField
-                            id="standard-select-currency"
-                            size="small"
-                            label="Telefone do diretor"
-                            value={this.state.respPhone}
-                            onChange={this.handleChangeRespPhone}
-                            variant="outlined"
-                            type="number"
-                            required
-                            /*error={!this.state.controlPhone}
-                            helperText={
-                                this.state.controlPhone == true ? " " : "Telefone válido possui 8 caracteres"
-                            }*/
-                        ></TextField>
+                        <Form.Group as={Col} md='3' >
+                            <div noValidate autoComplete="off">
+                                <TextField
+                                    
+                                    size="small"
+                                    label="Telefone do diretor"
+                                    value={this.state.respPhone}
+                                    onChange={this.handleChangeRespPhone}
+                                    variant="outlined"
+                                    type="number"
+                                    required
+                                    /*error={!this.state.controlPhone}
+                                    helperText={
+                                        this.state.controlPhone == true ? " " : "Telefone válido possui 8 caracteres"
+                                    }*/
+                                ></TextField>
+                            </div>
+                        </Form.Group>
+                        <Form.Group as={Col} md='3' >
+                            <div noValidate autoComplete="off">
+                            <TextField
+                                size="small"
+                                select
+                                label="Tipo de escola"
+                                value={this.state.schoolType}
+                                onChange={this.handleChangeTypeSchool}
+                                SelectProps={{
+                                    native: true
+                                }}
+                                variant="outlined"
+                                helperText="Por favor escolha uma opção"
+                            >
+                                {this.state.currencies.map(option => (
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </TextField>
+                            </div>
+                        </Form.Group>
                     </Form.Row>
-                    <Form.Row>
+                    {/* <Form.Row>
                         <Form.Group as={Col} md='3'></Form.Group>
-                    </Form.Row>
+                    </Form.Row> */}
                     <Form.Row>
                         <Form.Group as={Col} md='4' controlId="formGridEmail">
                             <div noValidate autoComplete="off">
@@ -503,7 +511,7 @@ export default class InfoSchool extends React.Component {
                                 />
                             </div>
                         </Form.Group>
-                        <Form.Group as={Col} md='1'></Form.Group>
+                        {/* <Form.Group as={Col} md='1'></Form.Group> */}
                         <Form.Group as={Col} md='3' controlId="formGridLogin">
                             <div noValidate autoComplete="off">
                                 <TextField
