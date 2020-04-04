@@ -60,7 +60,6 @@ class Funcionario extends Component {
     this.state.funcionarios.forEach((obj) => console.log(obj));
     var newList = this.state.funcionarios;
     newList.sort((a, b) => (a.name > b.name ? 1 : -1));
-    console.log(newList);
     this.setState({ funcionarios: newList });
   };
 
@@ -68,7 +67,6 @@ class Funcionario extends Component {
     this.state.funcionarios.forEach((obj) => console.log(obj));
     var newList = this.state.funcionarios;
     newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-    console.log(newList);
     this.setState({ funcionarios: newList });
   };
 
@@ -76,7 +74,6 @@ class Funcionario extends Component {
     this.state.funcionarios.forEach((obj) => console.log(obj));
     var newList = this.state.funcionarios;
     newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    console.log(newList);
     this.setState({ funcionarios: newList });
   };
 

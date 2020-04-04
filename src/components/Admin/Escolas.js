@@ -42,7 +42,6 @@ export default class Escolas extends React.Component {
     this.state.escolas.forEach((obj) => console.log(obj));
     var newList = this.state.escolas;
     newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-    console.log(newList);
     this.setState({ escolas: newList });
   };
 
@@ -50,7 +49,6 @@ export default class Escolas extends React.Component {
     this.state.escolas.forEach((obj) => console.log(obj));
     var newList = this.state.escolas;
     newList.sort((a, b) => (a.nomeEscola > b.nomeEscola ? 1 : -1));
-    console.log(newList);
     this.setState({ escolas: newList });
   };
 
@@ -58,7 +56,6 @@ export default class Escolas extends React.Component {
     this.state.escolas.forEach((obj) => console.log(obj));
     var newList = this.state.escolas;
     newList.sort((a, b) => (a.nomeResponsavel > b.nomeResponsavel ? 1 : -1));
-    console.log(newList);
     this.setState({ escolas: newList });
   };
 
@@ -66,7 +63,6 @@ export default class Escolas extends React.Component {
     this.state.escolas.forEach((obj) => console.log(obj));
     var newList = this.state.escolas;
     newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    console.log(newList);
     this.setState({ escolas: newList });
   };
 

@@ -67,7 +67,6 @@ export default class Bolsistas extends React.Component {
     this.state.bolsistas.forEach((obj) => console.log(obj));
     var newList = this.state.bolsistas;
     newList.sort((a, b) => (a.name > b.name ? 1 : -1));
-    console.log(newList);
     this.setState({ bolsistas: newList });
   };
 
@@ -75,7 +74,6 @@ export default class Bolsistas extends React.Component {
     this.state.bolsistas.forEach((obj) => console.log(obj));
     var newList = this.state.bolsistas;
     newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-    console.log(newList);
     this.setState({ bolsistas: newList });
   };
 
@@ -83,7 +81,6 @@ export default class Bolsistas extends React.Component {
     this.state.bolsistas.forEach((obj) => console.log(obj));
     var newList = this.state.bolsistas;
     newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    console.log(newList);
     this.setState({ bolsistas: newList });
   };
 
