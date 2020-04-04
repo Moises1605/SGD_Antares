@@ -73,13 +73,6 @@ class Funcionario extends Component {
     this.setState({ funcionarios: newList });
   };
 
-  orderTag = () => {
-    this.state.funcionarios.forEach((obj) => console.log(obj));
-    var newList = this.state.funcionarios;
-    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    this.setState({ funcionarios: newList });
-  };
-
   async componentDidMount() {
     const f = api.post("/listarFuncionarios");
     this.setState({ funcionarios: (await f).data.map((f) => f) });
@@ -107,7 +100,6 @@ class Funcionario extends Component {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item>#</Dropdown.Item>
                 <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
                 <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
               </Dropdown.Menu>

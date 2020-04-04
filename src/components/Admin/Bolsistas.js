@@ -75,13 +75,6 @@ export default class Bolsistas extends React.Component {
     this.setState({ bolsistas: newList });
   };
 
-  orderTag = () => {
-    this.state.bolsistas.forEach((obj) => console.log(obj));
-    var newList = this.state.bolsistas;
-    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    this.setState({ bolsistas: newList });
-  };
-
   render() {
     return (
       <div>

@@ -54,13 +54,6 @@ export default class Escolas extends React.Component {
     this.setState({ escolas: newList });
   };
 
-  orderTag = () => {
-    this.state.escolas.forEach((obj) => console.log(obj));
-    var newList = this.state.escolas;
-    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    this.setState({ escolas: newList });
-  };
-
   async componentDidMount() {
     const e = api.post("/listarEscolas");
     var i = 0;
@@ -93,7 +86,6 @@ export default class Escolas extends React.Component {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => this.orderTag}>#</Dropdown.Item>
                   <Dropdown.Item onClick={() => this.orderNomeEscola}>
                     Nome Escola
                   </Dropdown.Item>
