@@ -23,7 +23,6 @@ export default class Escolas extends React.Component {
   constructor() {
     super();
     this.state = {
-      rows: [],
       search: "",
       escolas: [],
     };
@@ -68,7 +67,8 @@ export default class Escolas extends React.Component {
 
   async componentDidMount() {
     const e = api.post("/listarEscolas");
-    this.setState({ escolas: (await e).data.map((e) => e) });
+    var i = 0;
+    this.setState({ escolas: (await e).data.map((e) => e, e.tag === i++) });
     console.log(this.state.escolas);
   }
 

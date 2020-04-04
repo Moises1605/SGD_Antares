@@ -25,7 +25,6 @@ export default class Bolsistas extends React.Component {
       search: "",
       show: false,
       //utilizado para testes.
-
       bolsistas: [
         // PARA TESTES
         { name: "Gina", email: "eu", phone: "124", id: 1, tag: 1 },
@@ -53,7 +52,8 @@ export default class Bolsistas extends React.Component {
 
   async componentDidMount() {
     const b = api.post("/listarBolsistas");
-    this.setState({ bolsistas: (await b).data.map((b) => b) });
+    var i = 0;
+    this.setState({ bolsistas: (await b).data.map((b) => b, b.tag === i++) });
     console.log(this.state.bolsistas);
   }
 
@@ -150,7 +150,7 @@ export default class Bolsistas extends React.Component {
                     {this.state.bolsistas.map((b, i = 0) => (
                       <tr key={b.id} name={b.id}>
                         <td>
-                          <b>{i++}</b>
+                          <b>{b.tag}</b>
                         </td>
                         <td>{b.name}</td>
                         <td>{b.email}</td>
