@@ -157,9 +157,9 @@ class Funcionario extends Component {
                       <td>
                         <b>{i++}</b>
                       </td>
-                      <td>{f.name}</td>
+                      <td>{f.nome}</td>
                       <td>{f.email}</td>
-                      <td>{f.phone}</td>
+                      <td>{f.telefone}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -31,7 +31,7 @@ export default class CadastroFuncionario extends Component {
   }
 
   async handleSubmit(event) {
-    //api.post("/adicionarFuncionario", this.state);
+    api.post("/adicionarFuncionario", this.state);
     console.log(this.state.name);
     console.log(this.state.login);
     console.log(this.state.surname);

@@ -65,6 +65,7 @@ export default class InfoSchool extends React.Component {
 
     }
 
+    //Carrega os dados dos bolssitas
     async componentDidMount() {
         console.log("safe:" + this.state.IDSchool)
         const response = await api.post("/retornaDadosEscola", this.state);
@@ -215,9 +216,9 @@ export default class InfoSchool extends React.Component {
         this.setState({ respPhone: event.target.value });
     }
 
+
     async handleSubmit(event) {
         await api.post("/atualizaDadosEscola", this.state);
-        alert("Alterações salvas com sucesso");
         this.setState({show: true});
         event.preventDefault();
     }
