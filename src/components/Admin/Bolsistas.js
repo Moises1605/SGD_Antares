@@ -149,9 +149,9 @@ export default class Bolsistas extends React.Component {
                         <td>
                           <b>{i++}</b>
                         </td>
-                        <td>{b.name}</td>
+                        <td>{b.nome}</td>
                         <td>{b.email}</td>
-                        <td>{b.phone}</td>
+                        <td>{b.telefone}</td>
                       </tr>
                     ))}
                   </tbody>
