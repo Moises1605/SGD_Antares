@@ -12,8 +12,9 @@ import {
   Modal,
 } from "react-bootstrap";
 import api from "../../../services/api";
-import SearchIcon from "@material-ui/icons/Search";
 import DateRangeIcon from "@material-ui/icons/DateRange";
+import SearchIcon from "@material-ui/icons/Search";
+import SweetAlert from "sweetalert2-react";
 //Tela onde a escola poderá vê os seus agendamentos.
 export default class MyScheduling extends React.Component {
   constructor(props) {
@@ -53,11 +54,12 @@ export default class MyScheduling extends React.Component {
       controle: false,
       controlCancel: false,
       current: {},
-      status: ["warning", "success", "secondary"],
-      legends: ["Análise", "confirmado", "feito", "cancelado"],
+      status: ["warning", "success", "secondary", "danger"],
+      legends: ["Análise", "Confirmado", "Realizado", "Cancelado"],
       search: "", //o que o usuario digita para pesquisa
       resultSearch: [], // resultado da pesquisa
       controlSearch: "false", //se o usuário digitou alguma coisa para pesquisa
+      show: false,
     };
     this.setControl = this.setControl.bind(this);
     this.setControlCancel = this.setControlCancel.bind(this);
@@ -67,10 +69,12 @@ export default class MyScheduling extends React.Component {
     this.filterDates = this.filterDates.bind(this);
   }
 
+  //Responsável por comparar a data digitada pelo usuário no campo de busca.
+  //Parâmetro date: uma data que irá ser comparada com a digitada no campo de busca.
   searchScheduling(date) {
     return date.agendamento === this.state.search;
   }
-
+  //Responsável por retornar as datas correspondentes com a busca do usuário.
   async filterDates() {
     var aux = await this.state.schedulings.filter(this.searchScheduling);
     this.setState({ resultSearch: aux });
@@ -83,13 +87,16 @@ export default class MyScheduling extends React.Component {
     //this.setState({schedulings: Response.data});
   }
 
+  //Responsável por chamar a rota que cancela uma visita.
   cancelScheduling() {
     //cancela uma visita
     //api.get("/cancelarvisita", this.state.id);
     var position = this.state.schedulings.indexOf(this.state.current);
-    this.state.schedulings[position].status = 4;
+    this.state.schedulings[position].status = 3;
+    this.setState({ show: true });
   }
 
+  // Responsável por controlar a visualização do modal de cancelamento de visitas.
   setControlCancel(event) {
     console.log(event.target.name);
     var teste = event.target.name;
@@ -97,6 +104,7 @@ export default class MyScheduling extends React.Component {
     this.setState({ controlCancel: true });
   }
 
+  //Responsável por controlar a visualização do modal de visualização de horários.
   setControl(event) {
     console.log(event.target.name);
     var teste = event.target.name;
@@ -104,6 +112,7 @@ export default class MyScheduling extends React.Component {
     this.setState({ controle: true });
   }
 
+  //Responsável por controlar a visualização dos  resultados da pesquisa de agendamentos.
   handleChange(event) {
     var aux2 = event.target.value;
     this.setState({ search: event.target.value });
@@ -115,6 +124,12 @@ export default class MyScheduling extends React.Component {
   render() {
     return (
       <div>
+        <SweetAlert
+          show={this.state.show}
+          title="Sucesso"
+          text="Seu agendamento foi cancelado"
+          onConfirm={() => this.setState({ show: false, controlCancel: false })}
+        />
         <Modal
           show={this.state.controle}
           centered
@@ -216,7 +231,6 @@ export default class MyScheduling extends React.Component {
                   >
                     <SearchIcon size="small" />
                   </Button>
-                  {/*<Button onClick = {this.filterDates} variant="outline-secondary">&#128269;</Button>*/}
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>

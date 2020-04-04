@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Container, Row, Col, Button, FormLabel } from "react-bootstrap";
 import api from "../../services/api";
 import TextField from "@material-ui/core/TextField";
+import SweetAlert from "sweetalert2-react";
 
 class CadastroBolsista extends Component {
   constructor() {
@@ -19,7 +20,8 @@ class CadastroBolsista extends Component {
       cpf: "", //cpf
       phone: "", //telefone
       password: "", //senha
-      repassword: "" //confirmar senha
+      repassword: "", //confirmar senha
+      showcadastro: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -42,6 +44,7 @@ class CadastroBolsista extends Component {
 
   async handleSubmit(event) {
     api.post("/adicionarBolsista", this.state);
+    this.setState({ showcadastro: true });
     console.log(this.state.name);
     console.log(this.state.login);
     console.log(this.state.surname);
@@ -59,6 +62,14 @@ class CadastroBolsista extends Component {
   render() {
     return (
       <Container>
+        <SweetAlert
+          show={this.state.showcadastro}
+          title="Sucesso"
+          text="O bolsista foi cadastrado"
+          onConfirm={() =>
+            this.setState({ show: false, controlCancel2: false })
+          }
+        />
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlledId="Name-surname">
             <Form.Row>

@@ -1,55 +1,49 @@
-#schedulings{
-    width: 100vw;
-    height: 100vh;
+#schedulings {
+  width: 100vw;
+  height: 100vh;
 }
 
-#titleScheduling{
-    font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
+#titleScheduling {
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
 }
 
-#head{
-    margin: 20px 0 20px 20px;
+#head {
+  margin: 20px 0 20px 20px;
 }
 
-#item{
-    margin: 10px auto 10px auto;
-    width: 900px;
+#item {
+  margin: 10px auto 10px auto;
+  width: 900px;
 }
 
-#test{
-    margin: 0 10px 0 0;
+#test {
+  margin: 0 10px 0 0;
 }
 
-#button{ 
-    margin: 0 0 0 auto;
-    display: block;
-    width: 300px;
+#button {
+  margin: 0 0 0 auto;
+  display: block;
+  width: 300px;
 }
 
-#view{
-    margin: 0 10px 0 10px;  
-    height: 40px;
-    width: 150px;
+#view {
+  margin: 0 10px 0 10px;
+  height: 40px;
+  width: 150px;
 }
-#cancel2{
-    width: 120px;
-    margin-left: auto;
+#cancel2 {
+  width: 120px;
+  margin-left: auto;
 }
 
-#data{
-    font-size: 20px;
-    margin: 0 0 0 0;
-} 
+#data {
+  font-size: 20px;
+  margin: 0 0 0 0;
+}
 
-#responsavel{
-    font-size: 20px;
-    margin: 0 0 0 10px; 
-} 
-
-/* css do modal */ 
-/* #modal{
-    width: 500px;
-   
-} */
+#responsavel {
+  font-size: 20px;
+  margin: 0 0 0 10px;
+}
