@@ -27,7 +27,7 @@ export default class Login extends React.Component {
       idUser: "0",
       redirect: false,
       permission2: [],
-      role:"",
+      role: ""
     };
 
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -94,9 +94,9 @@ export default class Login extends React.Component {
               state: {
                 permission: [
                   "0",
-                  "1",
-                  "1",
-                  "1",
+                  "0",
+                  "0",
+                  "0",
                   "0",
                   "1",
                   "1",

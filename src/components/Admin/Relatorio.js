@@ -8,7 +8,7 @@ import {
   Dropdown,
   Button,
   FormControl,
-  Table
+  Table,
 } from "react-bootstrap";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
@@ -18,7 +18,7 @@ class Relatorio extends Component {
     this.state = {
       search: "",
       rows: [],
-      modalShow: false
+      modalShow: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -79,16 +79,17 @@ class Relatorio extends Component {
           <div style={{ height: "3vh" }}></div>
         </Row>
         <Row>
-          <Col>
+          <Col md={12}>
             <div
               style={{
                 height: "40vh",
-                overflowY: "auto"
+                overflowY: "auto",
               }}
             >
               <Table size="md" bordered hover responsive striped>
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Relatórios</th>
                     <th>Nº de Visitantes</th>
                     <th>Data</th>
@@ -101,19 +102,19 @@ class Relatorio extends Component {
         </Row>
         <br />
         <Row>
-          <Col md={4}></Col>
-          <Col md={4}>
+          <Col md={3}></Col>
+          <Col md={5}>
             {this.state.rows.length === 0 && (
               <Alert
                 severity="warning"
                 variant="outlined"
                 style={{
-                  width: "70vh",
-                  height: "auto"
+                  width: "auto",
+                  height: "auto",
                 }}
               >
                 <AlertTitle>
-                  <b>Ainda não há relatórios no banco de dados </b>
+                  <b>Ainda não há relatórios no banco de dados</b>
                 </AlertTitle>
               </Alert>
             )}

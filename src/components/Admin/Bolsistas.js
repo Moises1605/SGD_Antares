@@ -10,12 +10,14 @@ import {
   Table,
   Modal,
   ModalBody,
-  ModalTitle
+  ModalTitle,
 } from "react-bootstrap";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
-
+import IconButton from "@material-ui/core/IconButton";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 export default class Bolsistas extends React.Component {
   constructor() {
     super();
@@ -24,16 +26,22 @@ export default class Bolsistas extends React.Component {
       search: "",
       show: false,
       //utilizado para testes.
-
-      bolsistas: [],
-      control: false, //controle para apresentação do modal
-      BolsistaEscolhido: "-1" //id do bolsista escolhido para edição
+      bolsistas: [
+        // PARA TESTES
+        { name: "Gina", email: "eu", phone: "124", id: 1, tag: 1 },
+        { name: "Carlos", email: "eu", phone: "124", id: 2, tag: 2 },
+        { name: "Daniel", email: "eu", phone: "124", id: 3, tag: 3 },
+        { name: "Moisés", email: "eu", phone: "124", id: 4, tag: 4 },
+        { name: "Roberto", email: "eu", phone: "124", id: 5, tag: 5 },
+        { name: "Samuel", email: "eu", phone: "124", id: 6, tag: 6 },
+        { name: "Ludmilla", email: "eu", phone: "124", id: 7, tag: 7 },
+        { name: "Moisés", email: "eu", phone: "124", id: 8, tag: 8 },
+        { name: "Moisés", email: "eu", phone: "124", id: 9, tag: 9 },
+      ],
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
   /** REVIEW Método para registrar dados da pesquisa */
-  handleChange = event => this.setState({ search: event.target.value });
+  handleChange = (event) => this.setState({ search: event.target.value });
 
   /** NOTE Método para abrir o modal */
   setControl = () => this.setState({ show: true });
@@ -45,44 +53,41 @@ export default class Bolsistas extends React.Component {
 
   async componentDidMount() {
     const b = api.post("/listarBolsistas");
-    this.setState({ bolsistas: (await b).data.map(b => b) });
+    var i = 0;
+    this.setState({ bolsistas: (await b).data.map((b) => b, b.tag === i++) });
     console.log(this.state.bolsistas);
   }
 
-  /**TODO Método para mostrar informação do bolsista */
-  // handleClick = async b => {
-  //   await console.log(b);
-  // };
-  //Ativa a apresentação do modal e manda o id do bolsista escolhido
-  handleClick(e) {
-    console.log(e);
-    this.setState({ BolsistaEscolhido: e, control: true });
-  }
+  deleteItem = (id) => {
+    var newList = this.state.bolsistas.filter((obj) => obj.id !== id);
+    this.setState({ bolsistas: newList });
+    api.post("/removerBolsista", id);
+  };
 
-  //Mesma ideia de atualizar, usando o id do cara vc chama a rota pra excluir, mas ai tem que ser no modal que vcs vão criar, por isso não implementei completamente.
-  delete() {
-    /*const response = await api.get("/atualizarBolsista", this.state.IDScholarship);*/
-  }
+  orderName = () => {
+    this.state.bolsistas.forEach((obj) => console.log(obj));
+    var newList = this.state.bolsistas;
+    newList.sort((a, b) => (a.name > b.name ? 1 : -1));
+    this.setState({ bolsistas: newList });
+  };
+
+  orderEmail = () => {
+    this.state.bolsistas.forEach((obj) => console.log(obj));
+    var newList = this.state.bolsistas;
+    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+    this.setState({ bolsistas: newList });
+  };
+
+  orderTag = () => {
+    this.state.bolsistas.forEach((obj) => console.log(obj));
+    var newList = this.state.bolsistas;
+    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
+    this.setState({ bolsistas: newList });
+  };
 
   render() {
     return (
       <div>
-        {/* Modal para teste, se quiserem podem mudar o jeito de visuaização, a ideia é utilizar o id que mandei
-        para pegar o resto das informações, mas eu não sei se nesse método tu pegar já tudo, ou só o email,nome e telefone */}
-        <Modal
-          size="lg"
-          show={this.state.control}
-          onHide={() => this.setState({ control: false })}
-          aria-labelledby="example-modal-sizes-title-lg"
-          id="modal"
-        >
-          <Modal.Header closeButton id="header">
-            <Modal.Title id="example-modal-sizes-title-lg">
-              Testando
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>{this.state.BolsistaEscolhido}</Modal.Body>
-        </Modal>
         <Container fluid>
           <Row>
             <Col>
@@ -101,11 +106,10 @@ export default class Bolsistas extends React.Component {
                 <Dropdown.Toggle variant="outline-primary">
                   Ordenar Por
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
-                  <Dropdown.Item>Nome</Dropdown.Item>
-                  <Dropdown.Item>CPF</Dropdown.Item>
-                  <Dropdown.Item>Telefone</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderTag}>#</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
@@ -126,14 +130,14 @@ export default class Bolsistas extends React.Component {
           <Row>
             <div style={{ height: "3vh" }}></div>
           </Row>
-          <Row>
-            <Col>
-              <div
-                style={{
-                  height: "40vh",
-                  overflowY: "auto"
-                }}
-              >
+          <Row
+            style={{
+              height: "40vh",
+              overflowY: "auto",
+            }}
+          >
+            <Col md={11}>
+              <div>
                 <Table striped bordered hover responsive size="md">
                   <thead>
                     <tr>
@@ -145,9 +149,9 @@ export default class Bolsistas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.bolsistas.map((b, i = 0) => (
-                      <tr name={b.id} onClick={() => this.handleClick(b.id)}>
+                      <tr key={b.id} name={b.id}>
                         <td>
-                          <b>{i++}</b>
+                          <b>{b.tag}</b>
                         </td>
                         <td>{b.nome}</td>
                         <td>{b.email}</td>
@@ -158,22 +162,40 @@ export default class Bolsistas extends React.Component {
                 </Table>
               </div>
             </Col>
+            <Col
+              md={1}
+              style={{
+                paddingTop: "45px",
+              }}
+            >
+              {this.state.bolsistas.map((b) => (
+                <Row style={{ paddingTop: "14px" }}>
+                  <Button
+                    size="sm"
+                    variant="outline-danger"
+                    onClick={() => this.deleteItem(b.id)}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Row>
+              ))}
+            </Col>
           </Row>
           <br />
           <Row>
-            <Col xs={4}></Col>
-            <Col xs={4}>
+            <Col xs={3}></Col>
+            <Col xs={5}>
               {this.state.bolsistas.length === 0 && (
                 <Alert
                   severity="warning"
                   variant="outlined"
                   style={{
-                    width: "60vh",
-                    height: "auto"
+                    width: "auto",
+                    height: "auto",
                   }}
                 >
                   <AlertTitle>
-                    <b>Ainda não há bolsistas cadastrados </b>
+                    <b>Ainda não há bolsistas cadastrados no sistema </b>
                   </AlertTitle>
                 </Alert>
               )}

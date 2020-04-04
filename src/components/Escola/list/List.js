@@ -15,11 +15,11 @@ import SchoolIcon from "@material-ui/icons/School";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import BackupIcon from "@material-ui/icons/Backup";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import HomeIcon from '@material-ui/icons/Home';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import EventAvailableIcon from '@material-ui/icons/EventAvailable';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import {Link} from 'react-router-dom'
+import HomeIcon from "@material-ui/icons/Home";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import EventAvailableIcon from "@material-ui/icons/EventAvailable";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import { Link } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import "./List.css";
 import logo from "../../../assets/logoV2.png";
@@ -54,7 +54,7 @@ class SimpleList extends Component {
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Início"/>
+              <ListItemText primary="Início" />
             </ListItem>
 
             <ListItem button onClick={() => this.props.onClick("1")}>
@@ -69,18 +69,20 @@ class SimpleList extends Component {
               </ListItemIcon>
               <ListItemText primary="Meus agendamentos" />
             </ListItem>
-            <ListItem button  onClick={() => this.props.onClick("3")}>
+            <ListItem button onClick={() => this.props.onClick("3")}>
               <ListItemIcon>
                 <AssignmentIcon />
               </ListItemIcon>
               <ListItemText primary="Editar dados" />
             </ListItem>
-            <Link to = '/login'><ListItem button>
-              <ListItemIcon>
-                <ExitToAppIcon />
-              </ListItemIcon>
-              <ListItemText primary="Encerrar Sessão" />
-            </ListItem></Link>
+            <Link to="/login" id="link_exit">
+              <ListItem button>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="Encerrar Sessão" />
+              </ListItem>
+            </Link>
           </List>
         </div>
       </div>
