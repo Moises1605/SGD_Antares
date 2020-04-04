@@ -16,8 +16,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import SearchIcon from "@material-ui/icons/Search";
 export default class Bolsistas extends React.Component {
   constructor() {
     super();
@@ -122,7 +121,13 @@ export default class Bolsistas extends React.Component {
                   onChange={this.handleChange}
                 />
                 <InputGroup.Prepend>
-                  <Button variant="outline-secondary">&#128269;</Button>
+                  <Button
+                    size="sm"
+                    variant="primary"
+                    onClick={this.handleSearch}
+                  >
+                    <SearchIcon size="small" />
+                  </Button>
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>
