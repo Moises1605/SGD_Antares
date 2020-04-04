@@ -37,7 +37,7 @@ class SimpleList extends Component {
   async componentDidMount() {
     await this.setState({ permission: this.props.permission });
   }
-
+  //Responsável por direcionar a tela correspondente ao item selecionado pelo usuário na sidebar
   handleClick = teste => {
     this.setState({ screen: teste });
   };

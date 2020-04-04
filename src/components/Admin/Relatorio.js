@@ -11,6 +11,7 @@ import {
   Table,
 } from "react-bootstrap";
 import { Alert, AlertTitle } from "@material-ui/lab";
+import SearchIcon from "@material-ui/icons/Search";
 
 class Relatorio extends Component {
   constructor() {
@@ -68,8 +69,8 @@ class Relatorio extends Component {
                 value={this.state.search}
               />
               <InputGroup.Prepend>
-                <Button variant="outline-secondary" onClick={this.handleSearch}>
-                  &#128269;
+                <Button size="sm" variant="primary" onClick={this.handleSearch}>
+                  <SearchIcon size="small" />
                 </Button>
               </InputGroup.Prepend>
             </InputGroup>

@@ -50,7 +50,7 @@ export default class FormRegister extends React.Component {
       controlCNPJ: true,
       controlLength: true,
       controlPhone: true,
-      max: 2
+      max: 30
     };
 
     //Funções responsáveis por atualizar os estados das informções.
@@ -211,7 +211,7 @@ export default class FormRegister extends React.Component {
     }
     this.setState({ respPhone: event.target.value });
   }
-
+  //Responsável por chamar o próximo step de cadastro.
   handleNext = event => {
     console.log(this.state.name);
     var temp = this.state.activeStep + 1;
@@ -219,12 +219,14 @@ export default class FormRegister extends React.Component {
     event.preventDefault();
   };
 
+  //Responsável por chamar o step anterior.
   handleBack = () => {
     var temp = this.state.activeStep - 1;
     this.setState({ activeStep: temp });
   };
-
-  getStepContent(stepIndex) {
+  //retorna um dos step do cadastro. 
+  //Parâmetro stepIndex índice do step que irá ser retornado.
+  getStepContent(stepIndex) { 
     switch (stepIndex) {
       case 0:
         return (

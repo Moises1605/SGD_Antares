@@ -14,6 +14,7 @@ import api from "../../services/api";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import CadastroFuncionario from "./form_funcionario";
 import DeleteIcon from "@material-ui/icons/Delete";
+import SearchIcon from "@material-ui/icons/Search";
 class Funcionario extends Component {
   constructor() {
     super();
@@ -121,8 +122,12 @@ class Funcionario extends Component {
                 onChange={this.handleChange}
               />
               <InputGroup.Prepend>
-                <Button variant="outline-secondary" onClick={this.handleSearch}>
-                  &#128269;
+                <Button
+                  size="sm"
+                  variant="primary"
+                  onClick={this.handleSearch}
+                >
+                  <SearchIcon size="small" />
                 </Button>
               </InputGroup.Prepend>
             </InputGroup>

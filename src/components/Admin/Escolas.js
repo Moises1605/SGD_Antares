@@ -17,6 +17,7 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import SearchIcon from "@material-ui/icons/Search";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 export default class Escolas extends React.Component {
@@ -119,8 +120,12 @@ export default class Escolas extends React.Component {
                   onChange={this.handleChange}
                 />
                 <InputGroup.Prepend>
-                  <Button variant="outline-primary" onClick={this.handleSearch}>
-                    &#128269;
+                  <Button
+                    size="sm"
+                    variant="primary"
+                    onClick={this.handleSearch}
+                  >
+                    <SearchIcon size="small" />
                   </Button>
                 </InputGroup.Prepend>
               </InputGroup>

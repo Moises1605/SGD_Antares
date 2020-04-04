@@ -5,6 +5,7 @@ import Bolsistas from "../../components/Admin/Bolsistas";
 import Funcionario from "../../components/Admin/Funcionario";
 import Relatorio from "../../components/Admin/Relatorio";
 import Escolas from "../../components/Admin/Escolas";
+import Backup from "../../components/Admin/Backup2"
 //Funcionario
 import TelaAgendamentos from "../../components/Funcionario/tela_agendamentos";
 import Calendar from "../../components/Funcionario/Calendar";
@@ -31,7 +32,7 @@ export default class User extends React.Component {
         <Funcionario />,
         <Bolsistas />,
         <Escolas />,
-        null,
+        <Backup/>,
         <TelaAgendamentos />,
         null,
         <Calendar />,
