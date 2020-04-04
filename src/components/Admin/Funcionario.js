@@ -171,7 +171,7 @@ class Funcionario extends Component {
               <Row style={{ paddingTop: "14px" }}>
                 <Button
                   size="sm"
-                  variant="danger"
+                  variant="outline-danger"
                   onClick={() => this.deleteItem(f.id)}
                 >
                   <DeleteIcon />

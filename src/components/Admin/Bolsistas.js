@@ -16,6 +16,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
+import IconButton from "@material-ui/core/IconButton";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 export default class Bolsistas extends React.Component {
   constructor() {
@@ -171,7 +172,7 @@ export default class Bolsistas extends React.Component {
                 <Row style={{ paddingTop: "14px" }}>
                   <Button
                     size="sm"
-                    variant="danger"
+                    variant="outline-danger"
                     onClick={() => this.deleteItem(b.id)}
                   >
                     <DeleteIcon />

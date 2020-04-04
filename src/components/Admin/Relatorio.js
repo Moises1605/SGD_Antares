@@ -8,7 +8,7 @@ import {
   Dropdown,
   Button,
   FormControl,
-  Table
+  Table,
 } from "react-bootstrap";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
@@ -18,7 +18,7 @@ class Relatorio extends Component {
     this.state = {
       search: "",
       rows: [],
-      modalShow: false
+      modalShow: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -83,12 +83,13 @@ class Relatorio extends Component {
             <div
               style={{
                 height: "40vh",
-                overflowY: "auto"
+                overflowY: "auto",
               }}
             >
               <Table size="md" bordered hover responsive striped>
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Relatórios</th>
                     <th>Nº de Visitantes</th>
                     <th>Data</th>
@@ -109,7 +110,7 @@ class Relatorio extends Component {
                 variant="outlined"
                 style={{
                   width: "auto",
-                  height: "auto"
+                  height: "auto",
                 }}
               >
                 <AlertTitle>
