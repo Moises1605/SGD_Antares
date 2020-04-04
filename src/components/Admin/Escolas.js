@@ -8,14 +8,9 @@ import {
   InputGroup,
   FormControl,
   Table,
-  Toast,
-  Badge,
 } from "react-bootstrap";
 import api from "../../services/api";
 import { Alert, AlertTitle } from "@material-ui/lab";
-//import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import SearchIcon from "@material-ui/icons/Search";
 import DeleteIcon from "@material-ui/icons/Delete";

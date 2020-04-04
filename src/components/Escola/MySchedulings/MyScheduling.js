@@ -68,7 +68,7 @@ export default class MyScheduling extends React.Component {
   }
 
   searchScheduling(date) {
-    return date.agendamento == this.state.search;
+    return date.agendamento === this.state.search;
   }
 
   async filterDates() {
@@ -107,7 +107,7 @@ export default class MyScheduling extends React.Component {
   handleChange(event) {
     var aux2 = event.target.value;
     this.setState({ search: event.target.value });
-    if (aux2.length == 0) {
+    if (aux2.length === 0) {
       this.setState({ controlSearch: false });
     }
   }
@@ -223,7 +223,7 @@ export default class MyScheduling extends React.Component {
           </Row>
         </div>
         <div id="list">
-          {(this.state.controlSearch == true
+          {(this.state.controlSearch === true
             ? this.state.resultSearch
             : this.state.schedulings
           ).map((item) => (

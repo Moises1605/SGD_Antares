@@ -9,8 +9,6 @@ import {
   FormControl,
   Table,
   Modal,
-  ModalBody,
-  ModalTitle,
 } from "react-bootstrap";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
@@ -59,7 +57,7 @@ export default class Bolsistas extends React.Component {
   deleteItem = (id) => {
     var newList = this.state.bolsistas.filter((obj) => obj.idPessoa !== id);
     this.setState({ bolsistas: newList });
-    var removido=this.state.bolsistas.filter((obj)=> obj.idPessoa===id)
+    var removido = this.state.bolsistas.filter((obj) => obj.idPessoa === id);
     api.post("/removerBolsista", removido);
   };
 
