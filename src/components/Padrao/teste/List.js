@@ -24,7 +24,7 @@ import AlarmIcon from "@material-ui/icons/Alarm";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Row } from "react-bootstrap";
 import "./List.scss";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 class SimpleList extends Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Agendamantos" />
+                <ListItemText primary="Agendamentos" />
               </ListItem>
             )}
             {this.state.permission[6] == "1" && (
@@ -126,7 +126,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <BackupIcon />
                 </ListItemIcon>
-                <ListItemText primary="Nova Atividade" />
+                <ListItemText primary="Atividades Extraordinárias" />
               </ListItem>
             )}
             {this.state.permission[8] == "1" && (
@@ -153,12 +153,14 @@ class SimpleList extends Component {
                 <ListItemText primary="Editar dados" />
               </ListItem>
             )}
-            <Link to = '/login'><ListItem button>
-              <ListItemIcon>
-                <ExitToAppIcon />
-              </ListItemIcon>
-              <ListItemText primary="Encerrar Sessão" />
-            </ListItem></Link>
+            <Link to="/login" id="link_exit">
+              <ListItem button>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="Encerrar Sessão" href="login" />
+              </ListItem>
+            </Link>
           </List>
         </div>
       </div>

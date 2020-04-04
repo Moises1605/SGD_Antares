@@ -27,7 +27,7 @@ export default class Login extends React.Component {
       idUser: "0",
       redirect: false,
       permission2: [],
-      role:"",
+      role: ""
     };
 
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -60,7 +60,7 @@ export default class Login extends React.Component {
     if (this.state.redirect) {
       //if(this.state.role == "school"){
       if (this.state.email == "moisesalmeida") {
-        return <Redirect to={{ pathname: "/escola/", state: { id: "10" } }} />;
+        return <Redirect to={{ pathname: "/escola/", state: { id: "15" } }} />;
       }
       //else{
       //Se for um usuário do tipo Bolsista
@@ -98,9 +98,9 @@ export default class Login extends React.Component {
               state: {
                 permission: [
                   "0",
-                  "1",
-                  "1",
-                  "1",
+                  "0",
+                  "0",
+                  "0",
                   "0",
                   "1",
                   "1",

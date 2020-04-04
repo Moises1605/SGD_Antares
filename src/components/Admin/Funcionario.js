@@ -8,10 +8,12 @@ import {
   FormControl,
   Button,
   Table,
-  Modal
+  Modal,
 } from "react-bootstrap";
 import api from "../../services/api";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import CadastroFuncionario from "./form_funcionario";
+import DeleteIcon from "@material-ui/icons/Delete";
 class Funcionario extends Component {
   constructor() {
     super();
@@ -19,57 +21,70 @@ class Funcionario extends Component {
       rows: [],
       search: "",
       show: false,
-      funcionarios: [{name:'Moisés',email:'eu',phone:'124',id:'1'},{name:'Moisés',email:'eu',phone:'124',id:'2'},{name:'Moisés',email:'eu',phone:'124',id:'3'}],
-      control: false,//controle para apresentação do modal
-      FuncionárioEscolhido: '-1'//id do bolsista escolhido para edição
+      count: 0,
+      funcionarios: [
+        // PARA TESTES
+        /*{ name: "Gina", email: "eu", phone: "124", id: "1" },
+        { name: "Carlos", email: "eu", phone: "124", id: "2" },
+        { name: "Daniel", email: "eu", phone: "124", id: "3" },
+        { name: "Moisés", email: "eu", phone: "124", id: "4" },
+        { name: "Roberto", email: "eu", phone: "124", id: "5" },
+        { name: "Samuel", email: "eu", phone: "124", id: "6" },
+        { name: "Ludmilla", email: "eu", phone: "124", id: "7" },
+        { name: "Moisés", email: "eu", phone: "124", id: "8" },
+        { name: "Moisés", email: "eu", phone: "124", id: "9" },*/
+      ],
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
   /** REVIEW Método para registrar dados da pesquisa */
-  handleChange = event => this.setState({ search: event.target.value });
+  handleChange = (event) => this.setState({ search: event.target.value });
 
   /** NOTE Método para abrir o modal */
-  setControl = event => this.setState({ show: true });
+  setControl = (event) => this.setState({ show: true });
 
   /**NOTE Método para fechar o modal */
   handleClose = () => this.setState({ show: false });
 
   /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem*/
 
+  count = () => this.setState({ count: this.state.count + 1 });
+
+  deleteItem = (id) => {
+    var newList = this.state.funcionarios.filter((obj) => obj.id !== id);
+    this.setState({ funcionarios: newList });
+    api.post("/removerFuncionário", id);
+  };
+
+  orderName = () => {
+    this.state.funcionarios.forEach((obj) => console.log(obj));
+    var newList = this.state.funcionarios;
+    newList.sort((a, b) => (a.name > b.name ? 1 : -1));
+    this.setState({ funcionarios: newList });
+  };
+
+  orderEmail = () => {
+    this.state.funcionarios.forEach((obj) => console.log(obj));
+    var newList = this.state.funcionarios;
+    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+    this.setState({ funcionarios: newList });
+  };
+
+  orderTag = () => {
+    this.state.funcionarios.forEach((obj) => console.log(obj));
+    var newList = this.state.funcionarios;
+    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
+    this.setState({ funcionarios: newList });
+  };
+
   async componentDidMount() {
     const f = api.post("/listarFuncionarios");
-    this.setState({ funcionarios: (await f).data.map(f => f)});
+    this.setState({ funcionarios: (await f).data.map((f) => f) });
   }
-
-  //Ativa a apresentação do modal e manda o id do funcionário escolhido
-  handleClick(e) {
-    console.log(e);
-     this.setState({ FuncionárioEscolhido: e, control: true });
-  };
 
   render() {
     return (
       <Container fluid>
-        {/* Modal para teste, se quiserem podem mudar o jeito de visuaização, a ideia é utilizar o id que mandei
-        para pegar o resto das informações, mas eu não sei se nesse método tu pegar já tudo, ou só o email,nome e telefone */}
-        <Modal
-          size="lg"
-          show={this.state.control}
-          onHide={() => this.setState({ control: false })}
-          aria-labelledby="example-modal-sizes-title-lg"
-          id='modal'
-        >
-          <Modal.Header closeButton id='header'>
-            <Modal.Title id="example-modal-sizes-title-lg">
-              Testando
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {this.state.BolsistaEscolhido}
-          </Modal.Body>
-        </Modal>
         <Row>
           <Col>
             <h3 style={{ textAlign: "left", marginTop: "15px" }}>
@@ -89,9 +104,9 @@ class Funcionario extends Component {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item>Nome</Dropdown.Item>
-                <Dropdown.Item>CPF</Dropdown.Item>
-                <Dropdown.Item>Telefone</Dropdown.Item>
+                <Dropdown.Item>#</Dropdown.Item>
+                <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
+                <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Col>
@@ -114,30 +129,31 @@ class Funcionario extends Component {
         <Row>
           <div style={{ height: "3vh" }}></div>
         </Row>
-        <Row>
-          <Col>
-            <div
-              style={{
-                height: "40vh",
-                overflowY: "auto"
-              }}
-            >
-              <Table striped bordered hover responsive size="sm">
+        <Row
+          style={{
+            height: "40vh",
+            overflowY: "auto",
+          }}
+        >
+          <Col md={11}>
+            <div>
+              <Table striped bordered hover responsive size="md">
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Nome</th>
-                    <th>CPF</th>
+                    <th>Email</th>
                     <th>Telefone</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.funcionarios.map(f => (
-                    <tr onClick={() => this.handleClick(f.id)}>
+                  {this.state.funcionarios.map((f, i = 1) => (
+                    <tr key={f.id}>
                       <td>
-                        <b></b>
+                        <b>{i++}</b>
                       </td>
                       <td>{f.nome}</td>
-                      <td>{f.CPF_CNPJ}</td>
+                      <td>{f.email}</td>
                       <td>{f.telefone}</td>
                     </tr>
                   ))}
@@ -145,11 +161,46 @@ class Funcionario extends Component {
               </Table>
             </div>
           </Col>
+          <Col
+            md={1}
+            style={{
+              paddingTop: "45px",
+            }}
+          >
+            {this.state.funcionarios.map((f) => (
+              <Row style={{ paddingTop: "14px" }}>
+                <Button
+                  size="sm"
+                  variant="outline-danger"
+                  onClick={() => this.deleteItem(f.id)}
+                >
+                  <DeleteIcon />
+                </Button>
+              </Row>
+            ))}
+          </Col>
         </Row>
         <br />
         <Row>
-          <Col xs={10}></Col>
-          <Col>
+          <Col xs={3}></Col>
+          <Col xs={5}>
+            {this.state.funcionarios.length === 0 && (
+              <Alert
+                severity="warning"
+                variant="outlined"
+                style={{
+                  width: "auto",
+                  height: "auto",
+                }}
+              >
+                <AlertTitle>
+                  <b>Ainda não há funcionários cadastrados no sistema </b>
+                </AlertTitle>
+              </Alert>
+            )}
+          </Col>
+          <Col xs={2}></Col>
+          <Col xs={2}>
             <Button variant="primary" block onClick={this.setControl}>
               Novo Cadastro
             </Button>
