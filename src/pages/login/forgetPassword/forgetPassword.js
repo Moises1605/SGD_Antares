@@ -14,12 +14,18 @@ export default class ForgetPassword extends React.Component {
         this.setControl = this.setControl.bind(this);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
     }
+
+    //Responsável por controlar o campo de texto  que guarda o email do usuário.
     handleChangeEmail(event) {
         this.setState({ email: event.target.value });
     }
+
+    //Responsável por controlar a visualização do modal de recuperação de senha.
     setControl(event) {
         this.setState({ control: true })
     }
+
+    //Responsável por chamar a rota que irá recuperar o email do usuário. 
     submitEmail(event){
         //manda os dados do cadastro para o banco.
         //const response = await api.get('/login',this.state);

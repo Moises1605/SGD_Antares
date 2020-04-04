@@ -15,15 +15,12 @@ export default class Calendar extends React.Component {
     super(props);
     this.state = {
       control: false,
-      date1: 'falhou'
+      date1: ''
     }
   }
 
-  componentDidMount(){
-    // this.setState({control:'false'});
-  }
-
-  handleDateClick = (arg) => { // bind with an arrow function
+  //método responsável por receber a data onde o usuário clicou.
+  handleDateClick = (arg) => { 
     var date = formatDate(arg.dateStr, {
       month: 'numeric',
       year: 'numeric',

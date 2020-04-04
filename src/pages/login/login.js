@@ -34,13 +34,17 @@ export default class Login extends React.Component {
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  //Responsável por controlar o campo de texto  que guarda o email do usuário.
   handleChangeEmail(event) {
     this.setState({ email: event.target.value });
   }
+
+  //Responsável por controlar o campo de texto  que guarda a senha do usuário.
   handleChangePassword(event) {
     this.setState({ password: event.target.value });
   }
 
+  //Responsável por chamar a rota que retorna os dados do usuário com a respectiva senha e email digitados.
   async handleSubmit(event) {
     //manda os dados do cadastro para o banco.
     //const response = await api.get('/login',this.state);

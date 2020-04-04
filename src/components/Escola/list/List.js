@@ -26,6 +26,7 @@ import logo from "../../../assets/logoV2.png";
 import Divider from "@material-ui/core/Divider";
 
 class SimpleList extends Component {
+  //Responsável por direcionar a tela correspondente ao item selecionado pelo usuário na sidebar
   handleClick = teste => {
     this.setState({ screen: teste });
   };

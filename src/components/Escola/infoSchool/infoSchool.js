@@ -64,20 +64,19 @@ export default class InfoSchool extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
-
+    //Carrega os dados dos bolssitas
     componentDidMount() {
-        console.log("safe:" + this.state.IDSchool)
         /*const response = await api.post("/retornaDadosEscola", this.state);
         this.setState({
-            idPessoa: response.data.idPessoa
+            /*idPessoa: response.data.idPessoa
             email: response.data.email,
             login: response.data.login,
             password: '',
             password2: '',
             respName: response.data.respName,
             respSurname: response.data.respSurname,
-            schoolType: response.data.schooltype,
-            scholarity: response.data.scholarity,
+            schoolType:response.data.schooltype,
+            respPhone: response.data.respPhone,
             name: response.data.name,
             district: response.data.district,
             number: response.data.number,
@@ -215,6 +214,7 @@ export default class InfoSchool extends React.Component {
         this.setState({ respPhone: event.target.value });
     }
 
+    //Salva as atualizações no banco.
     handleSubmit(event) {
         //await api.post("/atualizarEscola", this.state);
         //alert("Alterações salvas com sucesso");
