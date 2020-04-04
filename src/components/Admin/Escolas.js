@@ -8,15 +8,11 @@ import {
   InputGroup,
   FormControl,
   Table,
-  Toast,
-  Badge,
 } from "react-bootstrap";
 import api from "../../services/api";
 import { Alert, AlertTitle } from "@material-ui/lab";
-//import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import SearchIcon from "@material-ui/icons/Search";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 export default class Escolas extends React.Component {
@@ -58,13 +54,6 @@ export default class Escolas extends React.Component {
     this.setState({ escolas: newList });
   };
 
-  orderTag = () => {
-    this.state.escolas.forEach((obj) => console.log(obj));
-    var newList = this.state.escolas;
-    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    this.setState({ escolas: newList });
-  };
-
   async componentDidMount() {
     const e = api.post("/listarEscolas");
     var i = 0;
@@ -97,7 +86,6 @@ export default class Escolas extends React.Component {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => this.orderTag}>#</Dropdown.Item>
                   <Dropdown.Item onClick={() => this.orderNomeEscola}>
                     Nome Escola
                   </Dropdown.Item>
@@ -119,8 +107,12 @@ export default class Escolas extends React.Component {
                   onChange={this.handleChange}
                 />
                 <InputGroup.Prepend>
-                  <Button variant="outline-primary" onClick={this.handleSearch}>
-                    &#128269;
+                  <Button
+                    size="sm"
+                    variant="primary"
+                    onClick={this.handleSearch}
+                  >
+                    <SearchIcon size="small" />
                   </Button>
                 </InputGroup.Prepend>
               </InputGroup>

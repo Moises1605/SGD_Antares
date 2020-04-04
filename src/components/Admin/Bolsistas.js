@@ -9,15 +9,13 @@ import {
   FormControl,
   Table,
   Modal,
-  ModalBody,
-  ModalTitle,
 } from "react-bootstrap";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import SearchIcon from "@material-ui/icons/Search";
+import SweetAlert from "sweetalert2-react";
 export default class Bolsistas extends React.Component {
   constructor() {
     super();
@@ -25,18 +23,21 @@ export default class Bolsistas extends React.Component {
       rows: [],
       search: "",
       show: false,
+      showdelete: false,
+
+      controlCancel1: false,
       //utilizado para testes.
       bolsistas: [
         // PARA TESTES
-        { name: "Gina", email: "eu", phone: "124", id: 1, tag: 1 },
-        { name: "Carlos", email: "eu", phone: "124", id: 2, tag: 2 },
-        { name: "Daniel", email: "eu", phone: "124", id: 3, tag: 3 },
-        { name: "Moisés", email: "eu", phone: "124", id: 4, tag: 4 },
-        { name: "Roberto", email: "eu", phone: "124", id: 5, tag: 5 },
-        { name: "Samuel", email: "eu", phone: "124", id: 6, tag: 6 },
-        { name: "Ludmilla", email: "eu", phone: "124", id: 7, tag: 7 },
-        { name: "Moisés", email: "eu", phone: "124", id: 8, tag: 8 },
-        { name: "Moisés", email: "eu", phone: "124", id: 9, tag: 9 },
+        { name: "Gina", email: "eu", phone: "124", idPessoa: 1, tag: 1 },
+        { name: "Carlos", email: "eu", phone: "124", idPessoa: 2, tag: 2 },
+        { name: "Daniel", email: "eu", phone: "124", idPessoa: 3, tag: 3 },
+        { name: "Moisés", email: "eu", phone: "124", idPessoa: 4, tag: 4 },
+        { name: "Roberto", email: "eu", phone: "124", idPessoa: 5, tag: 5 },
+        { name: "Samuel", email: "eu", phone: "124", idPessoa: 6, tag: 6 },
+        { name: "Ludmilla", email: "eu", phone: "124", idPessoa: 7, tag: 7 },
+        { name: "Moisés", email: "eu", phone: "124", idPessoa: 8, tag: 8 },
+        { name: "Moisés", email: "eu", phone: "124", idPessoa: 9, tag: 9 },
       ],
     };
   }
@@ -53,15 +54,16 @@ export default class Bolsistas extends React.Component {
 
   async componentDidMount() {
     const b = api.post("/listarBolsistas");
-    var i = 0;
-    this.setState({ bolsistas: (await b).data.map((b) => b, b.tag === i++) });
+    this.setState({ bolsistas: (await b).data.map((b) => b) });
     console.log(this.state.bolsistas);
   }
 
   deleteItem = (id) => {
-    var newList = this.state.bolsistas.filter((obj) => obj.id !== id);
+    var newList = this.state.bolsistas.filter((obj) => obj.idPessoa !== id);
     this.setState({ bolsistas: newList });
-    api.post("/removerBolsista", id);
+    var removido = this.state.bolsistas.filter((obj) => obj.idPessoa === id);
+    this.setState({ showdelete: true });
+    api.post("/removerBolsista", removido);
   };
 
   orderName = () => {
@@ -78,16 +80,17 @@ export default class Bolsistas extends React.Component {
     this.setState({ bolsistas: newList });
   };
 
-  orderTag = () => {
-    this.state.bolsistas.forEach((obj) => console.log(obj));
-    var newList = this.state.bolsistas;
-    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    this.setState({ bolsistas: newList });
-  };
-
   render() {
     return (
       <div>
+        <SweetAlert
+          show={this.state.showdelete}
+          title="Sucesso"
+          text="O bolsistas foi removido"
+          onConfirm={() =>
+            this.setState({ showdelete: false, controlCancel1: false })
+          }
+        />
         <Container fluid>
           <Row>
             <Col>
@@ -107,7 +110,6 @@ export default class Bolsistas extends React.Component {
                   Ordenar Por
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={this.orderTag}>#</Dropdown.Item>
                   <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
                   <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
                 </Dropdown.Menu>
@@ -122,7 +124,13 @@ export default class Bolsistas extends React.Component {
                   onChange={this.handleChange}
                 />
                 <InputGroup.Prepend>
-                  <Button variant="outline-secondary">&#128269;</Button>
+                  <Button
+                    size="sm"
+                    variant="primary"
+                    onClick={this.handleSearch}
+                  >
+                    <SearchIcon size="small" />
+                  </Button>
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>
@@ -149,9 +157,9 @@ export default class Bolsistas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.bolsistas.map((b, i = 0) => (
-                      <tr key={b.id} name={b.id}>
+                      <tr key={b.idPessoa} name={b.idPessoa}>
                         <td>
-                          <b>{b.tag}</b>
+                          <b>{i++}</b>
                         </td>
                         <td>{b.nome}</td>
                         <td>{b.email}</td>
@@ -173,7 +181,7 @@ export default class Bolsistas extends React.Component {
                   <Button
                     size="sm"
                     variant="outline-danger"
-                    onClick={() => this.deleteItem(b.id)}
+                    onClick={() => this.deleteItem(b.idPessoa)}
                   >
                     <DeleteIcon />
                   </Button>

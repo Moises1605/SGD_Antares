@@ -14,6 +14,7 @@ import api from "../../services/api";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import CadastroFuncionario from "./form_funcionario";
 import DeleteIcon from "@material-ui/icons/Delete";
+import SearchIcon from "@material-ui/icons/Search";
 class Funcionario extends Component {
   constructor() {
     super();
@@ -51,9 +52,11 @@ class Funcionario extends Component {
   count = () => this.setState({ count: this.state.count + 1 });
 
   deleteItem = (id) => {
-    var newList = this.state.funcionarios.filter((obj) => obj.id !== id);
+    var newList = this.state.funcionarios.filter((obj) => obj.idPessoa !== id);
     this.setState({ funcionarios: newList });
-    api.post("/removerFuncionário", id);
+    var removido=this.state.funcionarios.filter((obj)=> obj.idPessoa===id)
+    console.log(removido[0])
+    api.post("/removerFuncionario", removido);
   };
 
   orderName = () => {
@@ -67,13 +70,6 @@ class Funcionario extends Component {
     this.state.funcionarios.forEach((obj) => console.log(obj));
     var newList = this.state.funcionarios;
     newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-    this.setState({ funcionarios: newList });
-  };
-
-  orderTag = () => {
-    this.state.funcionarios.forEach((obj) => console.log(obj));
-    var newList = this.state.funcionarios;
-    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
     this.setState({ funcionarios: newList });
   };
 
@@ -104,7 +100,6 @@ class Funcionario extends Component {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item>#</Dropdown.Item>
                 <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
                 <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
               </Dropdown.Menu>
@@ -119,8 +114,12 @@ class Funcionario extends Component {
                 onChange={this.handleChange}
               />
               <InputGroup.Prepend>
-                <Button variant="outline-secondary" onClick={this.handleSearch}>
-                  &#128269;
+                <Button
+                  size="sm"
+                  variant="primary"
+                  onClick={this.handleSearch}
+                >
+                  <SearchIcon size="small" />
                 </Button>
               </InputGroup.Prepend>
             </InputGroup>
@@ -172,7 +171,7 @@ class Funcionario extends Component {
                 <Button
                   size="sm"
                   variant="outline-danger"
-                  onClick={() => this.deleteItem(f.id)}
+                  onClick={() => this.deleteItem(f.idPessoa)}
                 >
                   <DeleteIcon />
                 </Button>
