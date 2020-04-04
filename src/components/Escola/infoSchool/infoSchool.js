@@ -235,7 +235,7 @@ export default class InfoSchool extends React.Component {
                 <h1 id='titleSchool'>Gerenciar Dados</h1>
                 <Form>
                     <Form.Row>
-                        <Form.Group as={Col} md="5" controlId="formGridNameSchool">
+                        <Form.Group as={Col} md="4" controlId="formGridNameSchool">
                             <div noValidate autoComplete="off">
                                 <TextField
                                     fullWidth={true}
@@ -381,7 +381,7 @@ export default class InfoSchool extends React.Component {
                             </div>
                         </Form.Group>
 
-                        <Form.Group as={Col} md="3" controlId="formGridPhone">
+                        <Form.Group as={Col} md="2" controlId="formGridPhone">
                             <div noValidate autoComplete="off">
                                 <TextField
                                     fullWidth={true}
@@ -448,9 +448,9 @@ export default class InfoSchool extends React.Component {
                                 />
                             </div>
                         </Form.Group>
-                        <Form.Group as={Col} md='1' ></Form.Group>
+                        {/* <Form.Group as={Col} md='1' ></Form.Group> */}
                         <TextField
-                            id="standard-select-currency"
+                            id="typeSchool"
                             size="small"
                             select
                             label="Tipo de escola"
@@ -468,7 +468,7 @@ export default class InfoSchool extends React.Component {
                                 </option>
                             ))}
                         </TextField>
-                        <Form.Group as={Col} md='1' ></Form.Group>
+                        {/* <Form.Group as={Col} md='1' ></Form.Group> */}
                         <TextField
                             id="standard-select-currency"
                             size="small"
@@ -568,7 +568,8 @@ export default class InfoSchool extends React.Component {
                             </div>
                         </Form.Group>
                         <Form.Group as={Col} md='1' ></Form.Group>
-                        <Button
+                    </Form.Row>
+                    <Button
                             id="updateButton"
                             /*disabled={!(
                                 this.state.controlPassword &&
@@ -579,7 +580,6 @@ export default class InfoSchool extends React.Component {
                             variant="primary" onClick={this.handleSubmit}>
                             Salvar alterações
                     </Button>
-                    </Form.Row>
                 </Form>
             </div>
         )
