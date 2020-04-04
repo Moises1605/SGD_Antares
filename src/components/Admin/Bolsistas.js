@@ -10,13 +10,13 @@ import {
   Table,
   Modal,
   ModalBody,
-  ModalTitle
+  ModalTitle,
 } from "react-bootstrap";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
-
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 export default class Bolsistas extends React.Component {
   constructor() {
     super();
@@ -26,11 +26,22 @@ export default class Bolsistas extends React.Component {
       show: false,
       //utilizado para testes.
 
-      bolsistas: []
+      bolsistas: [
+        // PARA TESTES
+        { name: "Gina", email: "eu", phone: "124", id: 1, tag: 1 },
+        { name: "Carlos", email: "eu", phone: "124", id: 2, tag: 2 },
+        { name: "Daniel", email: "eu", phone: "124", id: 3, tag: 3 },
+        { name: "Moisés", email: "eu", phone: "124", id: 4, tag: 4 },
+        { name: "Roberto", email: "eu", phone: "124", id: 5, tag: 5 },
+        { name: "Samuel", email: "eu", phone: "124", id: 6, tag: 6 },
+        { name: "Ludmilla", email: "eu", phone: "124", id: 7, tag: 7 },
+        { name: "Moisés", email: "eu", phone: "124", id: 8, tag: 8 },
+        { name: "Moisés", email: "eu", phone: "124", id: 9, tag: 9 },
+      ],
     };
   }
   /** REVIEW Método para registrar dados da pesquisa */
-  handleChange = event => this.setState({ search: event.target.value });
+  handleChange = (event) => this.setState({ search: event.target.value });
 
   /** NOTE Método para abrir o modal */
   setControl = () => this.setState({ show: true });
@@ -42,11 +53,39 @@ export default class Bolsistas extends React.Component {
 
   async componentDidMount() {
     const b = api.post("/listarBolsistas");
-    this.setState({ bolsistas: (await b).data.map(b => b) });
+    this.setState({ bolsistas: (await b).data.map((b) => b) });
     console.log(this.state.bolsistas);
   }
 
-  deleteItem = id => console.log(id);
+  deleteItem = (id) => {
+    var newList = this.state.bolsistas.filter((obj) => obj.id !== id);
+    this.setState({ bolsistas: newList });
+    api.post("/removerBolsista", id);
+  };
+
+  orderName = () => {
+    this.state.bolsistas.forEach((obj) => console.log(obj));
+    var newList = this.state.bolsistas;
+    newList.sort((a, b) => (a.name > b.name ? 1 : -1));
+    console.log(newList);
+    this.setState({ bolsistas: newList });
+  };
+
+  orderEmail = () => {
+    this.state.bolsistas.forEach((obj) => console.log(obj));
+    var newList = this.state.bolsistas;
+    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+    console.log(newList);
+    this.setState({ bolsistas: newList });
+  };
+
+  orderTag = () => {
+    this.state.bolsistas.forEach((obj) => console.log(obj));
+    var newList = this.state.bolsistas;
+    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
+    console.log(newList);
+    this.setState({ bolsistas: newList });
+  };
 
   render() {
     return (
@@ -69,11 +108,10 @@ export default class Bolsistas extends React.Component {
                 <Dropdown.Toggle variant="outline-primary">
                   Ordenar Por
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
-                  <Dropdown.Item>Nome</Dropdown.Item>
-                  <Dropdown.Item>CPF</Dropdown.Item>
-                  <Dropdown.Item>Telefone</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderTag}>#</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
@@ -97,7 +135,7 @@ export default class Bolsistas extends React.Component {
           <Row
             style={{
               height: "40vh",
-              overflowY: "auto"
+              overflowY: "auto",
             }}
           >
             <Col md={11}>
@@ -129,10 +167,10 @@ export default class Bolsistas extends React.Component {
             <Col
               md={1}
               style={{
-                paddingTop: "45px"
+                paddingTop: "45px",
               }}
             >
-              {this.state.bolsistas.map(b => (
+              {this.state.bolsistas.map((b) => (
                 <Row style={{ paddingTop: "14px" }}>
                   <Button
                     size="sm"
@@ -155,7 +193,7 @@ export default class Bolsistas extends React.Component {
                   variant="outlined"
                   style={{
                     width: "auto",
-                    height: "auto"
+                    height: "auto",
                   }}
                 >
                   <AlertTitle>
