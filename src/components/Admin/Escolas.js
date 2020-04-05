@@ -245,7 +245,7 @@ export default class Escolas extends React.Component {
               {this.state.escolas.length === 0 && (
                 <Alert
                   severity="warning"
-                  variant="outlined"
+                  variant="filled"
                   style={{
                     width: "auto",
                     height: "auto",

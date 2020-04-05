@@ -361,7 +361,7 @@ class Funcionario extends Component {
               this.state.searchControl === false && (
                 <Alert
                   severity="warning"
-                  variant="outlined"
+                  variant="filled"
                   style={{
                     width: "auto",
                     height: "auto",
