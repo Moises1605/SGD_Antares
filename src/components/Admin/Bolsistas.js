@@ -29,7 +29,7 @@ export default class Bolsistas extends React.Component {
       //utilizado para testes.
       bolsistas: [
         // PARA TESTES
-        {
+        /*{
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -77,13 +77,13 @@ export default class Bolsistas extends React.Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },
+        },*/
       ],
       orderE: false,
       orderN: false,
       searchControl: false,
       bolsistasReserva: [
-        {
+        /*{
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -131,7 +131,7 @@ export default class Bolsistas extends React.Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },
+        },*/
       ],
     };
   }
@@ -145,9 +145,9 @@ export default class Bolsistas extends React.Component {
   /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
 
   async componentDidMount() {
-    /*const b = api.post("/listarBolsistas");
+    const b = api.post("/listarBolsistas");
     this.setState({ bolsistas: (await b).data.map((b) => b) });
-    this.setState({ bolsistasReserva: (await b).data.map((b) => b) });*/
+    this.setState({ bolsistasReserva: (await b).data.map((b) => b) });
   }
 
   deleteItem = (id) => {

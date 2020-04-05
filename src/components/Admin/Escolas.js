@@ -175,8 +175,8 @@ export default class Escolas extends React.Component {
                         </td>
                         <td>{e.nome}</td>
                         <td>{e.nomeResponsavel}</td>
-                        <td>{e.Login}</td>
-                        <td>{e.telefoneResponsavel}</td>
+                        <td>{e.email}</td>
+                        <td>{e.telefone}</td>
                       </tr>
                     ))}
                   </tbody>
