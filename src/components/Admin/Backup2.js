@@ -89,9 +89,8 @@ export default class InfoSchool extends React.Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {this.state.backupSelected}
             <Button variant="outline-success" onClick={this.recoverBackup}>
-              Restaurar Backup
+              Restaurar Backup {this.state.backupSelected}
             </Button>
           </Modal.Body>
         </Modal>
@@ -107,9 +106,8 @@ export default class InfoSchool extends React.Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {this.state.backupSelected}
             <Button variant="outline-danger" onClick={this.deleteBackup}>
-              Deletar Backup
+              Deletar Backup {this.state.backupSelected}
             </Button>
           </Modal.Body>
         </Modal>

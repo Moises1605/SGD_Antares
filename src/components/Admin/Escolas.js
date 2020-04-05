@@ -21,6 +21,9 @@ export default class Escolas extends React.Component {
     this.state = {
       search: "",
       escolas: [],
+      orderE: false,
+      orderNE: false,
+      orderNR: false,
     };
   }
 
@@ -34,24 +37,42 @@ export default class Escolas extends React.Component {
   };
 
   orderEmail = () => {
-    this.state.escolas.forEach((obj) => console.log(obj));
     var newList = this.state.escolas;
-    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-    this.setState({ escolas: newList });
+    if (this.state.orderE === false) {
+      newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+      this.setState({ escolas: newList });
+      this.setState({ orderE: true });
+    } else {
+      newList.sort((a, b) => (a.email > b.email ? -1 : 1));
+      this.setState({ escolas: newList });
+      this.setState({ orderE: false });
+    }
   };
 
   orderNomeEscola = () => {
-    this.state.escolas.forEach((obj) => console.log(obj));
     var newList = this.state.escolas;
-    newList.sort((a, b) => (a.nomeEscola > b.nomeEscola ? 1 : -1));
-    this.setState({ escolas: newList });
+    if (this.state.orderE === false) {
+      newList.sort((a, b) => (a.nomeEscola > b.nomeEscola ? 1 : -1));
+      this.setState({ escolas: newList });
+      this.setState({ orderNE: true });
+    } else {
+      newList.sort((a, b) => (a.nomeEscola > b.nomeEscola ? -1 : 1));
+      this.setState({ escolas: newList });
+      this.setState({ orderNE: false });
+    }
   };
 
   orderNomeResponsavel = () => {
-    this.state.escolas.forEach((obj) => console.log(obj));
     var newList = this.state.escolas;
-    newList.sort((a, b) => (a.nomeResponsavel > b.nomeResponsavel ? 1 : -1));
-    this.setState({ escolas: newList });
+    if (this.state.orderE === false) {
+      newList.sort((a, b) => (a.nomeResponsavel > b.nomeResponsavel ? 1 : -1));
+      this.setState({ escolas: newList });
+      this.setState({ orderNR: true });
+    } else {
+      newList.sort((a, b) => (a.nomeResponsavel > b.nomeResponsavel ? -1 : 1));
+      this.setState({ escolas: newList });
+      this.setState({ orderNR: false });
+    }
   };
 
   async componentDidMount() {
@@ -132,10 +153,12 @@ export default class Escolas extends React.Component {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Nome Escola</th>
-                      <th>Nome Responsável</th>
+                      <th onClick={() => this.orderNomeEscola}>Nome Escola</th>
+                      <th onClick={() => this.orderNomeResponsavel}>
+                        Nome Responsável
+                      </th>
                       <th>Telefone</th>
-                      <th>Email</th>
+                      <th onClick={() => this.orderEmail}>Email</th>
                     </tr>
                   </thead>
                   <tbody>

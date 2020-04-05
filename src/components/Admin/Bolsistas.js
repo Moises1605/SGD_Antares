@@ -28,16 +28,36 @@ export default class Bolsistas extends React.Component {
       //utilizado para testes.
       bolsistas: [
         // PARA TESTES
-        { name: "Gina", email: "eu", phone: "124", idPessoa: 1, tag: 1 },
-        { name: "Carlos", email: "eu", phone: "124", idPessoa: 2, tag: 2 },
-        { name: "Daniel", email: "eu", phone: "124", idPessoa: 3, tag: 3 },
-        { name: "Moisés", email: "eu", phone: "124", idPessoa: 4, tag: 4 },
-        { name: "Roberto", email: "eu", phone: "124", idPessoa: 5, tag: 5 },
-        { name: "Samuel", email: "eu", phone: "124", idPessoa: 6, tag: 6 },
-        { name: "Ludmilla", email: "eu", phone: "124", idPessoa: 7, tag: 7 },
-        { name: "Moisés", email: "eu", phone: "124", idPessoa: 8, tag: 8 },
-        { name: "Moisés", email: "eu", phone: "124", idPessoa: 9, tag: 9 },
+        /*{ name: "Gina", email: "romaiajr5", phone: "124", idPessoa: 1, tag: 1 },
+        {
+          name: "Carlos",
+          email: "romaiajr7",
+          phone: "124",
+          idPessoa: 2,
+          tag: 2,
+        },
+        {
+          name: "Daniel",
+          email: "romaiajr",
+          phone: "124",
+          idPessoa: 3,
+          tag: 3,
+        },
+        {
+          name: "Moisés",
+          email: "romaiajr1",
+          phone: "124",
+          idPessoa: 4,
+          tag: 4,
+        },
+        { name: "Roberto", email: "rob", phone: "124", idPessoa: 5, tag: 5 },
+        { name: "Samuel", email: "ra", phone: "124", idPessoa: 6, tag: 6 },
+        { name: "Ludmilla", email: "re", phone: "124", idPessoa: 7, tag: 7 },
+        { name: "Moisés", email: "b", phone: "124", idPessoa: 8, tag: 8 },
+        { name: "Moisés", email: "j", phone: "124", idPessoa: 9, tag: 9 },*/
       ],
+      orderE: false,
+      orderN: false,
     };
   }
   /** REVIEW Método para registrar dados da pesquisa */
@@ -66,17 +86,29 @@ export default class Bolsistas extends React.Component {
   };
 
   orderName = () => {
-    this.state.bolsistas.forEach((obj) => console.log(obj));
     var newList = this.state.bolsistas;
-    newList.sort((a, b) => (a.name > b.name ? 1 : -1));
-    this.setState({ bolsistas: newList });
+    if (this.state.orderN === false) {
+      newList.sort((a, b) => (a.name > b.name ? 1 : -1));
+      this.setState({ bolsistas: newList });
+      this.setState({ orderN: true });
+    } else {
+      newList.sort((a, b) => (a.name > b.name ? -1 : 1));
+      this.setState({ bolsistas: newList });
+      this.setState({ orderN: false });
+    }
   };
 
   orderEmail = () => {
-    this.state.bolsistas.forEach((obj) => console.log(obj));
     var newList = this.state.bolsistas;
-    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-    this.setState({ bolsistas: newList });
+    if (this.state.orderE === false) {
+      newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+      this.setState({ bolsistas: newList });
+      this.setState({ orderE: true });
+    } else {
+      newList.sort((a, b) => (a.email > b.email ? -1 : 1));
+      this.setState({ bolsistas: newList });
+      this.setState({ orderE: false });
+    }
   };
 
   render() {
@@ -147,8 +179,8 @@ export default class Bolsistas extends React.Component {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Nome</th>
-                      <th>Email</th>
+                      <th onClick={this.orderName}>Nome</th>
+                      <th onClick={this.orderEmail}>Email</th>
                       <th>Telefone</th>
                     </tr>
                   </thead>
@@ -158,7 +190,7 @@ export default class Bolsistas extends React.Component {
                         <td>
                           <b>{i++}</b>
                         </td>
-                        <td>{b.nome}</td>
+                        <td>{b.name}</td>
                         <td>{b.email}</td>
                         <td>{b.telefone}</td>
                       </tr>

@@ -25,17 +25,37 @@ class Funcionario extends Component {
       count: 0,
       funcionarios: [
         // PARA TESTES
-        /*{ name: "Gina", email: "eu", phone: "124", id: "1" },
-        { name: "Carlos", email: "eu", phone: "124", id: "2" },
-        { name: "Daniel", email: "eu", phone: "124", id: "3" },
-        { name: "Moisés", email: "eu", phone: "124", id: "4" },
-        { name: "Roberto", email: "eu", phone: "124", id: "5" },
-        { name: "Samuel", email: "eu", phone: "124", id: "6" },
-        { name: "Ludmilla", email: "eu", phone: "124", id: "7" },
-        { name: "Moisés", email: "eu", phone: "124", id: "8" },
-        { name: "Moisés", email: "eu", phone: "124", id: "9" },*/
+        /*{ name: "Gina", email: "romaiajr5", phone: "124", idPessoa: 1, tag: 1 },
+        {
+          name: "Carlos",
+          email: "romaiajr7",
+          phone: "124",
+          idPessoa: 2,
+          tag: 2,
+        },
+        {
+          name: "Daniel",
+          email: "romaiajr",
+          phone: "124",
+          idPessoa: 3,
+          tag: 3,
+        },
+        {
+          name: "Moisés",
+          email: "romaiajr1",
+          phone: "124",
+          idPessoa: 4,
+          tag: 4,
+        },
+        { name: "Roberto", email: "rob", phone: "124", idPessoa: 5, tag: 5 },
+        { name: "Samuel", email: "ra", phone: "124", idPessoa: 6, tag: 6 },
+        { name: "Ludmilla", email: "re", phone: "124", idPessoa: 7, tag: 7 },
+        { name: "Moisés", email: "b", phone: "124", idPessoa: 8, tag: 8 },
+        { name: "Moisés", email: "j", phone: "124", idPessoa: 9, tag: 9 },*/
       ],
       showdelete: false,
+      orderE: false,
+      orderN: false,
     };
   }
 
@@ -61,17 +81,29 @@ class Funcionario extends Component {
   };
 
   orderName = () => {
-    this.state.funcionarios.forEach((obj) => console.log(obj));
     var newList = this.state.funcionarios;
-    newList.sort((a, b) => (a.name > b.name ? 1 : -1));
-    this.setState({ funcionarios: newList });
+    if (this.state.orderN === false) {
+      newList.sort((a, b) => (a.name > b.name ? 1 : -1));
+      this.setState({ funcionarios: newList });
+      this.setState({ orderN: true });
+    } else {
+      newList.sort((a, b) => (a.name > b.name ? -1 : 1));
+      this.setState({ funcionarios: newList });
+      this.setState({ orderN: false });
+    }
   };
 
   orderEmail = () => {
-    this.state.funcionarios.forEach((obj) => console.log(obj));
     var newList = this.state.funcionarios;
-    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-    this.setState({ funcionarios: newList });
+    if (this.state.orderE === false) {
+      newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+      this.setState({ funcionarios: newList });
+      this.setState({ orderE: true });
+    } else {
+      newList.sort((a, b) => (a.email > b.email ? -1 : 1));
+      this.setState({ funcionarios: newList });
+      this.setState({ orderE: false });
+    }
   };
 
   async componentDidMount() {
@@ -143,8 +175,8 @@ class Funcionario extends Component {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Nome</th>
-                    <th>Email</th>
+                    <th onClick={this.orderName}>Nome</th>
+                    <th onClick={this.orderEmail}>Email</th>
                     <th>Telefone</th>
                   </tr>
                 </thead>
