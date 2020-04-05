@@ -17,25 +17,48 @@ import Grid from "@material-ui/core/Grid";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 
+import { login } from "../../services/auth";
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      username: "",
       password: "",
       type: "-1",
       idUser: "0",
       redirect: false,
       permission2: [],
       role:"",
+      error: ""
     };
 
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChangeEmail(event) {
-    this.setState({ email: event.target.value });
+
+  handleLogin = async event =>  {
+    event.preventDefault();
+    const { username, password } = this.state;
+    if(!username || !password) {
+      this.setState({ error: "Preencha e-mail e senha para continuar!" });
+    }
+    try{
+      const response = await api.post("/authUser", { username, password });
+      login(response.data.token);
+      console.log(response);
+    } catch(err){
+      this.setState({
+        error:
+          "Houve um problema com o login, verifique suas credencias."
+      });
+
+    }
+  }
+
+  handleChangeUsername(event) {
+    this.setState({ username: event.target.value });
   }
   handleChangePassword(event) {
     this.setState({ password: event.target.value });
@@ -47,7 +70,7 @@ export default class Login extends React.Component {
     //this.setState({type: response.data.type});
     //this.setState({idUser: response.data.id});
     //Se for um usuário do tipo escola
-    if (this.state.email != " ") {
+    if (this.state.username != " ") {
       this.setState({ redirect: true });
     }
   }
@@ -55,12 +78,12 @@ export default class Login extends React.Component {
   render() {
     if (this.state.redirect) {
       //if(this.state.role == "school"){
-      if (this.state.email == "moisesalmeida") {
+      if (this.state.username == "moisesalmeida") {
         return <Redirect to={{ pathname: "/escola/", state: { id: "10" } }} />;
       }
       //else{
       //Se for um usuário do tipo Bolsista
-      else if (this.state.email == "robertomaia") {
+      else if (this.state.username == "robertomaia") {
         return (
           <Redirect
             to={{
@@ -86,7 +109,7 @@ export default class Login extends React.Component {
         );
       }
       //Se for um usuário do tipo Funcionário
-      else if (this.state.email == "raulpeixoto") {
+      else if (this.state.username == "raulpeixoto") {
         return (
           <Redirect
             to={{
@@ -112,7 +135,7 @@ export default class Login extends React.Component {
         );
       }
       //Se for um usuário do tipo administrador
-      else if (this.state.email == "ricardoporto") {
+      else if (this.state.username == "ricardoporto") {
         return (
           <Redirect
             to={{
@@ -175,13 +198,14 @@ export default class Login extends React.Component {
                         <AccountBoxIcon style={{ fontSize: 33 }} />
                       </Grid>
                       <Grid item>
+                        {this.state.error && <p>{this.state.error}</p>}
                         <TextField
                           size="small"
                           variant="outlined"
                           id="inputGridLogin"
                           label="Usuário"
-                          value={this.state.email}
-                          onChange={this.handleChangeEmail}
+                          value={this.state.username}
+                          onChange={this.handleChangeUsername}
                         />
                       </Grid>
                     </Grid>
@@ -233,7 +257,7 @@ export default class Login extends React.Component {
                     id="entrar"
                     block
                     variant="success"
-                    onClick={this.handleSubmit}
+                    onClick={this.handleLogin}
                   >
                     Entrar
                   </Button>
