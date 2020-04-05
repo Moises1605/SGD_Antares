@@ -4,7 +4,7 @@ import {
   Container,
   Form,
   FormControl,
-  InputGroup
+  InputGroup,
 } from "react-bootstrap";
 import "./style.css";
 import { Link, Redirect } from "react-router-dom";
@@ -29,8 +29,8 @@ export default class Login extends React.Component {
       idUser: "0",
       redirect: false,
       permission2: [],
-      role:"",
-      error: ""
+      role: "",
+      error: "",
     };
 
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -38,24 +38,22 @@ export default class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleLogin = async event =>  {
+  handleLogin = async (event) => {
     event.preventDefault();
     const { username, password } = this.state;
-    if(!username || !password) {
+    if (!username || !password) {
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
     }
-    try{
+    try {
       const response = await api.post("/authUser", { username, password });
       login(response.data.token);
       console.log(response);
-    } catch(err){
+    } catch (err) {
       this.setState({
-        error:
-          "Houve um problema com o login, verifique suas credencias."
+        error: "Houve um problema com o login, verifique suas credencias.",
       });
-
     }
-  }
+  };
 
   handleChangeUsername(event) {
     this.setState({ username: event.target.value });
@@ -103,10 +101,10 @@ export default class Login extends React.Component {
                   "0",
                   "1",
                   "1",
-                  "1"
+                  "1",
                 ],
-                id: "0"
-              }
+                id: "0",
+              },
             }}
           />
         );
@@ -129,10 +127,10 @@ export default class Login extends React.Component {
                   "1",
                   "0",
                   "0",
-                  "0"
+                  "0",
                 ],
-                id: "1"
-              }
+                id: "1",
+              },
             }}
           />
         );
@@ -155,10 +153,10 @@ export default class Login extends React.Component {
                   "0",
                   "0",
                   "0",
-                  "0"
+                  "0",
                 ],
-                id: "2"
-              }
+                id: "2",
+              },
             }}
           />
         );
@@ -253,14 +251,15 @@ export default class Login extends React.Component {
                 </Form>
                 <div
                   style={{
-                    marginTop: "50px"
+                    marginTop: "50px",
                   }}
                 >
                   <Button
                     id="entrar"
                     block
                     variant="success"
-                    onClick={this.handleLogin}
+                    //onClick={this.handleLogin}
+                    onClick={this.handleSubmit}
                   >
                     Entrar
                   </Button>
