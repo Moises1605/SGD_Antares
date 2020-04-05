@@ -31,7 +31,7 @@ export default class Bolsistas extends React.Component {
       //utilizado para testes.
       bolsistas: [
         // PARA TESTES
-        /*{
+        {
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -79,11 +79,11 @@ export default class Bolsistas extends React.Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },*/
+        },
       ],
       searchControl: false,
       bolsistasReserva: [
-        /*{
+        {
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -131,7 +131,7 @@ export default class Bolsistas extends React.Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },*/
+        },
       ],
     };
   }
@@ -152,7 +152,10 @@ export default class Bolsistas extends React.Component {
 
   deleteItem = (id) => {
     var newList = this.state.bolsistas.filter((obj) => obj.idPessoa !== id);
-    this.setState({ bolsistas: newList });
+    var newList2 = this.state.bolsistasReserva.filter(
+      (obj) => obj.idPessoa !== id
+    );
+    this.setState({ bolsistas: newList, bolsistasReserva: newList2 });
     var removido = this.state.bolsistas.filter((obj) => obj.idPessoa === id);
     this.setState({ showdelete: true });
     api.post("/removerBolsista", removido);
@@ -187,11 +190,27 @@ export default class Bolsistas extends React.Component {
   };
 
   handleChange = (event) => {
+    this.setState({ search: event.target.value });
+    let newList = [];
+    let bolsistas = this.state.bolsistasReserva;
     if (event.target.value !== "") {
-      this.setState({ search: event.target.value });
-    } else {
-      this.setState({ search: "" });
+      newList = bolsistas.filter((item) => {
+        var lcname = item.nome.toLowerCase();
+        var lcemail = item.email.toLowerCase();
+        var value = event.target.value.toLowerCase();
+        this.setState({ searchControl: true });
+        return (
+          lcname.includes(value) ||
+          lcemail.includes(value) ||
+          item.telefone.includes(value)
+        );
+      });
     }
+    if (event.target.value === "") {
+      newList = bolsistas;
+      this.setState({ searchControl: false });
+    }
+    this.setState({ bolsistas: newList });
   };
 
   handleSearch = () => {
@@ -251,17 +270,17 @@ export default class Bolsistas extends React.Component {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={this.orderNameCresc}>
-                    Nome Crescente
+                    Nome
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={this.orderNameDecresc}>
+                  {/*} <Dropdown.Item onClick={this.orderNameDecresc}>
                     Nome Decrescente
-                  </Dropdown.Item>
+                     </Dropdown.Item>*/}
                   <Dropdown.Item onClick={this.orderEmailCresc}>
-                    Email Crescente
+                    Email
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={this.orderEmailDecresc}>
+                  {/*<Dropdown.Item onClick={this.orderEmailDecresc}>
                     Email Decrescente
-                  </Dropdown.Item>
+                    </Dropdown.Item>*/}
                 </Dropdown.Menu>
               </Dropdown>
             </Col>

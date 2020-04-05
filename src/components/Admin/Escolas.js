@@ -28,11 +28,67 @@ export default class Escolas extends React.Component {
   }
 
   /** REVIEW Método para registrar dados da pesquisa */
-  handleChange = (event) => this.setState({ search: event.target.value });
+  handleChange = (event) => {
+    this.setState({ search: event.target.value });
+    let newList = [];
+    let escolas = this.state.escolasReserva;
+    if (event.target.value !== "") {
+      newList = escolas.filter((item) => {
+        var lcname = item.nome.toLowerCase();
+        var lcemail = item.email.toLowerCase();
+        var value = event.target.value.toLowerCase();
+        this.setState({ searchControl: true });
+        return (
+          lcname.includes(value) ||
+          lcemail.includes(value) ||
+          item.telefone.includes(value)
+        );
+      });
+    }
+    if (event.target.value === "") {
+      newList = escolas;
+      this.setState({ searchControl: false });
+    }
+    this.setState({ escolas: newList });
+  };
+
+  handleSearch = () => {
+    let newList = [];
+    let escolas = this.state.escolasReserva;
+    if (this.state.search !== "") {
+      newList = escolas.filter((item) => {
+        var lcname = item.nome.toLowerCase();
+        var lcemail = item.email.toLowerCase();
+        var value = this.state.search.toLowerCase();
+        this.setState({ searchControl: true });
+        return (
+          lcname.includes(value) ||
+          lcemail.includes(value) ||
+          item.telefone.includes(value)
+        );
+      });
+    }
+    if (this.state.search === "") {
+      newList = escolas;
+      this.setState({ searchControl: false });
+    }
+    this.setState({ escolas: newList });
+  };
+
+  handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      this.handleSearch();
+    }
+  };
 
   deleteItem = (id) => {
-    var newList = this.state.escolas.filter((obj) => obj.id !== id);
-    this.setState({ escolas: newList });
+    var newList = this.state.escolas.filter((obj) => obj.idPessoa !== id);
+    var newList2 = this.state.escolasReserva.filter(
+      (obj) => obj.idPessoa !== id
+    );
+    this.setState({ escolas: newList, escolasReserva: newList2 });
+    var removido = this.state.escolas.filter((obj) => obj.idPessoa === id);
+    this.setState({ showdelete: true });
     api.post("/removerEscola", id);
   };
 
@@ -110,25 +166,25 @@ export default class Escolas extends React.Component {
 
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => this.orderNomeEscolaCresc}>
-                    Escola Crescente
+                    Escola
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={() => this.orderNomeEscolaDecresc}>
+                  {/*<Dropdown.Item onClick={() => this.orderNomeEscolaDecresc}>
                     Escola Decrescente
-                  </Dropdown.Item>
+                    </Dropdown.Item>*/}
                   <Dropdown.Item onClick={() => this.orderNomeResponsavelCresc}>
-                    Responsável Crescente
+                    Responsável
                   </Dropdown.Item>
-                  <Dropdown.Item
+                  {/*<Dropdown.Item
                     onClick={() => this.orderNomeResponsavelDecresc}
                   >
                     Responsável Decrescente
-                  </Dropdown.Item>
+                  </Dropdown.Item>*/}
                   <Dropdown.Item onClick={() => this.orderEmailCresc}>
-                    Email Crecente
+                    Email
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={() => this.orderEmailDecresc}>
+                  {/* <Dropdown.Item onClick={() => this.orderEmailDecresc}>
                     Email Decrescente
-                  </Dropdown.Item>
+                </Dropdown.Item>*/}
                 </Dropdown.Menu>
               </Dropdown>
             </Col>

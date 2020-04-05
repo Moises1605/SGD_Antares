@@ -149,7 +149,10 @@ class Funcionario extends Component {
 
   deleteItem = (id) => {
     var newList = this.state.funcionarios.filter((obj) => obj.idPessoa !== id);
-    this.setState({ funcionarios: newList });
+    var newList2 = this.state.funcionariosReserva.filter(
+      (obj) => obj.idPessoa !== id
+    );
+    this.setState({ funcionarios: newList, funcionariosReserva: newList2 });
     var removido = this.state.funcionarios.filter((obj) => obj.idPessoa === id);
     this.setState({ showdelete: true });
     api.post("/removerFuncionario", removido);
@@ -182,11 +185,27 @@ class Funcionario extends Component {
   };
 
   handleChange = (event) => {
+    this.setState({ search: event.target.value });
+    let newList = [];
+    let funcionarios = this.state.funcionariosReserva;
     if (event.target.value !== "") {
-      this.setState({ search: event.target.value });
-    } else {
-      this.setState({ search: "" });
+      newList = funcionarios.filter((item) => {
+        var lcname = item.nome.toLowerCase();
+        var lcemail = item.email.toLowerCase();
+        var value = event.target.value.toLowerCase();
+        this.setState({ searchControl: true });
+        return (
+          lcname.includes(value) ||
+          lcemail.includes(value) ||
+          item.telefone.includes(value)
+        );
+      });
     }
+    if (event.target.value === "") {
+      newList = funcionarios;
+      this.setState({ searchControl: false });
+    }
+    this.setState({ funcionarios: newList });
   };
 
   handleSearch = () => {
@@ -252,17 +271,17 @@ class Funcionario extends Component {
 
               <Dropdown.Menu>
                 <Dropdown.Item onClick={this.orderNameCresc}>
-                  Nome Crescente
+                  Nome
                 </Dropdown.Item>
-                <Dropdown.Item onClick={this.orderNameDecresc}>
+                {/*<Dropdown.Item onClick={this.orderNameDecresc}>
                   Nome Decrescente
-                </Dropdown.Item>
+                  </Dropdown.Item>*/}
                 <Dropdown.Item onClick={this.orderEmailCresc}>
-                  Email Crescente
+                  Email
                 </Dropdown.Item>
-                <Dropdown.Item onClick={this.orderEmailDecresc}>
+                {/*<Dropdown.Item onClick={this.orderEmailDecresc}>
                   Email Decrescente
-                </Dropdown.Item>
+                </Dropdown.Item>*/}
               </Dropdown.Menu>
             </Dropdown>
           </Col>
@@ -319,6 +338,7 @@ class Funcionario extends Component {
                     <th>Telefone</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {this.state.funcionarios.map((f, i = 1) => (
                     <tr key={f.id}>
