@@ -60,10 +60,13 @@ export default class Login extends React.Component {
   handleChangeUsername(event) {
     this.setState({ username: event.target.value });
   }
+
+  //Responsável por controlar o campo de texto  que guarda a senha do usuário.
   handleChangePassword(event) {
     this.setState({ password: event.target.value });
   }
 
+  //Responsável por chamar a rota que retorna os dados do usuário com a respectiva senha e email digitados.
   async handleSubmit(event) {
     //manda os dados do cadastro para o banco.
     //const response = await api.get('/login',this.state);
@@ -117,9 +120,9 @@ export default class Login extends React.Component {
               state: {
                 permission: [
                   "0",
-                  "1",
-                  "1",
-                  "1",
+                  "0",
+                  "0",
+                  "0",
                   "0",
                   "1",
                   "1",

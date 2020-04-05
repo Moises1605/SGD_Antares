@@ -9,12 +9,14 @@ import {
   FormControl,
   Table,
   Modal,
-  ModalBody,
-  ModalTitle
 } from "react-bootstrap";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
-
+import SearchIcon from "@material-ui/icons/Search";
+import ImportExportIcon from "@material-ui/icons/ImportExport";
+import SweetAlert from "sweetalert2-react";
 export default class Bolsistas extends React.Component {
   constructor() {
     super();
@@ -22,16 +24,117 @@ export default class Bolsistas extends React.Component {
       rows: [],
       search: "",
       show: false,
+      showdelete: false,
+      controlCancel1: false,
       //utilizado para testes.
-      bolsistas: [{name:'Moisés',email:'eu',phone:'124',id:'1'},{name:'Moisés',email:'eu',phone:'124',id:'2'},{name:'Moisés',email:'eu',phone:'124',id:'3'}],
-      control: false,//controle para apresentação do modal
-      BolsistaEscolhido: '-1'//id do bolsista escolhido para edição
+      bolsistas: [
+        // PARA TESTES
+        /*{
+          nome: "Gina",
+          email: "romaiajr5",
+          telefone: "124",
+          idPessoa: 1,
+          tag: 1,
+        },
+        {
+          nome: "Carlos",
+          email: "romaiajr7",
+          telefone: "42(7031)845-11-5823",
+          idPessoa: 2,
+          tag: 2,
+        },
+        {
+          nome: "Daniel",
+          email: "romaiajr",
+          telefone: "381(75)071-11-5532",
+          idPessoa: 3,
+          tag: 3,
+        },
+        {
+          nome: "Moisés",
+          email: "romaiajr1",
+          telefone: "3(494)550-04-3416",
+          idPessoa: 4,
+          tag: 4,
+        },
+        {
+          nome: "Roberto",
+          email: "rob",
+          telefone: "3(0861)727-37-0504",
+          idPessoa: 5,
+          tag: 5,
+        },
+        {
+          nome: "Samuel",
+          email: "ra",
+          telefone: "4(729)307-64-9272",
+          idPessoa: 6,
+          tag: 6,
+        },
+        {
+          nome: "Ludmilla",
+          email: "re",
+          telefone: "4(729)307-64-9272",
+          idPessoa: 7,
+          tag: 7,
+        },*/
+      ],
+      orderE: false,
+      orderN: false,
+      searchControl: false,
+      bolsistasReserva: [
+        /*{
+          nome: "Gina",
+          email: "romaiajr5",
+          telefone: "124",
+          idPessoa: 1,
+          tag: 1,
+        },
+        {
+          nome: "Carlos",
+          email: "romaiajr7",
+          telefone: "42(7031)845-11-5823",
+          idPessoa: 2,
+          tag: 2,
+        },
+        {
+          nome: "Daniel",
+          email: "romaiajr",
+          telefone: "381(75)071-11-5532",
+          idPessoa: 3,
+          tag: 3,
+        },
+        {
+          nome: "Moisés",
+          email: "romaiajr1",
+          telefone: "3(494)550-04-3416",
+          idPessoa: 4,
+          tag: 4,
+        },
+        {
+          nome: "Roberto",
+          email: "rob",
+          telefone: "3(0861)727-37-0504",
+          idPessoa: 5,
+          tag: 5,
+        },
+        {
+          nome: "Samuel",
+          email: "ra",
+          telefone: "4(729)307-64-9272",
+          idPessoa: 6,
+          tag: 6,
+        },
+        {
+          nome: "Ludmilla",
+          email: "re",
+          telefone: "4(729)307-64-9272",
+          idPessoa: 7,
+          tag: 7,
+        },*/
+      ],
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
-  /** REVIEW Método para registrar dados da pesquisa */
-  handleChange = event => this.setState({ search: event.target.value });
 
   /** NOTE Método para abrir o modal */
   setControl = () => this.setState({ show: true });
@@ -43,69 +146,110 @@ export default class Bolsistas extends React.Component {
 
   async componentDidMount() {
     const b = api.post("/listarBolsistas");
-    //this.setState({ bolsistas: (await b).data.map(b => b) });
-    console.log(this.state.bolsistas);
+    this.setState({ bolsistas: (await b).data.map((b) => b) });
+    this.setState({ bolsistasReserva: (await b).data.map((b) => b) });
   }
 
-  /**TODO Método para mostrar informação do bolsista */
-  // handleClick = async b => {
-  //   await console.log(b);
-  // };
-  //Ativa a apresentação do modal e manda o id do bolsista escolhido
-  handleClick(e) {
-    console.log(e);
-     this.setState({ BolsistaEscolhido: e, control: true });
+  deleteItem = (id) => {
+    var newList = this.state.bolsistas.filter((obj) => obj.idPessoa !== id);
+    this.setState({ bolsistas: newList });
+    var removido = this.state.bolsistas.filter((obj) => obj.idPessoa === id);
+    this.setState({ showdelete: true });
+    api.post("/removerBolsista", removido);
   };
 
-  //Mesma ideia de atualizar, usando o id do cara vc chama a rota pra excluir, mas ai tem que ser no modal que vcs vão criar, por isso não implementei completamente. 
-  delete(){
-    /*const response = await api.get("/atualizarBolsista", this.state.IDScholarship);*/
-  }
+  orderName = () => {
+    var newList = this.state.bolsistas;
+    if (this.state.orderN === false) {
+      newList.sort((a, b) => (a.nome > b.nome ? 1 : -1));
+      this.setState({ bolsistas: newList });
+      this.setState({ orderN: true });
+    } else {
+      newList.sort((a, b) => (a.nome > b.nome ? -1 : 1));
+      this.setState({ bolsistas: newList });
+      this.setState({ orderN: false });
+    }
+  };
 
+  orderEmail = () => {
+    var newList = this.state.bolsistas;
+    if (this.state.orderE === false) {
+      newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+      this.setState({ bolsistas: newList });
+      this.setState({ orderE: true });
+    } else {
+      newList.sort((a, b) => (a.email > b.email ? -1 : 1));
+      this.setState({ bolsistas: newList });
+      this.setState({ orderE: false });
+    }
+  };
+
+  handleChange = (event) => {
+    if (event.target.value !== "") {
+      this.setState({ search: event.target.value });
+    } else {
+      this.setState({ search: "" });
+    }
+  };
+
+  handleSearch = () => {
+    let newList = [];
+    let bolsistas = this.state.bolsistasReserva;
+    if (this.state.search !== "") {
+      newList = bolsistas.filter((item) => {
+        var lcname = item.nome.toLowerCase();
+        var lcemail = item.email.toLowerCase();
+        var value = this.state.search.toLowerCase();
+        this.setState({ searchControl: true });
+        return (
+          lcname.includes(value) ||
+          lcemail.includes(value) ||
+          item.telefone.includes(value)
+        );
+      });
+    }
+    if (this.state.search === "") {
+      newList = bolsistas;
+      this.setState({ searchControl: false });
+    }
+    this.setState({ bolsistas: newList });
+  };
+
+  handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      this.handleSearch();
+    }
+  };
   render() {
     return (
       <div>
-        {/* Modal para teste, se quiserem podem mudar o jeito de visuaização, a ideia é utilizar o id que mandei
-        para pegar o resto das informações, mas eu não sei se nesse método tu pegar já tudo, ou só o email,nome e telefone */}
-        <Modal
-          size="lg"
-          show={this.state.control}
-          onHide={() => this.setState({ control: false })}
-          aria-labelledby="example-modal-sizes-title-lg"
-          id='modal'
-        >
-          <Modal.Header closeButton id='header'>
-            <Modal.Title id="example-modal-sizes-title-lg">
-              Testando
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {this.state.BolsistaEscolhido}
-          </Modal.Body>
-        </Modal>
+        <SweetAlert
+          show={this.state.showdelete}
+          title="Sucesso"
+          text="O bolsistas foi removido"
+          onConfirm={() =>
+            this.setState({ showdelete: false, controlCancel1: false })
+          }
+        />
         <Container fluid>
           <Row>
             <Col>
               <h3 style={{ textAlign: "left", marginTop: "15px" }}>
-                Gerir Bolsista
+                Gerenciar Bolsista
               </h3>
             </Col>
             <Col></Col>
           </Row>
-          <Row>
-            <div style={{ height: "3vh" }}></div>
-          </Row>
+          <hr />
           <Row>
             <Col>
               <Dropdown>
                 <Dropdown.Toggle variant="outline-primary">
                   Ordenar Por
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
-                  <Dropdown.Item>Nome</Dropdown.Item>
-                  <Dropdown.Item>CPF</Dropdown.Item>
-                  <Dropdown.Item>Telefone</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
@@ -116,9 +260,16 @@ export default class Bolsistas extends React.Component {
                   placeholder="Procurar..."
                   value={this.state.search}
                   onChange={this.handleChange}
+                  onKeyPress={this.handleKeyPress}
                 />
                 <InputGroup.Prepend>
-                  <Button variant="outline-secondary">&#128269;</Button>
+                  <Button
+                    size="sm"
+                    variant="primary"
+                    onClick={this.handleSearch}
+                  >
+                    <SearchIcon size="small" />
+                  </Button>
                 </InputGroup.Prepend>
               </InputGroup>
             </Col>
@@ -126,29 +277,32 @@ export default class Bolsistas extends React.Component {
           <Row>
             <div style={{ height: "3vh" }}></div>
           </Row>
-          <Row>
-            <Col>
-              <div
-                style={{
-                  height: "40vh",
-                  overflowY: "auto"
-                }}
-              >
-                <Table striped bordered hover responsive size="sm">
+          <Row
+            style={{
+              height: "40vh",
+              overflowY: "auto",
+            }}
+          >
+            <Col md={11}>
+              <div>
+                <Table striped bordered hover responsive size="md">
                   <thead>
                     <tr>
-                      {/*<th>#</th>*/}
-                      <th>Nome</th>
-                      <th>Email</th>
+                      <th>#</th>
+                      <th onClick={this.orderName}>
+                        Nome <ImportExportIcon style={{ color: "#808080" }} />
+                      </th>
+                      <th onClick={this.orderEmail}>
+                        Email <ImportExportIcon style={{ color: "#808080" }} />
+                      </th>
                       <th>Telefone</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.bolsistas.map(b => (
-                      //manda o id para a função
-                      <tr name={b.id} onClick={() => this.handleClick(b.id)} >
+                    {this.state.bolsistas.map((b, i = 0) => (
+                      <tr key={b.idPessoa} name={b.idPessoa}>
                         <td>
-                          <b></b>
+                          <b>{i++}</b>
                         </td>
                         <td>{b.nome}</td>
                         <td>{b.email}</td>
@@ -159,11 +313,47 @@ export default class Bolsistas extends React.Component {
                 </Table>
               </div>
             </Col>
+            <Col
+              md={1}
+              style={{
+                paddingTop: "45px",
+              }}
+            >
+              {this.state.bolsistas.map((b) => (
+                <Row style={{ paddingTop: "14px" }}>
+                  <Button
+                    size="sm"
+                    variant="outline-danger"
+                    onClick={() => this.deleteItem(b.idPessoa)}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Row>
+              ))}
+            </Col>
           </Row>
           <br />
           <Row>
-            <Col xs={10}></Col>
-            <Col>
+            <Col xs={3}></Col>
+            <Col xs={5}>
+              {this.state.bolsistas.length === 0 &&
+                this.state.searchControl === false && (
+                  <Alert
+                    severity="warning"
+                    variant="outlined"
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                    }}
+                  >
+                    <AlertTitle>
+                      <b>Ainda não há bolsistas cadastrados no sistema </b>
+                    </AlertTitle>
+                  </Alert>
+                )}
+            </Col>
+            <Col xs={2}></Col>
+            <Col xs={2}>
               <Button variant="primary" block onClick={this.setControl}>
                 Novo Cadastro
               </Button>

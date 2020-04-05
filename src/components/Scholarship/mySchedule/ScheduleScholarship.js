@@ -15,11 +15,11 @@ export default class ScheduleScholarship extends React.Component {
     super(props);
     this.state = {
       control: false,
-      schedules: [],
-      IDScholarschip: this.props.idScholarschip
+      schedules: [],//horario do bolsista
+      idScholarschip: this.props.idScholarschip//id do bolsista
     }
   }
-
+  //Carrega o horário do bolsista
   async componentDidMount(){
     /*var horarioBolsista= api.post("/dadosBolsista",this.idScholarschip);
     this.setState({schedules: horarioBolsista.data});

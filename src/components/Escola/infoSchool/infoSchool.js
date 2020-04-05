@@ -65,11 +65,12 @@ export default class InfoSchool extends React.Component {
 
     }
 
-    componentDidMount() {
+    //Carrega os dados dos bolssitas
+    async componentDidMount() {
         console.log("safe:" + this.state.IDSchool)
-        /*const response = await api.post("/retornaDadosEscola", this.state);
+        const response = await api.post("/retornaDadosEscola", this.state);
         this.setState({
-            idPessoa: response.data.idPessoa
+            idPessoa: response.data.idPessoa,
             email: response.data.email,
             login: response.data.login,
             password: '',
@@ -77,7 +78,7 @@ export default class InfoSchool extends React.Component {
             respName: response.data.respName,
             respSurname: response.data.respSurname,
             schoolType: response.data.schooltype,
-            scholarity: response.data.scholarity,
+            respPhone: response.data.respPhone,
             name: response.data.name,
             district: response.data.district,
             number: response.data.number,
@@ -86,7 +87,7 @@ export default class InfoSchool extends React.Component {
             state: response.data.state,
             CNPJ: response.data.CMPJ,
             phone: response.data.phone,
-        })*/
+        })
     }
 
     //Funções responsáveis por atuzalizar as informações.
@@ -215,9 +216,9 @@ export default class InfoSchool extends React.Component {
         this.setState({ respPhone: event.target.value });
     }
 
-    handleSubmit(event) {
-        //await api.post("/atualizarEscola", this.state);
-        //alert("Alterações salvas com sucesso");
+
+    async handleSubmit(event) {
+        await api.post("/atualizaDadosEscola", this.state);
         this.setState({show: true});
         event.preventDefault();
     }
@@ -234,7 +235,7 @@ export default class InfoSchool extends React.Component {
                 <h1 id='titleSchool'>Gerenciar Dados</h1>
                 <Form>
                     <Form.Row>
-                        <Form.Group as={Col} md="5" controlId="formGridNameSchool">
+                        <Form.Group as={Col} md="4" controlId="formGridNameSchool">
                             <div noValidate autoComplete="off">
                                 <TextField
                                     fullWidth={true}
@@ -246,12 +247,12 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangeSchoolName}
                                     required
                                     type="text"
-                                    error={this.state.name.length > this.state.max}
+                                    /*error={this.state.name.length > this.state.max}
                                     helperText={
                                         this.state.name.length <= this.state.max == true
                                             ? " "
                                             : "Máximo de 30 Caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
@@ -267,12 +268,12 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangeStreet}
                                     required
                                     type="text"
-                                    error={this.state.street.length > this.state.max}
+                                    /*error={this.state.street.length > this.state.max}
                                     helperText={
                                         this.state.street.length <= this.state.max == true
                                             ? " "
                                             : "Máximo de 30 Caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
@@ -303,12 +304,12 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangeDistrict}
                                     required
                                     type="text"
-                                    error={this.state.district.length > this.state.max}
+                                    /*error={this.state.district.length > this.state.max}
                                     helperText={
                                         this.state.district.length <= this.state.max == true
                                             ? " "
                                             : "Máximo de 30 Caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
@@ -329,12 +330,12 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangeCity}
                                     required
                                     type="text"
-                                    error={this.state.city.length > this.state.max}
+                                    /*error={this.state.city.length > this.state.max}
                                     helperText={
                                         this.state.city.length <= this.state.max == true
                                             ? " "
                                             : "Máximo de 30 Caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
@@ -351,12 +352,12 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangeState}
                                     required
                                     type="text"
-                                    error={this.state.state.length > this.state.max}
+                                    /*error={this.state.state.length > this.state.max}
                                     helperText={
                                         this.state.state.length <= this.state.max == true
                                             ? " "
                                             : "Máximo de 30 Caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
@@ -372,15 +373,15 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangeCNPJ}
                                     required
                                     type="number"
-                                    error={!this.state.controlCNPJ}
+                                    /*error={!this.state.controlCNPJ}
                                     helperText={
                                         this.state.controlCNPJ == true ? " " : "CNPJ inválido"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
 
-                        <Form.Group as={Col} md="3" controlId="formGridPhone">
+                        <Form.Group as={Col} md="2" controlId="formGridPhone">
                             <div noValidate autoComplete="off">
                                 <TextField
                                     fullWidth={true}
@@ -392,10 +393,10 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangePhone}
                                     required
                                     type="number"
-                                    error={!this.state.controlPhone}
+                                    /*error={!this.state.controlPhone}
                                     helperText={
                                         this.state.controlPhone == true ? " " : "Telefone válido possui 8 caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
@@ -416,76 +417,84 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangeDirectorName}
                                     required
                                     type="text"
-                                    error={this.state.respName.length > this.state.max}
+                                    /*error={this.state.respName.length > this.state.max}
                                     helperText={
                                         this.state.respName.length <= this.state.max == true
                                             ? " "
                                             : "Máximo de 30 Caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
 
-                        <Form.Group controlId="formGridDirectorSurname">
+                        <Form.Group as={Col} md='2' controlId="formGridDirectorSurname">
                             <div noValidate autoComplete="off">
                                 <TextField
                                     fullWidth={true}
-                                    id="outlined-basic"
-                                    label="Sobrenome do diretor"
+                                    id="directorSurname"
+                                    label="Sobrenome diretor"
                                     variant="outlined"
                                     size="small"
                                     value={this.state.respSurname}
                                     onChange={this.handleChangeDirectorSurname}
                                     required
                                     type="text"
-                                    error={this.state.respSurname.length > this.state.max}
+                                    /*error={this.state.respSurname.length > this.state.max}
                                     helperText={
                                         this.state.respSurname.length <= this.state.max == true
                                             ? " "
                                             : "Máximo de 30 Caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
-                        <Form.Group as={Col} md='1' ></Form.Group>
-                        <TextField
-                            id="standard-select-currency"
-                            size="small"
-                            select
-                            label="Tipo de escola"
-                            value={this.state.schoolType}
-                            onChange={this.handleChangeTypeSchool}
-                            SelectProps={{
-                                native: true
-                            }}
-                            variant="outlined"
-                            helperText="Por favor escolha uma opção"
-                        >
-                            {this.state.currencies.map(option => (
-                                <option key={option} value={option}>
-                                    {option}
-                                </option>
-                            ))}
-                        </TextField>
-                        <Form.Group as={Col} md='1' ></Form.Group>
-                        <TextField
-                            id="standard-select-currency"
-                            size="small"
-                            label="Telefone do diretor"
-                            value={this.state.respPhone}
-                            onChange={this.handleChangeRespPhone}
-                            variant="outlined"
-                            type="number"
-                            required
-                            error={!this.state.controlPhone}
-                            helperText={
-                                this.state.controlPhone == true ? " " : "Telefone válido possui 8 caracteres"
-                            }
-                        ></TextField>
+                        {/* <Form.Group as={Col} md='1' ></Form.Group> */}
+                       
+                        {/* <Form.Group as={Col} md='1' ></Form.Group> */}
+                        <Form.Group as={Col} md='3' >
+                            <div noValidate autoComplete="off">
+                                <TextField
+                                    
+                                    size="small"
+                                    label="Telefone do diretor"
+                                    value={this.state.respPhone}
+                                    onChange={this.handleChangeRespPhone}
+                                    variant="outlined"
+                                    type="number"
+                                    required
+                                    /*error={!this.state.controlPhone}
+                                    helperText={
+                                        this.state.controlPhone == true ? " " : "Telefone válido possui 8 caracteres"
+                                    }*/
+                                ></TextField>
+                            </div>
+                        </Form.Group>
+                        <Form.Group as={Col} md='3' >
+                            <div noValidate autoComplete="off">
+                            <TextField
+                                size="small"
+                                select
+                                label="Tipo de escola"
+                                value={this.state.schoolType}
+                                onChange={this.handleChangeTypeSchool}
+                                SelectProps={{
+                                    native: true
+                                }}
+                                variant="outlined"
+                                helperText="Por favor escolha uma opção"
+                            >
+                                {this.state.currencies.map(option => (
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </TextField>
+                            </div>
+                        </Form.Group>
                     </Form.Row>
-                    <Form.Row>
+                    {/* <Form.Row>
                         <Form.Group as={Col} md='3'></Form.Group>
-                    </Form.Row>
+                    </Form.Row> */}
                     <Form.Row>
                         <Form.Group as={Col} md='4' controlId="formGridEmail">
                             <div noValidate autoComplete="off">
@@ -502,7 +511,7 @@ export default class InfoSchool extends React.Component {
                                 />
                             </div>
                         </Form.Group>
-                        <Form.Group as={Col} md='1'></Form.Group>
+                        {/* <Form.Group as={Col} md='1'></Form.Group> */}
                         <Form.Group as={Col} md='3' controlId="formGridLogin">
                             <div noValidate autoComplete="off">
                                 <TextField
@@ -515,12 +524,12 @@ export default class InfoSchool extends React.Component {
                                     onChange={this.handleChangeLogin}
                                     required
                                     type="text"
-                                    error={this.state.login.length > this.state.max}
+                                    /*error={this.state.login.length > this.state.max}
                                     helperText={
                                         this.state.login.length <= this.state.max == true
                                             ? " "
                                             : "Máximo de 30 Caracteres"
-                                    }
+                                    }*/
                                 />
                             </div>
                         </Form.Group>
@@ -567,18 +576,18 @@ export default class InfoSchool extends React.Component {
                             </div>
                         </Form.Group>
                         <Form.Group as={Col} md='1' ></Form.Group>
-                        <Button
+                    </Form.Row>
+                    <Button
                             id="updateButton"
-                            disabled={!(
+                            /*disabled={!(
                                 this.state.controlPassword &&
                                 this.state.controlLength &&
                                 this.state.controlPhone &&
                                 this.state.controlCNPJ
-                            )}
+                            )}*/
                             variant="primary" onClick={this.handleSubmit}>
                             Salvar alterações
                     </Button>
-                    </Form.Row>
                 </Form>
             </div>
         )

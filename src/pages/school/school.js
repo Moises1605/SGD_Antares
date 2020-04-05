@@ -23,6 +23,7 @@ export default class School extends React.Component {
       active: null
     };
   }
+  //carrega os dados da escola
   componentDidMount = screen => {
     console.log(this.props.location.state.id);
     //Colocar essa parte comentada na parte de editar dados da escola.

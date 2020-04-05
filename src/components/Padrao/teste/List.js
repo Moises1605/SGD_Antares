@@ -3,7 +3,7 @@ import {
   makeStyles,
   withTheme,
   createMuiTheme,
-  responsiveFontSizes
+  responsiveFontSizes,
 } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -24,21 +24,21 @@ import AlarmIcon from "@material-ui/icons/Alarm";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Row } from "react-bootstrap";
 import "./List.scss";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 class SimpleList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      permission: []
+      permission: [],
     };
   }
 
   async componentDidMount() {
     await this.setState({ permission: this.props.permission });
   }
-
-  handleClick = teste => {
+  //Responsável por direcionar a tela correspondente ao item selecionado pelo usuário na sidebar
+  handleClick = (teste) => {
     this.setState({ screen: teste });
   };
 
@@ -78,7 +78,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Gerir Funcionários" />
+                <ListItemText primary="Gerenciar Funcionários" />
               </ListItem>
             )}
             {this.state.permission[2] == "1" && (
@@ -86,7 +86,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <ImportContactsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Gerir Bolsistas" />
+                <ListItemText primary="Gerenciar Bolsistas" />
               </ListItem>
             )}
             {this.state.permission[3] == "1" && (
@@ -94,7 +94,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <SchoolIcon />
                 </ListItemIcon>
-                <ListItemText primary="Gerir Escolas" />
+                <ListItemText primary="Escolas Cadastradas" />
               </ListItem>
             )}
             {this.state.permission[4] == "1" && (
@@ -110,7 +110,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Agendamantos" />
+                <ListItemText primary="Agendamentos" />
               </ListItem>
             )}
             {this.state.permission[6] == "1" && (
@@ -126,7 +126,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <BackupIcon />
                 </ListItemIcon>
-                <ListItemText primary="Nova Atividade" />
+                <ListItemText primary="Atividades Extraordinárias" />
               </ListItem>
             )}
             {this.state.permission[8] == "1" && (
@@ -153,12 +153,14 @@ class SimpleList extends Component {
                 <ListItemText primary="Editar dados" />
               </ListItem>
             )}
-            <Link to = '/login'><ListItem button>
-              <ListItemIcon>
-                <ExitToAppIcon />
-              </ListItemIcon>
-              <ListItemText primary="Encerrar Sessão" />
-            </ListItem></Link>
+            <Link to="/login" id="link_exit">
+              <ListItem button>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="Encerrar Sessão" href="login" />
+              </ListItem>
+            </Link>
           </List>
         </div>
       </div>

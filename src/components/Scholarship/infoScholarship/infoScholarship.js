@@ -28,7 +28,7 @@ export default class info extends Component {
     let { className, value } = event.target;
     this.setState({ [className.split(" ")[0]]: value });
   }
-
+  //Pega os dados do bollsista que estão o banco
   /*async*/ componentDidMount() {
     /*const response = await api.post("/adicionarBolsista", this.state);
     this.setState({
@@ -43,7 +43,7 @@ export default class info extends Component {
         password: response.data.password,
     })*/
   }
-
+  //Responsável por chamar a rota que irá salvar os dados atualizados.
   async handleSubmit(event) {
     /* api.post("/adicionarBolsista", this.state);
      console.log(this.state.name);

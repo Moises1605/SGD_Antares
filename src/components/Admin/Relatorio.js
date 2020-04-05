@@ -8,8 +8,10 @@ import {
   Dropdown,
   Button,
   FormControl,
-  Table
+  Table,
 } from "react-bootstrap";
+import { Alert, AlertTitle } from "@material-ui/lab";
+import SearchIcon from "@material-ui/icons/Search";
 
 class Relatorio extends Component {
   constructor() {
@@ -17,7 +19,7 @@ class Relatorio extends Component {
     this.state = {
       search: "",
       rows: [],
-      modalShow: false
+      modalShow: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -42,9 +44,7 @@ class Relatorio extends Component {
           </Col>
           <Col></Col>
         </Row>
-        <Row>
-          <div style={{ height: "3vh" }}></div>
-        </Row>
+        <hr />
         <Row>
           <Col>
             <Dropdown>
@@ -67,8 +67,8 @@ class Relatorio extends Component {
                 value={this.state.search}
               />
               <InputGroup.Prepend>
-                <Button variant="outline-secondary" onClick={this.handleSearch}>
-                  &#128269;
+                <Button size="sm" variant="primary" onClick={this.handleSearch}>
+                  <SearchIcon size="small" />
                 </Button>
               </InputGroup.Prepend>
             </InputGroup>
@@ -78,16 +78,17 @@ class Relatorio extends Component {
           <div style={{ height: "3vh" }}></div>
         </Row>
         <Row>
-          <Col>
+          <Col md={12}>
             <div
               style={{
                 height: "40vh",
-                overflowY: "auto"
+                overflowY: "auto",
               }}
             >
-              <Table size="sm" bordered hover responsive striped>
+              <Table size="md" bordered hover responsive striped>
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Relatórios</th>
                     <th>Nº de Visitantes</th>
                     <th>Data</th>
@@ -98,8 +99,26 @@ class Relatorio extends Component {
             </div>
           </Col>
         </Row>
+        <br />
         <Row>
-          <div style={{ height: "3vh" }}></div>
+          <Col md={3}></Col>
+          <Col md={5}>
+            {this.state.rows.length === 0 && (
+              <Alert
+                severity="warning"
+                variant="outlined"
+                style={{
+                  width: "auto",
+                  height: "auto",
+                }}
+              >
+                <AlertTitle>
+                  <b>Ainda não há relatórios no banco de dados</b>
+                </AlertTitle>
+              </Alert>
+            )}
+          </Col>
+          <Col md={4}></Col>
         </Row>
       </Container>
     );

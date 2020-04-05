@@ -1,0 +1,11 @@
+#backupButton{
+    height: 40px;
+}
+
+#recoverButton{
+    height: 40px;
+} 
+
+#config{
+    margin: 20px 0 0 530px;
+}

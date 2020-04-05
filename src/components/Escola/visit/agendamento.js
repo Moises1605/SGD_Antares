@@ -10,18 +10,18 @@ export default class Agendamento extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            idSchool: 15,
             date1: this.props.date2.toString(),
             responsible: '',
             students: '',
             date: '',
             number: '',
             obs: '',
-            atrações: [{ id: '1', name: 'Exposição 1', tipo: 'Astronimia' }, { id: '2', name: 'Exposição 2', tipo: 'Origem do homem' }, { id: '3', name: 'Exposição 3', tipo: 'Vida Animal' }, { id: '4', name: 'Exposição 4', tipo: 'Astronimia' }, { id: '5', name: 'Exposição 5', tipo: 'Origem do homem' }, { id: '6', name: 'Exposição 6', tipo: 'Vida animal' }, { id: '7', name: 'Exposição 7', tipo: 'Astronomia' }, { id: '8', name: 'Exposição 8', tipo: 'Origem do homem' }, { id: '9', name: 'Exposição 9', tipo: 'Vida animal' }, { id: '10', name: 'Exposição 10', tipo: 'Astronomia' }, { id: '11', name: 'Exposição 11', tipo: 'Origem do homem' }, { id: '12', name: 'Exposição 12', tipo: 'Vida animal' }],
-            // atraçõesT: ['0', '0','0','0','0','0','0','0','0','0','0','0']
+            //atrações: [{ id: '1', name: 'Exposição 1', tipo: 'Astronimia' }, { id: '2', name: 'Exposição 2', tipo: 'Origem do homem' }, { id: '3', name: 'Exposição 3', tipo: 'Vida Animal' }, { id: '4', name: 'Exposição 4', tipo: 'Astronimia' }, { id: '5', name: 'Exposição 5', tipo: 'Origem do homem' }, { id: '6', name: 'Exposição 6', tipo: 'Vida animal' }, { id: '7', name: 'Exposição 7', tipo: 'Astronomia' }, { id: '8', name: 'Exposição 8', tipo: 'Origem do homem' }, { id: '9', name: 'Exposição 9', tipo: 'Vida animal' }, { id: '10', name: 'Exposição 10', tipo: 'Astronomia' }, { id: '11', name: 'Exposição 11', tipo: 'Origem do homem' }, { id: '12', name: 'Exposição 12', tipo: 'Vida animal' }],
+            atrações:[],
             atraçõesT: [],
             show: false
         };
-        this.setControl = this.setControl.bind(this);
         this.handleChangeResponsible = this.handleChangeResponsible.bind(this);
         this.handleChangeStudents = this.handleChangeStudents.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -30,30 +30,33 @@ export default class Agendamento extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeO = this.handleChangeO.bind(this);
     }
-    setControl(event) {
-        this.setState({ control: true })
-    }
 
+    //Responsável por controlar o campo de texto  que guarda o nome do responsável.
     handleChangeResponsible(event) {
         this.setState({ responsible: event.target.value });
     }
 
+    // Responsável por controlar o campo de texto  que guarda o número de estudantes.
     handleChangeStudents(event) {
         this.setState({ students: event.target.value });
     }
 
+    //Responsável por controlar o campo de texto  que guarda o horário da visita. 
     handleChangeDate(event) {
         this.setState({ date: event.target.value });
     }
 
+    // Responsável por controlar o campo de texto  que guarda a série da visita. 
     handleChangeNumber(event) {
         this.setState({ number: event.target.value });
     }
 
+    //Responsável por controlar o campo de texto  que guarda uma observação do usuário.
     handleChangeObs(event) {
         this.setState({ obs: event.target.value });
     }
 
+    //Responsável por controlar as atrações que foram selecionadas pelo usuário.
     handleChangeO(event) {
         console.log(event.target.name);
         var id = event.target.name;
@@ -66,14 +69,14 @@ export default class Agendamento extends React.Component {
         }
     }
 
-    componentDidMount() {
-        //const response = await api.post("/retornaAtrações");
-        //this.setState({atrações: response.data});
+    async componentDidMount() {
+        const response = await api.post("/retornaAtracoes");
+        this.setState({atrações: response.data});
     }
-
-    /*async*/ handleSubmit(event) {
+    //Responsável por chamar a rota que irá guadar o agendamento da escola.
+    async handleSubmit(event) {
         console.log(this.state.atraçõesT);
-        //await api.post("/adicionarAgendamento", this.state);
+        await api.post("/adicionarAgendamento", this.state);
         this.setState({ show: true });
     }
 
@@ -154,10 +157,10 @@ export default class Agendamento extends React.Component {
                     <Row>
                         {this.state.atrações.map(type => (
 
-                            <Col id='hy' as={Col} md="3" key={type.id.toString()} className="mb-3">
+                            <Col id='hy' as={Col} md="3" key={type.nome.toString()} className="mb-3">
                                 <Form.Check type='checkbox' id={`check-api-radio`} >
-                                    <Form.Check.Input onChange={this.handleChangeO} name={type.name} type='checkbox' isValid />
-                                    <Form.Check.Label>{type.name}</Form.Check.Label>
+                                    <Form.Check.Input onChange={this.handleChangeO} name={type.nome} type='checkbox' isValid />
+                                    <Form.Check.Label>{type.nome}</Form.Check.Label>
                                     <Form.Control.Feedback type="valid">{type.tipo}</Form.Control.Feedback>
                                 </Form.Check>
                             </Col>
