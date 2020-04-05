@@ -44,9 +44,7 @@ class Relatorio extends Component {
           </Col>
           <Col></Col>
         </Row>
-        <Row>
-          <div style={{ height: "3vh" }}></div>
-        </Row>
+        <hr />
         <Row>
           <Col>
             <Dropdown>

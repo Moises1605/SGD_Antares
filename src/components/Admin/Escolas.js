@@ -8,14 +8,9 @@ import {
   InputGroup,
   FormControl,
   Table,
-  Toast,
-  Badge,
 } from "react-bootstrap";
 import api from "../../services/api";
 import { Alert, AlertTitle } from "@material-ui/lab";
-//import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import SearchIcon from "@material-ui/icons/Search";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -59,13 +54,6 @@ export default class Escolas extends React.Component {
     this.setState({ escolas: newList });
   };
 
-  orderTag = () => {
-    this.state.escolas.forEach((obj) => console.log(obj));
-    var newList = this.state.escolas;
-    newList.sort((a, b) => (a.tag > b.tag ? 1 : -1));
-    this.setState({ escolas: newList });
-  };
-
   async componentDidMount() {
     const e = api.post("/listarEscolas");
     var i = 0;
@@ -87,9 +75,8 @@ export default class Escolas extends React.Component {
             </Col>
             <Col></Col>
           </Row>
-          <Row>
-            <div style={{ height: "3vh" }}></div>
-          </Row>
+          <hr />
+
           <Row>
             <Col>
               <Dropdown>
@@ -98,7 +85,6 @@ export default class Escolas extends React.Component {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => this.orderTag}>#</Dropdown.Item>
                   <Dropdown.Item onClick={() => this.orderNomeEscola}>
                     Nome Escola
                   </Dropdown.Item>
@@ -154,7 +140,7 @@ export default class Escolas extends React.Component {
                   </thead>
                   <tbody>
                     {this.state.escolas.map((e, i = 0) => (
-                      <tr key={e.id}>
+                      <tr key={e.idPessoa}>
                         <td>
                           <b>{i++}</b>
                         </td>
