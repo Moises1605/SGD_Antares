@@ -14,16 +14,16 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import SearchIcon from "@material-ui/icons/Search";
 import DeleteIcon from "@material-ui/icons/Delete";
-import ImportExportIcon from "@material-ui/icons/ImportExport";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import IconButton from "@material-ui/core/IconButton";
 export default class Escolas extends React.Component {
   constructor() {
     super();
     this.state = {
       search: "",
       escolas: [],
-      orderE: false,
-      orderNE: false,
-      orderNR: false,
+      escolasReserva: [],
     };
   }
 
@@ -36,49 +36,52 @@ export default class Escolas extends React.Component {
     api.post("/removerEscola", id);
   };
 
-  orderEmail = () => {
+  orderEmailCresc = () => {
     var newList = this.state.escolas;
-    if (this.state.orderE === false) {
-      newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-      this.setState({ escolas: newList });
-      this.setState({ orderE: true });
-    } else {
-      newList.sort((a, b) => (a.email > b.email ? -1 : 1));
-      this.setState({ escolas: newList });
-      this.setState({ orderE: false });
-    }
+    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+    this.setState({ escolas: newList });
+    this.setState({ orderE: true });
+  };
+  orderEmailDecresc = () => {
+    var newList = this.state.escolas;
+    newList.sort((a, b) => (a.email > b.email ? -1 : 1));
+    this.setState({ escolas: newList });
+    this.setState({ orderE: false });
   };
 
-  orderNomeEscola = () => {
+  orderNomeEscolaCresc = () => {
     var newList = this.state.escolas;
-    if (this.state.orderE === false) {
-      newList.sort((a, b) => (a.nomeEscola > b.nomeEscola ? 1 : -1));
-      this.setState({ escolas: newList });
-      this.setState({ orderNE: true });
-    } else {
-      newList.sort((a, b) => (a.nomeEscola > b.nomeEscola ? -1 : 1));
-      this.setState({ escolas: newList });
-      this.setState({ orderNE: false });
-    }
+    newList.sort((a, b) => (a.nomeEscola > b.nomeEscola ? 1 : -1));
+    this.setState({ escolas: newList });
+    this.setState({ orderNE: true });
+  };
+  orderNomeEscolaDecresc = () => {
+    var newList = this.state.escolas;
+    newList.sort((a, b) => (a.nomeEscola > b.nomeEscola ? -1 : 1));
+    this.setState({ escolas: newList });
+    this.setState({ orderNE: false });
   };
 
-  orderNomeResponsavel = () => {
+  orderNomeResponsavelCresc = () => {
     var newList = this.state.escolas;
-    if (this.state.orderE === false) {
-      newList.sort((a, b) => (a.nomeResponsavel > b.nomeResponsavel ? 1 : -1));
-      this.setState({ escolas: newList });
-      this.setState({ orderNR: true });
-    } else {
-      newList.sort((a, b) => (a.nomeResponsavel > b.nomeResponsavel ? -1 : 1));
-      this.setState({ escolas: newList });
-      this.setState({ orderNR: false });
-    }
+    newList.sort((a, b) => (a.nomeResponsavel > b.nomeResponsavel ? 1 : -1));
+    this.setState({ escolas: newList });
+    this.setState({ orderNR: true });
+  };
+  orderNomeResponsavelDecresc = () => {
+    var newList = this.state.escolas;
+    newList.sort((a, b) => (a.nomeResponsavel > b.nomeResponsavel ? -1 : 1));
+    this.setState({ escolas: newList });
+    this.setState({ orderNR: false });
   };
 
   async componentDidMount() {
     const e = api.post("/listarEscolas");
     var i = 0;
     this.setState({ escolas: (await e).data.map((e) => e, e.tag === i++) });
+    this.setState({
+      escolasReserva: (await e).data.map((e) => e, e.tag === i++),
+    });
     console.log(this.state.escolas);
   }
 
@@ -106,14 +109,25 @@ export default class Escolas extends React.Component {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => this.orderNomeEscola}>
-                    Nome Escola
+                  <Dropdown.Item onClick={() => this.orderNomeEscolaCresc}>
+                    Escola Crescente
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={() => this.orderNomeResponsavel}>
-                    Nome do Responsável
+                  <Dropdown.Item onClick={() => this.orderNomeEscolaDecresc}>
+                    Escola Decrescente
                   </Dropdown.Item>
-                  <Dropdown.Item onClick={() => this.orderEmail}>
-                    Email
+                  <Dropdown.Item onClick={() => this.orderNomeResponsavelCresc}>
+                    Responsável Crescente
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => this.orderNomeResponsavelDecresc}
+                  >
+                    Responsável Decrescente
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.orderEmailCresc}>
+                    Email Crecente
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.orderEmailDecresc}>
+                    Email Decrescente
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -153,16 +167,38 @@ export default class Escolas extends React.Component {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th onClick={() => this.orderNomeEscola}>
-                        Nome Escola{" "}
-                        <ImportExportIcon style={{ color: "#808080" }} />{" "}
+                      <th>
+                        Nome da Escola{" "}
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandMoreIcon onClick={this.orderNomeEscolaCresc} />
+                        </IconButton>
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandLessIcon
+                            onClick={this.orderNomeEscolaDecresc}
+                          />
+                        </IconButton>
                       </th>
-                      <th onClick={() => this.orderNomeResponsavel}>
-                        Nome Responsável{" "}
-                        <ImportExportIcon style={{ color: "#808080" }} />
+                      <th>
+                        Nome do Responsável{" "}
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandMoreIcon
+                            onClick={this.orderNomeResponsavelCresc}
+                          />
+                        </IconButton>
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandLessIcon
+                            onClick={this.orderNomeResponsavelDecresc}
+                          />
+                        </IconButton>
                       </th>
-                      <th onClick={() => this.orderEmail}>
-                        Email <ImportExportIcon style={{ color: "#808080" }} />
+                      <th>
+                        Email{" "}
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandMoreIcon onClick={this.orderEmailCresc} />
+                        </IconButton>
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandLessIcon onClick={this.orderEmailDecresc} />
+                        </IconButton>
                       </th>
                       <th>Telefone</th>
                     </tr>

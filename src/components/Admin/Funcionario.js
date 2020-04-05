@@ -16,7 +16,9 @@ import CadastroFuncionario from "./form_funcionario";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SweetAlert from "sweetalert2-react";
 import SearchIcon from "@material-ui/icons/Search";
-import ImportExportIcon from "@material-ui/icons/ImportExport";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import IconButton from "@material-ui/core/IconButton";
 class Funcionario extends Component {
   constructor() {
     super();
@@ -77,8 +79,6 @@ class Funcionario extends Component {
         },
       ],
       showdelete: false,
-      orderE: false,
-      orderN: false,
       searchControl: false,
       funcionariosReserva: [
         {
@@ -155,30 +155,30 @@ class Funcionario extends Component {
     api.post("/removerFuncionario", removido);
   };
 
-  orderName = () => {
+  orderNameCresc = () => {
     var newList = this.state.funcionarios;
-    if (this.state.orderN === false) {
-      newList.sort((a, b) => (a.nome > b.nome ? 1 : -1));
-      this.setState({ funcionarios: newList });
-      this.setState({ orderN: true });
-    } else {
-      newList.sort((a, b) => (a.nome > b.nome ? -1 : 1));
-      this.setState({ funcionarios: newList });
-      this.setState({ orderN: false });
-    }
+    newList.sort((a, b) => (a.nome > b.nome ? 1 : -1));
+    this.setState({ funcionarios: newList });
+    this.setState({ orderN: true });
+  };
+  orderNameDecresc = () => {
+    var newList = this.state.funcionarios;
+    newList.sort((a, b) => (a.nome > b.nome ? -1 : 1));
+    this.setState({ funcionarios: newList });
+    this.setState({ orderN: false });
   };
 
-  orderEmail = () => {
+  orderEmailCresc = () => {
     var newList = this.state.funcionarios;
-    if (this.state.orderE === false) {
-      newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-      this.setState({ funcionarios: newList });
-      this.setState({ orderE: true });
-    } else {
-      newList.sort((a, b) => (a.email > b.email ? -1 : 1));
-      this.setState({ funcionarios: newList });
-      this.setState({ orderE: false });
-    }
+    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+    this.setState({ funcionarios: newList });
+    this.setState({ orderE: true });
+  };
+  orderEmailDecresc = () => {
+    var newList = this.state.funcionarios;
+    newList.sort((a, b) => (a.email > b.email ? -1 : 1));
+    this.setState({ funcionarios: newList });
+    this.setState({ orderE: false });
   };
 
   handleChange = (event) => {
@@ -251,8 +251,18 @@ class Funcionario extends Component {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
-                <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
+                <Dropdown.Item onClick={this.orderNameCresc}>
+                  Nome Crescente
+                </Dropdown.Item>
+                <Dropdown.Item onClick={this.orderNameDecresc}>
+                  Nome Decrescente
+                </Dropdown.Item>
+                <Dropdown.Item onClick={this.orderEmailCresc}>
+                  Email Crescente
+                </Dropdown.Item>
+                <Dropdown.Item onClick={this.orderEmailDecresc}>
+                  Email Decrescente
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Col>
@@ -288,11 +298,23 @@ class Funcionario extends Component {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th onClick={this.orderName}>
-                      Nome <ImportExportIcon style={{ color: "#808080" }} />
+                    <th>
+                      Nome{" "}
+                      <IconButton aria-label="delete" size="small">
+                        <ExpandMoreIcon onClick={this.orderNameCresc} />
+                      </IconButton>
+                      <IconButton aria-label="delete" size="small">
+                        <ExpandLessIcon onClick={this.orderNameDecresc} />
+                      </IconButton>
                     </th>
-                    <th onClick={this.orderEmail}>
-                      Email <ImportExportIcon style={{ color: "#808080" }} />
+                    <th>
+                      Email{" "}
+                      <IconButton aria-label="delete" size="small">
+                        <ExpandMoreIcon onClick={this.orderEmailCresc} />
+                      </IconButton>
+                      <IconButton aria-label="delete" size="small">
+                        <ExpandLessIcon onClick={this.orderEmailDecresc} />
+                      </IconButton>
                     </th>
                     <th>Telefone</th>
                   </tr>

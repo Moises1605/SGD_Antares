@@ -15,7 +15,9 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
 import SearchIcon from "@material-ui/icons/Search";
-import ImportExportIcon from "@material-ui/icons/ImportExport";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import IconButton from "@material-ui/core/IconButton";
 import SweetAlert from "sweetalert2-react";
 export default class Bolsistas extends React.Component {
   constructor() {
@@ -79,8 +81,6 @@ export default class Bolsistas extends React.Component {
           tag: 7,
         },*/
       ],
-      orderE: false,
-      orderN: false,
       searchControl: false,
       bolsistasReserva: [
         /*{
@@ -158,30 +158,32 @@ export default class Bolsistas extends React.Component {
     api.post("/removerBolsista", removido);
   };
 
-  orderName = () => {
+  orderNameCresc = () => {
     var newList = this.state.bolsistas;
-    if (this.state.orderN === false) {
-      newList.sort((a, b) => (a.nome > b.nome ? 1 : -1));
-      this.setState({ bolsistas: newList });
-      this.setState({ orderN: true });
-    } else {
-      newList.sort((a, b) => (a.nome > b.nome ? -1 : 1));
-      this.setState({ bolsistas: newList });
-      this.setState({ orderN: false });
-    }
+    newList.sort((a, b) => (a.nome > b.nome ? 1 : -1));
+    this.setState({ bolsistas: newList });
+    this.setState({ orderN: true });
   };
 
-  orderEmail = () => {
+  orderNameDecresc = () => {
     var newList = this.state.bolsistas;
-    if (this.state.orderE === false) {
-      newList.sort((a, b) => (a.email > b.email ? 1 : -1));
-      this.setState({ bolsistas: newList });
-      this.setState({ orderE: true });
-    } else {
-      newList.sort((a, b) => (a.email > b.email ? -1 : 1));
-      this.setState({ bolsistas: newList });
-      this.setState({ orderE: false });
-    }
+    newList.sort((a, b) => (a.nome > b.nome ? -1 : 1));
+    this.setState({ bolsistas: newList });
+    this.setState({ orderN: false });
+  };
+
+  orderEmailCresc = () => {
+    var newList = this.state.bolsistas;
+
+    newList.sort((a, b) => (a.email > b.email ? 1 : -1));
+    this.setState({ bolsistas: newList });
+    this.setState({ orderE: true });
+  };
+  orderEmailDecresc = () => {
+    var newList = this.state.bolsistas;
+    newList.sort((a, b) => (a.email > b.email ? -1 : 1));
+    this.setState({ bolsistas: newList });
+    this.setState({ orderE: false });
   };
 
   handleChange = (event) => {
@@ -248,8 +250,18 @@ export default class Bolsistas extends React.Component {
                   Ordenar Por
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={this.orderName}>Nome</Dropdown.Item>
-                  <Dropdown.Item onClick={this.orderEmail}>Email</Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderNameCresc}>
+                    Nome Crescente
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderNameDecresc}>
+                    Nome Decrescente
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderEmailCresc}>
+                    Email Crescente
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={this.orderEmailDecresc}>
+                    Email Decrescente
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
@@ -289,11 +301,23 @@ export default class Bolsistas extends React.Component {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th onClick={this.orderName}>
-                        Nome <ImportExportIcon style={{ color: "#808080" }} />
+                      <th>
+                        Nome{" "}
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandMoreIcon onClick={this.orderNameCresc} />
+                        </IconButton>
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandLessIcon onClick={this.orderNameDecresc} />
+                        </IconButton>
                       </th>
-                      <th onClick={this.orderEmail}>
-                        Email <ImportExportIcon style={{ color: "#808080" }} />
+                      <th>
+                        Email{" "}
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandMoreIcon onClick={this.orderEmailCresc} />
+                        </IconButton>
+                        <IconButton aria-label="delete" size="small">
+                          <ExpandLessIcon onClick={this.orderEmailDecresc} />
+                        </IconButton>
                       </th>
                       <th>Telefone</th>
                     </tr>
