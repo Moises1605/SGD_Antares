@@ -64,6 +64,12 @@ export default class Login extends React.Component {
     this.setState({ password: event.target.value });
   }
 
+  handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      this.handleSubmit(event);
+    }
+  };
+
   //Responsável por chamar a rota que retorna os dados do usuário com a respectiva senha e email digitados.
   async handleSubmit(event) {
     //manda os dados do cadastro para o banco.
@@ -226,6 +232,7 @@ export default class Login extends React.Component {
                           type="password"
                           value={this.state.password}
                           onChange={this.handleChangePassword}
+                          onKeyPress={this.handleKeyPress}
                         />
                       </Grid>
                     </Grid>
@@ -259,6 +266,7 @@ export default class Login extends React.Component {
                     block
                     variant="success"
                     //onClick={this.handleLogin}
+                    onKeyPress={this.handleKeyPress}
                     onClick={this.handleSubmit}
                   >
                     Entrar
