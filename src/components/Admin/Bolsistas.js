@@ -31,7 +31,7 @@ export default class Bolsistas extends React.Component {
       //utilizado para testes.
       bolsistas: [
         // PARA TESTES
-        {
+        /*{
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -79,11 +79,11 @@ export default class Bolsistas extends React.Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },
+        },*/
       ],
       searchControl: false,
       bolsistasReserva: [
-        {
+        /*{
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -131,7 +131,7 @@ export default class Bolsistas extends React.Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },
+        },*/
       ],
     };
   }

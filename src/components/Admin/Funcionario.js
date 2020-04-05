@@ -28,7 +28,7 @@ class Funcionario extends Component {
       count: 0,
       funcionarios: [
         // PARA TESTES
-        {
+        /*{
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -76,12 +76,12 @@ class Funcionario extends Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },
+        },*/
       ],
       showdelete: false,
       searchControl: false,
       funcionariosReserva: [
-        {
+        /*{
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -129,7 +129,7 @@ class Funcionario extends Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },
+        },*/
       ],
     };
   }
