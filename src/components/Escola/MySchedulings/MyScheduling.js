@@ -19,7 +19,7 @@ export default class MyScheduling extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      schedulings: [
+      /*schedulings: [
         {
           agendamento: "25/02",
           Responsável: "Ana",
@@ -48,7 +48,8 @@ export default class MyScheduling extends React.Component {
           status: "0",
           numAlunos: "40",
         },
-      ],
+      ],*/
+      schedulings:[],
       idSchooll: this.props.idSchool,
       controle: false,
       controlCancel: false,
@@ -77,10 +78,10 @@ export default class MyScheduling extends React.Component {
     this.setState({ controlSearch: true });
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // carrega a lista de agendamentos
-    //const response = await api.get("/agendamentos", this.state.IDSchool);
-    //this.setState({schedulings: Response.data});
+    const response = await api.post("/agendamentos", this.state);
+    this.setState({schedulings: response.data});
   }
 
   cancelScheduling() {
@@ -235,7 +236,7 @@ export default class MyScheduling extends React.Component {
                     <DateRangeIcon fontSize="large" />
                   </span>
                   <span id="data">{item.data}</span>
-                  <span id="responsavel">Responsável:{item.Responsável}</span>
+                  <span id="responsavel">Responsável:{item.Responsavel}</span>
                   <span id="button">
                     <Button
                       variant="outline-primary"
