@@ -52,7 +52,7 @@ export default class CadastroFuncionario extends Component {
         <SweetAlert
           show={this.state.showcadastro}
           title="Sucesso"
-          text="O bolsista foi cadastrado"
+          text="O funcionário foi cadastrado"
           onConfirm={() =>
             this.setState({ showcadastro: false, controlCancel2: false })
           }
