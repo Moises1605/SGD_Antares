@@ -12,7 +12,7 @@ import Scholarship from "./pages/Scholarship/Scholarship";
 import Home from "./pages/Home/Home";
 import Admin from "./pages/Admin/Admin";
 import User from './pages/user/user';
-import { isAuthenticated } from "./auth";
+import { isAuthenticated } from "./services/auth";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
