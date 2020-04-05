@@ -237,7 +237,7 @@ class Funcionario extends Component {
         <Row>
           <Col>
             <h3 style={{ textAlign: "left", marginTop: "15px" }}>
-              Gerir Funcionários
+              Gerenciar Funcionários
             </h3>
           </Col>
           <Col></Col>

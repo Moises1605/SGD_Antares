@@ -92,7 +92,7 @@ export default class Escolas extends React.Component {
                 paddingTop: "15px",
               }}
             >
-              <h3>Gerir Escolas</h3>
+              <h3>Escolas Cadastradas</h3>
             </Col>
             <Col></Col>
           </Row>

@@ -235,7 +235,7 @@ export default class Bolsistas extends React.Component {
           <Row>
             <Col>
               <h3 style={{ textAlign: "left", marginTop: "15px" }}>
-                Gerir Bolsista
+                Gerenciar Bolsista
               </h3>
             </Col>
             <Col></Col>

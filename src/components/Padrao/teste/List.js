@@ -3,7 +3,7 @@ import {
   makeStyles,
   withTheme,
   createMuiTheme,
-  responsiveFontSizes
+  responsiveFontSizes,
 } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -30,7 +30,7 @@ class SimpleList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      permission: []
+      permission: [],
     };
   }
 
@@ -38,7 +38,7 @@ class SimpleList extends Component {
     await this.setState({ permission: this.props.permission });
   }
   //Responsável por direcionar a tela correspondente ao item selecionado pelo usuário na sidebar
-  handleClick = teste => {
+  handleClick = (teste) => {
     this.setState({ screen: teste });
   };
 
@@ -78,7 +78,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Gerir Funcionários" />
+                <ListItemText primary="Gerenciar Funcionários" />
               </ListItem>
             )}
             {this.state.permission[2] == "1" && (
@@ -86,7 +86,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <ImportContactsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Gerir Bolsistas" />
+                <ListItemText primary="Gerenciar Bolsistas" />
               </ListItem>
             )}
             {this.state.permission[3] == "1" && (
@@ -94,7 +94,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <SchoolIcon />
                 </ListItemIcon>
-                <ListItemText primary="Gerir Escolas" />
+                <ListItemText primary="Escolas Cadastradas" />
               </ListItem>
             )}
             {this.state.permission[4] == "1" && (
