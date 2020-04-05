@@ -14,7 +14,7 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import SearchIcon from "@material-ui/icons/Search";
 import DeleteIcon from "@material-ui/icons/Delete";
-
+import ImportExportIcon from "@material-ui/icons/ImportExport";
 export default class Escolas extends React.Component {
   constructor() {
     super();
@@ -153,12 +153,18 @@ export default class Escolas extends React.Component {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th onClick={() => this.orderNomeEscola}>Nome Escola</th>
+                      <th onClick={() => this.orderNomeEscola}>
+                        Nome Escola{" "}
+                        <ImportExportIcon style={{ color: "#808080" }} />{" "}
+                      </th>
                       <th onClick={() => this.orderNomeResponsavel}>
-                        Nome Responsável
+                        Nome Responsável{" "}
+                        <ImportExportIcon style={{ color: "#808080" }} />
+                      </th>
+                      <th onClick={() => this.orderEmail}>
+                        Email <ImportExportIcon style={{ color: "#808080" }} />
                       </th>
                       <th>Telefone</th>
-                      <th onClick={() => this.orderEmail}>Email</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -169,8 +175,8 @@ export default class Escolas extends React.Component {
                         </td>
                         <td>{e.nome}</td>
                         <td>{e.nomeResponsavel}</td>
-                        <td>{e.telefoneResponsavel}</td>
                         <td>{e.Login}</td>
+                        <td>{e.telefoneResponsavel}</td>
                       </tr>
                     ))}
                   </tbody>

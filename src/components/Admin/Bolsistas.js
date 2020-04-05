@@ -15,6 +15,7 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import api from "../../services/api";
 import CadastroBolsista from "./form_bolsista";
 import SearchIcon from "@material-ui/icons/Search";
+import ImportExportIcon from "@material-ui/icons/ImportExport";
 import SweetAlert from "sweetalert2-react";
 export default class Bolsistas extends React.Component {
   constructor() {
@@ -28,40 +29,112 @@ export default class Bolsistas extends React.Component {
       //utilizado para testes.
       bolsistas: [
         // PARA TESTES
-        /*{ name: "Gina", email: "romaiajr5", phone: "124", idPessoa: 1, tag: 1 },
         {
-          name: "Carlos",
+          nome: "Gina",
+          email: "romaiajr5",
+          telefone: "124",
+          idPessoa: 1,
+          tag: 1,
+        },
+        {
+          nome: "Carlos",
           email: "romaiajr7",
-          phone: "124",
+          telefone: "42(7031)845-11-5823",
           idPessoa: 2,
           tag: 2,
         },
         {
-          name: "Daniel",
+          nome: "Daniel",
           email: "romaiajr",
-          phone: "124",
+          telefone: "381(75)071-11-5532",
           idPessoa: 3,
           tag: 3,
         },
         {
-          name: "Moisés",
+          nome: "Moisés",
           email: "romaiajr1",
-          phone: "124",
+          telefone: "3(494)550-04-3416",
           idPessoa: 4,
           tag: 4,
         },
-        { name: "Roberto", email: "rob", phone: "124", idPessoa: 5, tag: 5 },
-        { name: "Samuel", email: "ra", phone: "124", idPessoa: 6, tag: 6 },
-        { name: "Ludmilla", email: "re", phone: "124", idPessoa: 7, tag: 7 },
-        { name: "Moisés", email: "b", phone: "124", idPessoa: 8, tag: 8 },
-        { name: "Moisés", email: "j", phone: "124", idPessoa: 9, tag: 9 },*/
+        {
+          nome: "Roberto",
+          email: "rob",
+          telefone: "3(0861)727-37-0504",
+          idPessoa: 5,
+          tag: 5,
+        },
+        {
+          nome: "Samuel",
+          email: "ra",
+          telefone: "4(729)307-64-9272",
+          idPessoa: 6,
+          tag: 6,
+        },
+        {
+          nome: "Ludmilla",
+          email: "re",
+          telefone: "4(729)307-64-9272",
+          idPessoa: 7,
+          tag: 7,
+        },
       ],
       orderE: false,
       orderN: false,
+      searchControl: false,
+      bolsistasReserva: [
+        {
+          nome: "Gina",
+          email: "romaiajr5",
+          telefone: "124",
+          idPessoa: 1,
+          tag: 1,
+        },
+        {
+          nome: "Carlos",
+          email: "romaiajr7",
+          telefone: "42(7031)845-11-5823",
+          idPessoa: 2,
+          tag: 2,
+        },
+        {
+          nome: "Daniel",
+          email: "romaiajr",
+          telefone: "381(75)071-11-5532",
+          idPessoa: 3,
+          tag: 3,
+        },
+        {
+          nome: "Moisés",
+          email: "romaiajr1",
+          telefone: "3(494)550-04-3416",
+          idPessoa: 4,
+          tag: 4,
+        },
+        {
+          nome: "Roberto",
+          email: "rob",
+          telefone: "3(0861)727-37-0504",
+          idPessoa: 5,
+          tag: 5,
+        },
+        {
+          nome: "Samuel",
+          email: "ra",
+          telefone: "4(729)307-64-9272",
+          idPessoa: 6,
+          tag: 6,
+        },
+        {
+          nome: "Ludmilla",
+          email: "re",
+          telefone: "4(729)307-64-9272",
+          idPessoa: 7,
+          tag: 7,
+        },
+      ],
     };
   }
-  /** REVIEW Método para registrar dados da pesquisa */
-  handleChange = (event) => this.setState({ search: event.target.value });
 
   /** NOTE Método para abrir o modal */
   setControl = () => this.setState({ show: true });
@@ -72,9 +145,9 @@ export default class Bolsistas extends React.Component {
   /**NOTE Método que faz requisição de dados dos bolsistas e faz a listagem */
 
   async componentDidMount() {
-    const b = api.post("/listarBolsistas");
+    /*const b = api.post("/listarBolsistas");
     this.setState({ bolsistas: (await b).data.map((b) => b) });
-    console.log(this.state.bolsistas);
+    this.setState({ bolsistasReserva: (await b).data.map((b) => b) });*/
   }
 
   deleteItem = (id) => {
@@ -88,11 +161,11 @@ export default class Bolsistas extends React.Component {
   orderName = () => {
     var newList = this.state.bolsistas;
     if (this.state.orderN === false) {
-      newList.sort((a, b) => (a.name > b.name ? 1 : -1));
+      newList.sort((a, b) => (a.nome > b.nome ? 1 : -1));
       this.setState({ bolsistas: newList });
       this.setState({ orderN: true });
     } else {
-      newList.sort((a, b) => (a.name > b.name ? -1 : 1));
+      newList.sort((a, b) => (a.nome > b.nome ? -1 : 1));
       this.setState({ bolsistas: newList });
       this.setState({ orderN: false });
     }
@@ -111,6 +184,42 @@ export default class Bolsistas extends React.Component {
     }
   };
 
+  handleChange = (event) => {
+    if (event.target.value !== "") {
+      this.setState({ search: event.target.value });
+    } else {
+      this.setState({ search: "" });
+    }
+  };
+
+  handleSearch = () => {
+    let newList = [];
+    let bolsistas = this.state.bolsistasReserva;
+    if (this.state.search !== "") {
+      newList = bolsistas.filter((item) => {
+        var lcname = item.nome.toLowerCase();
+        var lcemail = item.email.toLowerCase();
+        var value = this.state.search.toLowerCase();
+        this.setState({ searchControl: true });
+        return (
+          lcname.includes(value) ||
+          lcemail.includes(value) ||
+          item.telefone.includes(value)
+        );
+      });
+    }
+    if (this.state.search === "") {
+      newList = bolsistas;
+      this.setState({ searchControl: false });
+    }
+    this.setState({ bolsistas: newList });
+  };
+
+  handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      this.handleSearch();
+    }
+  };
   render() {
     return (
       <div>
@@ -151,6 +260,7 @@ export default class Bolsistas extends React.Component {
                   placeholder="Procurar..."
                   value={this.state.search}
                   onChange={this.handleChange}
+                  onKeyPress={this.handleKeyPress}
                 />
                 <InputGroup.Prepend>
                   <Button
@@ -179,8 +289,12 @@ export default class Bolsistas extends React.Component {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th onClick={this.orderName}>Nome</th>
-                      <th onClick={this.orderEmail}>Email</th>
+                      <th onClick={this.orderName}>
+                        Nome <ImportExportIcon style={{ color: "#808080" }} />
+                      </th>
+                      <th onClick={this.orderEmail}>
+                        Email <ImportExportIcon style={{ color: "#808080" }} />
+                      </th>
                       <th>Telefone</th>
                     </tr>
                   </thead>
@@ -190,7 +304,7 @@ export default class Bolsistas extends React.Component {
                         <td>
                           <b>{i++}</b>
                         </td>
-                        <td>{b.name}</td>
+                        <td>{b.nome}</td>
                         <td>{b.email}</td>
                         <td>{b.telefone}</td>
                       </tr>
@@ -222,20 +336,21 @@ export default class Bolsistas extends React.Component {
           <Row>
             <Col xs={3}></Col>
             <Col xs={5}>
-              {this.state.bolsistas.length === 0 && (
-                <Alert
-                  severity="warning"
-                  variant="outlined"
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                  }}
-                >
-                  <AlertTitle>
-                    <b>Ainda não há bolsistas cadastrados no sistema </b>
-                  </AlertTitle>
-                </Alert>
-              )}
+              {this.state.bolsistas.length === 0 &&
+                this.state.searchControl === false && (
+                  <Alert
+                    severity="warning"
+                    variant="outlined"
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                    }}
+                  >
+                    <AlertTitle>
+                      <b>Ainda não há bolsistas cadastrados no sistema </b>
+                    </AlertTitle>
+                  </Alert>
+                )}
             </Col>
             <Col xs={2}></Col>
             <Col xs={2}>
