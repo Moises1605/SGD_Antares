@@ -4,12 +4,13 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin, { TimeGrid } from '@fullcalendar/timegrid';
 import './style.css';
 import ptBr from '@fullcalendar/core/locales/pt-br'
+import Calendario from '../../Home/Calendar'
 //import { formatDate } from '@fullcalendar/core'
 
 
 export default class Schedule extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       //horários dos bolsistas 
@@ -26,34 +27,35 @@ export default class Schedule extends React.Component {
 
   render() {
     return (
-        <div>
-          <FullCalendar
+      <div id = "background">
+        <div id = "visitCalendar">
+          {/* <FullCalendar
             //Tira o final de semana 
-            weekends={false} 
+            weekends={false}
             //Deixa no hórario do Brasil
-            locale = {ptBr} 
+            locale={ptBr}
             //Como mostrar a informação 
-            defaultView = 'timeGridWeek'
+            defaultView='timeGridWeek'
             //Tamanho do calendário.
-            height = {600}
+            height={600}
 
-            header = {{
-                left: ' ',
-                //center: 'title',
-                right: ' '
-              }}
+            header={{
+              left: ' ',
+              //center: 'title',
+              right: ' '
+            }}
             //tirar o slot de all Day
-            allDaySlot = {false}
-            
+            allDaySlot={false}
+
             //Mostrar somente os dias da semana por extenso.
-            columnHeaderFormat = {{
-                weekday: 'long' 
+            columnHeaderFormat={{
+              weekday: 'long'
             }}
 
             //Intervalo da funcionamento
-            minTime = '08:30:00'
-            maxTime = '22:30:00' 
-            
+            minTime='08:30:00'
+            maxTime='22:30:00'
+
             //Horários de trabalho
             // events = {[
             //     {
@@ -64,21 +66,22 @@ export default class Schedule extends React.Component {
 
             //     },
             //   ]}
-            
-            events = {this.state.schedules.map(item =>(
+
+            events={this.state.schedules.map(item => (
               {
-                daysOfWeek:[item.semana], // Thursday, Friday
-                startTime:  item.inicioPeriodo, // 10am
+                daysOfWeek: [item.semana], // Thursday, Friday
+                startTime: item.inicioPeriodo, // 10am
                 endTime: item.fimPeriodo, // 4pm
                 rendering: 'background'
-              } 
+              }
             ))}
-            
-             
-            plugins={[ dayGridPlugin, timeGridPlugin ]}         
-          />
+
+
+            plugins={[dayGridPlugin, timeGridPlugin]}
+          /> */}
+          <Calendario/>
         </div>
+      </div>
     )
   }
-
 }

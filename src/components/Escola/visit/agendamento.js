@@ -75,18 +75,18 @@ export default class Agendamento extends React.Component {
     }
     //Responsável por chamar a rota que irá guadar o agendamento da escola.
     async handleSubmit(event) {
-        console.log(this.state.atraçõesT);
-        await api.post("/adicionarAgendamento", this.state);
+        //console.log(this.state.atraçõesT);
         this.setState({ show: true });
+        await api.post("/adicionarAgendamento", this.state);
+        
     }
 
     render() {
         return (<div>
             <SweetAlert
                 show={this.state.show}
-                icon='success'
                 title="Sucesso"
-                text="Agendamento solicitado com sucesso"
+                text="Agendamento solicitado com sucesso.Caso não receba um email de confirmação de visita, tente agendar a visita novamente"
                 onConfirm={() => this.setState({ show: false })}
             />
             <Form>
@@ -115,23 +115,18 @@ export default class Agendamento extends React.Component {
                     <Col sm={3}>
                         <Form.Control as="select" value={this.state.date} onChange={this.handleChangeDate}>
                             <option></option>
-                            <option>08:30</option>
-                            <option>09:30</option>
-                            <option>10:30</option>
-                            <option>11:30</option>
-                            <option>14:30</option>
-                            <option>15:30</option>
-                            <option>16:30</option>
-                            <option>17:30</option>
-                            <option>18:30</option>
-                            <option>19:30</option>
-                            <option>20:30</option>
-                            <option>21:30</option>
+                            <option>09:00</option>
+                            <option>10:00</option>
+                            <option>11:00</option>
+                            <option>14:00</option>
+                            <option>15:00</option>
+                            <option>16:00</option>
+                            <option>17:00</option>
                         </Form.Control>
                     </Col>
-                    <Button id='visit' variant="outline-primary" target="_blank" href='www.google.com' >
+                    <Button id='visit' variant="outline-primary" target="_blank" href='/horariosDisponiveis' >
                         Consultar horarios disponíveis
-                            </Button>
+                    </Button>
                 </Form.Group>
 
                 <Form.Group as={Row} controlId="formHorizontalSerie">
@@ -170,7 +165,7 @@ export default class Agendamento extends React.Component {
                 </div>
                 <Button variant="outline-primary" id='agenda' onClick={this.handleSubmit}>
                     Agendar visita
-                        </Button>
+                </Button>
             </Form>
         </div>)
     }

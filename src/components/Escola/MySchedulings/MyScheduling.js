@@ -20,7 +20,7 @@ export default class MyScheduling extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      /*schedulings: [
+      schedulings: [
         {
           agendamento: "25/02",
           Responsável: "Ana",
@@ -49,8 +49,8 @@ export default class MyScheduling extends React.Component {
           status: "0",
           numAlunos: "40",
         },
-      ],*/
-      schedulings:[],
+      ],
+      //schedulings:[],
       idSchooll: this.props.idSchool,
       controle: false,
       controlCancel: false,
@@ -266,6 +266,7 @@ export default class MyScheduling extends React.Component {
                       id="cancel2"
                       name={this.state.schedulings.indexOf(item)}
                       onClick={this.setControlCancel}
+                      disabled = {item.status == 2 || item.status == 3}
                     >
                       Cancelar visita
                     </Button>

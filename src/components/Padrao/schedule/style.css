@@ -1,3 +1,24 @@
 .fc-today{
     background-color:inherit !important
+} 
+
+#background{
+    background-image: url(../../../assets/contato.png);
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* @include for-phone-only {
+      background-size: auto;
+    } */
+}
+
+#visitCalendar{
+  background-color: white;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  padding: 10px;
 }

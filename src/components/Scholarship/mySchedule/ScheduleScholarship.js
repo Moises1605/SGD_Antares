@@ -46,15 +46,16 @@ export default class ScheduleScholarship extends React.Component {
               }}
             //tirar o slot de all Day
             allDaySlot = {false}
-            
+            height={"auto"}
             //Mostrar somente os dias da semana por extenso.
             columnHeaderFormat = {{
                 weekday: 'long' 
             }}
-
+            slotLabelFormat={{ hour: "numeric", minute: "2-digit" }}
+            slotDuration="01:00"
             //Intervalo da funcionamento
-            minTime = '08:30:00'
-            maxTime = '22:30:00' 
+            minTime = '09:00:00'
+            maxTime = '22:00:00' 
             
             //Horários de trabalho
             // events = {[

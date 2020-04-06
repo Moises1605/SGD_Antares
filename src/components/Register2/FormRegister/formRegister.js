@@ -666,12 +666,6 @@ export default class FormRegister extends React.Component {
   //envia ps dados do formulário para o back-end;
   async handleSubmit(event) {
     this.setState({ controlSucess: true });
-    if (this.state.controlPassword) {
-      alert("Safe");
-    } else {
-      alert("algo de errado não está certo");
-    }
-    
     api.post("/adicionarEscola", this.state);
     event.preventDefault();
     //     .then(function (response) {
