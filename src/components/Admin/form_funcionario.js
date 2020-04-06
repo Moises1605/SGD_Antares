@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import api from "../../services/api";
 import TextField from "@material-ui/core/TextField";
-import SweetAlert from "sweetalert2-react";
 
 export default class CadastroFuncionario extends Component {
   constructor() {
@@ -20,7 +19,6 @@ export default class CadastroFuncionario extends Component {
       phone: "", //telefone
       password: "", //senha
       repassword: "", //confirmar senha
-      showcadastro: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +32,6 @@ export default class CadastroFuncionario extends Component {
 
   async handleSubmit(event) {
     api.post("/adicionarFuncionario", this.state);
-    this.setState({ showcadastro: true });
     event.PreventDefault();
   }
 
@@ -49,14 +46,6 @@ export default class CadastroFuncionario extends Component {
   render() {
     return (
       <Container>
-        <SweetAlert
-          show={this.state.showcadastro}
-          title="Sucesso"
-          text="O funcionário foi cadastrado"
-          onConfirm={() =>
-            this.setState({ showcadastro: false, controlCancel2: false })
-          }
-        />
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlledId="Name-surname">
             <Form.Row>
