@@ -24,18 +24,17 @@ import Divider from "@material-ui/core/Divider";
 import SweetAlert from "sweetalert2-react";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import SettingsBackupRestoreIcon from "@material-ui/icons/SettingsBackupRestore";
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 export default class InfoSchool extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      backups: [
-        { id: 1, nome: "A" },
-        { id: 2, nome: "B" },
-      ], //lista de Backups
+      backups: ["moises almeida da Cruz Farias","Lucas almeida da Cruz Farias"], //lista de Backups
       backupSelected: " ", //Backup que foi selecionado
-      directoryBackup: "", //Diretório para salvar o backup
-      directoryRecover: "", //Diretório do backup que erá ser restaurado
+      error: false,// Variável de controle para a visualização do modal de erro.
+      success: false,// Variável de controle para a visualização do modal de sucesso.
+      control: false, 
       controlRecover: false, //variável de controle para o modal de confirmação para restauração de um backup
       controlSucess: false, //variável de controle para o modal de sucesso
       controlDeleteBackup: false, //variável de controle para o modal de confirmação para deletar  um backup
@@ -49,34 +48,56 @@ export default class InfoSchool extends React.Component {
   //Responsável por controlar a visualização do modal de confirmação de restauração de backup
   controlRecoverBackup(nome) {
     this.setState({ controlRecover: true, backupSelected: nome });
-    //event.preventDefault();
   }
 
   //Responsável por controlar a visualização do modal de confirmação para deletar um backup
   controlDeleteBackup(nome) {
     this.setState({ controlDeleteBackup: true, backupSelected: nome });
-    //event.preventDefault();
   }
 
   //Responsável por chamar a rota que restaura um backup
   recoverBackup(event) {
-    //api.post("/recoverBackup",this.state);
+    api.post("/recoverBackup",this.state);
     event.preventDefault();
   }
+  //Responsável por fazer o download do backup escolhido
+  downloadBackup(nome){
+      api.get(`/download/backup/:${nome}`);  
+  }
+
   //Responsável por chamar a rota que realiza um backup
-  controlBackup(event) {
-    //api.post("/Backup",this.state);
-    event.preventDefault();
+  async controlBackup(event) {
+    try{
+      const responde = await api.post("/backup");
+    }catch(err){
+      this.setState({
+        error: true,
+      });
+    }
+    //event.preventDefault();
   }
   //Responsável por chamar a rota que exclui um backup
   deleteBackup(event) {
-    //api.post("/delete",this.state);
+    api.delete("/backup",this.state.backupSelected);
     event.preventDefault();
+  }
+
+  async componentDidMount(){
+    var response = await api.get("/backup");
+    this.setState({backups: response.data});
   }
 
   render() {
     return (
       <Container fluid>
+        <SweetAlert
+          show={this.state.error}
+          title="Erro"
+          text="Desculpe, não foi possível criar o backup" 
+          onConfirm={() =>
+            this.setState({ error: false})
+          }
+        />
         <Modal
           show={this.state.controlRecover}
           onHide={() => this.setState({ controlRecover: false })}
@@ -89,8 +110,9 @@ export default class InfoSchool extends React.Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+           
             <Button variant="outline-success" onClick={this.recoverBackup}>
-              Restaurar Backup {this.state.backupSelected}
+              Restaurar Backup 
             </Button>
           </Modal.Body>
         </Modal>
@@ -106,8 +128,9 @@ export default class InfoSchool extends React.Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            
             <Button variant="outline-danger" onClick={this.deleteBackup}>
-              Deletar Backup {this.state.backupSelected}
+              Deletar Backup 
             </Button>
           </Modal.Body>
         </Modal>
@@ -164,26 +187,33 @@ export default class InfoSchool extends React.Component {
                 </thead>
                 <tbody>
                   {this.state.backups.map((b) => (
-                    //manda o id para a função
-                    <tr name={b.id}>
+                    <tr name={b}>
                       {/* <td>
-                                                <b></b>
-                                            </td> */}
-                      <td>{b.id}</td>
+                      <b></b>
+                      </td> */}
+                      <td>{b.substring(0,16)}</td>
                       <td>
                         <Button
                           size="sm"
-                          onClick={() => this.controlRecoverBackup(b.nome)}
+                          //manda o id para a função
+                          onClick={() => this.controlRecoverBackup(b)}
                           variant="success"
                         >
                           <SettingsBackupRestoreIcon /> Restaurar
                         </Button>{" "}
                         <Button
                           size="sm"
-                          onClick={() => this.controlDeleteBackup(b.nome)}
+                          onClick={() => this.controlDeleteBackup(b)}
                           variant="danger"
                         >
                           <HighlightOffIcon /> Excluir
+                        </Button>{" "}
+                        <Button
+                          size="sm"
+                          onClick={() => this.downloadBackup(b)}
+                          variant="danger"
+                        >
+                          <GetAppIcon /> baixar
                         </Button>
                       </td>
                     </tr>
@@ -197,7 +227,7 @@ export default class InfoSchool extends React.Component {
         <Row>
           <Col xs={10}></Col>
           <Col>
-            <Button variant="primary" block onClick={this.controlBackup}>
+            <Button  type = "submit" variant="primary" block onClick={this.controlBackup}>
               Fazer backup
             </Button>
           </Col>

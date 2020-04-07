@@ -17,7 +17,7 @@ export default class CadastrarAtividades extends React.Component {
             fimPeriodo: "",
             description: "",
             type: "",
-            tipos: [{ label: "Normal", value: 1 }, { label: "Extra", value: 2 }],
+            tipos: [{ label: "Normal", value: 0 }, { label: "Extra", value: 1 }],
             dias: [{ label: "Segunda", value: 1 }, { label: "Terça", value: 2 }, { label: "Quarta", value: 3 }, { label: "Quinta", value: 4 }, { label: "Sexta", value: 5 }, { label: "Sábado", value: 6 }],
             week: "",
         }
@@ -38,7 +38,7 @@ export default class CadastrarAtividades extends React.Component {
         console.log(this.state.description);
         console.log(this.state.fimPeriodo);
         console.log(this.state.inicioPeriodo);
-        await api.post("/addAtracoes",this.state)
+        await api.post("/addAtracoes",this.state);
     }
 
     //addAtracoes

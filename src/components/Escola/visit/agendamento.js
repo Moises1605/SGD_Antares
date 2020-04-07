@@ -17,8 +17,9 @@ export default class Agendamento extends React.Component {
             date: '',
             number: '',
             obs: '',
-            atrações: [{nome: 'Exposição 1', tipo: 'Astronimia' }, {nome: 'Exposição 2', tipo: 'Origem do homem' }, { nome: 'Exposição 3', tipo: 'Vida Animal' }, {nome: 'Exposição 4', tipo: 'Astronimia' }, {nome: 'Exposição 5', tipo: 'Origem do homem' }, {nome: 'Exposição 6', tipo: 'Vida animal' }, {nome: 'Exposição 7', tipo: 'Astronomia' }, {nome: 'Exposição 8', tipo: 'Origem do homem' }],
+            atrações: [{nome: 'Exposição 1', type: 'Astronimia' }, {nome: 'Exposição 2', type: 'Origem do homem' }, { nome: 'Exposição 3', type: 'Vida Animal' }, {nome: 'Exposição 4', type: 'Astronimia' }, {nome: 'Exposição 5', type: 'Origem do homem' }, {nome: 'Exposição 6', type: 'Vida animal' }, {nome: 'Exposição 7', type: 'Astronomia' }, {nome: 'Exposição 8', type: 'Origem do homem' }],
             //atrações:[],
+            types:["comum","extra"],
             atraçõesT: [],
             show: false
         };
@@ -156,7 +157,7 @@ export default class Agendamento extends React.Component {
                                 <Form.Check type='checkbox' id={`check-api-radio`} >
                                     <Form.Check.Input onChange={this.handleChangeO} name={type.nome} type='checkbox' isValid />
                                     <Form.Check.Label>{type.nome}</Form.Check.Label>
-                                    <Form.Control.Feedback type="valid">{type.tipo}</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="valid">{this.state.types[type.type]}</Form.Control.Feedback>
                                 </Form.Check>
                             </Col>
 
