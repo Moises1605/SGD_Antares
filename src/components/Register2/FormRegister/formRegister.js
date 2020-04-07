@@ -45,7 +45,7 @@ export default class FormRegister extends React.Component {
         "Configuração da conta"
       ],
       controlSucess: false,
-      currencies: ["Particular", "Pública Estadual", "Pública Municipal"],
+      currencies: [{label: "Particular",value:true }, {label: "Pública",value:false }],
       controlPassword: true,
       controlCNPJ: true,
       controlLength: true,
@@ -173,7 +173,7 @@ export default class FormRegister extends React.Component {
   }
 
   handleChangePhone(event) {
-    if (event.target.value.length > 8 || event.target.value.length < 8) {
+    if ((event.target.value.length > 8 || event.target.value.length < 8) && (event.target.value.length > 9 || event.target.value.length < 9) && (event.target.value.length > 12 || event.target.value.length < 12)) {
       this.setState({ controlPhone: false });
     } else {
       this.setState({ controlPhone: true });
@@ -204,7 +204,7 @@ export default class FormRegister extends React.Component {
   }
 
   handleChangeRespPhone(event) {
-    if (event.target.value.length > 8 || event.target.value.length < 8) {
+    if ((event.target.value.length > 8 || event.target.value.length < 8) && (event.target.value.length > 9 || event.target.value.length < 9) && (event.target.value.length > 12 || event.target.value.length < 12)) {
       this.setState({ controlPhone: false });
     } else {
       this.setState({ controlPhone: true });
@@ -387,7 +387,7 @@ export default class FormRegister extends React.Component {
                     required
                     type="number"
                     helperText={
-                      this.state.controlCNPJ == true ? " " : "CNPJ inválido"
+                      this.state.controlCNPJ == true ? "somente números " : "CNPJ inválido"
                     }
                   />
                 </div>
@@ -408,7 +408,7 @@ export default class FormRegister extends React.Component {
                     max="99999999"
                     error={!this.state.controlPhone}
                     helperText={
-                      this.state.controlPhone == true ? " " : "Telefone válido possui 8 caracteres"
+                      this.state.controlPhone == true ? "somente números" : "Telefone inválido"
                     }
                   />
                 </div>
@@ -498,7 +498,7 @@ export default class FormRegister extends React.Component {
                 required
                 error={!this.state.controlPhone}
                     helperText={
-                      this.state.controlPhone == true ? " " : "Telefone válido possui 8 caracteres"
+                      this.state.controlPhone == true ? " somente números " : "Telefone inválido"
                     }
               >
               </TextField>
@@ -517,8 +517,8 @@ export default class FormRegister extends React.Component {
                 helperText="Por favor escolha uma opção"
               >
                 {this.state.currencies.map(option => (
-                  <option key={option} value={option}>
-                    {option}
+                  <option key={option.value} value={option.value}>
+                    {option.label}
                   </option>
                 ))}
               </TextField>

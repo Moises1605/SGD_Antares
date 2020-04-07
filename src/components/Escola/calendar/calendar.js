@@ -14,6 +14,7 @@ export default class Calendar extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      iDSchool: this.props.idSchool,
       control: false,
       date1: ''
     }
@@ -47,7 +48,7 @@ export default class Calendar extends React.Component {
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <Agendamento date2 = {`${this.state.date1}`}/>
+                  <Agendamento date2 = {`${this.state.date1}`} idSchool = {this.state.iDSchool} />
                 </Modal.Body>
             </Modal>
           <Alert variant= 'primary'>

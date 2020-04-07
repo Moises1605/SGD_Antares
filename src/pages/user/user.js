@@ -9,6 +9,8 @@ import Backup from "../../components/Admin/Backup2"
 //Funcionario
 import TelaAgendamentos from "../../components/Funcionario/tela_agendamentos";
 import Calendar from "../../components/Funcionario/Calendar";
+import CadastrarAtividades from "../../components/Funcionario/cadastrarAtividades";
+
 //Bolsista
 import ScheduleScholarship from "../../components/Scholarship/mySchedule/ScheduleScholarship";
 import FollowVisit from "../Scholarship/FollowVisit/followVisit";
@@ -35,14 +37,14 @@ export default class User extends React.Component {
         <Backup/>,
         <TelaAgendamentos />,
         <Calendar />,
-        null,
-        // <ScheduleScholarship idScholarschip = {this.props.match.params.id.toString().substring(1)} />,
-        <ScheduleScholarship idScholarschip={this.props.location.state.id} />,
-        <FollowVisit idScholarschip={this.props.location.state.id} />,
-        <Info idScholarship={this.props.location.state.id} />
+        <CadastrarAtividades/>,
+        <ScheduleScholarship idScholarschip = {this.props.match.params.id} />,
+        //<ScheduleScholarship idScholarschip={this.props.location.state.id} />,
+        <FollowVisit idScholarschip={this.props.match.params.id} />,
+        <Info idScholarship={this.props.match.params.id} />
       ],
-      id: this.props.location.state.id,
-      permission: this.props.location.state.permission,
+      //id: this.props.location.state.id,
+      //permission: this.props.location.state.permission,
       active: null
     };
     this.loadPermission = this.loadPermission.bind(this);
@@ -51,7 +53,7 @@ export default class User extends React.Component {
   }
   componentDidMount = /*async*/ screen => {
     /*await*/ this.loadPermission();
-    console.log(this.props.location.state.id);
+    //console.log(this.props.location.state.id);
     screen == null
       ? this.setState({ active: this.state.screens[0] })
       : this.setState({ active: this.state.screens[screen] });
@@ -59,20 +61,28 @@ export default class User extends React.Component {
 
   async loadPermission(event) {
     //const response =  await api.get('/permissoes');
-    //this.setState({permission: response.data});
-    //await this.setState({id: this.props.match.params.id.toString().substring(1)})
-    console.log(this.state.id);
+    /*this.setState({
+      permission[0]: response.data.gerarRelatório,
+      permission[1]: response.data.gerirFuncionarios,
+      permission[2]: response.data.gerirBolsistas,
+      permission[3]: response.data.gerirEscolas,//Falta fazer.
+      permission[4]: response.data.gerirBackup,
+      permission[5]: response.data.validarAgendamentos,
+      permission[6]: response.data.gerirHorarioBolsista,
+      permission[7]: response.data.inserirAtividade,
+    });*/
+    
     //await this.teste;
   }
 
   teste(event) {
-    if (this.props.match.params.id.toString().substring(1) == 0) {
+    if (this.props.match.params.id == 0) {
       //this.setState({permission: ['0','0','0','0','0','0','0','0','1','1','1'] });
       return ["0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1"];
-    } else if (this.props.match.params.id.toString().substring(1) == 1) {
+    } else if (this.props.match.params.id == 1) {
       //this.setState({permission:['0','1','1','1','0','1','1','1','0','0','0'] });
       return ["0", "1", "1", "1", "0", "1", "1", "1", "0", "0", "0"];
-    } else if (this.props.match.params.id.toString().substring(1) == 2) {
+    } else if (this.props.match.params.id == 2) {
       //this.setState({permission:['1','1','1','1','0','0','0','0','0','0','0'] });
       return ["1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"];
     }
@@ -96,8 +106,8 @@ export default class User extends React.Component {
               <SimpleList
                 screens={this.state.screen}
                 onClick={this.componentDidMount}
-                // permission = {this.teste()}
-                permission={this.state.permission}
+                permission = {this.teste()}
+                //permission={this.state.permission}
               />
             </div>
 

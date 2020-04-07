@@ -7,7 +7,7 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import "./style.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect,useHistory } from "react-router-dom";
 import api from "../../services/api";
 import logo from "../../assets/logoV2.png";
 import ForgetPassword from "./forgetPassword/forgetPassword";
@@ -26,7 +26,10 @@ export default class Login extends React.Component {
       username: "",
       password: "",
       type: "-1",
-      idUser: "0",
+      idUser: "10",
+      idUser2: "0",
+      idUser3: "1",
+      idUser4: "2",
       redirect: false,
       permission2: [],
       role: "",
@@ -86,98 +89,33 @@ export default class Login extends React.Component {
     if (this.state.redirect) {
       //if(this.state.role == "school"){
       if (this.state.username == "moisesalmeida") {
-        return <Redirect to={{ pathname: "/escola/", state: { id: "10" } }} />;
+        //return <Redirect to={{ pathname: `/escola/${this.state.idUser}`, state: { id: "10" },search: "10" }}/>;
+        return <Redirect to={{ pathname: `/escola/${this.state.idUser}`}}/>;
       }
-      //else{
+      //}else{
       //Se for um usuário do tipo Bolsista
       else if (this.state.username == "robertomaia") {
-        return (
-          <Redirect
-            to={{
-              pathname: "/usuario/",
-              state: {
-                permission: [
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "1",
-                  "1",
-                  "1",
-                ],
-                id: "0",
-              },
-            }}
-          />
-        );
+        return (<Redirect to={{pathname: `/usuario/${this.state.idUser2}`}}/>);
       }
       //Se for um usuário do tipo Funcionário
       else if (this.state.username == "raulpeixoto") {
-        return (
-          <Redirect
-            to={{
-              pathname: "/usuario/",
-              state: {
-                permission: [
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "1",
-                  "1",
-                  "1",
-                  "0",
-                  "0",
-                  "0",
-                ],
-                id: "1",
-              },
-            }}
-          />
-        );
+        return (<Redirect to={{pathname: `/usuario/${this.state.idUser3}`}}/>);
       }
       //Se for um usuário do tipo administrador
       else if (this.state.username == "ricardoporto") {
         return (
-          <Redirect
-            to={{
-              pathname: "/usuario/",
-              state: {
-                permission: [
-                  "1",
-                  "1",
-                  "1",
-                  "1",
-                  "1",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                ],
-                id: "2",
-              },
-            }}
-          />
-        );
+          <Redirect to={{pathname: `/usuario/${this.state.idUser4}`}}/>);
       } else {
         return <Redirect to="/login" />;
       }
-      // }
     } else {
       return (
         <div id="initial">
           <Container>
             <div>
               <Paper id="form" elevation={4}>
-                <div>
-                  <img id="image" roundedCircle src={logo} />
+               <div>
+               <Link to = "/"><img id="image" roundedCircle src={logo} /></Link>
                 </div>
                 <div>
                   <h1 id="title2">Login</h1>
@@ -185,20 +123,6 @@ export default class Login extends React.Component {
 
                 <Form id="info">
                   {/*Campo responsável por pegar o login do usuário */}
-                  {/* <Form.Label>Usuário</Form.Label>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                    </InputGroup.Prepend>
-
-                    <FormControl
-                      placeholder="Email"
-                      aria-label="Usuário"
-                      aria-describedby="basic-addon1"
-                      value={this.state.email}
-                      onChange={this.handleChangeEmail}
-                    />
-                  </InputGroup> */}
                   <div id="loginn">
                     <Grid container spacing={1} alignItems="flex-end">
                       <Grid item>
@@ -239,28 +163,12 @@ export default class Login extends React.Component {
                   </div>
 
                   {/*Campo responsável por pegar a senha do usuário */}
-                  {/* <Form.Label>Senha</Form.Label>
-                <InputGroup className="mb-3">
-                  <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon1">{ <AccountCircle />}</InputGroup.Text>
-                  </InputGroup.Prepend>
-
-                  <FormControl
-                    label="Senha"
-                    placeholder="Senha"
-                    aria-label="Senha"
-                    aria-describedby="basic-addon1"
-                    type="password"
-                    value={this.state.password}
-                    onChange={this.handleChangePassword}
-                  />
-                </InputGroup> */}
-                </Form>
-                <div
-                  style={{
-                    marginTop: "50px",
-                  }}
-                >
+                  </Form>
+                  <div
+                    style={{
+                      marginTop: "50px",
+                    }}
+                  >
                   <Button
                     id="entrar"
                     block
@@ -292,4 +200,29 @@ export default class Login extends React.Component {
       );
     }
   }
+}
+ 
+
+function goHome(){
+  /*<Redirect
+  to={{
+    pathname: "/usuario/",
+    state: {
+      permission: [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+      ],
+      id: "2",
+    },
+  }}
+/>*/
 }

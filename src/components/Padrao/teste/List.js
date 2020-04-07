@@ -18,6 +18,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeIcon from "@material-ui/icons/Home";
 import logo from "../../../assets/logoV2.png";
 import Divider from "@material-ui/core/Divider";
+import GolfCourseIcon from '@material-ui/icons/GolfCourse';
 //bolsista
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import AlarmIcon from "@material-ui/icons/Alarm";
@@ -124,7 +125,7 @@ class SimpleList extends Component {
             {this.state.permission[7] == "1" && (
               <ListItem button onClick={() => this.props.onClick("8")}>
                 <ListItemIcon>
-                  <BackupIcon />
+                  <GolfCourseIcon />
                 </ListItemIcon>
                 <ListItemText primary="Atividades Extraordinárias" />
               </ListItem>

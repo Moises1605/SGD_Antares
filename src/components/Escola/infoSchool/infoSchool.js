@@ -25,7 +25,7 @@ export default class InfoSchool extends React.Component {
             password2: '',
             respName: '',
             respSurname: '',
-            schoolType: '',
+            schoolType: "",
             respPhone: '',
             name: '',
             district: '',
@@ -35,13 +35,14 @@ export default class InfoSchool extends React.Component {
             state: '',
             CNPJ: '',
             phone: '',
-            max: 2,
+            max: 30,
             controlPassword: true,
             controlCNPJ: true,
             controlLength: true,
             controlPhone: true,
-            currencies: ["Particular", "Pública Estadual", "Pública Municipal"],
-            show:false
+            currencies: [{label: "Particular",value:true }, {label: "Pública", value:false }],
+            show:false,
+            temp:'',
         }
 
         //Funções responsáveis por atualizar os estados das informções.
@@ -67,7 +68,7 @@ export default class InfoSchool extends React.Component {
 
     //Carrega os dados dos bolssitas
     async componentDidMount() {
-        console.log("safe:" + this.state.IDSchool)
+        console.log("safe:" + this.state.IDSchool);
         const response = await api.post("/retornaDadosEscola", this.state);
         this.setState({
             idPessoa: response.data.idPessoa,
@@ -77,7 +78,7 @@ export default class InfoSchool extends React.Component {
             password2: '',
             respName: response.data.respName,
             respSurname: response.data.respSurname,
-            schoolType: response.data.schooltype,
+            schoolType:response.data.schooltype,
             respPhone: response.data.respPhone,
             name: response.data.name,
             district: response.data.district,
@@ -177,7 +178,7 @@ export default class InfoSchool extends React.Component {
     }
 
     handleChangePhone(event) {
-        if (event.target.value.length > 8 || event.target.value.length < 8) {
+        if ((event.target.value.length > 8 || event.target.value.length < 8) && (event.target.value.length > 9 || event.target.value.length < 9) && (event.target.value.length > 12 || event.target.value.length < 12)) {
             this.setState({ controlPhone: false });
         } else {
             this.setState({ controlPhone: true });
@@ -208,7 +209,7 @@ export default class InfoSchool extends React.Component {
     }
 
     handleChangeRespPhone(event) {
-        if (event.target.value.length > 8 || event.target.value.length < 8) {
+        if ((event.target.value.length > 8 || event.target.value.length < 8) && (event.target.value.length > 9 || event.target.value.length < 9) && (event.target.value.length > 12 || event.target.value.length < 12)) {
             this.setState({ controlPhone: false });
         } else {
             this.setState({ controlPhone: true });
@@ -484,8 +485,8 @@ export default class InfoSchool extends React.Component {
                                 helperText="Por favor escolha uma opção"
                             >
                                 {this.state.currencies.map(option => (
-                                    <option key={option} value={option}>
-                                        {option}
+                                    <option key={option.value} value={option.value}>
+                                        {option.label}
                                     </option>
                                 ))}
                             </TextField>
@@ -585,6 +586,7 @@ export default class InfoSchool extends React.Component {
                                 this.state.controlPhone &&
                                 this.state.controlCNPJ
                             )}*/
+                            type = "submit"
                             variant="primary" onClick={this.handleSubmit}>
                             Salvar alterações
                     </Button>

@@ -14,21 +14,21 @@ export default class School extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       screens: [
         <Inicio />, 
-        <Calendar />, 
-        <MySchedulings idSchool = {this.props.location.state.id}/>, 
-        <InfoSchool idSchool= {this.props.location.state.id} />
+        <Calendar idSchool = {this.props.match.params.id}/>, 
+        <MySchedulings idSchool = {this.props.match.params.id} /*{this.props.location.state.id}*//>, 
+        <InfoSchool idSchool = {this.props.match.params.id} /*{this.props.location.state.id}*/ />
       ],
-      active: null
+      active: null,
+      temp: '',
     };
   }
+
   //carrega os dados da escola
   componentDidMount = screen => {
-    console.log(this.props.location.state.id);
-    //Colocar essa parte comentada na parte de editar dados da escola.
-    // var dadosEscola = api.post("/retornaDadosEscola",this.idSchool)
-    // console.log((await dadosEscola).data
+    console.log(this.props.match.params.id);
     screen == null
       ? this.setState({ active: this.state.screens[0] })
       : this.setState({ active: this.state.screens[screen] });

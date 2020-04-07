@@ -10,15 +10,15 @@ export default class Agendamento extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            idSchool: 15,
+            idSchool: this.props.idSchool,
             date1: this.props.date2.toString(),
             responsible: '',
             students: '',
             date: '',
             number: '',
             obs: '',
-            //atrações: [{ id: '1', name: 'Exposição 1', tipo: 'Astronimia' }, { id: '2', name: 'Exposição 2', tipo: 'Origem do homem' }, { id: '3', name: 'Exposição 3', tipo: 'Vida Animal' }, { id: '4', name: 'Exposição 4', tipo: 'Astronimia' }, { id: '5', name: 'Exposição 5', tipo: 'Origem do homem' }, { id: '6', name: 'Exposição 6', tipo: 'Vida animal' }, { id: '7', name: 'Exposição 7', tipo: 'Astronomia' }, { id: '8', name: 'Exposição 8', tipo: 'Origem do homem' }, { id: '9', name: 'Exposição 9', tipo: 'Vida animal' }, { id: '10', name: 'Exposição 10', tipo: 'Astronomia' }, { id: '11', name: 'Exposição 11', tipo: 'Origem do homem' }, { id: '12', name: 'Exposição 12', tipo: 'Vida animal' }],
-            atrações:[],
+            atrações: [{nome: 'Exposição 1', tipo: 'Astronimia' }, {nome: 'Exposição 2', tipo: 'Origem do homem' }, { nome: 'Exposição 3', tipo: 'Vida Animal' }, {nome: 'Exposição 4', tipo: 'Astronimia' }, {nome: 'Exposição 5', tipo: 'Origem do homem' }, {nome: 'Exposição 6', tipo: 'Vida animal' }, {nome: 'Exposição 7', tipo: 'Astronomia' }, {nome: 'Exposição 8', tipo: 'Origem do homem' }],
+            //atrações:[],
             atraçõesT: [],
             show: false
         };
@@ -75,7 +75,7 @@ export default class Agendamento extends React.Component {
     }
     //Responsável por chamar a rota que irá guadar o agendamento da escola.
     async handleSubmit(event) {
-        //console.log(this.state.atraçõesT);
+        console.log(this.state.atraçõesT.toString());
         this.setState({ show: true });
         await api.post("/adicionarAgendamento", this.state);
         

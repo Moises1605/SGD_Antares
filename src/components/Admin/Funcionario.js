@@ -80,6 +80,8 @@ class Funcionario extends Component {
       ],
       showdelete: false,
       searchControl: false,
+      controlCancel: false,
+      deleteSelected: "",
       funcionariosReserva: [
         /*{
           nome: "Gina",
@@ -147,7 +149,8 @@ class Funcionario extends Component {
 
   count = () => this.setState({ count: this.state.count + 1 });
 
-  deleteItem = (id) => {
+  deleteItem = () => {
+    var id = this.state.deleteSelected;
     var newList = this.state.funcionarios.filter((obj) => obj.idPessoa !== id);
     var newList2 = this.state.funcionariosReserva.filter(
       (obj) => obj.idPessoa !== id
@@ -157,6 +160,10 @@ class Funcionario extends Component {
     this.setState({ showdelete: true });
     api.post("/removerFuncionario", removido);
   };
+
+  setControlCancel(id) {
+    this.setState({ controlCancel: true, deleteSelected: id});
+  }
 
   orderNameCresc = () => {
     var newList = this.state.funcionarios;
@@ -250,9 +257,30 @@ class Funcionario extends Component {
           title="Sucesso"
           text="O funcionario foi removido"
           onConfirm={() =>
-            this.setState({ showdelete: false, controlCancel1: false })
+            this.setState({ showdelete: false, controlCancel: false })
           }
         />
+        <Modal
+          show={this.state.controlCancel}
+          onHide={() => this.setState({ controlCancel: false })}
+          aria-labelledby="example-modal-sizes-title-lg"
+          id="modal"
+        >
+          <Modal.Header closeButton id="header">
+            <Modal.Title id="example-modal-sizes-title-lg">
+              Tem certeza que deseja excluir o funcionário?
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Button
+              variant="outline-danger"
+              id="cancel2"
+              onClick={() => this.deleteItem()}
+            >
+              Exluir funcionário
+            </Button>
+          </Modal.Body>
+        </Modal>
         <Row>
           <Col>
             <h3 style={{ textAlign: "left", marginTop: "15px" }}>
@@ -365,7 +393,7 @@ class Funcionario extends Component {
                 <Button
                   size="sm"
                   variant="outline-danger"
-                  onClick={() => this.deleteItem(f.idPessoa)}
+                  onClick={() => this.setControlCancel(f.idPessoa)}
                 >
                   <DeleteIcon />
                 </Button>

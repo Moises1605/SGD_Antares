@@ -31,7 +31,7 @@ export default class Bolsistas extends React.Component {
       //utilizado para testes.
       bolsistas: [
         // PARA TESTES
-        /*{
+        {
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -79,11 +79,13 @@ export default class Bolsistas extends React.Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },*/
+        },
       ],
       searchControl: false,
+      controlCancel: false,
+      deleteSelected: "",
       bolsistasReserva: [
-        /*{
+        {
           nome: "Gina",
           email: "romaiajr5",
           telefone: "124",
@@ -131,7 +133,7 @@ export default class Bolsistas extends React.Component {
           telefone: "4(729)307-64-9272",
           idPessoa: 7,
           tag: 7,
-        },*/
+        },
       ],
     };
   }
@@ -150,7 +152,8 @@ export default class Bolsistas extends React.Component {
     this.setState({ bolsistasReserva: (await b).data.map((b) => b) });
   }
 
-  deleteItem = (id) => {
+  deleteItem = () => {
+    var id = this.state.deleteSelected;
     var newList = this.state.bolsistas.filter((obj) => obj.idPessoa !== id);
     var newList2 = this.state.bolsistasReserva.filter(
       (obj) => obj.idPessoa !== id
@@ -160,6 +163,11 @@ export default class Bolsistas extends React.Component {
     this.setState({ showdelete: true });
     api.post("/removerBolsista", removido);
   };
+
+  // Responsável por controlar a visualização do modal de cancelamento de visitas.
+  setControlCancel(id) {
+    this.setState({ controlCancel: true, deleteSelected: id});
+  }
 
   orderNameCresc = () => {
     var newList = this.state.bolsistas;
@@ -249,9 +257,30 @@ export default class Bolsistas extends React.Component {
           title="Sucesso"
           text="O bolsistas foi removido"
           onConfirm={() =>
-            this.setState({ showdelete: false, controlCancel1: false })
+            this.setState({ showdelete: false, controlCancel: false })
           }
         />
+         <Modal
+          show={this.state.controlCancel}
+          onHide={() => this.setState({ controlCancel: false })}
+          aria-labelledby="example-modal-sizes-title-lg"
+          id="modal"
+        >
+          <Modal.Header closeButton id="header">
+            <Modal.Title id="example-modal-sizes-title-lg">
+              Tem certeza que deseja excluir o bolsista?
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Button
+              variant="outline-danger"
+              id="cancel2"
+              onClick={() => this.deleteItem()}
+            >
+              Exluir bolsista
+            </Button>
+          </Modal.Body>
+        </Modal>
         <Container fluid>
           <Row>
             <Col>
@@ -367,7 +396,7 @@ export default class Bolsistas extends React.Component {
                   <Button
                     size="sm"
                     variant="outline-danger"
-                    onClick={() => this.deleteItem(b.idPessoa)}
+                    onClick={() => this.setControlCancel(b.idPessoa)}
                   >
                     <DeleteIcon />
                   </Button>
