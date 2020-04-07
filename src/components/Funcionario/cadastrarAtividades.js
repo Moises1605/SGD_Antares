@@ -31,6 +31,7 @@ export default class CadastrarAtividades extends React.Component {
         this.setState({ [event.target.name]: value });
     }
 
+    //Envia os dados da atividade para o back
     async handleSubmit(){
         console.log(this.state.name);
         console.log(this.state.type);
@@ -41,7 +42,6 @@ export default class CadastrarAtividades extends React.Component {
         await api.post("/addAtracoes",this.state);
     }
 
-    //addAtracoes
     render() {
         return (
             <div>

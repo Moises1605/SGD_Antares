@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Row, Col, Form } from 'react-bootstrap';
+import { Button, Row, Col, Form, Modal, Badge } from 'react-bootstrap';
 import api from "../../../services/api";
 import './style.css';
 import SweetAlert from 'sweetalert2-react';
@@ -17,11 +17,23 @@ export default class Agendamento extends React.Component {
             date: '',
             number: '',
             obs: '',
-            atrações: [{nome: 'Exposição 1', type: 'Astronimia' }, {nome: 'Exposição 2', type: 'Origem do homem' }, { nome: 'Exposição 3', type: 'Vida Animal' }, {nome: 'Exposição 4', type: 'Astronimia' }, {nome: 'Exposição 5', type: 'Origem do homem' }, {nome: 'Exposição 6', type: 'Vida animal' }, {nome: 'Exposição 7', type: 'Astronomia' }, {nome: 'Exposição 8', type: 'Origem do homem' }],
+            atrações: [
+                { nome: 'Exposição 1', type: '0', description: "expo 1",inicioPeriodo:null,fimPeriodo:null,week:null },
+                { nome: 'Exposição 2', type: '0', description: "expo 2",inicioPeriodo:"",fimPeriodo:"",week:"" },
+                { nome: 'Exposição 3', type: '0', description: "expo 3",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
+                { nome: 'Exposição 4', type: '1', description: "expo 4",inicioPeriodo:"25/05",fimPeriodo:"30/06",week:"6" }, 
+                { nome: 'Exposição 5', type: '0', description: "expo 5",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
+                { nome: 'Exposição 6', type: '1', description: "expo 6",inicioPeriodo:"10/05",fimPeriodo:"20/05",week:"1" }, 
+                { nome: 'Exposição 7', type: '0', description: "expo 7",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
+                { nome: 'Exposição 8', type: '0', description: "expo 8",inicioPeriodo:"",fimPeriodo:"",week:"" }
+            ],
             //atrações:[],
-            types:["comum","extra"],
+            types: ["comum", "extra"],
             atraçõesT: [],
-            show: false
+            show: false,
+            showDescription: false,
+            currency: " ",
+            semana:["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"]
         };
         this.handleChangeResponsible = this.handleChangeResponsible.bind(this);
         this.handleChangeStudents = this.handleChangeStudents.bind(this);
@@ -69,17 +81,22 @@ export default class Agendamento extends React.Component {
             this.state.atraçõesT.splice(index, 1);
         }
     }
+    //Responsável por guardar a descrição da atração escolhida pelo usuário.
+    //Paramentro events é a atração escolhida pelo usuário
+    controlDescription(events){
+        this.setState({currency: events, showDescription: true});
+    }
 
     async componentDidMount() {
         const response = await api.post("/retornaAtracoes");
-        this.setState({atrações: response.data});
+        this.setState({ atrações: response.data });
     }
     //Responsável por chamar a rota que irá guadar o agendamento da escola.
     async handleSubmit(event) {
         console.log(this.state.atraçõesT.toString());
         this.setState({ show: true });
         await api.post("/adicionarAgendamento", this.state);
-        
+
     }
 
     render() {
@@ -90,11 +107,46 @@ export default class Agendamento extends React.Component {
                 text="Agendamento solicitado com sucesso.Caso não receba um email de confirmação de visita, tente agendar a visita novamente"
                 onConfirm={() => this.setState({ show: false })}
             />
+            <Modal
+                show={this.state.showDescription}
+                onHide={() => this.setState({ showDescription: false })}
+                aria-labelledby="example-modal-sizes-title-lg"
+                id="modal2"
+            >
+                <Modal.Header closeButton id="header">
+                    <Modal.Title id="example-modal-sizes-title-lg">
+                        Descrição
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {this.state.currency.description}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Badge pill style={{ fontSize: "16px" }} variant="primary">
+                        Dia:{(this.state.currency.week == "" || this.state.currency.week == null) ? "não se aplica" : `${this.state.semana[this.state.currency.week - 1]}`}
+                    </Badge>{' '}
+                    <Badge pill style={{ fontSize: "16px" }} variant="primary">
+                        Início:{(this.state.currency.inicioPeriodo == "" || this.state.currency.inicioPeriodo == null) ?  "não se aplica" : `${this.state.currency.inicioPeriodo}`}
+                    </Badge>{' '} 
+                    <Badge pill style={{ fontSize: "16px" }} variant="primary">
+                        Fim:{(this.state.currency.fimPeriodo == "" || this.state.currency.fimPeriodo == null) ?  "não se aplica" : `${this.state.currency.fimPeriodo}`}
+                    </Badge>{' '}
+                
+                </Modal.Footer>
+            </Modal>
             <Form>
+            <Form.Group as={Row} controlId="formHorizontalEmail">
+                    <Form.Label column sm={3}>
+                        Dia
+                    </Form.Label>
+                    <Col sm={6}>
+                        <Form.Control plaintext readOnly type="text" defaultValue={this.state.date1} />
+                    </Col>
+                </Form.Group>
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={3}>
                         Nome do responsável
-                                </Form.Label>
+                    </Form.Label>
                     <Col sm={6}>
                         <Form.Control type="text" placeholder="Nome completo" value={this.state.responsible} onChange={this.handleChangeResponsible} />
                     </Col>
@@ -103,7 +155,7 @@ export default class Agendamento extends React.Component {
                 <Form.Group as={Row} controlId="formHorizontalStudent">
                     <Form.Label column sm={3}>
                         Quantidade de alunos
-                            </Form.Label>
+                    </Form.Label>
                     <Col sm={3}>
                         <Form.Control type="text" placeholder="Max: 40" value={this.state.students} onChange={this.handleChangeStudents} />
                     </Col>
@@ -133,7 +185,7 @@ export default class Agendamento extends React.Component {
                 <Form.Group as={Row} controlId="formHorizontalSerie">
                     <Form.Label column sm={3}>
                         Série(Ano)
-                                </Form.Label>
+                    </Form.Label>
                     <Col sm={2}>
                         <Form.Control type="text" placeholder=" " value={this.state.number} onChange={this.handleChangeNumber} />
                     </Col>
@@ -148,8 +200,9 @@ export default class Agendamento extends React.Component {
                 </Form.Group>
                 <div>
                     <Form.Label>
-                        Escolha quais atrações deseja visitar.
-                            </Form.Label>
+                        Escolha quais atrações deseja visitar, as atividades marcadas como extra, estão disponíveis por um 
+                        período limitado e as comuns estão disponíveis todos os dias e nos horários dispobíveis paar visita.
+                    </Form.Label>
                     <Row>
                         {this.state.atrações.map(type => (
 
@@ -158,13 +211,13 @@ export default class Agendamento extends React.Component {
                                     <Form.Check.Input onChange={this.handleChangeO} name={type.nome} type='checkbox' isValid />
                                     <Form.Check.Label>{type.nome}</Form.Check.Label>
                                     <Form.Control.Feedback type="valid">{this.state.types[type.type]}</Form.Control.Feedback>
+                                    <Button onClick = {() => this.controlDescription(type)}>+</Button>
                                 </Form.Check>
                             </Col>
-
                         ))}
                     </Row>
                 </div>
-                <Button variant="outline-primary" id='agenda' onClick={this.handleSubmit}>
+                <Button variant="primary" id='agenda' onClick={this.handleSubmit}>
                     Agendar visita
                 </Button>
             </Form>
