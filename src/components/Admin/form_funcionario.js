@@ -44,11 +44,12 @@ export default class CadastroFuncionario extends Component {
   handleCheck = (event) => {
     this.setState({ [event.target.name]: event.target.checked });
   };
-
+  //REVIEW NAO TAO CHAMANDO A SEGUNDA ROTA
   async handleSubmit(event) {
-    var result = api.post("/adicionarFuncionario", this.state);
-    this.setState({ id: result });
+    var result = api.post("/adicionarFuncionario", this.state)
+    this.setState({id:result[0].idFuncionario})
     api.post("/addPermissoes", this.state);
+    console.log(result)
   }
 
   disableButton = () => {
