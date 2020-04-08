@@ -51,8 +51,8 @@ export default class User extends React.Component {
     this.teste = this.teste.bind(this);
     //this.setState({permission: this.loadPermission})
   }
-  componentDidMount = async screen => {
-    await this.loadPermission();
+  componentDidMount = /*async*/ screen => {
+    //await this.loadPermission();
     //console.log(this.props.location.state.id);
     screen == null
       ? this.setState({ active: this.state.screens[0] })
@@ -72,7 +72,7 @@ export default class User extends React.Component {
     aux.push(response.data[0].inserirAtividade);
     console.log(aux)
     this.setState({permission: aux});
-
+    return aux;
     /*this.setState({
       permission[0]: response.data.gerarRelatório,
       permission[1]: response.data.gerirFuncionarios,
@@ -118,8 +118,8 @@ export default class User extends React.Component {
               <SimpleList
                 screens={this.state.screen}
                 onClick={this.componentDidMount}
-                //permission = {this.teste()}
-                permission={this.state.permission}
+                permission = {this.teste()}
+                //permission={this.loadPermission()}
               />
             </div>
 

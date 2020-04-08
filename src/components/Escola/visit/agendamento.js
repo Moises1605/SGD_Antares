@@ -18,14 +18,14 @@ export default class Agendamento extends React.Component {
             number: '',
             obs: '',
             atrações: [
-                /*{ nome: 'Exposição 1', type: '0', description: "expo 1",inicioPeriodo:null,fimPeriodo:null,week:null },
-                { nome: 'Exposição 2', type: '0', description: "expo 2",inicioPeriodo:"",fimPeriodo:"",week:"" },
-                { nome: 'Exposição 3', type: '0', description: "expo 3",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
-                { nome: 'Exposição 4', type: '1', description: "expo 4",inicioPeriodo:"25/05",fimPeriodo:"30/06",week:"6" }, 
-                { nome: 'Exposição 5', type: '0', description: "expo 5",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
-                { nome: 'Exposição 6', type: '1', description: "expo 6",inicioPeriodo:"10/05",fimPeriodo:"20/05",week:"1" }, 
-                { nome: 'Exposição 7', type: '0', description: "expo 7",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
-                { nome: 'Exposição 8', type: '0', description: "expo 8",inicioPeriodo:"",fimPeriodo:"",week:"" }*/
+                /*{ nome: 'Exposição 1', tipo: '0', descricao: "expo 1",inicioPeriodo:null,fimPeriodo:null,semana:null },
+                { nome: 'Exposição 2', tipo: '0', descricao: "expo 2",inicioPeriodo:"",fimPeriodo:"",semana:"" },
+                { nome: 'Exposição 3', tipo: '0', descricao: "expo 3",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
+                { nome: 'Exposição 4', tipo: '1', descricao: "expo 4",inicioPeriodo:"25/05",fimPeriodo:"30/06",semana:"6" }, 
+                { nome: 'Exposição 5', tipo: '0', descricao: "expo 5",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
+                { nome: 'Exposição 6', tipo: '1', descricao: "expo 6",inicioPeriodo:"10/05",fimPeriodo:"20/05",semana:"1" }, 
+                { nome: 'Exposição 7', tipo: '0', descricao: "expo 7",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
+                { nome: 'Exposição 8', tipo: '0', descricao: "expo 8",inicioPeriodo:"",fimPeriodo:"",semana:"" }*/
             ],
             //atrações:[],
             types: ["comum", "extra"],
@@ -33,7 +33,7 @@ export default class Agendamento extends React.Component {
             show: false,
             showDescription: false,
             currency: " ",
-            semana:["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"],
+            diaSemana:["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"],
             controlAtrações:true
         };
         this.handleChangeResponsible = this.handleChangeResponsible.bind(this);
@@ -126,11 +126,11 @@ export default class Agendamento extends React.Component {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {this.state.currency.description}
+                    {this.state.currency.descricao}
                 </Modal.Body>
                 <Modal.Footer>
                     <Badge pill style={{ fontSize: "16px" }} variant="primary">
-                        Dia:{(this.state.currency.week == "" || this.state.currency.week == null) ? "não se aplica" : `${this.state.semana[this.state.currency.week - 1]}`}
+                        Dia:{(this.state.currency.semana == "" || this.state.currency.semana == null) ? "não se aplica" : `${this.state.diaSemana[this.state.currency.semana - 1]}`}
                     </Badge>{' '}
                     <Badge pill style={{ fontSize: "16px" }} variant="primary">
                         Início:{(this.state.currency.inicioPeriodo == "" || this.state.currency.inicioPeriodo == null) ?  "não se aplica" : `${this.state.currency.inicioPeriodo}`}
@@ -217,7 +217,7 @@ export default class Agendamento extends React.Component {
                                 <Form.Check type='checkbox' id={`check-api-radio`}>
                                     <Form.Check.Input onChange={this.handleChangeO} name={type.nome} type='checkbox' isValid />
                                     <Form.Check.Label>{type.nome}</Form.Check.Label>
-                                    <Form.Control.Feedback type="valid">{this.state.types[type.type]}</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="valid">{this.state.types[type.tipo]}</Form.Control.Feedback>
                                     <Button size="sm" onClick = {() => this.controlDescription(type)}>+</Button>
                                 </Form.Check>
                             </Col>
