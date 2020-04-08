@@ -1,0 +1,23 @@
+#pending{
+    margin: 5px;
+}
+
+#confirmed{
+    margin: 5px;
+} 
+
+#visitsBuntton{
+    float: right;
+} 
+
+#realButton{
+    float: right;
+} 
+
+#descancelButton{
+    float: right
+} 
+
+#confirmButton{
+    margin-right: 10px;
+}

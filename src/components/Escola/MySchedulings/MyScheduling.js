@@ -23,28 +23,28 @@ export default class MyScheduling extends React.Component {
       schedulings: [
         {
           agendamento: "25/02",
-          Responsável: "Ana",
+          Responsavel: "Ana",
           horario: "09:30",
           status: "0",
           numAlunos: "40",
         },
         {
           agendamento: "20/02",
-          Responsável: "Samuel",
+          Responsavel: "Samuel",
           horario: "11:30",
           status: "1",
           numAlunos: "40",
         },
         {
           agendamento: "25/09",
-          Responsável: "Alice",
+          Responsavel: "Alice",
           horario: "15:30",
           status: "2",
           numAlunos: "40",
         },
         {
           agendamento: "25/02",
-          Responsável: "Ana",
+          Responsavel: "Ana",
           horario: "09:30",
           status: "0",
           numAlunos: "40",

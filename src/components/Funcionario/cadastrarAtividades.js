@@ -41,25 +41,28 @@ export default class CadastrarAtividades extends React.Component {
         this.filterEventsDelete = this.filterEventsDelete.bind(this);
     }
 
+    //Responsável por controlar a visualização do modal de cancelamento
     controlDeleteEvent(eventName) {
         this.setState({ controlEvent: true, currencyName: eventName });
     }
 
+    //Responsável por deletar uma atração
     deleteEvent(event) {
         var aux = this.state.eventsEx.filter(this.filterEventsDelete)
         console.log(aux);
         this.setState({eventsEx:aux});
         api.post("/deleteAtracao",this.state);
     }
-
+    //filtro para retornar só as atrações extraordinárias
     filterEvents(ev) {
         return ev.tipo == 1;
-    }
-
+    } 
+    //filtro para retonar os elementos que não foram deletados
     filterEventsDelete(evDelete){
         return evDelete.nome !== this.state.currencyName;
     }
 
+    //REsponsável por carregar as atrações extraordinárias
     async controlEvents() {
         var aux = await this.state.events.filter(this.filterEvents);
         this.setState({ eventsEx: aux });
