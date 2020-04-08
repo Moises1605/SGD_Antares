@@ -24,11 +24,16 @@ import {Link} from 'react-router-dom';
 import logo from "../../../assets/logoV2.png";
 import "./List.css";
 import Divider from "@material-ui/core/Divider";
+import { logout } from '../../../services/auth';
 
 class SimpleList extends Component {
   handleClick = teste => {
     this.setState({ screen: teste });
   };
+
+  handleLogout(){
+    logout();
+  }
 
   render() {
     return (
@@ -80,7 +85,7 @@ class SimpleList extends Component {
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary="Encerrar Sessão" />
+              <ListItemText primary="Encerrar Sessão" onClick={this.handleLogout}  />
             </ListItem></Link>
           </List>
         </div>
@@ -112,3 +117,11 @@ function ConfirmBack(event){
               )
 }
 export default SimpleList;
+
+/**
+ * handleLogout(){
+    logout();
+  }
+ * import { logout } from '../../../services/auth';
+ * onClick={this.handleLogout} 
+ */

@@ -25,11 +25,17 @@ import "./List.css";
 import logo from "../../../assets/logoV2.png";
 import Divider from "@material-ui/core/Divider";
 
+import { logout } from '../../../services/auth';
+
 class SimpleList extends Component {
   //Responsável por direcionar a tela correspondente ao item selecionado pelo usuário na sidebar
   handleClick = teste => {
     this.setState({ screen: teste });
   };
+
+  handleLogout(){
+    logout();
+  }
 
   render() {
     return (
@@ -81,7 +87,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <ExitToAppIcon />
                 </ListItemIcon>
-                <ListItemText primary="Encerrar Sessão" />
+                <ListItemText primary="Encerrar Sessão" onClick={this.handleLogout} />
               </ListItem>
             </Link>
           </List>
