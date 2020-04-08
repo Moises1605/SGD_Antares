@@ -99,69 +99,19 @@ export default class Login extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      //if(this.state.role == "school"){
-      if (this.state.login == "moisesalmeida") {
-        return <Redirect to={{ pathname: "/escola/", state: { id: "10" } }} />;
+      if(/*this.state.role == "School"*/this.state.login == "moisesalmeida"){
+          return <Redirect to={{ pathname: `/escola/${this.state.idUser}`, state: { id: this.state.idUser } }} />;
       }
-      //}else{
       //Se for um usuário do tipo Bolsista
-      else if (this.state.login == "robertomaia") {
-        return (
-          <Redirect
-            to={{
-              pathname: "/usuario/",
-              state: {
-                permission: [
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "1",
-                  "1",
-                  "1",
-                ],
-                id: "0",
-              },
-            }}
-          />
-        );
-      }
-      //Se for um usuário do tipo Funcionário
-      else if (this.state.login == "raulpeixoto") {
-        return (
-          <Redirect
-            to={{
-              pathname: "/usuario/",
-              state: {
-                permission: [
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "0",
-                  "1",
-                  "1",
-                  "1",
-                  "0",
-                  "0",
-                  "0",
-                ],
-                id: "1",
-              },
-            }}
-          />
-        );
-      }
-      //Se for um usuário do tipo administrador
-      else if (this.state.login == "ricardoporto") {
-        return (
-          <Redirect to={{pathname: `/usuario/${this.state.idUser4}`}}/>);
-      } else {
-        return <Redirect to="/login" />;
+      else if(/*this.state.role == "Scholarship"*/this.state.login == "robertoalmeida"){
+          return <Redirect to={{ pathname: `/bolsista/${this.state.idUser2}`, state: { id: this.state.idUser } }} />;
+      
+      }else if(/*this.state.role == "Employee"*/this.state.login == "raulpeixoto") {
+          return <Redirect to={{ pathname: `/usuario/${this.state.idUser3}`, state: { id: this.state.idUser } }} />;
+      }else if(/*this.state.role == "Employee"*/this.state.login == "ricardoporto") {
+        return <Redirect to={{ pathname: `/usuario/${this.state.idUser4}`, state: { id: this.state.idUser } }} />;
+      }else {
+          return <Redirect to="/login" />;
       }
     } else {
       return (

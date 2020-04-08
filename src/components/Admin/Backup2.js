@@ -30,8 +30,8 @@ export default class InfoSchool extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      backups: ["moises almeida da Cruz Farias","Lucas almeida da Cruz Farias"], //lista de Backups
-      backupSelected: " ", //Backup que foi selecionado
+      backups: [/*"moises almeida da Cruz Farias","Lucas almeida da Cruz Farias"*/], //lista de Backups
+      backupSelected:{fileName: " "}, //Backup que foi selecionado
       error: false,// Variável de controle para a visualização do modal de erro.
       success: false,// Variável de controle para a visualização do modal de sucesso.
       control: false, 
@@ -52,7 +52,8 @@ export default class InfoSchool extends React.Component {
 
   //Responsável por controlar a visualização do modal de confirmação para deletar um backup
   controlDeleteBackup(nome) {
-    this.setState({ controlDeleteBackup: true, backupSelected: nome });
+    this.setState({ controlDeleteBackup: true});
+    this.state.backupSelected.fileName = nome;
   }
 
   //Responsável por chamar a rota que restaura um backup
@@ -62,7 +63,21 @@ export default class InfoSchool extends React.Component {
   }
   //Responsável por fazer o download do backup escolhido
   downloadBackup(nome){
-      api.get(`/download/backup/:${nome}`);  
+      var fileName = nome;
+      //console.log(api.get(`/backup/download/`,{params:{fileName:fileName}}));
+      api.get(`/backup/download/`,{params:{fileName:fileName}})
+          .then(function(response){
+              var blob = new Blob([response.data], {
+                type: 'application/sql'
+              });
+              var url = window.URL.createObjectURL(blob);
+              window.open(url);
+          })
+          .catch(function(error){
+            console.log(error);
+          })
+      
+      //this.setState({ controlDeleteBackup: true, backupSelected: nome });
   }
 
   //Responsável por chamar a rota que realiza um backup
@@ -78,13 +93,15 @@ export default class InfoSchool extends React.Component {
   }
   //Responsável por chamar a rota que exclui um backup
   deleteBackup(event) {
+    console.log(this.state.backupSelected);
     api.delete("/backup",this.state.backupSelected);
     event.preventDefault();
   }
 
   async componentDidMount(){
     var response = await api.get("/backup");
-    this.setState({backups: response.data});
+    this.setState({backups: response.data.files});
+    console.log(response)
   }
 
   render() {
@@ -186,8 +203,8 @@ export default class InfoSchool extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.backups.map((b) => (
-                    <tr name={b}>
+                 {this.state.backups.map((b) => (
+                    <tr key = {b} name={b}>
                       {/* <td>
                       <b></b>
                       </td> */}
@@ -237,3 +254,35 @@ export default class InfoSchool extends React.Component {
     );
   }
 }
+// {this.state.backups.map((b) => (
+//   <tr name={b}>
+//     {/* <td>
+//     <b></b>
+//     </td> */}
+//     <td>{b.substring(0,16)}</td>
+//     <td>
+//       <Button
+//         size="sm"
+//         //manda o id para a função
+//         onClick={() => this.controlRecoverBackup(b)}
+//         variant="success"
+//       >
+//         <SettingsBackupRestoreIcon /> Restaurar
+//       </Button>{" "}
+//       <Button
+//         size="sm"
+//         onClick={() => this.controlDeleteBackup(b)}
+//         variant="danger"
+//       >
+//         <HighlightOffIcon /> Excluir
+//       </Button>{" "}
+//       <Button
+//         size="sm"
+//         onClick={() => this.downloadBackup(b)}
+//         variant="danger"
+//       >
+//         <GetAppIcon /> baixar
+//       </Button>
+//     </td>
+//   </tr>
+// ))}
