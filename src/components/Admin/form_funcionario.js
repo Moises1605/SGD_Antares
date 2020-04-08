@@ -46,10 +46,7 @@ export default class CadastroFuncionario extends Component {
   };
   //REVIEW NAO TAO CHAMANDO A SEGUNDA ROTA
   async handleSubmit(event) {
-    var result = api.post("/adicionarFuncionario", this.state)
-    this.setState({id:result[0].idFuncionario})
-    api.post("/addPermissoes", this.state);
-    console.log(result)
+    api.post("/adicionarFuncionario", this.state)
   }
 
   disableButton = () => {

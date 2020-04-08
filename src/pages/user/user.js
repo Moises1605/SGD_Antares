@@ -43,7 +43,7 @@ export default class User extends React.Component {
         //<FollowVisit idScholarschip={this.props.match.params.id} />,
         //<Info idScholarship={this.props.match.params.id} />
       ],
-      idFuncionario: this.props.match.params.id,
+      idFuncionario: 14/*this.props.match.params.id*/,
       permission: [],
       active: null
     };
@@ -51,8 +51,8 @@ export default class User extends React.Component {
     this.teste = this.teste.bind(this);
     //this.setState({permission: this.loadPermission})
   }
-  componentDidMount = /*async*/ screen => {
-    /*await*/ this.loadPermission();
+  componentDidMount = async screen => {
+    await this.loadPermission();
     //console.log(this.props.location.state.id);
     screen == null
       ? this.setState({ active: this.state.screens[0] })
@@ -60,16 +60,17 @@ export default class User extends React.Component {
   };
 
   async loadPermission(event) {
-    /*const response =  await api.post('/retornarPermissoes',this.state);
+    const response =  await api.post('/retornarPermissoes',this.state);
     var aux = [];
-    aux.push(response.data.gerarRelatório);
-    aux.push(response.data.gerirFuncionarios);
-    aux.push(response.data.gerirBolsistas);
-    aux.push(response.data.gerirEscolas);
-    aux.push(response.data.gerirBackup);
-    aux.push(response.data.validarAgendamentos);
-    aux.push(response.data.gerirHorarioBolsista);
-    aux.push(response.data.inserirAtividade);
+    aux.push(response.data[0].gerarRelatorio);
+    aux.push(response.data[0].gerirFuncionarios);
+    aux.push(response.data[0].gerirBolsistas);
+    aux.push(response.data[0].gerirEscolas);
+    aux.push(response.data[0].gerirBackup);
+    aux.push(response.data[0].validarAgendamentos);
+    aux.push(response.data[0].gerirHorarioBolsista);
+    aux.push(response.data[0].inserirAtividade);
+    console.log(aux)
     this.setState({permission: aux});
 
     /*this.setState({
@@ -117,8 +118,8 @@ export default class User extends React.Component {
               <SimpleList
                 screens={this.state.screen}
                 onClick={this.componentDidMount}
-                permission = {this.teste()}
-                //permission={this.state.permission}
+                //permission = {this.teste()}
+                permission={this.state.permission}
               />
             </div>
 

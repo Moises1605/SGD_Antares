@@ -10,7 +10,7 @@ export default class Agendamento extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            idSchool: this.props.idSchool,
+            idSchool: 17/*this.props.idSchool*/,
             date1: this.props.date2.toString(),
             responsible: '',
             students: '',
@@ -18,14 +18,14 @@ export default class Agendamento extends React.Component {
             number: '',
             obs: '',
             atrações: [
-                { nome: 'Exposição 1', type: '0', description: "expo 1",inicioPeriodo:null,fimPeriodo:null,week:null },
+                /*{ nome: 'Exposição 1', type: '0', description: "expo 1",inicioPeriodo:null,fimPeriodo:null,week:null },
                 { nome: 'Exposição 2', type: '0', description: "expo 2",inicioPeriodo:"",fimPeriodo:"",week:"" },
                 { nome: 'Exposição 3', type: '0', description: "expo 3",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
                 { nome: 'Exposição 4', type: '1', description: "expo 4",inicioPeriodo:"25/05",fimPeriodo:"30/06",week:"6" }, 
                 { nome: 'Exposição 5', type: '0', description: "expo 5",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
                 { nome: 'Exposição 6', type: '1', description: "expo 6",inicioPeriodo:"10/05",fimPeriodo:"20/05",week:"1" }, 
                 { nome: 'Exposição 7', type: '0', description: "expo 7",inicioPeriodo:"",fimPeriodo:"",week:"" }, 
-                { nome: 'Exposição 8', type: '0', description: "expo 8",inicioPeriodo:"",fimPeriodo:"",week:"" }
+                { nome: 'Exposição 8', type: '0', description: "expo 8",inicioPeriodo:"",fimPeriodo:"",week:"" }*/
             ],
             //atrações:[],
             types: ["comum", "extra"],
