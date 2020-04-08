@@ -17,13 +17,13 @@ import Grid from "@material-ui/core/Grid";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 
-import { login } from "../../services/auth";
+import { loginAuth } from "../../services/auth";
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      login: "",
       password: "",
       type: "-1",
       idUser: "0",
@@ -33,21 +33,33 @@ export default class Login extends React.Component {
       error: "",
     };
 
-    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangeLogin = this.handleChangeLogin.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleLogin = async (event) => {
     event.preventDefault();
-    const { username, password } = this.state;
-    if (!username || !password) {
+    const { login, password } = this.state;
+    if (!login || !password) {
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
     }
     try {
-      const response = await api.post("/authUser", { username, password });
-      login(response.data.token);
+      const response = await api.post("/authUser", {login, password});
+      loginAuth(response.data.token);
       console.log(response);
+      if(response.data.body.role === "School"){
+        this.setState({ role: response.data.body.role })
+        this.setState({ idUser: response.data.body.idSchool  })
+
+      } else if (response.data.body.role === "Employee") {
+        this.setState({ role: response.data.body.role })
+        this.setState({ idUser: response.data.body.idEmployee  })
+
+      } else if (response.data.body.role === "Scholarship") {
+        this.setState({ role: response.data.body.role })
+        this.setState({ idUser: response.data.body.idScholarship  })
+      } 
     } catch (err) {
       this.setState({
         error: "Houve um problema com o login, verifique suas credencias.",
@@ -55,8 +67,8 @@ export default class Login extends React.Component {
     }
   };
 
-  handleChangeUsername(event) {
-    this.setState({ username: event.target.value });
+  handleChangeLogin(event) {
+    this.setState({ login: event.target.value });
   }
 
   //Responsável por controlar o campo de texto  que guarda a senha do usuário.
@@ -77,7 +89,7 @@ export default class Login extends React.Component {
     //this.setState({type: response.data.type});
     //this.setState({idUser: response.data.id});
     //Se for um usuário do tipo escola
-    if (this.state.username != " ") {
+    if (this.state.login != " ") {
       this.setState({ redirect: true });
     }
   }
@@ -85,12 +97,12 @@ export default class Login extends React.Component {
   render() {
     if (this.state.redirect) {
       //if(this.state.role == "school"){
-      if (this.state.username == "moisesalmeida") {
+      if (this.state.login == "moisesalmeida") {
         return <Redirect to={{ pathname: "/escola/", state: { id: "10" } }} />;
       }
       //else{
       //Se for um usuário do tipo Bolsista
-      else if (this.state.username == "robertomaia") {
+      else if (this.state.login == "robertomaia") {
         return (
           <Redirect
             to={{
@@ -116,7 +128,7 @@ export default class Login extends React.Component {
         );
       }
       //Se for um usuário do tipo Funcionário
-      else if (this.state.username == "raulpeixoto") {
+      else if (this.state.login == "raulpeixoto") {
         return (
           <Redirect
             to={{
@@ -142,7 +154,7 @@ export default class Login extends React.Component {
         );
       }
       //Se for um usuário do tipo administrador
-      else if (this.state.username == "ricardoporto") {
+      else if (this.state.login == "ricardoporto") {
         return (
           <Redirect
             to={{
@@ -205,14 +217,13 @@ export default class Login extends React.Component {
                         <AccountBoxIcon style={{ fontSize: 33 }} />
                       </Grid>
                       <Grid item>
-                        {this.state.error && <p>{this.state.error}</p>}
                         <TextField
                           size="small"
                           variant="outlined"
                           id="inputGridLogin"
                           label="Usuário"
-                          value={this.state.username}
-                          onChange={this.handleChangeUsername}
+                          value={this.state.login}
+                          onChange={this.handleChangeLogin}
                         />
                       </Grid>
                     </Grid>
