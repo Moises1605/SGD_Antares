@@ -9,9 +9,11 @@ import {
   Button,
   FormControl,
   Table,
+  Modal,
 } from "react-bootstrap";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import SearchIcon from "@material-ui/icons/Search";
+import NovoRelatorio from "./form_relatorio";
 
 class Relatorio extends Component {
   constructor() {
@@ -30,6 +32,14 @@ class Relatorio extends Component {
   }
 
   handleSearch() {}
+
+  handleClick = () => {
+    this.setState({ modalShow: true });
+  };
+
+  handleClose = () => {
+    this.setState({ modalShow: false });
+  };
 
   componentDidMount() {
     this.setState({});
@@ -106,7 +116,7 @@ class Relatorio extends Component {
             {this.state.rows.length === 0 && (
               <Alert
                 severity="warning"
-                variant="outlined"
+                variant="filled"
                 style={{
                   width: "auto",
                   height: "auto",
@@ -118,8 +128,21 @@ class Relatorio extends Component {
               </Alert>
             )}
           </Col>
-          <Col md={4}></Col>
+          <Col md={2}></Col>
+          <Col md={2}>
+            <Button variant="primary" block onClick={this.handleClick}>
+              Novo Relatório
+            </Button>
+          </Col>
         </Row>
+        <Modal show={this.state.modalShow} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Criar Novo Relatório</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <NovoRelatorio />
+          </Modal.Body>
+        </Modal>
       </Container>
     );
   }

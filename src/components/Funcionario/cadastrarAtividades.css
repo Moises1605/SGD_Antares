@@ -1,0 +1,27 @@
+#ativForm{
+    
+    margin-top: 15px;
+    float: left;
+    width: 60%;
+}
+
+#listEvents{
+    padding:  0 10px 10px 10px;
+    margin-top: 15px;
+    float: right;
+    width: 40%;
+    height: 60vh;
+    overflow-y: auto;
+    border-left-color: black;
+    border-left-style: solid;
+    border-left-width: 1px;
+}
+
+#eventButton{
+    float: right;
+}
+
+
+#itemList{
+    margin: 4px;
+}

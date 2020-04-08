@@ -13,12 +13,10 @@ export default class Scholarship extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idScholarship: "",
       screens: [
         <Inicio />,
-        <ScheduleScholarship idScholarship="0" />,
+        <ScheduleScholarship idScholarship = {this.props.match.params.id} />,
         <FollowVisit />,
-        <Info />,
         null
       ],
       active: null
@@ -33,7 +31,7 @@ export default class Scholarship extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id = "ScholarshipUser">
         <Container
           fluid
           style={{
@@ -42,7 +40,6 @@ export default class Scholarship extends React.Component {
         >
           <Row>
             <Col md={12}>
-              <NavBar />
             </Col>
           </Row>
           <div id="div_sidearea">

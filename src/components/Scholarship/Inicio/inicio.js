@@ -7,13 +7,12 @@ export default class Inicio extends React.Component {
     render(){
         return (
             <div>
-                <Jumbotron fluid>
+                <Jumbotron fluid id = "homeBegin">
                     <Container>
-                        <h1>Bem Vindo</h1>
-                        <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                        </p>
+                        <h1>Bem vindo, ao Sistema de Agendamento do Antares</h1>
+                        <p id = 'frase'>"Tudo aquilo que o homem ignora, não existe para ele. 
+                            Por isso o universo de cada um, se resume no tamanho de seu saber."</p>
+                        <p id = "author">- Albert Einstein</p>
                     </Container>
                 </Jumbotron>
             </div>

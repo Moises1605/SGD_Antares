@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form, Modal,Col } from 'react-bootstrap';
-//import api from "../../services/api"
+import api from "../../../services/api"
 import './style.css';
 import SweetAlert from "sweetalert2-react";
 import TextField from "@material-ui/core/TextField";
@@ -30,9 +30,9 @@ export default class ForgetPassword extends React.Component {
     }
 
     //Responsável por chamar a rota que irá recuperar o email do usuário. 
-    submitEmail(event) {
+    async submitEmail(event) {
         //manda os dados do cadastro para o banco.
-        //const response = await api.get('/login',this.state);
+        const response = await api.get('/esqueciSenha',this.state);
         this.setState({show: true});
     }
     render() {
@@ -70,7 +70,8 @@ export default class ForgetPassword extends React.Component {
                             </Button>
                         </Form>
                     </div> */}
-                    <Form.Group as={Col} md='8' controlId="formGridDirectorSurname">
+                    <Form>
+                        <Form.Group as={Col} md='8' controlId="formGridDirectorSurname">
                             <div noValidate autoComplete="off">
                                 <TextField
                                     fullWidth={true}
@@ -78,14 +79,18 @@ export default class ForgetPassword extends React.Component {
                                     label="email"
                                     variant="outlined"
                                     size="small"
-                                    value={this.state.respSurname}
-                                    onChange={this.handleChangeDirectorSurname}
+                                    value={this.state.email}
+                                    onChange={this.handleChangeEmail}
                                     required
                                     type="email"
                                     helperText = "Informe o email que você utilizou para fazer o cadastro"
                                 />
                             </div> 
                         </Form.Group>
+                            <Button id='enviar' variant="outline-primary" onClick={this.submitEmail}>
+                                Enviar
+                            </Button>
+                    </Form>
                 </Modal.Body>
             </Modal>
 
