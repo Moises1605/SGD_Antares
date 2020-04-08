@@ -33,7 +33,8 @@ export default class Agendamento extends React.Component {
             show: false,
             showDescription: false,
             currency: " ",
-            semana:["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"]
+            semana:["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"],
+            controlAtrações:true
         };
         this.handleChangeResponsible = this.handleChangeResponsible.bind(this);
         this.handleChangeStudents = this.handleChangeStudents.bind(this);
@@ -80,6 +81,12 @@ export default class Agendamento extends React.Component {
             const index = this.state.atraçõesT.indexOf(event.target.name);
             this.state.atraçõesT.splice(index, 1);
         }
+        if(this.state.atraçõesT.length > 0){
+            this.setState({controlAtrações:false})
+        }
+        else{
+            this.setState({controlAtrações:true})
+        }
     }
     //Responsável por guardar a descrição da atração escolhida pelo usuário.
     //Paramentro events é a atração escolhida pelo usuário
@@ -94,7 +101,7 @@ export default class Agendamento extends React.Component {
     //Responsável por chamar a rota que irá guadar o agendamento da escola.
     async handleSubmit(event) {
         console.log(this.state.atraçõesT.toString());
-        this.setState({ show: true });
+        //this.setState({ show: true });
         await api.post("/adicionarAgendamento", this.state);
 
     }
@@ -134,7 +141,7 @@ export default class Agendamento extends React.Component {
                 
                 </Modal.Footer>
             </Modal>
-            <Form>
+            <Form onSubmit = {this.handleSubmit}>
             <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={3}>
                         Dia
@@ -148,7 +155,7 @@ export default class Agendamento extends React.Component {
                         Nome do responsável
                     </Form.Label>
                     <Col sm={6}>
-                        <Form.Control type="text" placeholder="Nome completo" value={this.state.responsible} onChange={this.handleChangeResponsible} />
+                        <Form.Control required type="text" placeholder="Nome completo" value={this.state.responsible} onChange={this.handleChangeResponsible} />
                     </Col>
                 </Form.Group>
 
@@ -157,7 +164,7 @@ export default class Agendamento extends React.Component {
                         Quantidade de alunos
                     </Form.Label>
                     <Col sm={3}>
-                        <Form.Control type="text" placeholder="Max: 40" value={this.state.students} onChange={this.handleChangeStudents} />
+                        <Form.Control required type="text" placeholder="Max: 40" value={this.state.students} onChange={this.handleChangeStudents} />
                     </Col>
                 </Form.Group>
 
@@ -167,7 +174,6 @@ export default class Agendamento extends React.Component {
                                 </Form.Label>
                     <Col sm={3}>
                         <Form.Control as="select" value={this.state.date} onChange={this.handleChangeDate}>
-                            <option></option>
                             <option>09:00</option>
                             <option>10:00</option>
                             <option>11:00</option>
@@ -187,7 +193,7 @@ export default class Agendamento extends React.Component {
                         Série(Ano)
                     </Form.Label>
                     <Col sm={2}>
-                        <Form.Control type="text" placeholder=" " value={this.state.number} onChange={this.handleChangeNumber} />
+                        <Form.Control required type="text" placeholder=" " value={this.state.number} onChange={this.handleChangeNumber} />
                     </Col>
                 </Form.Group>
 
@@ -201,23 +207,24 @@ export default class Agendamento extends React.Component {
                 <div>
                     <Form.Label>
                         Escolha quais atrações deseja visitar, as atividades marcadas como extra, estão disponíveis por um 
-                        período limitado e as comuns estão disponíveis todos os dias e nos horários dispobíveis paar visita.
+                        período limitado e as comuns estão disponíveis todos os dias e nos horários dispobíveis para visita.
                     </Form.Label>
+                    <Form.Text className="text-muted">{(this.state.controlAtrações) ? "Escolha pelo menos uma atração" : " "} </Form.Text>
                     <Row>
                         {this.state.atrações.map(type => (
 
                             <Col id='hy' as={Col} md="3" key={type.nome.toString()} className="mb-3">
-                                <Form.Check type='checkbox' id={`check-api-radio`} >
+                                <Form.Check type='checkbox' id={`check-api-radio`}>
                                     <Form.Check.Input onChange={this.handleChangeO} name={type.nome} type='checkbox' isValid />
                                     <Form.Check.Label>{type.nome}</Form.Check.Label>
                                     <Form.Control.Feedback type="valid">{this.state.types[type.type]}</Form.Control.Feedback>
-                                    <Button onClick = {() => this.controlDescription(type)}>+</Button>
+                                    <Button size="sm" onClick = {() => this.controlDescription(type)}>+</Button>
                                 </Form.Check>
                             </Col>
                         ))}
                     </Row>
                 </div>
-                <Button variant="primary" id='agenda' onClick={this.handleSubmit}>
+                <Button disabled = {this.state.controlAtrações} type = "submit" variant="primary" id='agenda' onClick={this.handleSubmit}>
                     Agendar visita
                 </Button>
             </Form>
