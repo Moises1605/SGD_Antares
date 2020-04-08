@@ -38,13 +38,13 @@ export default class User extends React.Component {
         <TelaAgendamentos />,
         <Calendar />,
         <CadastrarAtividades/>,
-        <ScheduleScholarship idScholarschip = {this.props.match.params.id} />,
+        //<ScheduleScholarship idScholarschip = {this.props.match.params.id} />,
         //<ScheduleScholarship idScholarschip={this.props.location.state.id} />,
-        <FollowVisit idScholarschip={this.props.match.params.id} />,
-        <Info idScholarship={this.props.match.params.id} />
+        //<FollowVisit idScholarschip={this.props.match.params.id} />,
+        //<Info idScholarship={this.props.match.params.id} />
       ],
-      //id: this.props.location.state.id,
-      //permission: this.props.location.state.permission,
+      idFuncionario: this.props.match.params.id,
+      permission: [],
       active: null
     };
     this.loadPermission = this.loadPermission.bind(this);
@@ -60,7 +60,18 @@ export default class User extends React.Component {
   };
 
   async loadPermission(event) {
-    //const response =  await api.get('/permissoes');
+    /*const response =  await api.post('/retornarPermissoes',this.state);
+    var aux = [];
+    aux.push(response.data.gerarRelatório);
+    aux.push(response.data.gerirFuncionarios);
+    aux.push(response.data.gerirBolsistas);
+    aux.push(response.data.gerirEscolas);
+    aux.push(response.data.gerirBackup);
+    aux.push(response.data.validarAgendamentos);
+    aux.push(response.data.gerirHorarioBolsista);
+    aux.push(response.data.inserirAtividade);
+    this.setState({permission: aux});
+
     /*this.setState({
       permission[0]: response.data.gerarRelatório,
       permission[1]: response.data.gerirFuncionarios,
@@ -81,10 +92,10 @@ export default class User extends React.Component {
       return ["0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1"];
     } else if (this.props.match.params.id == 1) {
       //this.setState({permission:['0','1','1','1','0','1','1','1','0','0','0'] });
-      return ["0", "1", "1", "1", "0", "1", "1", "1", "0", "0", "0"];
+      return ["0", "1", "1", "1", "0", "1", "1", "1"];
     } else if (this.props.match.params.id == 2) {
       //this.setState({permission:['1','1','1','1','0','0','0','0','0','0','0'] });
-      return ["1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"];
+      return ["1", "1", "1", "1", "1", "0", "0", "0"];
     }
   }
 

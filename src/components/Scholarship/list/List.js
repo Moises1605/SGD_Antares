@@ -20,8 +20,10 @@ import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Row,Modal,Button} from "react-bootstrap";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import logo from "../../../assets/logoV2.png";
 import "./List.css";
+import Divider from "@material-ui/core/Divider";
 
 class SimpleList extends Component {
   handleClick = teste => {
@@ -31,10 +33,18 @@ class SimpleList extends Component {
   render() {
     return (
       <div id="div_side">
-        <div id="side_content">
+        {/* <div id="side_content">
           <Row>
             <div style={{ height: "150px" }}></div>
-          </Row>
+          </Row> */}
+          <div id="side_content">
+          <img
+            alt=""
+            id="logo_list"
+            src={logo}
+            className="d-inline-block align-top"
+          />
+          <Divider />
           <List component="nav" aria-label="main mailbox folders">
             <ListItem
               button
@@ -59,13 +69,14 @@ class SimpleList extends Component {
               </ListItemIcon>
               <ListItemText primary="Visitas Agendadas" />
             </ListItem>
-            <ListItem button disabled onClick={() => this.props.onClick("3")}>
+            {/* <ListItem button disabled onClick={() => this.props.onClick("3")}>
               <ListItemIcon>
                 <AssignmentIcon />
               </ListItemIcon>
               <ListItemText primary="Editar dados" />
-            </ListItem>
-            <Link to = '/login'><ListItem button >
+            </ListItem> */}
+            <Link id="link_exit" to = '/login'>
+              <ListItem button >
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>

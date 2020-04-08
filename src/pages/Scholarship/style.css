@@ -4,22 +4,34 @@
 }
 a {
   outline: none;
+} 
+
+#ScholarshipUser{
+
+  background-image: url(../../assets/contato.png);
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 #rightScholarship{
-  margin: 100px 75px;
-  height: 40vh;
-  width: 70vw;
+  margin: 30px auto 0 auto;
+  height: 85vh;
+  width: 80vw;
   float: right;
-    
+  padding: 10px;
+  background-color: white;
+  overflow-y: auto;
     
 } 
 
 #leftScholarship{
   width: 15vw;
-  height: 120vh;
+  height: 100vh;
   float: left;
-  background-color: #eee;
+  background-color: white; 
     
 } 
   

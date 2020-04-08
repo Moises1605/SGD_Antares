@@ -130,7 +130,7 @@ class SimpleList extends Component {
                 <ListItemText primary="Atividades Extraordinárias" />
               </ListItem>
             )}
-            {this.state.permission[8] == "1" && (
+            {/* {this.state.permission[8] == "1" && (
               <ListItem button onClick={() => this.props.onClick("9")}>
                 <ListItemIcon>
                   <AlarmIcon />
@@ -153,7 +153,7 @@ class SimpleList extends Component {
                 </ListItemIcon>
                 <ListItemText primary="Editar dados" />
               </ListItem>
-            )}
+            )} */}
             <Link to="/login" id="link_exit">
               <ListItem button>
                 <ListItemIcon>

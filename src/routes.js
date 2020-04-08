@@ -36,7 +36,7 @@ const Routes = () => (
       <Route exact path="/escola/:id" component={School} />
       <Route exact path="/usuario/:id" component={User} />
       {/* <Route exact path = '/editarEscola' component = {VisitNight}/> */}
-      <Route exact path="/Bolsista/:id" component={Scholarship} />
+      <Route exact path="/bolsista/:id" component={Scholarship}/>
       {/* <Route exact path = "/editarBolsista" component = {infoScholarship}/> */}
       <Route excat path="/Funcionario/:id" component={funcionario_principal} />
       <Route excat path="/administrador/:id" component={Admin} />

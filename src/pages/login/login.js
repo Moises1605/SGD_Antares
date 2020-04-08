@@ -95,7 +95,7 @@ export default class Login extends React.Component {
       //}else{
       //Se for um usuário do tipo Bolsista
       else if (this.state.username == "robertomaia") {
-        return (<Redirect to={{pathname: `/usuario/${this.state.idUser2}`}}/>);
+        return (<Redirect to={{pathname: `/bolsista/${this.state.idUser2}`}}/>);
       }
       //Se for um usuário do tipo Funcionário
       else if (this.state.username == "raulpeixoto") {
