@@ -14,13 +14,14 @@ import {
 import { Alert, AlertTitle } from "@material-ui/lab";
 import SearchIcon from "@material-ui/icons/Search";
 import NovoRelatorio from "./form_relatorio";
+import api from "../../services/api";
 
 class Relatorio extends Component {
   constructor() {
     super();
     this.state = {
       search: "",
-      rows: [],
+      relatorios: [],
       modalShow: false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -41,8 +42,13 @@ class Relatorio extends Component {
     this.setState({ modalShow: false });
   };
 
-  componentDidMount() {
-    this.setState({});
+  handleRelatorio = (id) => {
+    api.post("/abrirRelatorio", id);
+  };
+
+  async componentDidMount() {
+    const r = api.post("/listarRelatorios");
+    this.setState({ relatorios: (await r).data.map((r) => r) });
   }
 
   render() {
@@ -99,12 +105,27 @@ class Relatorio extends Component {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Relatórios</th>
-                    <th>Nº de Visitantes</th>
+                    <th>Funcionário Responsável</th>
                     <th>Data</th>
+                    <th>Período</th>
                   </tr>
                 </thead>
-                <tbody>{this.state.rows}</tbody>
+                <tbody>
+                  {this.state.relatorios.map((r, i = 0) => (
+                    <tr
+                      key={r.idRelatorio}
+                      name={r.idRelatorio}
+                      onClick={() => this.handleRelatorio(r.idRelatorio)}
+                    >
+                      <td>{r.idRelatorio}</td>
+                      <td>{r.nomeFuncionario}</td>
+                      <td>{r.criadoEm}</td>
+                      <td>
+                        {"Início: " + r.inicioPeriodo + " Fim: " + r.fimPeriodo}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </Table>
             </div>
           </Col>
@@ -113,7 +134,7 @@ class Relatorio extends Component {
         <Row>
           <Col md={3}></Col>
           <Col md={5}>
-            {this.state.rows.length === 0 && (
+            {this.state.relatorios.length === 0 && (
               <Alert
                 severity="warning"
                 variant="filled"
