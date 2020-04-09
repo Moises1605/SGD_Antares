@@ -68,18 +68,6 @@ class SimpleList extends Component {
               </ListItemIcon>
               <ListItemText primary="Meu horário" />
             </ListItem>
-            <ListItem button  onClick={() => this.props.onClick("2")}>
-              <ListItemIcon>
-                <EventAvailableIcon />
-              </ListItemIcon>
-              <ListItemText primary="Visitas Agendadas" />
-            </ListItem>
-            {/* <ListItem button disabled onClick={() => this.props.onClick("3")}>
-              <ListItemIcon>
-                <AssignmentIcon />
-              </ListItemIcon>
-              <ListItemText primary="Editar dados" />
-            </ListItem> */}
             <Link id="link_exit" to = '/login'>
               <ListItem button >
               <ListItemIcon>

@@ -191,9 +191,6 @@ export default class InfoSchool extends React.Component {
                 <tbody>
                  {this.state.backups.map((b) => (
                     <tr key = {b} name={b}>
-                      {/* <td>
-                      <b></b>
-                      </td> */}
                       <td>{b.substring(0,25)}</td>
                       <td>
                         <Button

@@ -20,36 +20,7 @@ export default class MyScheduling extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      schedulings: [
-        {
-          agendamento: "25/02",
-          Responsavel: "Ana",
-          horario: "09:30",
-          status: "0",
-          numAlunos: "40",
-        },
-        {
-          agendamento: "20/02",
-          Responsavel: "Samuel",
-          horario: "11:30",
-          status: "1",
-          numAlunos: "40",
-        },
-        {
-          agendamento: "25/09",
-          Responsavel: "Alice",
-          horario: "15:30",
-          status: "2",
-          numAlunos: "40",
-        },
-        {
-          agendamento: "25/02",
-          Responsavel: "Ana",
-          horario: "09:30",
-          status: "0",
-          numAlunos: "40",
-        },
-      ],
+      schedulings: [],
       //schedulings:[],
       idSchooll: this.props.idSchool,
       controle: false,
@@ -242,7 +213,7 @@ export default class MyScheduling extends React.Component {
             ? this.state.resultSearch
             : this.state.schedulings
           ).map((item) => (
-            // {this.state.days.indexOf(item).toString()}
+            
             <Card id="item">
               <Card.Body>
                 <span>

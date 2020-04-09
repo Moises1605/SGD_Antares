@@ -38,67 +38,17 @@ export default class User extends React.Component {
         <TelaAgendamentos />,
         <Calendar />,
         <CadastrarAtividades/>,
-        //<ScheduleScholarship idScholarschip = {this.props.match.params.id} />,
-        //<ScheduleScholarship idScholarschip={this.props.location.state.id} />,
-        //<FollowVisit idScholarschip={this.props.match.params.id} />,
-        //<Info idScholarship={this.props.match.params.id} />
       ],
       idFuncionario: this.props.match.params.id,
       permission: [],
       active: null
     };
-    this.loadPermission = this.loadPermission.bind(this);
-    this.teste = this.teste.bind(this);
-    //this.setState({permission: this.loadPermission})
   }
-  componentDidMount = /*async*/ screen => {
-    //await this.loadPermission();
-    //console.log(this.props.location.state.id);
+  componentDidMount =  screen => {
     screen == null
       ? this.setState({ active: this.state.screens[0] })
       : this.setState({ active: this.state.screens[screen] });
   };
-
-  async loadPermission(event) {
-    /*const response =  await api.post('/retornarPermissoes',this.state);
-    var aux = [];
-    aux.push(response.data[0].gerarRelatorio);
-    aux.push(response.data[0].gerirFuncionarios);
-    aux.push(response.data[0].gerirBolsistas);
-    aux.push(response.data[0].gerirEscolas);
-    aux.push(response.data[0].gerirBackup);
-    aux.push(response.data[0].validarAgendamentos);
-    aux.push(response.data[0].gerirHorarioBolsista);
-    aux.push(response.data[0].inserirAtividade);
-    console.log(aux)
-    this.setState({permission: aux});
-    return aux;*/
-    /*this.setState({
-      permission[0]: response.data.gerarRelatório,
-      permission[1]: response.data.gerirFuncionarios,
-      permission[2]: response.data.gerirBolsistas,
-      permission[3]: response.data.gerirEscolas,//Falta fazer.
-      permission[4]: response.data.gerirBackup,
-      permission[5]: response.data.validarAgendamentos,
-      permission[6]: response.data.gerirHorarioBolsista,
-      permission[7]: response.data.inserirAtividade,
-    });*/
-    
-    //await this.teste;
-  }
-
-  teste(event) {
-    if (this.props.match.params.id == 0) {
-      //this.setState({permission: ['0','0','0','0','0','0','0','0','1','1','1'] });
-      return ["0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1"];
-    } else if (this.props.match.params.id == 19) {
-      //this.setState({permission:['0','1','1','1','0','1','1','1','0','0','0'] });
-      return ["0", "1", "1", "1", "0", "1", "1", "1"];
-    } else if (this.props.match.params.id == 2) {
-      //this.setState({permission:['1','1','1','1','0','0','0','0','0','0','0'] });
-      return ["1", "1", "1", "1", "1", "0", "0", "0"];
-    }
-  }
 
   render() {
     return (
@@ -110,7 +60,7 @@ export default class User extends React.Component {
           }}
         >
           <Row>
-            <Col md={12}>{/*<NavBar />*/}</Col>
+            <Col md={12}></Col>
           </Row>
           <Row></Row>
           <div id="div_sidearea">
@@ -118,17 +68,13 @@ export default class User extends React.Component {
               <SimpleList
                 screens={this.state.screen}
                 onClick={this.componentDidMount}
-                //permission = {this.teste()}
                 permission={this.state.idFuncionario}
               />
             </div>
 
             <Container fluid>
               <div id="div_screen">
-                {/* <Paper id="testando" elevation={3}> */}
                   {this.state.active}
-                {/* </Paper> */}
-                {/* {this.state.active} */}
               </div>
             </Container>
           </div>

@@ -17,17 +17,7 @@ export default class Agendamento extends React.Component {
             date: '',
             number: '',
             obs: '',
-            atrações: [
-                /*{ nome: 'Exposição 1', tipo: '0', descricao: "expo 1",inicioPeriodo:null,fimPeriodo:null,semana:null },
-                { nome: 'Exposição 2', tipo: '0', descricao: "expo 2",inicioPeriodo:"",fimPeriodo:"",semana:"" },
-                { nome: 'Exposição 3', tipo: '0', descricao: "expo 3",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
-                { nome: 'Exposição 4', tipo: '1', descricao: "expo 4",inicioPeriodo:"25/05",fimPeriodo:"30/06",semana:"6" }, 
-                { nome: 'Exposição 5', tipo: '0', descricao: "expo 5",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
-                { nome: 'Exposição 6', tipo: '1', descricao: "expo 6",inicioPeriodo:"10/05",fimPeriodo:"20/05",semana:"1" }, 
-                { nome: 'Exposição 7', tipo: '0', descricao: "expo 7",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
-                { nome: 'Exposição 8', tipo: '0', descricao: "expo 8",inicioPeriodo:"",fimPeriodo:"",semana:"" }*/
-            ],
-            //atrações:[],
+            atrações:[],
             types: ["comum", "extra"],
             atraçõesT: [],
             show: false,

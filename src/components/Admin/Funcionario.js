@@ -26,113 +26,12 @@ class Funcionario extends Component {
       search: "",
       show: false,
       count: 0,
-      funcionarios: [
-        // PARA TESTES
-        /*{
-          nome: "Gina",
-          email: "romaiajr5",
-          telefone: "124",
-          idPessoa: 1,
-          tag: 1,
-        },
-        {
-          nome: "Carlos",
-          email: "romaiajr7",
-          telefone: "42(7031)845-11-5823",
-          idPessoa: 2,
-          tag: 2,
-        },
-        {
-          nome: "Daniel",
-          email: "romaiajr",
-          telefone: "381(75)071-11-5532",
-          idPessoa: 3,
-          tag: 3,
-        },
-        {
-          nome: "Moisés",
-          email: "romaiajr1",
-          telefone: "3(494)550-04-3416",
-          idPessoa: 4,
-          tag: 4,
-        },
-        {
-          nome: "Roberto",
-          email: "rob",
-          telefone: "3(0861)727-37-0504",
-          idPessoa: 5,
-          tag: 5,
-        },
-        {
-          nome: "Samuel",
-          email: "ra",
-          telefone: "4(729)307-64-9272",
-          idPessoa: 6,
-          tag: 6,
-        },
-        {
-          nome: "Ludmilla",
-          email: "re",
-          telefone: "4(729)307-64-9272",
-          idPessoa: 7,
-          tag: 7,
-        },*/
-      ],
+      funcionarios: [],
       showdelete: false,
       searchControl: false,
       controlCancel: false,
       deleteSelected: "",
-      funcionariosReserva: [
-        /*{
-          nome: "Gina",
-          email: "romaiajr5",
-          telefone: "124",
-          idPessoa: 1,
-          tag: 1,
-        },
-        {
-          nome: "Carlos",
-          email: "romaiajr7",
-          telefone: "42(7031)845-11-5823",
-          idPessoa: 2,
-          tag: 2,
-        },
-        {
-          nome: "Daniel",
-          email: "romaiajr",
-          telefone: "381(75)071-11-5532",
-          idPessoa: 3,
-          tag: 3,
-        },
-        {
-          nome: "Moisés",
-          email: "romaiajr1",
-          telefone: "3(494)550-04-3416",
-          idPessoa: 4,
-          tag: 4,
-        },
-        {
-          nome: "Roberto",
-          email: "rob",
-          telefone: "3(0861)727-37-0504",
-          idPessoa: 5,
-          tag: 5,
-        },
-        {
-          nome: "Samuel",
-          email: "ra",
-          telefone: "4(729)307-64-9272",
-          idPessoa: 6,
-          tag: 6,
-        },
-        {
-          nome: "Ludmilla",
-          email: "re",
-          telefone: "4(729)307-64-9272",
-          idPessoa: 7,
-          tag: 7,
-        },*/
-      ],
+      funcionariosReserva: [],
     };
   }
 

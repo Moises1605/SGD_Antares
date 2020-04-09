@@ -3,85 +3,46 @@ import {Container,Row,Col,Button,Tabs,Tab,Card } from 'react-bootstrap';
 import api from "../../services/api";
 import Visits from "./visits.js";
 import "./tela_agendamentos.css";
+import SweetAlert from "sweetalert2-react";
 
 class TelaAgendamento extends Component{
 
     constructor(){
 	super();
 	this.state = {
-		visits:[
-			/*{
-				agendamento: "25/02",
-				Responsavel: "Ana",
-				horario: "09:30",
-				status: "0",
-				numAlunos: "40",
-				nome:"Colégio Rosa Maria"
-			  },
-			  {
-				agendamento: "20/02",
-				Responsavel: "Samuel",
-				horario: "11:30",
-				status: "1",
-				numAlunos: "40",
-				nome: "Colégio Asas"
-			  },
-			  {
-				agendamento: "25/09",
-				Responsavel: "Alice",
-				horario: "15:30",
-				status: "2",
-				numAlunos: "40",
-				nome: "Colégio Bilac"
-			  },
-			  {
-				agendamento: "25/02",
-				Responsavel: "Ana",
-				horario: "09:30",
-				status: "0",
-				numAlunos: "40",
-				nome:" Colégio Adonai"
-			  },
-			  {
-				agendamento: "25/02",
-				Responsavel: "Ana",
-				horario: "09:30",
-				status: "0",
-				numAlunos: "40",
-				nome:" Colégio AAAAAAAAA"
-			  },*/
-		],
+		visits:[],
 	    pendingVisits: [],
 		confirmedVisits: [],
 		canceledVisits:[],
 		activeScreen: 0,
-		action:["Confirmar visita","Cancelar visita","Visitar realizada?","descancelar visita"]
+		action:["Confirmar visita","Cancelar visita","Visitar realizada?","descancelar visita"],
+		show:false
 	};
 	this.handleSelect = this.handleSelect.bind(this);
     }
 
 	controlConfirm(visit){
-		alert(visit.nome + 1);
 		visit.status = 1;
 		api.post("/cancelaConfirmaAgendamento",visit);
+		this.setState({ show: true });
 	}
 
 	controlCancel(visit){
-		alert(visit.nome + 3);
 		visit.status = 3;
 		api.post("/cancelaConfirmaAgendamento",visit);
+		this.setState({ show: true });
 	}
 
 	controlRealized(visit){
-		alert(visit.nome + 2);
 		visit.status = 2;
 		api.post("/cancelaConfirmaAgendamento",visit);
+		this.setState({ show: true });
 	}
 
 	controlDesCancel(visit){
-		alert(visit.nome + 0);
 		visit.status = 0;
 		api.post("/cancelaConfirmaAgendamento",visit);
+		this.setState({ show: true });
 	}
 
     handleSelect(eventKey){
@@ -90,7 +51,6 @@ class TelaAgendamento extends Component{
 
     async componentDidMount(){
 		const response = await api.post("/retornaAgendamentos");
-		console.log(response)
 		this.setState({visits:response.data});
 		var pendingAux = this.state.visits.filter((obj) => obj.status == 0);
 		var confirmAux = this.state.visits.filter((obj) => obj.status == 1);
@@ -101,6 +61,12 @@ class TelaAgendamento extends Component{
     render(){
 	return(
 	    <div>
+		<SweetAlert
+          show={this.state.show}
+          title="Sucesso"
+          text="recarregue a página, por favor"
+          onConfirm={() => this.setState({ show: false })}
+        />
 		<h3>
 		    Gerenciar Agendamentos
 		</h3>
@@ -138,6 +104,7 @@ class TelaAgendamento extends Component{
 							<Card.Text>
 								Data Prevista: {item.agendamento}<br />
 								Nº Visitantes: {item.numAlunos}
+								Horário: {item.hora}
 								<Button onClick = {() => this.controlRealized(item)} id = "realButton" variant = "warning">Visita realizada</Button>
 							</Card.Text>
 						</Card.Body>
@@ -152,6 +119,7 @@ class TelaAgendamento extends Component{
 							<Card.Text>
 								Data Prevista: {item.agendamento}<br />
 								Nº Visitantes: {item.numAlunos}
+								Horário: {item.hora}
 								<Button onClick = {() => this.controlDesCancel(item)} id = "descancelButton" variant = "warning">Descancelar visita</Button>
 							</Card.Text>
 						</Card.Body>

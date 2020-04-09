@@ -38,22 +38,9 @@ export default class Login extends React.Component {
 
     this.handleChangeLogin = this.handleChangeLogin.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   //Responsável por chamar a rota que retorna os dados do usuário com a respectiva senha e email digitados.
-  async handleSubmit() {
-    //manda os dados do cadastro para o banco.
-    //const response = await api.get('/login',this.state);
-    //this.setState({type: response.data.type});
-    //this.setState({idUser: response.data.id});
-    //Se for um usuário do tipo escola
-    if (this.state.login != " ") {
-      this.setState({ redirect: true });
-    }
-  }
-
-
   handleLogin = async (event) => {
     event.preventDefault();
     const { login, password } = this.state;
@@ -101,14 +88,14 @@ export default class Login extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      if(this.state.role == "School"/*this.state.login == "moisesalmeida"*/){
+      if(this.state.role == "School"){
           return <Redirect to={{ pathname: `/escola/${this.state.idUser}`, state: { id: this.state.idUser } }} />;
       }
       //Se for um usuário do tipo Bolsista
-      else if(this.state.role == "Scholarship"/*this.state.login == "robertoalmeida"*/){
+      else if(this.state.role == "Scholarship"){
           return <Redirect to={{ pathname: `/bolsista/${this.state.idUser}`, state: { id: this.state.idUser } }} />;
       
-      }else if(this.state.role == "Employee"/*this.state.login == "raulpeixoto"*/) {
+      }else if(this.state.role == "Employee") {
           return <Redirect to={{ pathname: `/usuario/${this.state.idUser}`, state: { id: this.state.idUser } }} />;
       }else {
           return <Redirect to="/login" />;
@@ -179,7 +166,6 @@ export default class Login extends React.Component {
                     variant="success"
                     onClick={this.handleLogin}
                     onKeyPress={this.handleKeyPress}
-                    //onClick={this.handleSubmit}
                   >
                     Entrar
                   </Button>

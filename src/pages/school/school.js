@@ -18,8 +18,8 @@ export default class School extends React.Component {
       screens: [
         <Inicio />, 
         <Calendar idSchool = {this.props.match.params.id}/>, 
-        <MySchedulings idSchool = {this.props.match.params.id} /*{this.props.location.state.id}*//>, 
-        <InfoSchool idSchool = {this.props.match.params.id} /*{this.props.location.state.id}*/ />
+        <MySchedulings idSchool = {this.props.match.params.id}/>, 
+        <InfoSchool idSchool = {this.props.match.params.id} />
       ],
       active: null,
       temp: '',
@@ -57,7 +57,6 @@ export default class School extends React.Component {
             </div>
             <Container fluid>
               <div id="rightSchool">
-                {/* <Paper elevation={3}>{this.state.active}</Paper> */}
                 {this.state.active}
               </div>
             </Container>
@@ -67,4 +66,4 @@ export default class School extends React.Component {
     );
   }
 }
-// Surfaces ->paper
+

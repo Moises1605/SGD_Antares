@@ -24,7 +24,6 @@ import { Row } from "react-bootstrap";
 import "./List.css";
 import logo from "../../../assets/logoV2.png";
 import Divider from "@material-ui/core/Divider";
-
 import { logout } from '../../../services/auth';
 
 class SimpleList extends Component {

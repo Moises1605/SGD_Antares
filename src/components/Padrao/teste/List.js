@@ -153,30 +153,6 @@ class SimpleList extends Component {
                 <ListItemText primary="Cadastrar Atividades " />
               </ListItem>
             )}
-            {/* {this.state.permission[8] == "1" && (
-              <ListItem button onClick={() => this.props.onClick("9")}>
-                <ListItemIcon>
-                  <AlarmIcon />
-                </ListItemIcon>
-                <ListItemText primary="Meu horário" />
-              </ListItem>
-            )}
-            {this.state.permission[9] == "1" && (
-              <ListItem button onClick={() => this.props.onClick("10")}>
-                <ListItemIcon>
-                  <EventAvailableIcon />
-                </ListItemIcon>
-                <ListItemText primary="Visitas agendadas" />
-              </ListItem>
-            )}
-            {this.state.permission[10] == "1" && (
-              <ListItem button onClick={() => this.props.onClick("11")}>
-                <ListItemIcon>
-                  <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Editar dados" />
-              </ListItem>
-            )} */}
             <Link to="/login" id="link_exit">
               <ListItem button>
                 <ListItemIcon>

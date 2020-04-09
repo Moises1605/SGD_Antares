@@ -18,18 +18,9 @@ export default class CadastrarAtividades extends React.Component {
             fimPeriodo: "",
             description: "",
             type: "",
-            tipos: [{ label: "Normal", value: 0 }, { label: "Extra", value: 1 }],
+            tipos: [{ label: "Normal", value: 0 }, { label: "Extraordinária", value: 1 }],
             dias: [{ label: "Segunda", value: 1 }, { label: "Terça", value: 2 }, { label: "Quarta", value: 3 }, { label: "Quinta", value: 4 }, { label: "Sexta", value: 5 }, { label: "Sábado", value: 6 }],
-            events: [
-                /*{ nome: 'Exposição 1', tipo: '1', descricao: "expo 1",inicioPeriodo:null,fimPeriodo:null,semana:null },
-                { nome: 'Exposição 2', tipo: '1', descricao: "expo 2",inicioPeriodo:"",fimPeriodo:"",semana:"" },
-                { nome: 'Exposição 3', tipo: '1', descricao: "expo 3",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
-                { nome: 'Exposição 4', tipo: '1', descricao: "expo 4",inicioPeriodo:"25/05",fimPeriodo:"30/06",semana:"6" }, 
-                { nome: 'Exposição 5', tipo: '1', descricao: "expo 5",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
-                { nome: 'Exposição 6', tipo: '1', descricao: "expo 6",inicioPeriodo:"10/05",fimPeriodo:"20/05",semana:"1" }, 
-                { nome: 'Exposição 7', tipo: '0', descricao: "expo 7",inicioPeriodo:"",fimPeriodo:"",semana:"" }, 
-                { nome: 'Exposição 8', tipo: '0', descricao: "expo 8",inicioPeriodo:"",fimPeriodo:"",semana:"" }*/
-            ],
+            events: [],
             eventsEx: [],
             week: "",
             currencyName: "",
@@ -74,13 +65,12 @@ export default class CadastrarAtividades extends React.Component {
     async componentDidMount() {
         const response = await api.post("/retornaAtracoes");
         this.setState({ events: response.data });
-        this.setState({eventsEx: this.state.events.filter(this.filterEvents)});
+        this.setState({eventsEx: this.state.events});
     }
 
     //Responsável por atualizar as mudanças no formulário.
     handleChange(event) {
         let { name, value } = event.target;
-        //this.setState({ [className.split(" ")[0]]: value });
         this.setState({ [event.target.name]: value });
     }
 

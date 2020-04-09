@@ -1,9 +1,8 @@
 import axios from "axios";
 import { getToken } from "./auth";
 
-//const api = axios.create({baseURL:' https://sgd-api.herokuapp.com'});
+const api = axios.create({baseURL:' https://sgd-api.herokuapp.com'});
 //const api = axios.create({ baseURL: "http://localhost:9000" });
-const api = axios.create({ baseURL: "https://simple-server.herokuapp.com" });
 
 api.interceptors.request.use(async config => {
     const token = getToken();

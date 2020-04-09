@@ -16,7 +16,6 @@ export default class Scholarship extends React.Component {
       screens: [
         <Inicio />,
         <ScheduleScholarship idScholarship = {this.props.match.params.id} />,
-        <FollowVisit />,
         null
       ],
       active: null
