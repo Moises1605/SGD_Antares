@@ -23,6 +23,8 @@ import GolfCourseIcon from '@material-ui/icons/GolfCourse';
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import AlarmIcon from "@material-ui/icons/Alarm";
 import AssignmentIcon from "@material-ui/icons/Assignment";
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { Row } from "react-bootstrap";
 import "./List.scss";
 import { Link } from "react-router-dom";
@@ -64,14 +66,14 @@ class SimpleList extends Component {
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Inicio" />
+              <ListItemText primary="Inicio"/>
             </ListItem>
             {this.state.permission[0] == "1" && (
               <ListItem button onClick={() => this.props.onClick("1")}>
                 <ListItemIcon>
                   <AssessmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Relátorios" />
+                <ListItemText primary="Relátorios"/>
               </ListItem>
             )}
             {this.state.permission[1] == "1" && (
@@ -79,7 +81,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Gerenciar Funcionários" />
+                <ListItemText primary="Gerenciar Funcionários"/>
               </ListItem>
             )}
             {this.state.permission[2] == "1" && (
@@ -87,7 +89,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <ImportContactsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Gerenciar Bolsistas" />
+                <ListItemText primary="Gerenciar Bolsistas"/>
               </ListItem>
             )}
             {this.state.permission[3] == "1" && (
@@ -95,7 +97,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <SchoolIcon />
                 </ListItemIcon>
-                <ListItemText primary="Escolas Cadastradas" />
+                <ListItemText primary="Escolas Cadastradas"/>
               </ListItem>
             )}
             {this.state.permission[4] == "1" && (
@@ -109,17 +111,17 @@ class SimpleList extends Component {
             {this.state.permission[5] == "1" && (
               <ListItem button onClick={() => this.props.onClick("6")}>
                 <ListItemIcon>
-                  <PeopleIcon />
+                  <AssignmentTurnedInIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Agendamentos" />
+                <ListItemText primary="Agendamentos"/>
               </ListItem>
             )}
             {this.state.permission[6] == "1" && (
               <ListItem button onClick={() => this.props.onClick("7")}>
                 <ListItemIcon>
-                  <ImportContactsIcon />
+                  <AccessTimeIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Horário dos Bolsistas" />
+                <ListItemText primary="Horário dos Bolsistas"/>
               </ListItem>
             )}
             {this.state.permission[7] == "1" && (
@@ -127,7 +129,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <GolfCourseIcon />
                 </ListItemIcon>
-                <ListItemText primary="Atividades Extraordinárias" />
+                <ListItemText primary="Cadastrar Atividades " />
               </ListItem>
             )}
             {/* {this.state.permission[8] == "1" && (

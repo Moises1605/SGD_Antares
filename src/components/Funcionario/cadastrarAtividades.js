@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import CadastroBolsista from "../Admin/form_bolsista";
+import SweetAlert from 'sweetalert2-react';
 
 export default class CadastrarAtividades extends React.Component {
     constructor(props) {
@@ -32,7 +33,8 @@ export default class CadastrarAtividades extends React.Component {
             eventsEx: [],
             week: "",
             currencyName: "",
-            controlEvent: false
+            controlEvent: false,
+            show:false,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -90,11 +92,18 @@ export default class CadastrarAtividades extends React.Component {
         console.log(this.state.fimPeriodo);
         console.log(this.state.inicioPeriodo);
         await api.post("/addAtracoes", this.state);
+        this.setState({show: true});     
     }
 
     render() {
         return (
             <div>
+                <SweetAlert
+                    show={this.state.show}
+                    title="Sucesso"
+                    text="Atração cadastrada, recarregue a página por favor"
+                    onConfirm={() => this.setState({ show: false })}
+                />
                 <Modal
                     show={this.state.controlEvent}
                     onHide={() => this.setState({ controlEvent: false })}
@@ -254,7 +263,7 @@ export default class CadastrarAtividades extends React.Component {
                     </Button>
                 </Form>
                 <div id="listEvents">
-                    <h5>Atividades Extras</h5>
+                    <h5>Atrações</h5>
                     {this.state.eventsEx.map(type => (
                             <Card key = {type.nome} id = "itemList">
                                 <Card.Body>

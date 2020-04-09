@@ -15,7 +15,6 @@ import "./Backup.css";
 import { Redirect } from "react-router-dom";
 import api from "../../services/api";
 import { makeStyles } from "@material-ui/core/styles";
-//import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
@@ -64,7 +63,6 @@ export default class InfoSchool extends React.Component {
   //Responsável por fazer o download do backup escolhido
   downloadBackup(nome){
       var fileName = nome;
-      //console.log(api.get(`/backup/download/`,{params:{fileName:fileName}}));
       api.get(`/backup/download/`,{params:{fileName:fileName}})
           .then(function(response){
               var blob = new Blob([response.data], {
@@ -77,7 +75,6 @@ export default class InfoSchool extends React.Component {
             console.log(error);
           })
       
-      //this.setState({ controlDeleteBackup: true, backupSelected: nome });
   }
 
   //Responsável por chamar a rota que realiza um backup
@@ -89,12 +86,11 @@ export default class InfoSchool extends React.Component {
         error: true,
       });
     }
-    //event.preventDefault();
   }
   //Responsável por chamar a rota que exclui um backup
   deleteBackup(event) {
     console.log(this.state.backupSelected);
-    api.delete("/backup",this.state.backupSelected);
+    api.delete("/backup",{params:{fileName:this.state.backupSelected.fileName}});
     event.preventDefault();
   }
 
@@ -158,19 +154,10 @@ export default class InfoSchool extends React.Component {
         </Row>
         <hr />
         <Row style={{ marginTop: "8px" }}>
-          <Col></Col>
-          <Col></Col>
+          <Col><p>+Depois de excluir ou fazer um backup, recarregue a página</p>{" "}
+                <p>+Para ter acesso ao download do backup adicione .sql no arquivo</p>
+          </Col>
           <Col>
-            {/* <InputGroup>
-                            <FormControl
-                                placeholder="Procurar..."
-                                value={this.state.search}
-                                onChange={this.handleChange}
-                            />
-                            <InputGroup.Prepend>
-                                <Button variant="outline-secondary">&#128269;</Button>
-                            </InputGroup.Prepend>
-                        </InputGroup> */}
             <TextField
               id="filled-read-only-input"
               label="Backup automático"
@@ -193,12 +180,11 @@ export default class InfoSchool extends React.Component {
                 height: "40vh",
                 overflowY: "auto",
               }}
-            >
+            > 
               <Table striped bordered hover responsive size="sm">
                 <thead>
                   <tr>
-                    {/*<th>#</th>*/}
-                    <th>Id</th>
+                    <th>Nome</th>
                     <th>Ferramentas</th>
                   </tr>
                 </thead>
@@ -208,16 +194,8 @@ export default class InfoSchool extends React.Component {
                       {/* <td>
                       <b></b>
                       </td> */}
-                      <td>{b.substring(0,16)}</td>
+                      <td>{b.substring(0,25)}</td>
                       <td>
-                        <Button
-                          size="sm"
-                          //manda o id para a função
-                          onClick={() => this.controlRecoverBackup(b)}
-                          variant="success"
-                        >
-                          <SettingsBackupRestoreIcon /> Restaurar
-                        </Button>{" "}
                         <Button
                           size="sm"
                           onClick={() => this.controlDeleteBackup(b)}
@@ -228,7 +206,7 @@ export default class InfoSchool extends React.Component {
                         <Button
                           size="sm"
                           onClick={() => this.downloadBackup(b)}
-                          variant="danger"
+                          variant="success"
                         >
                           <GetAppIcon /> baixar
                         </Button>
@@ -254,35 +232,3 @@ export default class InfoSchool extends React.Component {
     );
   }
 }
-// {this.state.backups.map((b) => (
-//   <tr name={b}>
-//     {/* <td>
-//     <b></b>
-//     </td> */}
-//     <td>{b.substring(0,16)}</td>
-//     <td>
-//       <Button
-//         size="sm"
-//         //manda o id para a função
-//         onClick={() => this.controlRecoverBackup(b)}
-//         variant="success"
-//       >
-//         <SettingsBackupRestoreIcon /> Restaurar
-//       </Button>{" "}
-//       <Button
-//         size="sm"
-//         onClick={() => this.controlDeleteBackup(b)}
-//         variant="danger"
-//       >
-//         <HighlightOffIcon /> Excluir
-//       </Button>{" "}
-//       <Button
-//         size="sm"
-//         onClick={() => this.downloadBackup(b)}
-//         variant="danger"
-//       >
-//         <GetAppIcon /> baixar
-//       </Button>
-//     </td>
-//   </tr>
-// ))}

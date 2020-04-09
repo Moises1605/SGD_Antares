@@ -369,9 +369,6 @@ export default class FormRegister extends React.Component {
                 </div>
               </Form.Group>
             </Form.Row>
-            {/* <Form.Row>
-              <Form.Group as={Col} md="3"></Form.Group>
-            </Form.Row> */}
             <Form.Row>
               <Form.Group as={Col} md="3" controlId="formGridCNPJ">
                 <div noValidate autoComplete="off">
@@ -668,15 +665,6 @@ export default class FormRegister extends React.Component {
     this.setState({ controlSucess: true });
     api.post("/adicionarEscola", this.state);
     event.preventDefault();
-    //     .then(function (response) {
-    //         // handle success
-    //         this.setState({ redirect: true });
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         // handle error
-    //         console.log(error);
-    // });
   }
 
   render() {

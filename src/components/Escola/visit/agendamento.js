@@ -111,7 +111,7 @@ export default class Agendamento extends React.Component {
             <SweetAlert
                 show={this.state.show}
                 title="Sucesso"
-                text="Agendamento solicitado com sucesso.Caso não receba um email de confirmação de visita, tente agendar a visita novamente"
+                text="Agendamento solicitado com sucesso."
                 onConfirm={() => this.setState({ show: false })}
             />
             <Modal
