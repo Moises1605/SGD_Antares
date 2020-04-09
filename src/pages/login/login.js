@@ -53,15 +53,15 @@ export default class Login extends React.Component {
       console.log(response);
       if(response.data.body.role === "School"){
         this.setState({ role: response.data.body.role })
-        this.setState({ idUser: response.data.body.idSchool  })
+        this.setState({ idUser: response.data.body.idSchool,redirect: true   })
 
       } else if (response.data.body.role === "Employee") {
         this.setState({ role: response.data.body.role })
-        this.setState({ idUser: response.data.body.idEmployee  })
+        this.setState({ idUser: response.data.body.idEmployee,redirect: true   })
 
       } else if (response.data.body.role === "Scholarship") {
         this.setState({ role: response.data.body.role })
-        this.setState({ idUser: response.data.body.idScholarship  })
+        this.setState({ idUser: response.data.body.idScholarship,redirect: true  })
       } 
     } catch (err) {
       this.setState({
@@ -92,24 +92,22 @@ export default class Login extends React.Component {
     //this.setState({type: response.data.type});
     //this.setState({idUser: response.data.id});
     //Se for um usuário do tipo escola
-    if (this.state.login != " ") {
+    /*if (this.state.login != " ") {
       this.setState({ redirect: true });
-    }
+    }*/
   }
 
   render() {
     if (this.state.redirect) {
-      if(/*this.state.role == "School"*/this.state.login == "moisesalmeida"){
+      if(this.state.role == "School"/*this.state.login == "moisesalmeida"*/){
           return <Redirect to={{ pathname: `/escola/${this.state.idUser}`, state: { id: this.state.idUser } }} />;
       }
       //Se for um usuário do tipo Bolsista
-      else if(/*this.state.role == "Scholarship"*/this.state.login == "robertoalmeida"){
-          return <Redirect to={{ pathname: `/bolsista/${this.state.idUser2}`, state: { id: this.state.idUser } }} />;
+      else if(this.state.role == "Scholarship"/*this.state.login == "robertoalmeida"*/){
+          return <Redirect to={{ pathname: `/bolsista/${this.state.idUser}`, state: { id: this.state.idUser } }} />;
       
-      }else if(/*this.state.role == "Employee"*/this.state.login == "raulpeixoto") {
-          return <Redirect to={{ pathname: `/usuario/${this.state.idUser3}`, state: { id: this.state.idUser } }} />;
-      }else if(/*this.state.role == "Employee"*/this.state.login == "ricardoporto") {
-        return <Redirect to={{ pathname: `/usuario/${this.state.idUser4}`, state: { id: this.state.idUser } }} />;
+      }else if(this.state.role == "Employee"/*this.state.login == "raulpeixoto"*/) {
+          return <Redirect to={{ pathname: `/usuario/${this.state.idUser}`, state: { id: this.state.idUser } }} />;
       }else {
           return <Redirect to="/login" />;
       }
@@ -177,9 +175,9 @@ export default class Login extends React.Component {
                     id="entrar"
                     block
                     variant="success"
-                    //onClick={this.handleLogin}
+                    onClick={this.handleLogin}
                     onKeyPress={this.handleKeyPress}
-                    onClick={this.handleSubmit}
+                    //onClick={this.handleSubmit}
                   >
                     Entrar
                   </Button>

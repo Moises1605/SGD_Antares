@@ -26,17 +26,30 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Row } from "react-bootstrap";
 import "./List.scss";
 import { Link } from "react-router-dom";
-
+import api from "../../../services/api"
 class SimpleList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       permission: [],
+      idFuncionario:this.props.permission
     };
   }
 
   async componentDidMount() {
-    await this.setState({ permission: this.props.permission });
+    const response =  await api.post('/retornarPermissoes',this.state);
+    var aux = [];
+    aux.push(response.data[0].gerarRelatorio);
+    aux.push(response.data[0].gerirFuncionarios);
+    aux.push(response.data[0].gerirBolsistas);
+    aux.push(response.data[0].gerirEscolas);
+    aux.push(response.data[0].gerirBackup);
+    aux.push(response.data[0].validarAgendamentos);
+    aux.push(response.data[0].gerirHorarioBolsista);
+    aux.push(response.data[0].inserirAtividade);
+    console.log(aux)
+    this.setState({permission: aux});
+    return aux;
   }
   //Responsável por direcionar a tela correspondente ao item selecionado pelo usuário na sidebar
   handleClick = (teste) => {

@@ -17,12 +17,12 @@ export default class Calendario extends React.Component {
   }
 
   /**NOTE Método que faz requisição de horários dos bolsistas*/
-  /*async componentDidMount() {
+  async componentDidMount() {
     const h = api.post("/listarHorarioBolsistas");
     console.log((await h).data)
     this.setState({ horarios: (await h).data.map(h => h) });
     console.log(this.state.horarios);
-  }*/
+  }
   render() {
     return (
       <div>
