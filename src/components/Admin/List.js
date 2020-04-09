@@ -71,7 +71,7 @@ class SimpleList extends Component {
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary="Encerrar Sessão" />
+              <ListItemText primary="Encerrar Sessão"  />
             </ListItem>
           </List>
         </div>

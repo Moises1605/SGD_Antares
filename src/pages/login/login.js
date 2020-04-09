@@ -41,6 +41,19 @@ export default class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //Responsável por chamar a rota que retorna os dados do usuário com a respectiva senha e email digitados.
+  async handleSubmit() {
+    //manda os dados do cadastro para o banco.
+    //const response = await api.get('/login',this.state);
+    //this.setState({type: response.data.type});
+    //this.setState({idUser: response.data.id});
+    //Se for um usuário do tipo escola
+    if (this.state.login != " ") {
+      this.setState({ redirect: true });
+    }
+  }
+
+
   handleLogin = async (event) => {
     event.preventDefault();
     const { login, password } = this.state;
@@ -63,6 +76,7 @@ export default class Login extends React.Component {
         this.setState({ role: response.data.body.role })
         this.setState({ idUser: response.data.body.idScholarship,redirect: true  })
       } 
+      this.handleSubmit();
     } catch (err) {
       this.setState({
         error: "Houve um problema com o login, verifique suas credencias.",
@@ -84,18 +98,6 @@ export default class Login extends React.Component {
       this.handleSubmit(event);
     }
   };
-
-  //Responsável por chamar a rota que retorna os dados do usuário com a respectiva senha e email digitados.
-  async handleSubmit(event) {
-    //manda os dados do cadastro para o banco.
-    //const response = await api.get('/login',this.state);
-    //this.setState({type: response.data.type});
-    //this.setState({idUser: response.data.id});
-    //Se for um usuário do tipo escola
-    /*if (this.state.login != " ") {
-      this.setState({ redirect: true });
-    }*/
-  }
 
   render() {
     if (this.state.redirect) {

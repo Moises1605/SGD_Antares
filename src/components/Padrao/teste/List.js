@@ -26,7 +26,11 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Row } from "react-bootstrap";
 import "./List.scss";
 import { Link } from "react-router-dom";
+
 import api from "../../../services/api"
+
+import { logout } from "../../../services/auth";
+
 class SimpleList extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +38,10 @@ class SimpleList extends Component {
       permission: [],
       idFuncionario:this.props.permission
     };
+  }
+
+  handleLogout(){
+    logout();
   }
 
   async componentDidMount() {
@@ -172,7 +180,7 @@ class SimpleList extends Component {
                 <ListItemIcon>
                   <ExitToAppIcon />
                 </ListItemIcon>
-                <ListItemText primary="Encerrar Sessão" href="login" />
+                <ListItemText primary="Encerrar Sessão" href="login" onClick={this.handleLogout}/>
               </ListItem>
             </Link>
           </List>
@@ -183,3 +191,4 @@ class SimpleList extends Component {
 }
 
 export default SimpleList;
+
