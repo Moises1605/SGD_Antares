@@ -10,7 +10,7 @@ class TelaAgendamento extends Component{
 	super();
 	this.state = {
 		visits:[
-			{
+			/*{
 				agendamento: "25/02",
 				Responsavel: "Ana",
 				horario: "09:30",
@@ -49,7 +49,7 @@ class TelaAgendamento extends Component{
 				status: "0",
 				numAlunos: "40",
 				nome:" Colégio AAAAAAAAA"
-			  },
+			  },*/
 		],
 	    pendingVisits: [],
 		confirmedVisits: [],
@@ -63,25 +63,25 @@ class TelaAgendamento extends Component{
 	controlConfirm(visit){
 		alert(visit.nome + 1);
 		visit.status = 1;
-		api.post("/confirmarVisita",visit);
+		api.post("/cancelaConfirmaAgendamento",visit);
 	}
 
 	controlCancel(visit){
 		alert(visit.nome + 3);
 		visit.status = 3;
-		api.post("/cancelarVisita",visit);
+		api.post("/cancelaConfirmaAgendamento",visit);
 	}
 
 	controlRealized(visit){
 		alert(visit.nome + 2);
 		visit.status = 2;
-		api.post("/visitaRealizada",visit);
+		api.post("/cancelaConfirmaAgendamento",visit);
 	}
 
 	controlDesCancel(visit){
 		alert(visit.nome + 0);
 		visit.status = 0;
-		api.post("/descancelarVisita",visit);
+		api.post("/cancelaConfirmaAgendamento",visit);
 	}
 
     handleSelect(eventKey){
@@ -89,8 +89,9 @@ class TelaAgendamento extends Component{
     }
 
     async componentDidMount(){
-		//const response = await api.post("/agendamentos");
-		//this.setState({visits:response.data});
+		const response = await api.post("/retornaAgendamentos");
+		console.log(response)
+		this.setState({visits:response.data});
 		var pendingAux = this.state.visits.filter((obj) => obj.status == 0);
 		var confirmAux = this.state.visits.filter((obj) => obj.status == 1);
 		var canceledAux = this.state.visits.filter((obj) => obj.status == 3);
@@ -119,7 +120,7 @@ class TelaAgendamento extends Component{
 								Data Prevista: {item.agendamento}{" "}
 								Nº Visitantes: {item.numAlunos}{" "}
 								Responsável: {item.Responsavel}{" "}
-								Horário: {item.horario}
+								Horário: {item.hora}
 								<div id = "visitsBuntton">
 									<Button onClick = {() => this.controlConfirm(item)} id = "confirmButton" variant = "success">Confirmar visita</Button>
 									<Button onClick = {() => this.controlCancel(item)} variant = "danger">Cancelar</Button>

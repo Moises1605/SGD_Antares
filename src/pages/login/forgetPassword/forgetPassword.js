@@ -32,7 +32,7 @@ export default class ForgetPassword extends React.Component {
     //Responsável por chamar a rota que irá recuperar o email do usuário. 
     async submitEmail(event) {
         //manda os dados do cadastro para o banco.
-        const response = await api.get('/esqueciSenha',this.state);
+        const response = await api.post('/esqueciSenha',this.state);
         this.setState({show: true});
     }
     render() {

@@ -43,7 +43,7 @@ export default class User extends React.Component {
         //<FollowVisit idScholarschip={this.props.match.params.id} />,
         //<Info idScholarship={this.props.match.params.id} />
       ],
-      idFuncionario: 14/*this.props.match.params.id*/,
+      idFuncionario: this.props.match.params.id,
       permission: [],
       active: null
     };
@@ -60,7 +60,7 @@ export default class User extends React.Component {
   };
 
   async loadPermission(event) {
-    const response =  await api.post('/retornarPermissoes',this.state);
+    /*const response =  await api.post('/retornarPermissoes',this.state);
     var aux = [];
     aux.push(response.data[0].gerarRelatorio);
     aux.push(response.data[0].gerirFuncionarios);
@@ -72,7 +72,7 @@ export default class User extends React.Component {
     aux.push(response.data[0].inserirAtividade);
     console.log(aux)
     this.setState({permission: aux});
-    return aux;
+    return aux;*/
     /*this.setState({
       permission[0]: response.data.gerarRelatório,
       permission[1]: response.data.gerirFuncionarios,
@@ -91,7 +91,7 @@ export default class User extends React.Component {
     if (this.props.match.params.id == 0) {
       //this.setState({permission: ['0','0','0','0','0','0','0','0','1','1','1'] });
       return ["0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1"];
-    } else if (this.props.match.params.id == 1) {
+    } else if (this.props.match.params.id == 19) {
       //this.setState({permission:['0','1','1','1','0','1','1','1','0','0','0'] });
       return ["0", "1", "1", "1", "0", "1", "1", "1"];
     } else if (this.props.match.params.id == 2) {
@@ -118,8 +118,8 @@ export default class User extends React.Component {
               <SimpleList
                 screens={this.state.screen}
                 onClick={this.componentDidMount}
-                permission = {this.teste()}
-                //permission={this.loadPermission()}
+                //permission = {this.teste()}
+                permission={this.state.idFuncionario}
               />
             </div>
 
