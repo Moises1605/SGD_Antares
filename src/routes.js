@@ -30,9 +30,9 @@ const Routes = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/cadastro" component={Register2} />
-      <Route exact path="/escola/:id" component={School} />
-      <Route exact path="/usuario/:id" component={User} />
-      <Route exact path="/bolsista/:id" component={Scholarship}/>
+      <PrivateRoute exact path="/escola/:id" component={School} />
+      <PrivateRoute exact path="/usuario/:id" component={User} />
+      <PrivateRoute exact path="/bolsista/:id" component={Scholarship}/>
       <Route excat path="/Funcionario/:id" component={funcionario_principal} />
       <Route excat path="/administrador/:id" component={Admin} />
       <Route excat path="/horariosDisponiveis" component={Schedule} />

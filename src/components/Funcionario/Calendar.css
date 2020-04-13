@@ -1,4 +1,8 @@
 .fc-today
 {
   background-color:inherit !important;
+} 
+
+#eventSchedule{
+  margin: 10px 150px 0 0;
 }
