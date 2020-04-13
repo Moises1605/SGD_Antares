@@ -46,28 +46,29 @@ export default class Login extends React.Component {
     const { login, password } = this.state;
     if (!login || !password) {
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
-    }
-    try {
-      const response = await api.post("/authUser", {login, password});
-      loginAuth(response.data.token);
-      console.log(response);
-      if(response.data.body.role === "School"){
-        this.setState({ role: response.data.body.role })
-        this.setState({ idUser: response.data.body.idSchool,redirect: true   })
+    }else{
+      try {
+        const response = await api.post("/authUser", {login, password});
+        loginAuth(response.data.token);
+        console.log(response);
+        if(response.data.body.role === "School"){
+          this.setState({ role: response.data.body.role })
+          this.setState({ idUser: response.data.body.idSchool,redirect: true   })
 
-      } else if (response.data.body.role === "Employee") {
-        this.setState({ role: response.data.body.role })
-        this.setState({ idUser: response.data.body.idEmployee,redirect: true   })
+        } else if (response.data.body.role === "Employee") {
+          this.setState({ role: response.data.body.role })
+          this.setState({ idUser: response.data.body.idEmployee,redirect: true   })
 
-      } else if (response.data.body.role === "Scholarship") {
-        this.setState({ role: response.data.body.role })
-        this.setState({ idUser: response.data.body.idScholarship,redirect: true  })
-      } 
-      this.handleSubmit();
-    } catch (err) {
-      this.setState({
-        error: "Houve um problema com o login, verifique suas credencias.",
-      });
+        } else if (response.data.body.role === "Scholarship") {
+          this.setState({ role: response.data.body.role })
+          this.setState({ idUser: response.data.body.idScholarship,redirect: true  })
+        } 
+        this.handleSubmit();
+      } catch (err) {
+        this.setState({
+          error: "Problema no login, verifique suas credencias.",
+        });
+      }
     }
   };
 
@@ -112,7 +113,7 @@ export default class Login extends React.Component {
                 <div>
                   <h1 id="title2">Login</h1>
                 </div>
-
+                <p id = 'erro'> {this.state.error}</p>
                 <Form id="info">
                   {/*Campo responsável por pegar o login do usuário */}
                   <div id="loginn">
@@ -192,27 +193,3 @@ export default class Login extends React.Component {
   }
 }
  
-
-function goHome(){
-  /*<Redirect
-  to={{
-    pathname: "/usuario/",
-    state: {
-      permission: [
-        "1",
-        "1",
-        "1",
-        "1",
-        "1",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-      ],
-      id: "2",
-    },
-  }}
-/>*/
-}

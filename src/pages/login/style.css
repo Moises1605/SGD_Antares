@@ -28,6 +28,11 @@
     margin-bottom: 20px;
 }
 
+#erro{
+    color: red;
+    font-size: 13px;
+}
+
 #form{
     width: 33%;
     height: 90vh;
