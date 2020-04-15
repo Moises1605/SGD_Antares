@@ -8,6 +8,10 @@ import pt from "date-fns/locale/pt"; // the locale you want
 import "react-datepicker/dist/react-datepicker.css";
 registerLocale("pt", pt);
 
+function teste1(rota) {
+  window.open('https://sgd-api.herokuapp.com/makeReport/'+ rota, '_blank');
+}
+
 export default class NovoRelatorio extends Component {
   constructor() {
     super();
@@ -20,6 +24,7 @@ export default class NovoRelatorio extends Component {
       funcionarios: false, //informações de funcionários
       visitantes: false, //informações sobre visitantes
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = (event) => {
@@ -34,8 +39,24 @@ export default class NovoRelatorio extends Component {
     this.setState({ endDate: date });
   };
 
-  async handleSubmit() {
-    api.post("/makeReport", this.state);
+  async handleSubmit(event) {
+    var rota = ''+'report.pdf?diaInicio='+this.state.startDate.getDate()+
+                '&mesInicio='+(this.state.startDate.getMonth()+1)+
+                '&anoInicio='+this.state.startDate.getFullYear()+
+                '&diaFim='+this.state.endDate.getDate()+
+                '&mesFim='+(this.state.endDate.getMonth()+1)+
+                '&anoFim='+this.state.endDate.getFullYear();
+    if(this.state.escolas)
+      rota = rota + '&Escolas';
+    if(this.state.funcionarios)
+      rota = rota + '&Funcionarios';
+    if(this.state.visitantes)
+      rota = rota + '&Visitas';
+    if(this.state.agendamentos)
+      rota = rota + '&Agendamentos';
+    if(this.state.bolsistas)
+      rota = rota + '&Bolsistas';
+    teste1(rota);
     this.setState({ show: true });
   }
 
@@ -55,7 +76,7 @@ export default class NovoRelatorio extends Component {
     return (
       <React.Fragment>
         <Container>
-          <Form>
+         <Form onSubmit={this.handleSubmit}>
             <Form.Row>
               <Form.Label>
                 <h6>Selecione o período a ser analisado.</h6>
