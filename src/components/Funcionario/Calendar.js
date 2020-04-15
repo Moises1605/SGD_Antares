@@ -112,7 +112,7 @@ export default class DemoApp extends React.Component {
     }
 
 	handleSubmit(){
-		alert(this.state.idScholarship);
+		
 		api.post("/addVariosHorariosBolsista",{schedule: this.state.schedule,idScholarschip: this.state.idScholarship});
 		this.setState({showSuccess:true});
 	}

@@ -21,9 +21,8 @@ export default class ScheduleScholarship extends React.Component {
   }
   //Carrega o horário do bolsista
   async componentDidMount(){
-    /*var horarioBolsista= api.post("/dadosBolsista",this.idScholarschip);
+    var horarioBolsista= api.post("/dadosBolsista",this.idScholarschip);
     this.setState({schedules: horarioBolsista.data});
-    console.log((await horarioBolsista).data)*/
   }
 
   render() {
