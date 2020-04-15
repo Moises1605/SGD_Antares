@@ -176,7 +176,7 @@ class Funcionario extends Component {
               variant="outline-danger"
               onClick={() => this.deleteItem()}
             >
-              Exluir funcionário
+              Excluir funcionário
             </Button>
           </Modal.Body>
         </Modal>

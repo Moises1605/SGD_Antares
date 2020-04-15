@@ -275,24 +275,6 @@ export default class Escolas extends React.Component {
                 </Table>
               </div>
             </Col>
-            <Col
-              md={1}
-              style={{
-                paddingTop: "45px",
-              }}
-            >
-              {this.state.escolas.map((e) => (
-                <Row style={{ paddingTop: "14px" }}>
-                  <Button
-                    size="sm"
-                    variant="outline-danger"
-                    onClick={() => this.deleteItem(e.id)}
-                  >
-                    <DeleteIcon />
-                  </Button>
-                </Row>
-              ))}
-            </Col>
           </Row>
           <br />
           <Row>
