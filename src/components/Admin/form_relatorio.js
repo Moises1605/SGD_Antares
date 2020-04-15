@@ -47,7 +47,7 @@ export default class NovoRelatorio extends Component {
                 '&diaFim='+this.state.endDate.getDate()+
                 '&mesFim='+(this.state.endDate.getMonth()+1)+
                 '&anoFim='+this.state.endDate.getFullYear()+
-                '&idFuncionario'+this.state.idFuncionario;
+                '&idFuncionario='+this.state.idFuncionario;
     if(this.state.escolas)
       rota = rota + '&Escolas';
     if(this.state.funcionarios)
