@@ -159,34 +159,6 @@ export default class Escolas extends React.Component {
 
           <Row>
             <Col>
-              <Dropdown>
-                <Dropdown.Toggle variant="outline-primary">
-                  Ordenar Por
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => this.orderNomeEscolaCresc}>
-                    Escola
-                  </Dropdown.Item>
-                  {/*<Dropdown.Item onClick={() => this.orderNomeEscolaDecresc}>
-                    Escola Decrescente
-                    </Dropdown.Item>*/}
-                  <Dropdown.Item onClick={() => this.orderNomeResponsavelCresc}>
-                    Responsável
-                  </Dropdown.Item>
-                  {/*<Dropdown.Item
-                    onClick={() => this.orderNomeResponsavelDecresc}
-                  >
-                    Responsável Decrescente
-                  </Dropdown.Item>*/}
-                  <Dropdown.Item onClick={() => this.orderEmailCresc}>
-                    Email
-                  </Dropdown.Item>
-                  {/* <Dropdown.Item onClick={() => this.orderEmailDecresc}>
-                    Email Decrescente
-                </Dropdown.Item>*/}
-                </Dropdown.Menu>
-              </Dropdown>
             </Col>
             <Col></Col>
             <Col>
