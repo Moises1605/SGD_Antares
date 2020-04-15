@@ -175,7 +175,7 @@ export default class Bolsistas extends React.Component {
               id="cancel2"
               onClick={() => this.deleteItem()}
             >
-              Exluir bolsista
+              Excluir bolsista
             </Button>
           </Modal.Body>
         </Modal>
