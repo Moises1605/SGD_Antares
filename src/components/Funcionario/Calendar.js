@@ -6,8 +6,10 @@ import ptBr from '@fullcalendar/core/locales/pt-br';
 import interactionPlugin from '@fullcalendar/interaction';
 import { formatDate } from '@fullcalendar/core'
 import './Calendar.css';
-import{Container,Row,Col,Card,Button} from 'react-bootstrap';
+import{Container,Row,Col,Card,Button,Tab,Tabs} from 'react-bootstrap';
 import api from "../../services/api"
+import RemoveSchedule from "./removeSchedule";
+import SweetAlert from 'sweetalert2-react';
 
 export default class DemoApp extends React.Component { 
 
@@ -17,19 +19,54 @@ export default class DemoApp extends React.Component {
 			idScholarship:"",
 			schedule: [],
 			dayStart: "",
-			hourStart: "",
+			inicioPeriodo: "",
 			dayEnd:"",
 			hourEnd:"",
 			scholarships: [/*{nome:"Moises",id:"1"},{nome:"Lucas",id:"2"},{nome:"Fernanda",id:"3"}*/],
+			scholarshipsAux:[],
 			week: ["Seg","Ter","Qua","Qui","Sex"],
-			show:false
+			show:false,
+			scheduleScholarship:[],
+			schedulesEdit:[],
+			showSuccess:false,
 		}
+
+		this.filterScholarships = this.filterScholarships.bind(this);
+		this.scholarshipsWithoutSchedule = this.scholarshipsWithoutSchedule.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSelect = this.handleSelect.bind(this);
 	} 
 
+	filterScholarships(element,index,array){	
+		if (!this.state.scheduleScholarship.includes(element.idBolsista)) {
+			this.state.scheduleScholarship.push(element.idBolsista);
+		}
+	}
+
+	scholarshipsWithoutSchedule(element,index,array){
+		if (!this.state.scheduleScholarship.includes(element.idBolsista)) {
+			this.state.scholarships.push(element);
+		}
+		else{
+			this.state.scholarshipsAux.push(element);
+		}
+	}
+
+	removeSchedule(index){
+		this.state.schedule.splice(index,1);
+		this.setState({schedule:this.state.schedule});
+		//this.setState({schedule:aux});
+	}
+
 	//Carrega os bolsistas que não tem horários
-	componentDidMount(){
-		const response = api.post("/retonarBolsistas");
-		this.setState({scholarships: response.data});
+	async componentDidMount(){
+		const response2 = await api.post('/listarHorarioBolsistas');
+		response2.data.forEach(this.filterScholarships);
+		this.setState({schedulesEdit:response2.data});
+		console.log(this.state.schedulesEdit);
+		const response = await api.post("/listarDadosBolsistas");
+		response.data.forEach(this.scholarshipsWithoutSchedule);
+		this.setState({scholarships:this.state.scholarships});
 	}
 
 	//Converte para o formato utilizado
@@ -56,9 +93,9 @@ export default class DemoApp extends React.Component {
 			locale: 'pt-br'
 		})
 		var schedule = {
-			day: this.controlWeekday(dateStart.substring(0,3)),
-			hourStart: dateStart.substring(6,12),
-			hourEnd: dateEnd.substring(6,12)
+			semana: this.controlWeekday(dateStart.substring(0,3)),
+			inicioPeriodo: dateStart.substring(6,12),
+			fimPeriodo: dateEnd.substring(6,12)
 		}
 		this.state.schedule.push(schedule);
 		var scheduleAux = this.state.schedule;
@@ -66,19 +103,37 @@ export default class DemoApp extends React.Component {
 	}
 
 	handleEditScholarship(scholarship){
-		var id = scholarship.id;
+		var id = scholarship.idBolsista;
 		this.setState({show: true,idScholarship: id});
 	}
 
+	handleSelect(eventKey){
+		this.setState({activeScreen: eventKey});
+    }
+
 	handleSubmit(){
 		alert(this.state.idScholarship);
-		api.post("/adicionarHorario",{shededule: this.state.schedule,idScholarship: this.state.idScholarship});
+		api.post("/addVariosHorariosBolsista",{schedule: this.state.schedule,idScholarschip: this.state.idScholarship});
+		this.setState({showSuccess:true});
 	}
 
     render() {
 		return (
 			<Container fluid >
-				<Row><h5>Escolha um bolsista para editar os seus horários</h5></Row>
+			 <SweetAlert
+                    show={this.state.showSuccess}
+                    title="Sucesso"
+                    text="Horário cadastrada, recarregue a página por favor"
+                    onConfirm={() => this.setState({ showSuccess: false })}
+                />
+			<Tabs 
+				id = "visits"
+				activeKey={this.state.activeScreen}
+				defaultActiveKey="0"
+				onSelect={this.handleSelect}
+		    >
+			<Tab eventKey="0" title="Edição">
+				<Row><h5>Escolha um bolsista para cadastrar os seus horários</h5></Row>
 				<Row>
 				<Col md ='6'>
 				{this.state.show && (
@@ -99,32 +154,38 @@ export default class DemoApp extends React.Component {
 						selectable = {true}
 						select = {this.handleSelectDate}
 					/>
-					<div id = "eventSchedule"><Button  variant = "outline-success"  onClick={() => this.handleSubmit()}>Salvar</Button></div>
+					<div id = "eventSchedule"><Button disabled = {this.state.schedule.length == 0} variant = "outline-success"  onClick={this.handleSubmit}>Salvar</Button></div>
 					</div>
 				)}
 				</Col>
-				<Col>
+				<Col style={{ height: "60vh", overflowY: "auto", }}>
 				<h5>Bolsistas</h5>
                     {this.state.scholarships.map(type => (
                         <Card key = {type.nome} id = "itemList">
                             <Card.Body>
-                                {type.nome}
-                                <div id = "eventButton"><Button  variant = "outline-danger" size = 'sm' onClick={() => this.handleEditScholarship(type)}>Editar</Button></div>
+                                {type.nome}{" "}{type.surname}
+                                <div id = "eventButton"><Button  variant = "outline-primary" size = 'sm' onClick={() => this.handleEditScholarship(type)}>Editar</Button></div>
                             </Card.Body>
                         </Card>
                     ))}
 				</Col>
-				<Col md = '3'>
+				<Col style={{ height: "60vh", overflowY: "auto", }} md = '3'>
 					<h5>Horários</h5>
                     {this.state.schedule.map(type => (
                             <Card key = {type.nome} id = "itemList">
                                 <Card.Body>
-                                    {this.state.week[type.day-1]}{" "}{type.hourStart}{"-"}{type.hourEnd}
+                                    {this.state.week[type.semana-1]}{" "}{type.inicioPeriodo}{"-"}{type.fimPeriodo}
+									<div id = "eventButton"><Button  variant = "outline-danger" size = 'sm' onClick={() => this.removeSchedule(this.state.schedule.indexOf(type))}>Excluir</Button></div>
                                 </Card.Body>
                             </Card>
                     ))}
 				</Col>
-				</Row>
+				</Row> 
+			</Tab>
+			<Tab eventKey="1" title="Exclusão">
+				<RemoveSchedule schedules = {this.state.schedulesEdit} scholarships = {this.state.scholarshipsAux}/>
+			</Tab>
+			</Tabs>
 			</Container>
 		);
     }
