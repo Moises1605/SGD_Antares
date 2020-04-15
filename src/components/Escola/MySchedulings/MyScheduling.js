@@ -220,7 +220,7 @@ export default class MyScheduling extends React.Component {
                   <span id="test">
                     <DateRangeIcon fontSize="large" />
                   </span>
-                  <span id="data">{item.data}</span>
+                  <span id="data">{item.agendamento}</span>
                   <span id="responsavel">Responsável:{item.Responsavel}</span>
                   <span id="button">
                     <Button
