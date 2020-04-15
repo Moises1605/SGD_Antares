@@ -29,7 +29,7 @@ export default class InfoSchool extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      backups: [/*"moises almeida da Cruz Farias","Lucas almeida da Cruz Farias"*/], //lista de Backups
+      backups: [], //lista de Backups
       backupSelected:{fileName: " "}, //Backup que foi selecionado
       error: false,// Variável de controle para a visualização do modal de erro.
       success: false,// Variável de controle para a visualização do modal de sucesso.

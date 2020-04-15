@@ -10,7 +10,7 @@ export default class Agendamento extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            idSchool: 17/*this.props.idSchool*/,
+            idSchool:this.props.idSchool,
             date1: this.props.date2.toString(),
             responsible: '',
             students: '',
@@ -123,7 +123,7 @@ export default class Agendamento extends React.Component {
                         Dia:{(this.state.currency.semana == "" || this.state.currency.semana == null) ? "não se aplica" : `${this.state.diaSemana[this.state.currency.semana - 1]}`}
                     </Badge>{' '}
                     <Badge pill style={{ fontSize: "16px" }} variant="primary">
-                        Início:{(this.state.currency.inicioPeriodo == "" || this.state.currency.inicioPeriodo == null) ?  "não se aplica" : `${this.state.currency.inicioPeriodo}`}
+                        Início:{(this.state.currency.incioPeriodo == "" || this.state.currency.incioPeriodo == null) ?  "não se aplica" : `${this.state.currency.incioPeriodo}`}
                     </Badge>{' '} 
                     <Badge pill style={{ fontSize: "16px" }} variant="primary">
                         Fim:{(this.state.currency.fimPeriodo == "" || this.state.currency.fimPeriodo == null) ?  "não se aplica" : `${this.state.currency.fimPeriodo}`}
