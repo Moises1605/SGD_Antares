@@ -124,7 +124,7 @@ export default class MyScheduling extends React.Component {
                   <Form.Control
                     type="text"
                     placeholder="Nome completo"
-                    value={this.state.current.Responsável}
+                    value={this.state.current.Responsavel}
                   />
                 </Col>
               </Form.Group>
@@ -149,7 +149,7 @@ export default class MyScheduling extends React.Component {
                 <Col sm={3}>
                   <Form.Control
                     Type="text"
-                    value={this.state.current.horario}
+                    value={this.state.current.hora}
                   />
                 </Col>
               </Form.Group>
