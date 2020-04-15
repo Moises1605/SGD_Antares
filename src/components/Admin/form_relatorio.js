@@ -13,9 +13,10 @@ function teste1(rota) {
 }
 
 export default class NovoRelatorio extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      idFuncionario: this.props.idFuncionario,
       startDate: "",
       endDate: "",
       agendamentos: false, //agendamentos realizados (noturno e diurno)
@@ -45,7 +46,8 @@ export default class NovoRelatorio extends Component {
                 '&anoInicio='+this.state.startDate.getFullYear()+
                 '&diaFim='+this.state.endDate.getDate()+
                 '&mesFim='+(this.state.endDate.getMonth()+1)+
-                '&anoFim='+this.state.endDate.getFullYear();
+                '&anoFim='+this.state.endDate.getFullYear()+
+                '&idFuncionario'+this.state.idFuncionario;
     if(this.state.escolas)
       rota = rota + '&Escolas';
     if(this.state.funcionarios)

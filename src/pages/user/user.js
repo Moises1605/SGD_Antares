@@ -30,7 +30,7 @@ export default class User extends React.Component {
     this.state = {
       screens: [
         <Inicio />,
-        <Relatorio />,
+        <Relatorio idFuncionario = {this.props.match.params.id}/>,
         <Funcionario />,
         <Bolsistas />,
         <Escolas />,

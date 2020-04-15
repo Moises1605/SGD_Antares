@@ -23,12 +23,13 @@ function controlDownload(id) {
 
 
 class Relatorio extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       search: "",
       relatorios: [],
       modalShow: false,
+      idFuncionario: this.props.idFuncionario,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -163,7 +164,7 @@ class Relatorio extends Component {
             <Modal.Title>Criar Novo Relatório</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <NovoRelatorio />
+            <NovoRelatorio idFuncionario = {this.state.idFuncionario}/>
           </Modal.Body>
         </Modal>
       </Container>
