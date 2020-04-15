@@ -86,7 +86,7 @@ export default class InfoSchool extends React.Component {
             street: response.data.street,
             city: response.data.city,
             state: response.data.state,
-            CNPJ: response.data.CMPJ,
+            CNPJ: response.data.CPF_CNPJ,
             phone: response.data.phone,
         })
     }
