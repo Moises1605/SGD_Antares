@@ -15,6 +15,12 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import SearchIcon from "@material-ui/icons/Search";
 import NovoRelatorio from "./form_relatorio";
 import api from "../../services/api";
+import GetAppIcon from '@material-ui/icons/GetApp';
+
+function controlDownload(id) {
+  window.open('https://sgd-api.herokuapp.com/RelatorioPorID/'+ id, '_blank');
+}
+
 
 class Relatorio extends Component {
   constructor() {
@@ -27,6 +33,7 @@ class Relatorio extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
+  
 
   handleChange(event) {
     this.setState({ search: event.target.value });
@@ -36,6 +43,7 @@ class Relatorio extends Component {
 
   handleClick = () => {
     this.setState({ modalShow: true });
+    console.log(this.state.re);
   };
 
   handleClose = () => {
@@ -44,11 +52,12 @@ class Relatorio extends Component {
 
   handleRelatorio = (id) => {
     api.post("/abrirRelatorio", id);
-  };
+  }; 
 
   async componentDidMount() {
-    const r = api.post("/listarRelatorios");
-    this.setState({ relatorios: (await r).data.map((r) => r) });
+    const r = await api.get("/listarRelatorios");
+    this.setState({relatorios: r.data});
+    console.log(r);
   }
 
   render() {
@@ -93,14 +102,13 @@ class Relatorio extends Component {
         <Row>
           <div style={{ height: "3vh" }}></div>
         </Row>
-        <Row>
-          <Col md={12}>
-            <div
-              style={{
-                height: "40vh",
-                overflowY: "auto",
-              }}
-            >
+        <Row 
+          style={{
+            height: "40vh",
+            overflowY: "auto",
+          }}
+        >
+          <Col md={11}>
               <Table size="md" bordered hover responsive striped>
                 <thead>
                   <tr>
@@ -113,13 +121,12 @@ class Relatorio extends Component {
                 <tbody>
                   {this.state.relatorios.map((r, i = 0) => (
                     <tr
-                      key={r.idRelatorio}
-                      name={r.idRelatorio}
-                      onClick={() => this.handleRelatorio(r.idRelatorio)}
+                      key={r.ID}
+                      name={r.ID}
                     >
-                      <td>{r.idRelatorio}</td>
-                      <td>{r.nomeFuncionario}</td>
-                      <td>{r.criadoEm}</td>
+                      <td>{r.ID}</td>
+                      <td>{r.NomeResponsavel}{" "}{r.surname}</td>
+                      <td>{r.Criacao}</td>
                       <td>
                         {"Início: " + r.inicioPeriodo + " Fim: " + r.fimPeriodo}
                       </td>
@@ -127,7 +134,24 @@ class Relatorio extends Component {
                   ))}
                 </tbody>
               </Table>
-            </div>
+          </Col>
+          <Col
+              md={1}
+              style={{
+              paddingTop: "45px",
+            }}
+          >
+            {this.state.relatorios.map((f) => (
+              <Row style={{ paddingTop: "14px" }}>
+                <Button
+                  size="sm"
+                  variant="outline-success"
+                  onClick={() => controlDownload(f.ID)}
+                >
+                  <GetAppIcon />
+                </Button>
+              </Row>
+            ))}
           </Col>
         </Row>
         <br />
