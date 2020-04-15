@@ -72,31 +72,9 @@ class Relatorio extends Component {
         <hr />
         <Row>
           <Col>
-            <Dropdown>
-              <Dropdown.Toggle variant="outline-primary">
-                Ordenar Por
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item>Nome</Dropdown.Item>
-                <Dropdown.Item>Data</Dropdown.Item>
-                <Dropdown.Item>Nº de Visitantes</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
           </Col>
           <Col></Col>
           <Col>
-            <InputGroup>
-              <FormControl
-                placeholder="Procurar..."
-                onChange={this.handleChange}
-                value={this.state.search}
-              />
-              <InputGroup.Prepend>
-                <Button size="sm" variant="primary" onClick={this.handleSearch}>
-                  <SearchIcon size="small" />
-                </Button>
-              </InputGroup.Prepend>
-            </InputGroup>
           </Col>
         </Row>
         <Row>
@@ -124,7 +102,7 @@ class Relatorio extends Component {
                       key={r.ID}
                       name={r.ID}
                     >
-                      <td>{r.ID}</td>
+                      <td>{i++}</td>
                       <td>{r.NomeResponsavel}{" "}{r.surname}</td>
                       <td>{r.Criacao}</td>
                       <td>

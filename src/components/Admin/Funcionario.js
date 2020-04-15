@@ -173,7 +173,6 @@ class Funcionario extends Component {
           <Modal.Body>
             <Button
               variant="outline-danger"
-              id="cancel2"
               onClick={() => this.deleteItem()}
             >
               Exluir funcionário
