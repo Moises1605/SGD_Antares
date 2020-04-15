@@ -145,7 +145,8 @@ class Funcionario extends Component {
 
   async componentDidMount() {
     const f = api.post("/listarFuncionarios");
-    this.setState({ funcionarios: (await f).data.map((f) => f) });
+    this.setState({ funcionarios: (await f).data.map((f) => f)});
+    this.setState({ funcionariosReserva: (await f).data.map((f) => f)});
   }
 
   render() {
