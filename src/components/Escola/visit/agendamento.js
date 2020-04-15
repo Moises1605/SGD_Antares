@@ -131,7 +131,7 @@ export default class Agendamento extends React.Component {
                 
                 </Modal.Footer>
             </Modal>
-            <Form onSubmit = {this.handleSubmit}>
+            <Form>
             <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={3}>
                         Dia
