@@ -19,6 +19,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 class Funcionario extends Component {
   constructor() {
     super();
@@ -32,6 +34,7 @@ class Funcionario extends Component {
       controlCancel: false,
       deleteSelected: "",
       funcionariosReserva: [],
+      loading: true
     };
   }
 
@@ -147,6 +150,7 @@ class Funcionario extends Component {
     const f = api.post("/listarFuncionarios");
     this.setState({ funcionarios: (await f).data.map((f) => f)});
     this.setState({ funcionariosReserva: (await f).data.map((f) => f)});
+    this.setState({loading: false});
   }
 
   render() {
@@ -240,6 +244,7 @@ class Funcionario extends Component {
         >
           <Col md={11}>
             <div>
+              {this.state.loading ? <CircularProgress/> :
               <Table striped bordered hover responsive size="md">
                 <thead>
                   <tr>
@@ -279,6 +284,7 @@ class Funcionario extends Component {
                   ))}
                 </tbody>
               </Table>
+              }
             </div>
           </Col>
           <Col
@@ -305,7 +311,7 @@ class Funcionario extends Component {
           <Col xs={3}></Col>
           <Col xs={5}>
             {this.state.funcionarios.length === 0 &&
-              this.state.searchControl === false && (
+              this.state.searchControl === false && this.state.loading === false &&  (
                 <Alert
                   severity="warning"
                   variant="filled"
