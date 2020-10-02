@@ -16,6 +16,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import NovoRelatorio from "./form_relatorio";
 import api from "../../services/api";
 import GetAppIcon from '@material-ui/icons/GetApp';
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 function controlDownload(id) {
   window.open('https://sgd-api.herokuapp.com/RelatorioPorID/'+ id, '_blank');
@@ -30,6 +31,7 @@ class Relatorio extends Component {
       relatorios: [],
       modalShow: false,
       idFuncionario: this.props.idFuncionario,
+      loading: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -58,7 +60,7 @@ class Relatorio extends Component {
   async componentDidMount() {
     const r = await api.get("/listarRelatorios");
     this.setState({relatorios: r.data});
-    console.log(r);
+    this.setState({loading: false});
   }
 
   render() {
@@ -88,6 +90,7 @@ class Relatorio extends Component {
           }}
         >
           <Col md={11}>
+            {this.state.loading ? <CircularProgress/> :
               <Table size="md" bordered hover responsive striped>
                 <thead>
                   <tr>
@@ -113,6 +116,7 @@ class Relatorio extends Component {
                   ))}
                 </tbody>
               </Table>
+              }
           </Col>
           <Col
               md={1}
@@ -137,7 +141,7 @@ class Relatorio extends Component {
         <Row>
           <Col md={3}></Col>
           <Col md={5}>
-            {this.state.relatorios.length === 0 && (
+            {this.state.relatorios.length === 0 && this.state.loading === false && (
               <Alert
                 severity="warning"
                 variant="filled"

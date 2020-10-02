@@ -17,6 +17,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 export default class Escolas extends React.Component {
   constructor() {
     super();
@@ -24,6 +26,7 @@ export default class Escolas extends React.Component {
       search: "",
       escolas: [],
       escolasReserva: [],
+      loading: true
     };
   }
 
@@ -138,7 +141,7 @@ export default class Escolas extends React.Component {
     this.setState({
       escolasReserva: (await e).data.map((e) => e, e.tag === i++),
     });
-    console.log(this.state.escolas);
+    this.setState({loading: false});
   }
 
   render() {
@@ -191,6 +194,7 @@ export default class Escolas extends React.Component {
           >
             <Col md={11}>
               <div>
+                {this.state.loading ? <CircularProgress/> :
                 <Table striped bordered hover responsive size="md">
                   <thead>
                     <tr>
@@ -245,6 +249,7 @@ export default class Escolas extends React.Component {
                     ))}
                   </tbody>
                 </Table>
+                }
               </div>
             </Col>
           </Row>
@@ -252,7 +257,7 @@ export default class Escolas extends React.Component {
           <Row>
             <Col md={3}></Col>
             <Col md={5}>
-              {this.state.escolas.length === 0 && (
+              {this.state.escolas.length === 0 && this.state.loading === false && (
                 <Alert
                   severity="warning"
                   variant="filled"

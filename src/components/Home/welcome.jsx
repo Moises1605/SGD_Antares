@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import VisitNight from "./visitNight/visitNight";
+import {Link} from 'react-router-dom';
 import {
   Container,
   Button,
@@ -80,8 +81,10 @@ class Welcome extends Component {
                       validada. Dessa forma, será possível agendar e monitorar
                       os agendamentos.
                     </h6>
-                    <Button block href="/login">
-                      Agendamento Escolar
+                    <Button block>
+                      <Link to="/login" className="btn_link">
+                      <b>Agendamento Escolar</b>
+                        </Link>
                     </Button>
                   </Col>
                 </Row>

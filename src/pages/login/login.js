@@ -16,6 +16,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { loginAuth } from "../../services/auth";
 
@@ -34,6 +35,7 @@ export default class Login extends React.Component {
       permission2: [],
       role: "",
       error: "",
+      loading: false
     };
 
     this.handleChangeLogin = this.handleChangeLogin.bind(this);
@@ -42,10 +44,12 @@ export default class Login extends React.Component {
 
   //Responsável por chamar a rota que retorna os dados do usuário com a respectiva senha e email digitados.
   handleLogin = async (event) => {
+    this.setState({loading: true});
     event.preventDefault();
     const { login, password } = this.state;
     if (!login || !password) {
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
+      this.setState({loading: false})
     }else{
       try {
         const response = await api.post("/authUser", {login, password});
@@ -54,20 +58,24 @@ export default class Login extends React.Component {
         if(response.data.body.role === "School"){
           this.setState({ role: response.data.body.role })
           this.setState({ idUser: response.data.body.idSchool,redirect: true   })
+          this.setState({loading: false})
 
         } else if (response.data.body.role === "Employee") {
           this.setState({ role: response.data.body.role })
           this.setState({ idUser: response.data.body.idEmployee,redirect: true   })
+          this.setState({loading: false})
 
         } else if (response.data.body.role === "Scholarship") {
           this.setState({ role: response.data.body.role })
           this.setState({ idUser: response.data.body.idScholarship,redirect: true  })
+          this.setState({loading: false})
         } 
         this.handleSubmit();
       } catch (err) {
         this.setState({
           error: "Problema no login, verifique suas credencias.",
         });
+        this.setState({loading: false})
       }
     }
   };
@@ -83,7 +91,7 @@ export default class Login extends React.Component {
 
   handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      this.handleSubmit(event);
+      this.handleLogin(event);
     }
   };
 
@@ -161,6 +169,7 @@ export default class Login extends React.Component {
                       marginTop: "50px",
                     }}
                   >
+                  {this.state.loading ? <CircularProgress/> : 
                   <Button
                     id="entrar"
                     block
@@ -169,8 +178,7 @@ export default class Login extends React.Component {
                     onKeyPress={this.handleKeyPress}
                   >
                     Entrar
-                  </Button>
-
+                  </Button>}
                   <Link to="/cadastro">
                     <Button
                       id="cadastrar"

@@ -19,11 +19,11 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
 import SweetAlert from "sweetalert2-react";
+import CircularProgress from '@material-ui/core/CircularProgress';
 export default class Bolsistas extends React.Component {
   constructor() {
     super();
     this.state = {
-      rows: [],
       search: "",
       show: false,
       showdelete: false,
@@ -33,6 +33,7 @@ export default class Bolsistas extends React.Component {
       controlCancel: false,
       deleteSelected: "",
       bolsistasReserva: [],
+      loading: true
     };
   }
 
@@ -48,6 +49,7 @@ export default class Bolsistas extends React.Component {
     const b = api.post("/listarBolsistas");
     this.setState({ bolsistas: (await b).data.map((b) => b) });
     this.setState({ bolsistasReserva: (await b).data.map((b) => b) });
+    this.setState({ loading: false});
   }
 
   deleteItem = () => {
@@ -148,6 +150,7 @@ export default class Bolsistas extends React.Component {
     }
   };
   render() {
+    const loading = this.state.loading;
     return (
       <div>
         <SweetAlert
@@ -243,6 +246,7 @@ export default class Bolsistas extends React.Component {
           >
             <Col md={11}>
               <div>
+                {loading ? <CircularProgress/> :
                 <Table striped bordered hover responsive size="md">
                   <thead>
                     <tr>
@@ -280,7 +284,7 @@ export default class Bolsistas extends React.Component {
                       </tr>
                     ))}
                   </tbody>
-                </Table>
+                </Table>}
               </div>
             </Col>
             <Col
@@ -307,7 +311,7 @@ export default class Bolsistas extends React.Component {
             <Col xs={3}></Col>
             <Col xs={5}>
               {this.state.bolsistas.length === 0 &&
-                this.state.searchControl === false && (
+                this.state.searchControl === false && this.state.loading === false &&  (
                   <Alert
                     severity="warning"
                     variant="filled"
