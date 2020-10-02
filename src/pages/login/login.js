@@ -49,6 +49,7 @@ export default class Login extends React.Component {
     const { login, password } = this.state;
     if (!login || !password) {
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
+      this.setState({loading: false})
     }else{
       try {
         const response = await api.post("/authUser", {login, password});

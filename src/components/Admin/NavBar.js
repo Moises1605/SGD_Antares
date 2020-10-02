@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
+import {Link} from "react-router-dom";
 import "./NavBarAdmin.scss";
 import logo from "../../assets/logo2.png";
 
@@ -17,9 +18,9 @@ export default class NavBar extends React.Component {
           <Navbar.Brand>
             <img alt="" src={logo} className="d-inline-block align-top" />{" "}
           </Navbar.Brand>
-          <Navbar.Brand href="/">
+          <Link to="/" className="nav-link">
             Sistema de agendamento de visitas
-          </Navbar.Brand>
+          </Link>
         </Navbar>
       </React.Fragment>
     );

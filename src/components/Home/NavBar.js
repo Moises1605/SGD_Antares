@@ -13,6 +13,8 @@ import "./NavBar.scss";
 import { configureAnchors } from "react-scrollable-anchor";
 import VisitNight from "./visitNight/visitNight";
 import logo from "../../assets/logoV2.png";
+import {Link} from 'react-router-dom';
+import Login from '../../pages/login/login';
 
 configureAnchors({
   offset: -115,
@@ -64,8 +66,10 @@ export default class NavBar extends React.Component {
                   id="basic-nav-dropdown"
                   className="dropnav"
                 >
-                  <NavDropdown.Item className="dropnav" href="/Login">
-                    Escolar
+                  <NavDropdown.Item className="dropnav">
+                    <Link to="/login" className="dropnav">
+                      Escolar
+                    </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     className="dropnav"
@@ -74,7 +78,7 @@ export default class NavBar extends React.Component {
                     Individual
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="/login">Login</Nav.Link>
+                  <Link to="/login" className="nav-link">Login</Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
